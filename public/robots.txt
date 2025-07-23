@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zachayers.com/sitemap.xml

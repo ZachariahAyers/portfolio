@@ -35,12 +35,11 @@ Your app includes aggressive cost controls:
 
 - **Daily Message Limit**: 50 messages/day (extremely conservative)
 - **Rate Limiting**: 
-  - 10 messages per hour per user
   - 3-second cooldown between messages
 - **Token Optimization**:
   - Profile data reduced from 8,000 to ~800 tokens
   - Conversation history limited to last 5 exchanges
-  - Responses capped at 150 tokens
+  - Responses capped at 1000 tokens (detailed responses)
   - User input truncated at 200 characters
 
 ## Expected Costs
