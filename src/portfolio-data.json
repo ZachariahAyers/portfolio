@@ -1,0 +1,367 @@
+{
+  "personal": {
+    "name": "Zachariah Ayers",
+    "title": "Senior Full Stack Engineer",
+    "avatarPath": "/profile.jpeg",
+    "aiAssistant": {
+      "name": "Arlo",
+      "avatarPath": "/ai-profile.png"
+    },
+    "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. Currently, I'm modernizing aerospace manufacturing at Northrop Grumman, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
+    "tagline": "Every architectural decision should trace back to a business outcome.",
+    "tenSecondPitch": {
+      "yearsAndScale": "14+ Years & Architect @ Scale: Shipped code for 14+ years, currently modernizing aerospace manufacturing at Northrop Grumman. Previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
+      "aiMlImplementer": "Pragmatic AI/ML Implementer: I don't just research AI, I ship it. Building RAG systems, computer vision automation, and predictive maintenance models in high-security production environments.",
+      "teamMultiplier": "Proven Team Multiplier: I make teams better. Trained 60+ developers, created frameworks that cut development time by 85%, and championed processes that dramatically reduced bug rates."
+    },
+    "executiveSummary": [
+      "Senior Full Stack Software Engineer with 14+ years architecting scalable systems across web, cloud, and AI/ML domains – currently modernizing aerospace manufacturing systems at Northrop Grumman while implementing ML-driven automation and building RAG applications",
+      "Proven technical leader who reduced loan processing time by 50% at AmeriSave through microservices architecture and delivers practical solutions that ship – whether that's migrating 500+ services, implementing AI automation, or optimizing legacy systems for 10x performance"
+    ],
+    "valueProposition": "I'm a senior full stack engineer who ships production code that scales. After 14+ years building everything from React frontends to distributed microservices, I've deliberately moved into AI/ML implementation because that's where the highest-leverage problems are. Currently at Northrop Grumman, I'm not just theorizing about AI – I'm building RAG systems, implementing predictive maintenance, and automating critical aerospace manufacturing processes. My superpower is taking complex technical problems and delivering practical solutions that actually work in production. Whether it's architecting 500+ microservices at AmeriSave or migrating 20-year-old VB6 systems, I measure success by business impact, and my strength is applying 14 years of systems architecture experience to make AI/ML solutions work reliably in production.",
+    "whatIBring": [
+      "Full Stack Expertise: 14+ years across React, Node.js, .NET, Java, Python – I can work anywhere in the stack",
+      "AI/ML Capabilities: Building RAG systems, implementing predictive maintenance, optimizing inference costs – AI is another tool in my toolkit",
+      "Scale & Reliability: Architected systems handling millions of transactions daily, whether traditional web apps or ML models",
+      "Pragmatic Approach: I choose the right tool for the job – React for UI, Python for ML, boring tech for critical systems",
+      "Team Multiplier: Helped 60+ developers at AmeriSave adopt new patterns – I make everyone around me better",
+      "Business Impact: Reduced loan processing by 50%, cut deployment time by 90% – I measure success in business outcomes",
+      "Modern & Legacy: Equally comfortable with cutting-edge tech (LangChain, vector DBs) and legacy systems (VB6 migrations)"
+    ]
+  },
+  "welcomeMessage": "Welcome! I'm Zach, a Senior Full Stack Engineer with 14+ years of experience building scalable systems and implementing AI/ML solutions. Let's save some time by having you chat with my AI Assistant, Arlo. Arlo knows everything about my experience, skills, and projects - and can even generate custom resumes tailored to your needs. Ask anything!",
+  "contact": {
+    "email": "ayers.dev@icloud.com",
+    "linkedin": "https://www.linkedin.com/in/zachariahayers",
+    "github": "https://github.com/N73311",
+    "portfolio": "https://www.zachayers.io",
+    "calendly": "https://calendly.com/zachayers",
+    "meridianvega": "https://www.meridianvega.com",
+    "chewableStudio": "https://www.chewable.studio",
+    "location": "Dallas, TX 75204",
+    "targetLocations": ["Fort Collins, CO", "Santa Fe, NM", "Austin, TX", "Seattle, WA"]
+  },
+  "experience": {
+    "northrop": {
+      "role": "Senior Software Engineer @ Northrop Grumman",
+      "period": "Aug 2024 - Present | Remote",
+      "type": "Contract via Meridian Vega LLC",
+      "description": "Leading mission-critical manufacturing system modernization from VB6 to .NET 8. Implementing ML-driven predictive maintenance with 85% accuracy, building intelligent automation reducing manual data entry by 70%, and creating enterprise RAG system for searching technical documentation.",
+      "impact": "Reduced deployment time from 2 weeks to 2 hours, prevented $300K+ in downtime through predictive maintenance",
+      "keyChallenge": "Navigating a high-security, air-gapped environment that demands extreme self-sufficiency and robust, offline-first solutions while modernizing 20-year-old mission-critical systems",
+      "technologies": "C# .NET 8, WinUI3, Python, TensorFlow, SAP, Azure DevOps, Legacy VB6/VB.NET"
+    },
+    "meridianVega": {
+      "role": "Founder & Principal Consultant @ Meridian Vega LLC",
+      "period": "Feb 2023 - Present | Remote",
+      "description": "Enterprise technology consulting including e-commerce integrations, creative tools development, 3D configurators, game development support. Built Stripe/Shopify systems, Adobe/DaVinci Resolve plugins, VW ID.Buzz wrap configurator, and Unity/Unreal Engine solutions.",
+      "impact": "Consistently delivered solutions that directly impacted client revenue streams, doubled Timelapse+ plugin sales",
+      "technologies": "TypeScript, React, NestJS, Unity, C#, Unreal Engine, Python, AWS"
+    },
+    "amerisave": {
+      "role": "Multiple Roles @ AmeriSave Mortgage Corporation",
+      "period": "Mar 2021 - Feb 2023 | Remote",
+      "manager": {
+        "role": "Software Development Manager",
+        "description": "Trained 60-person department in Agile workflows, mentored 30+ junior developers, served on Architecture Review Board, led daily incident response",
+        "impact": "Reduced delivery from months to weeks, increased milestone completion by 30%"
+      },
+      "architect": {
+        "role": "Software Architect",
+        "description": "Orchestrated 500+ microservice ecosystem with GraphQL Federation, led database decomposition from 4000+ table monolith, created company-wide SSO, developed Octo/Tellaro micro-frontend framework",
+        "impact": "Reduced development time by 85%, maintained low RTO/RPO for critical systems"
+      },
+      "developer": {
+        "role": "Full Stack Developer",
+        "description": "Migrated ColdFusion 9 monolith to Spring Boot/Angular microservices, optimized TSQL queries from 30s to sub-second, integrated Fannie Mae HomeReady program",
+        "impact": "Generated $3M monthly loan volume, achieved zero regression during migration"
+      },
+      "keyChallenge": "Overcoming organizational inertia to adopt new technologies while migrating a business-critical monolithic system with zero downtime – all while processing millions in daily loan volume",
+      "technologies": "Java, Spring Boot, Angular, React, Node.js, GraphQL, Azure, Docker, Kubernetes"
+    },
+    "hackReactor": {
+      "role": "Software Engineering Bootcamp @ Hack Reactor",
+      "period": "Mar 2020 - Aug 2020 | Remote",
+      "description": "Intensive 1000+ hour program. Built 5 full-stack applications including VX Apps (scaled backend from 100 to 5000 RPS), WonderFund (microservices platform), Chalkboard (real-time collaborative drawing), Vocation (Chrome extension), Done With It (React Native marketplace).",
+      "why": "After years of enterprise development, I wanted to level up my JavaScript and modern web skills",
+      "learned": "Modern JavaScript ecosystem, microservices at scale, and that bootcamp students can really code under pressure"
+    },
+    "stak": {
+      "role": "Senior Software Engineer / Engineering Manager @ Stak Design",
+      "period": "Jun 2016 - Mar 2020 | Carrollton, TX",
+      "description": "Led team of 8 developers building custom applications. Built CI/CD pipelines reducing deploy time by 80%, designed multi-tenant architecture, increased company leads by 170% through website redesign. Developed RabCab Automation extending AutoCAD's SDK for 3D carpentry automation.",
+      "biggestWin": "Convinced the team to adopt code reviews and automated testing. It was painful at first but reduced our bug rate dramatically.",
+      "biggestChallenge": "Balancing client demands with technical debt. Sometimes you have to ship the quick fix today and refactor tomorrow (spoiler: tomorrow rarely comes).",
+      "technologies": "Angular, .NET Core, Azure, SQL Server, C#, C++, AutoCAD SDK"
+    }
+  },
+  "skills": {
+    "expert": {
+      "description": "Technologies I use daily and can architect complex solutions with",
+      "languages": ["TypeScript", "Python", "C#", "JavaScript", "SQL"],
+      "frontend": ["React", "Next.js", "Redux", "Tailwind CSS"],
+      "backend": ["Node.js (Express/NestJS)", ".NET Core/8", "RESTful APIs"],
+      "cloud": ["AWS (EC2, Lambda, S3, DynamoDB)", "Azure (App Services, DevOps)"],
+      "infrastructure": ["Docker", "Kubernetes", "CI/CD (GitHub Actions, Azure DevOps)"],
+      "aiMl": ["LangChain", "OpenAI API", "RAG architectures", "TensorFlow"],
+      "databases": ["PostgreSQL", "MongoDB", "Redis"],
+      "architecture": ["Microservices", "System Design", "Event-Driven Architecture"]
+    },
+    "proficient": {
+      "description": "Technologies I've shipped to production and can work with effectively",
+      "languages": ["Java", "Go", "VB.NET"],
+      "frontend": ["Angular", "Vue.js", "Material-UI", "Webpack"],
+      "backend": ["Spring Boot", "GraphQL", "gRPC"],
+      "cloud": ["AWS (SageMaker, Bedrock)", "Azure ML"],
+      "infrastructure": ["Terraform", "Ansible", "Helm"],
+      "aiMl": ["PyTorch", "Scikit-learn", "Vector DBs (Pinecone, ChromaDB)"],
+      "databases": ["MySQL", "DynamoDB", "Elasticsearch"],
+      "testing": ["Jest", "Cypress", "Selenium"]
+    },
+    "familiar": {
+      "description": "Technologies I can work with given documentation or ramp-up time",
+      "languages": ["Rust", "Lua", "C++"],
+      "frameworks": ["Spring Cloud", "Fastify", "Svelte"],
+      "tools": ["Apache Kafka", "Spark", "MLflow"],
+      "databases": ["Cassandra", "SAP HANA"],
+      "others": ["Unity", "Unreal Engine", "AutoCAD APIs"]
+    }
+  },
+  "projects": {
+    "assemblejs": {
+      "name": "AssembleJS",
+      "description": "Created modern micro-frontend framework from scratch with islands architecture and server-side rendering support. Enables distributed, component-based UI development.",
+      "url": "assemblejs.com",
+      "github": "github.com/zjayers/assemblejs",
+      "impact": "Open-source framework used by developers worldwide"
+    },
+    "rabacab": {
+      "name": "RabCab Automation",
+      "description": "Extended AutoCAD's C# ObjectARX SDK for custom 3D carpentry automation. Built G-code translators that reduced machinery operator errors by 90%.",
+      "impact": "Saved 10 hours/week of manual work, cut support calls by 30%"
+    },
+    "vwConfigurator": {
+      "name": "VW ID.Buzz Configurator",
+      "description": "Built 3D vehicle wrap viewer for Wrapmate allowing real-time visualization of custom graphics integrated with e-commerce system.",
+      "url": "wraps.wrapmate.com/configurator"
+    }
+  },
+  "education": {
+    "university": {
+      "institution": "Arkansas Tech University",
+      "degree": "Bachelor of Engineering (B.E.) - Computer Science",
+      "period": "Aug 2010 - Jan 2013",
+      "achievements": ["Dean's List", "Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering"]
+    },
+    "bootcamp": {
+      "institution": "Hack Reactor",
+      "program": "Advanced Software Engineering Immersive",
+      "period": "Mar 2020 - Aug 2020",
+      "description": "1000+ hour intensive program focused on modern web technologies with React and Node.js"
+    }
+  },
+  "certifications": {
+    "cloud": ["AWS Certified Cloud Practitioner (Oct 2023 - Oct 2026)"],
+    "database": [
+      "Redis RU101: Data Structures (Jul 2021)",
+      "Redis RU202: Streams (Jul 2021)",
+      "Redis RU203: Advanced Querying (Aug 2021)",
+      "Redis RU303: Security (Aug 2020)"
+    ],
+    "projectManagement": [
+      "ClickUp Expert Certificate (Jan 2023)",
+      "ClickUp Intermediate Certificate (Jan 2023)",
+      "ClickUp Novice Certificate (Jan 2023)"
+    ],
+    "engineering": [
+      "Hack Reactor Certified Full Stack Engineer (Aug 2020)",
+      "Triplebyte Certified Generalist Software Engineer (Aug 2020)",
+      "CSWP - Certified SolidWorks Professional (Jun 2017)"
+    ],
+    "inProgress": [
+      "AWS Certified Developer - Associate",
+      "AWS Certified Solutions Architect - Associate",
+      "AWS Certified AI Practitioner",
+      "AWS Certified Machine Learning - Specialty"
+    ]
+  },
+  "architecturalPhilosophy": {
+    "principles": [
+      "Start with the business problem, not the technology",
+      "Optimize for change, not perfection",
+      "Make the right thing easy",
+      "Measure everything that matters"
+    ],
+    "approach": [
+      "Understand constraints first: Budget, timeline, team skills, existing systems",
+      "Design for the next 18 months: Not 10 years – requirements will change",
+      "Document trade-offs explicitly: Every decision has pros and cons",
+      "Build in observability from day one: You can't optimize what you can't measure",
+      "Plan for failure: Systems fail; good architectures handle it gracefully"
+    ]
+  },
+  "careerObjectives": {
+    "fullTime": {
+      "targetRoles": ["Senior/Staff/Principal Software Engineer", "AI/ML Engineer", "Solutions Architect", "Engineering Manager", "Technical Lead"],
+      "idealCompany": [
+        "Technical excellence and innovation in AI/ML space",
+        "Modern technology stacks (React, Node.js, Python, Cloud-native, LLMs)",
+        "Remote-first culture (willing to relocate)",
+        "Opportunities for technical leadership in AI/ML initiatives",
+        "Complex technical challenges involving AI integration"
+      ]
+    },
+    "consulting": {
+      "services": [
+        "Enterprise modernization and legacy system migrations",
+        "AI/ML integration and implementation",
+        "Technical architecture and strategy consulting",
+        "Team mentorship and upskilling",
+        "Proof of concept and MVP development"
+      ],
+      "benefits": [
+        "Reduced employment overhead and administrative costs",
+        "Flexible engagement terms (project-based, retainer, or hourly)",
+        "Ability to scale resources up/down as needed",
+        "Access to specialized expertise without long-term commitment"
+      ]
+    }
+  },
+  "compensation": {
+    "fullTime": {
+      "baseRange": "$180,000 - $250,000",
+      "byLocation": {
+        "seattle": "$200K-$250K (high cost of living)",
+        "austin": "$180K-$220K (good balance)",
+        "fortCollins": "$170K-$200K (lower cost of living)",
+        "santaFe": "$160K-$190K (limited opportunities, may need remote)"
+      },
+      "note": "I know I'm transitioning into AI/ML, so I'm realistic about starting at the lower end for AI-specific roles while I build expertise"
+    },
+    "consulting": {
+      "hourly": "$150 - $250/hour (depending on project complexity and duration)",
+      "project": "Available for fixed-price engagements",
+      "retainer": "For ongoing advisory or part-time roles"
+    }
+  },
+  "faqs": {
+    "leaving_role": "The Northrop contract is going well, but I want to work on more modern tech stacks and specifically transition into AI/ML engineering. Plus, I'd love to relocate to Fort Collins or one of my other target cities. Dallas is fine, but I miss the mountains.",
+    "ai_experience": "I've been implementing ML solutions in production for the past 2 years – predictive maintenance, computer vision, RAG systems, and LLM applications. I'm not an ML researcher, but I excel at taking ML models and making them work reliably at scale. My 14 years of systems experience means I know how to handle the infrastructure, monitoring, and edge cases that make ML actually useful in production.",
+    "not_bored": "Not at all. I genuinely enjoy solving problems and shipping code. Some of my best work has been 'boring' – like optimizing database queries or refactoring legacy code. I find satisfaction in making things work better, regardless of how cutting-edge the technology is.",
+    "location_preferences": "Quality of life. Fort Collins has great outdoor access and a tech scene. Santa Fe is beautiful with a smaller but growing tech community. Austin has energy and opportunities. Seattle... well, it's a tech hub. I've done my time in Dallas traffic and I'm ready for a change.",
+    "leave_defense": "Yes. While the work is important and stable, I want to work on products that I can talk about at meetups, contribute to open source, and iterate quickly without multi-month approval processes. I miss the energy of commercial software development."
+  },
+  "additionalInfo": {
+    "languages": ["English (Native)", "Spanish (Limited Working Proficiency)"],
+    "community": [
+      "Chewable Studio (chewable.studio): Founded educational game development studio",
+      "After School Programs: Teaching programming to underprivileged youth",
+      "Rocky Mountain Horse Rescue: Technical advisor and volunteer",
+      "Foothills Animal Shelter: Fear Free Foster Program participant"
+    ],
+    "publications": [
+      "Meridian Vega Tech Blog (curiousabout.it)",
+      "DEV Community member for 3+ years (dev.to/zjayers)",
+      "Multiple NPM packages published",
+      "AMC MicroFrontend Architecture Technical Handbook"
+    ],
+    "openSource": [
+      "GitHub Portfolio: github.com/N73311",
+      "Organization profiles: github.com/MeridianVega, github.com/Chewable-Studio",
+      "AssembleJS Framework: github.com/zjayers/assemblejs",
+      "Vocation Chrome Plugin"
+    ],
+    "currentProjects": [
+      "Production RAG Systems: Architecting enterprise-scale retrieval-augmented generation",
+      "Edge ML Optimization: Deploying models in resource-constrained environments",
+      "LLM Fine-tuning: Domain-specific model adaptation for aerospace applications",
+      "AI Infrastructure: Building scalable ML pipelines and model serving architectures"
+    ]
+  },
+  "whyISucceed": [
+    "I ship code that works. I've built systems handling millions of transactions, rescued failing projects, and helped teams deliver faster.",
+    "I bring AI/ML plus deep engineering experience. I've been implementing ML solutions in production for 2+ years, but more importantly, I have 14 years of making systems reliable at scale.",
+    "I make teams better. At AmeriSave, I helped 60+ developers adopt new patterns not through mandates but by showing value.",
+    "I care about the business. I've seen too many engineers build technically perfect solutions that solve the wrong problem."
+  ],
+  "tools": {
+    "development": ["VS Code", "JetBrains Suite", "Visual Studio", "Git", "Postman", "DBeaver"],
+    "collaboration": ["Slack", "Teams", "Jira", "Linear", "Confluence", "Notion", "Figma"],
+    "aiMl": ["Jupyter", "Google Colab", "MLflow", "Weights & Biases", "LangChain", "LlamaIndex"]
+  },
+  "interviewReadiness": {
+    "technical": [
+      "Coding Challenges: Proficient in LeetCode (300+ problems solved), HackerRank, CodeSignal",
+      "System Design: Experienced in designing distributed systems, can whiteboard complex architectures",
+      "Take-Home Projects: Consistently deliver production-quality code with tests and documentation",
+      "Live Coding: Comfortable with pair programming and thinking aloud while coding",
+      "Technical Presentations: Can present complex technical concepts to both technical and non-technical audiences"
+    ],
+    "availability": "Available with 24-48 hours notice, prefer video interviews, can do technical assessments",
+    "scheduling": "calendly.com/zachayers (15/30/60 minute options available)"
+  },
+  "interviewQuestions": {
+    "technical": [
+      "What makes you stand out from other senior engineers?",
+      "What's your experience with AI/ML in production?",
+      "What's your preferred tech stack and why?",
+      "Describe a challenging technical problem you solved",
+      "What's your experience with microservices architecture?",
+      "How do you stay current with new technologies?",
+      "What is your experience with React and Node.js?",
+      "What cloud platforms do you work with?",
+      "Tell me about your system design experience",
+      "How do you approach performance optimization?",
+      "What's your testing philosophy?",
+      "How do you handle technical debt?"
+    ],
+    "behavioral": [
+      "Why are you looking for a new opportunity?",
+      "Tell me about your leadership and mentoring experience",
+      "How do you handle disagreements with team members?",
+      "Describe a time you failed and what you learned",
+      "What's your approach to work-life balance?",
+      "How do you prioritize competing demands?",
+      "Tell me about a time you influenced without authority",
+      "How do you approach learning new technologies?",
+      "What motivates you in your work?",
+      "How do you give and receive feedback?"
+    ],
+    "situational": [
+      "How would you modernize a legacy system?",
+      "What would you do if a critical system went down?",
+      "How would you introduce AI/ML to a skeptical team?",
+      "How would you handle an underperforming team member?",
+      "What if requirements change mid-project?",
+      "How would you balance innovation with stability?",
+      "How would you approach a tight deadline?",
+      "What if stakeholders have conflicting priorities?",
+      "How would you handle a security breach?",
+      "How would you scale a system 10x?"
+    ],
+    "projectSpecific": [
+      "Show me your most impactful enterprise transformations",
+      "What projects are you most proud of?",
+      "Tell me about the AmeriSave microservices migration",
+      "Explain your Northrop Grumman ML implementations",
+      "What was RabCab Automation?",
+      "Tell me about AssembleJS framework",
+      "What's your experience with legacy migrations?",
+      "How did you reduce loan processing time by 50%?",
+      "What's your approach to predictive maintenance?",
+      "How do you build RAG systems?"
+    ],
+    "compensationAndLogistics": [
+      "What are your salary expectations?",
+      "Are you open to relocation?",
+      "What's your ideal work environment?",
+      "Are you looking for remote or hybrid?",
+      "When can you start?",
+      "Do you prefer contract or full-time?",
+      "What benefits are important to you?",
+      "How do you feel about on-call rotations?",
+      "Would you consider consulting engagements?",
+      "What's your notice period?"
+    ]
+  }
+}
