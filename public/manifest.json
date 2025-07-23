@@ -1,0 +1,9 @@
+{
+  "name": "Zachariah Ayers Portfolio AI",
+  "short_name": "Zach AI",
+  "description": "AI-powered portfolio assistant for Zachariah Ayers",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1a1a1a",
+  "background_color": "#1a1a1a"
+}
