@@ -3,66 +3,76 @@ import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Glob
 
 const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF }) => {
   const renderMeView = () => (
-    <div className="space-y-8">
-      {/* Hero Section */}
-      <div className="text-center space-y-4">
-        <div className="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-xl">
-          <img src={profileData.personal.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
+    <div className="space-y-6 max-w-5xl mx-auto">
+      {/* Hero Section: Image | Name/Title | Contact Info */}
+      <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
+        {/* Image */}
+        <div className="flex-shrink-0 flex items-center">
+          <div className="w-24 h-24 rounded-full overflow-hidden shadow-xl">
+            <img src={profileData.personal.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
+          </div>
         </div>
-        <h1 className="text-4xl font-bold text-white">{profileData.personal.name}</h1>
-        <p className="text-xl text-gray-300">{profileData.personal.title}</p>
-        <p className="text-lg text-blue-400 italic">"{profileData.personal.tagline}"</p>
+
+        {/* Name and Title */}
+        <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
+          <h1 className="text-3xl font-bold text-white">{profileData.personal.name}</h1>
+          <p className="text-lg text-gray-300">{profileData.personal.title}</p>
+          <p className="text-blue-400 italic">"{profileData.personal.tagline}"</p>
+        </div>
+
+        {/* Contact Info */}
+        <div className="flex-shrink-0 bg-gray-800/50 rounded-lg p-4 min-w-[280px]">
+          <h2 className="text-lg font-bold text-white mb-3">Connect With Me</h2>
+          <div className="grid grid-cols-1 gap-2 text-sm">
+            <a href={`mailto:${profileData.contact.email}`} className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+              <ExternalLink size={14} /> {profileData.contact.email}
+            </a>
+            <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+              <ExternalLink size={14} /> LinkedIn Profile
+            </a>
+            <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+              <Github size={14} /> GitHub Portfolio
+            </a>
+            <a href={profileData.contact.calendly} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+              <Calendar size={14} /> Schedule a Call
+            </a>
+          </div>
+        </div>
       </div>
 
-      {/* Executive Summary */}
-      <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+      {/* Executive Summary - Full Width */}
+      <div className="bg-gray-800/50 rounded-lg p-5 space-y-3">
+        <h2 className="text-xl font-bold text-white flex items-center gap-2">
           <Zap className="text-yellow-400" /> Executive Summary
         </h2>
         {profileData.personal.executiveSummary.map((summary, idx) => (
-          <p key={idx} className="text-gray-300 leading-relaxed">{summary}</p>
+          <p key={idx} className="text-gray-300 leading-relaxed text-sm">{summary}</p>
         ))}
       </div>
 
-      {/* What I Bring */}
-      <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-white">What I Bring to Your Team</h2>
-        <div className="grid gap-3">
-          {profileData.personal.whatIBring.map((item, idx) => (
-            <div key={idx} className="flex items-start gap-3">
-              <span className="text-blue-400 mt-1">▸</span>
-              <p className="text-gray-300">{item}</p>
-            </div>
-          ))}
+      {/* Bottom Row: Why I Succeed | What I Bring */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Why I Succeed */}
+        <div className="bg-gray-800/50 rounded-lg p-5 space-y-3 max-h-64">
+          <h2 className="text-xl font-bold text-white">Why I Succeed</h2>
+          <div className="space-y-2 overflow-y-auto max-h-48 pr-2">
+            {profileData.whyISucceed.map((reason, idx) => (
+              <p key={idx} className="text-gray-300 pl-3 border-l-2 border-blue-500 text-sm">{reason}</p>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Why I Succeed */}
-      <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-white">Why I Succeed</h2>
-        <div className="space-y-3">
-          {profileData.whyISucceed.map((reason, idx) => (
-            <p key={idx} className="text-gray-300 pl-4 border-l-2 border-blue-500">{reason}</p>
-          ))}
-        </div>
-      </div>
-
-      {/* Contact & Links */}
-      <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-white">Connect With Me</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a href={`mailto:${profileData.contact.email}`} className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-            <ExternalLink size={16} /> {profileData.contact.email}
-          </a>
-          <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-            <ExternalLink size={16} /> LinkedIn Profile
-          </a>
-          <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-            <Github size={16} /> GitHub Portfolio
-          </a>
-          <a href={profileData.contact.calendly} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-            <Calendar size={16} /> Schedule a Call
-          </a>
+        {/* What I Bring */}
+        <div className="bg-gray-800/50 rounded-lg p-5 space-y-3 max-h-64">
+          <h2 className="text-xl font-bold text-white">What I Bring to Your Team</h2>
+          <div className="grid gap-2 overflow-y-auto max-h-48 pr-2">
+            {profileData.personal.whatIBring.map((item, idx) => (
+              <div key={idx} className="flex items-start gap-2">
+                <span className="text-blue-400 mt-1 text-sm">▸</span>
+                <p className="text-gray-300 text-sm">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

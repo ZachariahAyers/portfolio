@@ -15,8 +15,7 @@
       "teamMultiplier": "Proven Team Multiplier: I make teams better. Trained 60+ developers, created frameworks that cut development time by 85%, and championed processes that dramatically reduced bug rates."
     },
     "executiveSummary": [
-      "Senior Full Stack Software Engineer with 14+ years architecting scalable systems across web, cloud, and AI/ML domains – currently modernizing aerospace manufacturing systems at Northrop Grumman while implementing ML-driven automation and building RAG applications",
-      "Proven technical leader who reduced loan processing time by 50% at AmeriSave through microservices architecture and delivers practical solutions that ship – whether that's migrating 500+ services, implementing AI automation, or optimizing legacy systems for 10x performance"
+      "Senior Full Stack Software Engineer with 14+ years architecting scalable systems across web, cloud, and AI/ML domains. Currently modernizing aerospace manufacturing at Northrop Grumman while implementing ML automation and RAG systems. Proven technical leader who consistently delivers practical solutions that ship – from migrating 500+ microservices to optimizing legacy systems for 10x performance."
     ],
     "valueProposition": "I'm a senior full stack engineer who ships production code that scales. After 14+ years building everything from React frontends to distributed microservices, I've deliberately moved into AI/ML implementation because that's where the highest-leverage problems are. Currently at Northrop Grumman, I'm not just theorizing about AI – I'm building RAG systems, implementing predictive maintenance, and automating critical aerospace manufacturing processes. My superpower is taking complex technical problems and delivering practical solutions that actually work in production. Whether it's architecting 500+ microservices at AmeriSave or migrating 20-year-old VB6 systems, I measure success by business impact, and my strength is applying 14 years of systems architecture experience to make AI/ML solutions work reliably in production.",
     "whatIBring": [
@@ -29,7 +28,7 @@
       "Modern & Legacy: Equally comfortable with cutting-edge tech (LangChain, vector DBs) and legacy systems (VB6 migrations)"
     ]
   },
-  "welcomeMessage": "Welcome! I'm Zach, a Senior Full Stack Engineer with 14+ years of experience building scalable systems and implementing AI/ML solutions. Let's save some time by having you chat with my AI Assistant, Arlo. Arlo knows everything about my experience, skills, and projects - and can even generate custom resumes tailored to your needs. Ask anything!",
+  "welcomeMessage": "Hi there! 👋 Welcome to my portfolio - I'm Zach, a Senior Full Stack Engineer with 14+ years of experience building scalable systems and implementing AI/ML solutions. Rather than making you dig through static content, I've created something much better: meet Arlo, my AI Assistant who knows absolutely everything about my experience, skills, and projects. Arlo can answer your questions instantly, generate custom resumes tailored to your specific needs, and even conduct mock interviews! Let's save time and get straight to what matters - just start chatting with Arlo below. Ask anything!",
   "contact": {
     "email": "ayers.dev@icloud.com",
     "linkedin": "https://www.linkedin.com/in/zachariahayers",
