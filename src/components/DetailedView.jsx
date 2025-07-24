@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, Maximize2 } from 'lucide-react';
+import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, Maximize2, Star } from 'lucide-react';
 import StreamingText from './StreamingText';
 import StreamingTextSimple from './StreamingTextSimple';
+import useGitHubStats from '../hooks/useGitHubStats';
 
 const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF, userInteractions, personalizedContent, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
   const navigate = useNavigate();
@@ -163,6 +164,9 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     const [expandedProjects, setExpandedProjects] = React.useState(new Set());
     const [showAllTechs, setShowAllTechs] = React.useState(false);
     const [showCurrentOnly, setShowCurrentOnly] = React.useState(false);
+    
+    // Get GitHub stats
+    const githubStats = useGitHubStats();
 
     // Flatten all projects into a single array
     const allProjects = React.useMemo(() => {
@@ -324,30 +328,58 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="text-center space-y-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-6 border border-blue-500/30">
-          <h1 className="text-3xl font-bold text-white flex items-center justify-center gap-3">
-            <Rocket className="text-blue-400" />
-            Projects & Creations
-          </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            From enterprise transformations to open-source contributions
-          </p>
-          <div className="flex justify-center gap-4 text-sm">
-            <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-              <span className="text-gray-400">Total: </span>
-              <span className="text-white font-bold">{allProjects.length}</span>
-            </div>
-            <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-              <span className="text-gray-400">Open Source: </span>
-              <span className="text-white font-bold">
-                {allProjects.filter(p => p.github).length}
+        <div className="relative bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-6 border border-blue-500/30">
+          {/* GitHub Stats in top right corner */}
+          <div className="absolute top-4 right-4 text-sm">
+            <div className="bg-gray-800/50 rounded-lg px-3 py-1 flex items-center gap-2">
+              <Github className="w-4 h-4 text-gray-400" />
+              <span className="text-gray-400">Stars: </span>
+              <span className="text-white font-bold inline-flex items-center gap-1">
+                {githubStats.loading ? (
+                  <span className="text-xs">Loading...</span>
+                ) : githubStats.error ? (
+                  <span className="text-xs">--</span>
+                ) : (
+                  <>
+                    <Star className="w-3 h-3 text-yellow-500" />
+                    {githubStats.totalStars}
+                  </>
+                )}
               </span>
             </div>
-            <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-              <span className="text-gray-400">Live Deployments: </span>
-              <span className="text-white font-bold">
-                {allProjects.filter(p => p.url).length}
-              </span>
+          </div>
+          
+          <div className="text-center space-y-4">
+            <h1 className="text-3xl font-bold text-white flex items-center justify-center gap-3">
+              <Rocket className="text-blue-400" />
+              Projects & Creations
+            </h1>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              From enterprise transformations to open-source contributions
+            </p>
+            <div className="flex justify-center flex-wrap gap-4 text-sm">
+              <div className="bg-gray-800/50 rounded-lg px-3 py-1">
+                <span className="text-gray-400">Total: </span>
+                <span className="text-white font-bold">{allProjects.length}</span>
+              </div>
+              <div className="bg-gray-800/50 rounded-lg px-3 py-1">
+                <span className="text-gray-400">Open Source: </span>
+                <span className="text-white font-bold">
+                  {allProjects.filter(p => p.github).length}
+                </span>
+              </div>
+              <div className="bg-gray-800/50 rounded-lg px-3 py-1">
+                <span className="text-gray-400">Live Deployments: </span>
+                <span className="text-white font-bold">
+                  {allProjects.filter(p => p.url).length}
+                </span>
+              </div>
+              <div className="bg-gray-800/50 rounded-lg px-3 py-1">
+                <span className="text-gray-400">Case Studies: </span>
+                <span className="text-white font-bold">
+                  {allProjects.filter(p => p.caseStudy).length}
+                </span>
+              </div>
             </div>
           </div>
           
