@@ -55,7 +55,22 @@
       "period": "Feb 2023 - Present | Remote",
       "description": "Enterprise technology consulting including e-commerce integrations, creative tools development, 3D configurators, game development support. Built Stripe/Shopify systems, Adobe/DaVinci Resolve plugins, VW ID.Buzz wrap configurator, and Unity/Unreal Engine solutions.",
       "impact": "Consistently delivered solutions that directly impacted client revenue streams, doubled Timelapse+ plugin sales",
-      "technologies": "TypeScript, React, NestJS, Unity, C#, Unreal Engine, Python, AWS"
+      "technologies": "TypeScript, React, NestJS, Unity, C#, Unreal Engine, Python, AWS",
+      "clientProjects": {
+        "ecommerce": "Built Stripe/Shopify payment system for AWS-hosted React SPA using NestJS/TypeScript",
+        "creativeTools": [
+          "Developed Adobe Premiere Pro and DaVinci Resolve plugins for Timelapse+ (timelapseplus.com)",
+          "Implemented Gamut color grading plugin for professional video workflows",
+          "Designed LUA/Python bridge for Adobe products, doubling Timelapse+ plugin sales"
+        ],
+        "vwConfigurator": {
+          "name": "VW ID.Buzz Configurator",
+          "description": "Built 3D vehicle wrap viewer for Wrapmate (wraps.wrapmate.com/configurator)",
+          "features": ["Real-time 3D visualization of custom vehicle graphics", "Integration with e-commerce ordering system"]
+        },
+        "gameDevelopment": "Maintained Unity C# multiplayer systems using Photon framework",
+        "mobileGaming": "Led Unreal Engine code reviews and iOS game development support"
+      }
     },
     "amerisave": {
       "role": "Multiple Roles @ AmeriSave Mortgage Corporation",
@@ -92,6 +107,37 @@
       "biggestWin": "Convinced the team to adopt code reviews and automated testing. It was painful at first but reduced our bug rate dramatically.",
       "biggestChallenge": "Balancing client demands with technical debt. Sometimes you have to ship the quick fix today and refactor tomorrow (spoiler: tomorrow rarely comes).",
       "technologies": "Angular, .NET Core, Azure, SQL Server, C#, C++, AutoCAD SDK"
+    },
+    "coreStates": {
+      "role": "Project Coordinator / Walmart Remodel Team @ Core States Group",
+      "period": "Jan 2015 - Apr 2016 | Dallas-Fort Worth, TX",
+      "description": "Produced architectural CAD drawings and specifications for retail remodels across Texas. Built automation tools that reduced drawing production time by 40%. Created 3D renderings using 3DS Max with VRay for client presentations.",
+      "responsibilities": [
+        "Produced architectural CAD drawings and specifications for retail remodels",
+        "Built automation tools reducing drawing production time by 40%",
+        "Created 3D renderings using 3DS Max with VRay",
+        "Traveled to sites for scope trips and construction observations"
+      ],
+      "technologies": "AutoCAD, 3DS Max, VRay, C#"
+    },
+    "cmaArchitecture": {
+      "role": "Software Engineer / Project Engineer @ CMA Architecture",
+      "period": "Jan 2015 - Apr 2016 | Fort Worth, TX",
+      "note": "Overlapped with Core States Group - consulting arrangement",
+      "description": "Developed custom CAD automation tools improving productivity by 40%. Built project management system integrating with Revit and AutoCAD.",
+      "technologies": "C#, WPF, SQL Server, AutoCAD API"
+    },
+    "cowellSteel": {
+      "role": "Software Engineer / Project Manager @ Cowell Steel Structures",
+      "period": "Jan 2013 - Jan 2015 | Russellville, AR",
+      "description": "Created engineering calculation software reducing design time by 60%. Managed software development projects from inception to deployment.",
+      "technologies": "C#, Windows Forms, SQL Server"
+    },
+    "tricanWell": {
+      "role": "Software Engineer / Data Manager @ Trican Well Service",
+      "period": "Nov 2009 - Jul 2010 | Searcy, AR",
+      "description": "Developed data analysis tools for oil field operations. Automated reporting processes saving 20+ hours weekly.",
+      "technologies": "VB.NET, SQL Server, Crystal Reports"
     }
   },
   "skills": {
@@ -137,12 +183,231 @@
     "rabacab": {
       "name": "RabCab Automation",
       "description": "Extended AutoCAD's C# ObjectARX SDK for custom 3D carpentry automation. Built G-code translators that reduced machinery operator errors by 90%.",
-      "impact": "Saved 10 hours/week of manual work, cut support calls by 30%"
+      "impact": "Saved 10 hours/week of manual work, cut support calls by 30%",
+      "details": [
+        "Built G-code translators reducing machinery operator errors by 90%",
+        "Implemented ELK stack for crash reporting, cutting support calls by 30%",
+        "Automated cut sheet processing, saving 10 hours/week of manual work",
+        "Extended AutoCAD's C# ObjectARX SDK for custom 3D carpentry automation"
+      ]
     },
     "vwConfigurator": {
       "name": "VW ID.Buzz Configurator",
       "description": "Built 3D vehicle wrap viewer for Wrapmate allowing real-time visualization of custom graphics integrated with e-commerce system.",
       "url": "wraps.wrapmate.com/configurator"
+    },
+    "hackReactorProjects": {
+      "vxApps": {
+        "name": "VX Apps",
+        "description": "Scaled a marketplace backend from 100 to 5000 RPS using PostgreSQL optimization and smart indexing",
+        "technologies": "Node.js, PostgreSQL, Express"
+      },
+      "wonderFund": {
+        "name": "WonderFund",
+        "description": "Built crowdfunding platform with microservices, Docker, and Skaffold in 2-week sprint",
+        "technologies": "React, Node.js, Docker, Kubernetes, Skaffold"
+      },
+      "chalkboard": {
+        "name": "Chalkboard",
+        "description": "Real-time collaborative drawing app with Socket.IO – learned the hard way about WebSocket scaling",
+        "technologies": "React, Socket.IO, Canvas API"
+      },
+      "vocation": {
+        "name": "Vocation",
+        "description": "Chrome extension for job seekers using Vue.js and local storage (still on Chrome store!)",
+        "technologies": "Vue.js, Chrome Extension API",
+        "url": "https://chrome.google.com/webstore/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
+        "github": "https://github.com/zjayers/proto.vue.jobscan/tree/master/src"
+      },
+      "doneWithIt": {
+        "name": "Done With It",
+        "description": "React Native marketplace app with Expo – my first mobile development experience",
+        "technologies": "React Native, Expo",
+        "url": "https://zjayers.github.io/host.donewithit/",
+        "github": "https://github.com/zjayers/react.native.complete/tree/master/app"
+      }
+    },
+    "otherProjects": {
+      "sliceOfLife": {
+        "name": "Slice of Life",
+        "description": "Mobile app facilitating informed decisions on pizza dining experiences through detailed restaurant reviews and ratings.",
+        "technologies": ["React", "React Native", "Redux", "Node.js", "TypeScript", "iOS", "Android", "AWS Amplify"],
+        "demo": "https://youtu.be/uRbGMZ9oPjw"
+      },
+      "personAI": {
+        "name": "PersonAI",
+        "description": "AI-powered dashboard with an array of tools for efficient problem-solving and decision-making.",
+        "technologies": ["React", "Node.js", "OpenAI", "ChatGPT 3", "TypeScript", "Tailwind", "AWS S3/Route 53"],
+        "url": "https://ai.zachayers.io",
+        "demo": "https://www.youtube.com/watch?v=iEhKcDaNYrs"
+      },
+      "arlo": {
+        "name": "Arlo",
+        "description": "Personalized AI companion web app, built on the foundation of ChatGPT, aimed at enhancing users' productivity and making daily life simpler.",
+        "technologies": ["React", "Node.js", "OpenAI", "ChatGPT 3", "TypeScript", "AWS S3/Route 53"],
+        "url": "https://arlo.zachayers.io",
+        "demo": "https://www.youtube.com/watch?v=iEhKcDaNYrs"
+      },
+      "lively": {
+        "name": "Lively",
+        "description": "Streamlines the process of sharing and joining events, allowing users to easily connect with like-minded individuals.",
+        "technologies": ["C#", "ASP.NET Core 5", "Entity Framework", "React", "Redux", "TypeScript", "SQL Server", "Redis", "Azure"],
+        "url": "https://reactivities-heroku.herokuapp.com",
+        "github": "https://github.com/zjayers/asp.net.core.react/tree/master/Core",
+        "devOps": "https://gist.github.com/zjayers/713de2b9d7e1f075812733427298743b"
+      },
+      "grayscale": {
+        "name": "Grayscale",
+        "description": "Combines the power of WebAssembly and Rust to process images using a user's local hardware, bypassing browser limitations and enabling faster performance.",
+        "technologies": ["React", "Node.js", "WebAssembly", "Rust", "TypeScript", "AWS CodeBuild/CodePipeline/CodeDeploy"],
+        "url": "https://grayscale.zachayers.io"
+      },
+      "natours": {
+        "name": "Natours",
+        "description": "Comprehensive nature trail application that enables users to book, purchase, and explore a multitude of user-created trails from around the world.",
+        "technologies": ["React", "Redux", "TypeScript", "Node.js", "Express", "MongoDB", "AWS CodeStar"],
+        "url": "https://natours.zachayers.io",
+        "github": "https://github.com/zjayers/natours"
+      },
+      "moduleFederation": {
+        "name": "Module Federation",
+        "description": "Multi-Spa app utilizing Webpack Module Federation, seamlessly integrating multiple front-end applications into a single container for enhanced scalability.",
+        "technologies": ["Angular", "React", "Vue", "Docker", "TypeScript", "Material-UI", "Webpack Module Federation", "AWS CloudFront/S3"],
+        "url": "https://federation.zachayers.io",
+        "github": "https://github.com/zjayers/mfe.complete/tree/master/packages"
+      },
+      "craterMVC": {
+        "name": "CraterMVC",
+        "description": "PHP 7.+ based Model-View-Controller framework, deployed on an EC2 instance with a LAMP stack for optimal web application development.",
+        "technologies": ["Apache", "PHP", "MySQL", "AWS EC2"],
+        "url": "https://cratersmvc.zachayers.io/shareposts/public/",
+        "github": "https://github.com/zjayers/php.mvc.framework"
+      },
+      "hostify": {
+        "name": "Hostify",
+        "description": "Reliable and scalable server hosting service that ensures optimal performance and uptime for web applications.",
+        "technologies": ["JavaScript", "jQuery", "HTML", "CSS", "AWS EC2"],
+        "url": "https://hostify.zachayers.io",
+        "github": "https://github.com/zjayers/hostify"
+      },
+      "remixIDE": {
+        "name": "RemixIDE",
+        "description": "High-performance MacOS port of the popular Remix IDE, offering a streamlined environment for developers to write, test, and deploy smart contracts.",
+        "technologies": ["Blockchain", "Electron", "Ethereum", "Solidity", "TypeScript", "MacOS", "Linux"],
+        "url": "https://github.com/zjayers/remix.ide/releases/tag/1.0",
+        "github": "https://github.com/zjayers/remix.ide"
+      },
+      "nexter": {
+        "name": "Nexter",
+        "description": "Modern landing page for a real estate firm, designed to engage potential buyers and showcase properties with impactful visuals.",
+        "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
+        "url": "https://nexter.zachayers.io",
+        "github": "https://github.com/zjayers/design.nexter"
+      },
+      "cidr": {
+        "name": "CIDR",
+        "description": "CIDR visualizer tool that simplifies network planning and administration, providing a user-friendly interface for mapping IP addresses and subnets.",
+        "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
+        "url": "https://cidr.zachayers.io"
+      },
+      "trillo": {
+        "name": "Trillo",
+        "description": "Landing page for a hotel booking service, designed to captivate potential guests with stunning imagery and intuitive UI.",
+        "technologies": ["Bootstrap", "JavaScript", "jQuery", "HTML", "SCSS", "AWS S3/Route 53"],
+        "url": "https://trillo.zachayers.io",
+        "github": "https://github.com/zjayers/design.trillo"
+      },
+      "auroraGrove": {
+        "name": "Aurora Grove",
+        "description": "Landing page for a campground booking service highlighting natural beauty and unique features of each site.",
+        "technologies": ["Bootstrap", "JavaScript", "jQuery", "HTML", "SCSS", "AWS S3/Route 53"],
+        "url": "https://aurora.zachayers.io",
+        "github": "https://github.com/zjayers/design.bootstrap"
+      }
+    },
+    "enterpriseProjects": {
+      "rabcab": {
+        "name": "RabCab",
+        "description": "Transforms carpentry workflows with customized entities, routines, and 3D modeling tools built using ObjectARX, and automates the 3D CAD modeling to 2D CNC process, including annotation and plan printing, for optimal productivity and precision.",
+        "technologies": ["C#", "C++", "ASP.NET Core", "MongoDB", "AutoDesk AutoCAD/3DS Max/Inventor", "Acrobat", "Photoshop"],
+        "impact": "90% reduction in machinery operator errors, 30% decrease in support calls"
+      },
+      "aussie": {
+        "name": "Aussie",
+        "description": "Revolutionizes the loan origination and underwriting process with an advanced AI engine, automating government, personal, and retail loan workflows and delivering lightning-fast loan processing times, reducing the closing flow from months to minutes.",
+        "technologies": ["Java 8/11/14", "Spring Boot/Cloud", "GraphQL", "Azure Cloud", "SQL Server", "Kubernetes", "jQuery", "ColdFusion 9", "Mercurial"],
+        "url": "https://www.awms.com/s/aussie",
+        "impact": "Reduced loan processing from 45 days to 21 days, generated $3M monthly loan volume"
+      },
+      "octo": {
+        "name": "Octo",
+        "description": "State-of-the-art, language-agnostic micro-frontend framework, featuring server-side rendering and an intuitive CLI for streamlined project generation and management.",
+        "technologies": ["Webpack", "Vite", "Handlebars", "TypeScript", "HTML", "SCSS", "React", "Preact", "Vue", "Svelte", "Storybook", "RxJS", "Node.js"],
+        "url": "https://sway.office.com/40BmKdebHWm8xVJF?ref=Link",
+        "impact": "Reduced development time by 85%, adopted by 15+ teams"
+      },
+      "leadership": {
+        "name": "Leadership",
+        "description": "Proven leadership in the tech world, honed through years of experience leading and empowering teams of dozens of developers to achieve their full potential.",
+        "technologies": ["Scrum", "Agile", "Project Management", "Team Leadership", "Architecture Review Board", "Jira", "Confluence", "Microsoft Office Suite"],
+        "impact": "Trained 60+ developers, improved team velocity by 3x, reduced delivery time from months to weeks"
+      },
+      "technicalDocumentation": {
+        "name": "Technical Documentation",
+        "description": "Technical documentation is a critical component of any software project. I have extensive experience writing technical documentation for both internal and external audiences, including user guides, developer guides, and API documentation.",
+        "technologies": ["Markdown", "Adobe Premiere", "Confluence", "Microsoft Office/Stream/Sway", "LucidChart", "DrawIO", "FigJam"],
+        "impact": "Created 100+ technical documents, training videos, and architectural diagrams"
+      },
+      "training": {
+        "name": "Training",
+        "description": "Extensive experience training developers on new technologies and processes, including both in-person and remote training. I have also trained non-technical audiences on technical topics, including product managers, business analysts, and executives.",
+        "technologies": ["Adobe Creative Suite", "Confluence", "Microsoft Office/Stream/Sway"],
+        "impact": "Delivered training to 60+ developers and non-technical stakeholders"
+      },
+      "amcui": {
+        "name": "AMCUI",
+        "description": "Proprietary UI kit, the visual cornerstone of the company's internal and external applications - offering consistent design and functionality across all platforms.",
+        "technologies": ["Figma", "Zeplin", "Storybook", "TypeScript", "Preact", "HTML", "SCSS"],
+        "url": "https://assets.amerisave.com/interimui/storybook/?path=/docs/interim-ui-installation--page",
+        "impact": "Standardized UI across 500+ microservices, improved designer-developer handoff by 30%"
+      },
+      "amcli": {
+        "name": "AMCLI",
+        "description": "Proprietary CLI code generator, the tech cornerstone of the company's internal and external applications - offering consistent project / project member generation, linting, and testing.",
+        "technologies": ["TypeScript", "Node.js", "Yeoman", "Microsoft", "Gulp", "Linux"],
+        "impact": "Automated project scaffolding, reduced setup time from hours to minutes"
+      },
+      "azureCloudMigration": {
+        "name": "Azure Cloud Migration",
+        "description": "Migration of on-premises monolithic servers to 500+ Azure Cloud Microservices and sharded databases, implementing best cloud practices for enhanced efficiency and performance.",
+        "technologies": ["Azure Cloud", "RedHat OpenShift", "Kubernetes", "Redis"],
+        "impact": "Achieved 99.9% uptime, reduced infrastructure costs by 56%"
+      },
+      "gqlMigration": {
+        "name": "GraphQL Cloud Migration",
+        "description": "Migration of on-premises monolithic SQL Server Database with 3000+ tables & 2000+ routines to a distributed GQL Federation model, with full e2e testing, regression models, and documentation.",
+        "technologies": ["GraphQL", "Apollo", "Node.js", "TypeScript", "SQL Server"],
+        "url": "https://www.apollographql.com/docs/federation/",
+        "impact": "70% reduction in client-side API calls, 3x faster feature development"
+      },
+      "jiraCloudMigration": {
+        "name": "Jira Cloud Migration",
+        "description": "Migration of Company Redmine repository to Jira Cloud, including customizations, integrations, and documentation.",
+        "technologies": ["Jira", "Confluence", "Markdown"],
+        "impact": "Improved team collaboration, 30% increase in milestone completion"
+      },
+      "oauthMigration": {
+        "name": "oAuth Cloud Migration",
+        "description": "Migration and implementation of oAuth and Auth0 for all internal and external applications, including documentation and training.",
+        "technologies": ["oAuth", "Auth0", "Firebase", "Node.js", "TypeScript", "SQL Server"],
+        "impact": "Implemented company-wide SSO, improved security posture"
+      },
+      "observabilityMigration": {
+        "name": "Observability Cloud Migration",
+        "description": "Migration and implementation of Observability and Monitoring for a large majority of internal and external applications, including documentation, dashboards, and training.",
+        "technologies": ["Sentry", "DataDog", "Azure Cloud", "Docker", "Kubernetes"],
+        "impact": "Reduced MTTR by 70%, proactive issue detection preventing critical outages"
+      }
     }
   },
   "education": {
@@ -160,7 +425,13 @@
     }
   },
   "certifications": {
-    "cloud": ["AWS Certified Cloud Practitioner (Oct 2023 - Oct 2026)"],
+    "cloud": [
+      "AWS Certified Cloud Practitioner (Oct 2023 - Oct 2026)",
+      "AWS Certified AI Practitioner (In Progress)",
+      "AWS Certified Solutions Architect - Associate (In Progress)",
+      "AWS Certified Solutions Architect - Professional (In Progress)",
+      "AWS Certified Developer - Associate (In Progress)"
+    ],
     "database": [
       "Redis RU101: Data Structures (Jul 2021)",
       "Redis RU202: Streams (Jul 2021)",
@@ -170,18 +441,27 @@
     "projectManagement": [
       "ClickUp Expert Certificate (Jan 2023)",
       "ClickUp Intermediate Certificate (Jan 2023)",
-      "ClickUp Novice Certificate (Jan 2023)"
+      "ClickUp Novice Certificate (Jan 2023)",
+      "Atlassian Certified Professional (In Progress)"
     ],
     "engineering": [
       "Hack Reactor Certified Full Stack Engineer (Aug 2020)",
       "Triplebyte Certified Generalist Software Engineer (Aug 2020)",
-      "CSWP - Certified SolidWorks Professional (Jun 2017)"
+      "CSWP - Certified SolidWorks Professional - Mechanical Design (Jun 2017)"
+    ],
+    "design": [
+      "AutoCAD Professional Certification",
+      "Autodesk Revit Professional Certification",
+      "Autodesk Fusion 360 Professional Certification",
+      "Autodesk Inventor Professional Certification"
     ],
     "inProgress": [
       "AWS Certified Developer - Associate",
       "AWS Certified Solutions Architect - Associate",
+      "AWS Certified Solutions Architect - Professional",
       "AWS Certified AI Practitioner",
-      "AWS Certified Machine Learning - Specialty"
+      "AWS Certified Machine Learning - Specialty",
+      "Atlassian Certified Professional"
     ]
   },
   "architecturalPhilosophy": {
@@ -198,6 +478,46 @@
       "Build in observability from day one: You can't optimize what you can't measure",
       "Plan for failure: Systems fail; good architectures handle it gracefully"
     ]
+  },
+  "architecturalDecisions": {
+    "graphqlFederation": {
+      "title": "GraphQL Federation for Microservices (AmeriSave)",
+      "context": "500+ microservices needed unified API layer",
+      "decision": "Apollo Federation over REST aggregation or service mesh",
+      "results": "70% reduction in client-side API calls, 3x faster feature development",
+      "technologies": ["GraphQL", "Apollo", "Node.js", "Kubernetes"]
+    },
+    "mlPipeline": {
+      "title": "ML Pipeline Architecture (Northrop Grumman)",
+      "context": "Predictive maintenance for critical manufacturing equipment",
+      "decision": "Edge inference with centralized training over cloud-only approach",
+      "results": "85% prediction accuracy, 200ms inference latency, works in air-gapped environments",
+      "technologies": ["TensorFlow", "Python", "Edge TPUs", "Kubernetes"]
+    },
+    "eventDriven": {
+      "title": "Event-Driven Architecture for Real-Time Processing",
+      "context": "Shop floor events needed immediate processing for quality control",
+      "decision": "Kafka + Flink over traditional batch processing",
+      "results": "50K events/second throughput, sub-second alerting for anomalies",
+      "technologies": ["Apache Kafka", "Apache Flink", "Java", "Prometheus"]
+    }
+  },
+  "performanceOptimization": {
+    "mortgageProcessing": {
+      "title": "Mortgage Processing System Optimization",
+      "before": {
+        "queryTime": "30s timeout",
+        "pageLoad": "8s page loads",
+        "cost": "$80K/month AWS costs"
+      },
+      "interventions": ["Query optimization", "Caching layer", "CDN implementation"],
+      "after": {
+        "queryTime": "1.5s p95 queries",
+        "pageLoad": "sub-1s page loads",
+        "cost": "$35K/month AWS costs"
+      },
+      "metrics": "95% reduction in timeouts, 87% faster page loads, 56% cost reduction"
+    }
   },
   "careerObjectives": {
     "fullTime": {
@@ -284,9 +604,9 @@
     "I care about the business. I've seen too many engineers build technically perfect solutions that solve the wrong problem."
   ],
   "tools": {
-    "development": ["VS Code", "JetBrains Suite", "Visual Studio", "Git", "Postman", "DBeaver"],
-    "collaboration": ["Slack", "Teams", "Jira", "Linear", "Confluence", "Notion", "Figma"],
-    "aiMl": ["Jupyter", "Google Colab", "MLflow", "Weights & Biases", "LangChain", "LlamaIndex"]
+    "development": ["VS Code", "JetBrains Suite (IntelliJ, WebStorm, Rider)", "Visual Studio", "Git", "GitHub/GitLab/Bitbucket/Azure DevOps", "Postman/Insomnia/Thunder Client", "DBeaver/pgAdmin/MongoDB Compass/Redis Insight"],
+    "collaboration": ["Slack", "Teams", "Discord", "Zoom", "Jira", "Linear", "Asana", "Monday.com", "ClickUp", "Confluence", "Notion", "Obsidian", "GitBook", "Figma", "Adobe XD"],
+    "aiMl": ["Jupyter", "Google Colab", "Databricks", "MLflow", "Weights & Biases", "Neptune", "TorchServe", "TensorFlow Serving", "ONNX", "LangChain", "LlamaIndex", "Semantic Kernel", "AutoGen"]
   },
   "interviewReadiness": {
     "technical": [
@@ -298,6 +618,61 @@
     ],
     "availability": "Available with 24-48 hours notice, prefer video interviews, can do technical assessments",
     "scheduling": "calendly.com/zachayers (15/30/60 minute options available)"
+  },
+  "faangQualifications": {
+    "systemDesignAtScale": {
+      "distributedSystems": "Designed systems handling 50K+ events/second with exactly-once processing",
+      "scalabilityPatterns": "Implemented horizontal scaling, sharding, and read replicas for 10x growth",
+      "failureHandling": "Built circuit breakers, retry mechanisms, and graceful degradation",
+      "tradeoffAnalysis": "Documented decisions balancing consistency, availability, and partition tolerance"
+    },
+    "algorithmicThinking": {
+      "performanceOptimization": "Reduced O(n²) operations to O(n log n) in critical paths",
+      "dataStructureSelection": "Chose optimal structures for specific use cases (B-trees for range queries, bloom filters for membership tests)",
+      "complexProblemSolving": "Decomposed monolithic systems into bounded contexts using DDD"
+    },
+    "leadershipWithoutAuthority": {
+      "technicalInfluence": "Architectural decisions adopted across 15+ teams without mandate",
+      "mentorshipImpact": "Improved team velocity by 3x through knowledge sharing",
+      "crossFunctional": "Worked with Product, Design, and Business to align technical solutions"
+    },
+    "productionExcellence": {
+      "monitoring": "Implemented distributed tracing reducing MTTR by 70%",
+      "onCall": "Handled critical incidents, performed RCAs, implemented preventive measures",
+      "security": "Designed systems with defense in depth, achieving SOC2 compliance"
+    }
+  },
+  "behavioralCompetencies": {
+    "ownership": "As lead on the RabCab Automation product, I owned the entire lifecycle from concept to G-code translator development and ELK stack implementation, cutting support calls by 30%",
+    "disagreeAndCommit": "Successfully advocated for automated testing at Stak Design against initial skepticism. After presenting data on ROI, the team committed, leading to dramatic bug reduction",
+    "biasForAction": "Proactively built CI/CD pipelines at Stak Design because manual deployments were bottlenecking the team, reducing deployment time by 80% without waiting for approval",
+    "customerObsession": "At AmeriSave, I spent time with loan officers to understand their pain points, leading to the Octo/Tellaro framework that reduced their workflow time by 85%",
+    "learnAndBeCurious": "Self-taught AI/ML over 2 years while maintaining full-time role, now implementing production ML systems at Northrop Grumman"
+  },
+  "targetCompanies": {
+    "tier1": ["Google (Cloud Platform, YouTube, Core Infrastructure)", "Meta (Infrastructure, Developer Productivity, AI Infrastructure)", "Amazon (AWS, Prime, Alexa AI)", "Microsoft (Azure, Developer Division, AI Platform)", "Apple (Services Infrastructure, ML Platform)"],
+    "tier2": ["Stripe/Square (Payment infrastructure at scale)", "Netflix/Uber (Real-time systems and ML applications)", "LinkedIn (Scalable professional platforms)", "Datadog/Snowflake (Developer tools and data infrastructure)"]
+  },
+  "workStyle": {
+    "communication": "Proactive communicator, daily standups, clear documentation",
+    "collaboration": "Thrive in cross-functional teams, mentor junior developers",
+    "problemSolving": "Start with understanding business needs, then apply appropriate technology",
+    "learning": "Dedicate 10+ hours weekly to learning new technologies",
+    "codeReviews": "Constructive feedback giver and receiver, focus on knowledge sharing",
+    "onCall": "Experienced with production support, incident response, and RCA processes"
+  },
+  "equipment": {
+    "hardware": "High-performance development machine, multiple monitors, reliable internet",
+    "software": "Licensed IDE (JetBrains suite), all necessary development tools",
+    "homeOffice": "Dedicated workspace, professional video/audio setup",
+    "availability": "Flexible hours, can overlap with any US timezone"
+  },
+  "references": {
+    "available": "References available upon request from AmeriSave, Stak Design, and current role",
+    "portfolio": "Live projects and code samples at www.zachayers.io",
+    "github": "Active contributions showing code quality and collaboration",
+    "backgroundCheck": "Clean record, can pass any level of background verification",
+    "drugScreening": "Will pass any required screenings"
   },
   "interviewQuestions": {
     "technical": [

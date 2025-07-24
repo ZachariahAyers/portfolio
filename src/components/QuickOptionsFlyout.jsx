@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { X, Sparkles, Code, Users, Briefcase, DollarSign, FileText, Settings } from 'lucide-react';
 import profileData from '../portfolio-data.json';
 
-const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick }) => {
+const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -38,8 +38,13 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick }) => {
   ];
 
   const handleQuestionClick = (question) => {
-    onQuestionClick(question);
-    onClose();
+    if (question === 'Can I see your resume?' && onViewChange) {
+      onViewChange('resume-standard');
+      onClose();
+    } else {
+      onQuestionClick(question);
+      onClose();
+    }
   };
 
   if (!isOpen) return null;

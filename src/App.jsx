@@ -1441,6 +1441,7 @@ Return this exact JSON structure:
         isOpen={showFlyout} 
         onClose={() => setShowFlyout(false)} 
         onQuestionClick={handleFlyoutQuestionClick}
+        onViewChange={changeView}
       />
       <HireMeModal 
         isOpen={showHireModal} 
