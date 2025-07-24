@@ -70,6 +70,7 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
                             backdrop-blur-sm transition-all duration-200 active:scale-95">
                 <div className="flex items-center gap-3 text-gray-300">
                   <CircleEllipsis className="h-[20px] w-[18px]" strokeWidth={2} />
+                  <span className="text-sm font-medium">Questions</span>
                 </div>
               </div>
             </button>

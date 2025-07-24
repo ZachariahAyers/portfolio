@@ -1117,10 +1117,7 @@ Return this exact JSON structure:
       "Tell me about your leadership and mentoring experience",
       "What's your experience with AI/ML in production?",
       "Why are you looking for a new opportunity?",
-      "What's your preferred tech stack and why?",
-      "Describe a challenging technical problem you solved",
-      "What's your experience with microservices architecture?",
-      "How do you stay current with new technologies?"
+      "What's your preferred tech stack and why?"
   ];
 
   // Follow-up questions for each main question
@@ -1425,7 +1422,9 @@ Return this exact JSON structure:
                     <div className="flex justify-center items-center gap-6 mb-2">
                         <span>© {new Date().getFullYear()} Zachariah Ayers</span>
                         <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Meridian Vega</a>
-                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Chewable Studio</a>
+                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Chewable Studios</a>
+                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">AssembleJS</a>
+                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Howland</a>
                     </div>
                     <div className="text-gray-600">
                         Messages Sent Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-500">- Running low!</span>}
