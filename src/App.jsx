@@ -656,11 +656,32 @@ export default function App() {
   const [resumeData, setResumeData] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
   
+  // User interaction tracking
+  const [userInteractions, setUserInteractions] = useState([]);
+  const [personalizedContent, setPersonalizedContent] = useState(null);
+  
   const chatEndRef = useRef(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Track user interactions for personalization
+  const trackInteraction = (type, data) => {
+    setUserInteractions(prev => [...prev, {
+      type, // 'chat', 'view', 'question', 'click'
+      data,
+      timestamp: Date.now()
+    }].slice(-20)); // Keep last 20 interactions for context
+  };
+
+  // Wrapper for setView to track view changes
+  const changeView = (newView) => {
+    if (newView !== view && newView !== 'chat') {
+      trackInteraction('view', newView);
+    }
+    setView(newView);
+  };
 
   const exitInterviewMode = () => {
     setMode('chat');
@@ -673,6 +694,9 @@ export default function App() {
   const handleSend = async (cannedQuestion = null) => {
     const textToSend = cannedQuestion || input.trim();
     if (textToSend === '') return;
+    
+    // Track user chat interaction
+    trackInteraction('chat', textToSend);
     
     // Security: Reject suspiciously long inputs that might contain hidden instructions
     if (textToSend.length > 500) {
@@ -783,11 +807,13 @@ export default function App() {
 
   // Handler for QuickCards
   const handleQuickCardClick = (question) => {
+    trackInteraction('question', question);
     handleSend(question);
   };
 
   // Handler for Flyout questions
   const handleFlyoutQuestionClick = (question) => {
+    trackInteraction('question', question);
     handleSend(question);
   };
 
@@ -837,6 +863,199 @@ export default function App() {
       sender: 'ai', 
       text: startMessages[experimentId] || "Initiating experimental protocol... Warning: Reality may become unstable! 🌀"
     }]);
+  };
+
+  // Generate personalized executive summary
+  const generateExecutiveSummary = async () => {
+    try {
+      const chatMessages = userInteractions
+        .filter(i => i.type === 'chat' || i.type === 'question')
+        .map(i => i.data)
+        .join(' ');
+      
+      const viewedSections = userInteractions
+        .filter(i => i.type === 'view')
+        .map(i => i.data);
+      
+      let contextPrompt = '';
+      if (chatMessages.length > 0) {
+        contextPrompt = `Based on the user's questions and interests: "${chatMessages.slice(0, 500)}..."`;
+        if (viewedSections.length > 0) {
+          contextPrompt += ` They also viewed these sections: ${viewedSections.join(', ')}.`;
+        }
+      } else {
+        contextPrompt = 'The user has just arrived and hasn\'t asked any questions yet.';
+      }
+      
+      const prompt = `You are helping create a personalized executive summary for Zach Ayers' portfolio.
+      
+${contextPrompt}
+
+Using Zach's experience, generate a compelling 2-3 sentence executive summary (50-80 words) that captures his unique value proposition. Tailor it to what the user seems interested in.
+
+Portfolio data:
+- ${profileData.personal.valueProposition}
+- Current role: ${profileData.experience.northrop.role}
+- Previous: Architected 500+ microservices at AmeriSave
+- Expertise: Full stack development, AI/ML implementation, system architecture
+- Default summary: ${profileData.personal.executiveSummary[0]}
+
+Return ONLY the executive summary text, no JSON, no formatting, just 2-3 sentences.`;
+
+      const requestBody = {
+        prompt,
+        temperature: 0.7,
+        max_tokens: 150
+      };
+      
+      const response = await fetch(LAMBDA_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      
+      if (!result.candidates || result.candidates.length === 0 || !result.candidates[0].content.parts.length) {
+        throw new Error('Invalid API response');
+      }
+      
+      const text = result.candidates[0].content.parts[0].text.trim();
+      return text;
+    } catch (error) {
+      console.error('Executive summary generation failed:', error);
+      return profileData.personal.executiveSummary[0];
+    }
+  };
+
+  // Generate personalized content based on user interactions
+  const generatePersonalizedContent = async () => {
+    try {
+      setIsTyping(true);
+      
+      // Extract key topics from user interactions
+      const chatMessages = userInteractions
+        .filter(i => i.type === 'chat' || i.type === 'question')
+        .map(i => i.data)
+        .join(' ');
+      
+      const viewedSections = userInteractions
+        .filter(i => i.type === 'view')
+        .map(i => i.data);
+      
+      // Build context about user interests
+      let contextPrompt = '';
+      if (chatMessages.length > 0) {
+        contextPrompt = `Based on the user's questions and interests: "${chatMessages.slice(0, 500)}..."`;
+        if (viewedSections.length > 0) {
+          contextPrompt += ` They also viewed these sections: ${viewedSections.join(', ')}.`;
+        }
+      } else {
+        contextPrompt = 'The user has just arrived and hasn\'t asked any questions yet.';
+      }
+      
+      const prompt = `You are helping create personalized content for Zach Ayers' portfolio ME section.
+      
+${contextPrompt}
+
+Using Zach's experience from the portfolio data below, generate:
+1. An executive summary (2-3 sentences, 40-60 words total) that captures his unique value proposition
+2. Exactly 7 bullet points for "What I Can Bring to Your Team"
+
+Portfolio data:
+- ${profileData.personal.valueProposition}
+- Current role: ${profileData.experience.northrop.role}
+- Key skills: ${profileData.skills.expert.languages.join(', ')}
+- Executive summary template: ${profileData.personal.executiveSummary[0]}
+- Key value propositions: ${profileData.personal.whatIBring.join('; ')}
+
+CRITICAL INSTRUCTIONS:
+1. Return ONLY valid JSON - no markdown, no backticks, no explanations
+2. Executive summary should be professional, compelling, and personalized to user interests
+3. Each bullet point must be a COMPLETE sentence (15-25 words)
+4. Start each bullet with "I" and highlight concrete value
+5. Adapt both summary and bullets to what the user has shown interest in
+
+Return this exact JSON structure:
+{
+  "executiveSummary": "Senior Full Stack Engineer with 14+ years architecting scalable systems across web, cloud, and AI/ML domains. Currently modernizing aerospace manufacturing at Northrop Grumman while implementing ML automation and RAG systems. Proven technical leader who consistently delivers practical solutions that ship.",
+  "bulletPoints": [
+    "I bring 14+ years of full-stack expertise across React, Node.js, .NET, Java, and Python to work anywhere in your stack.",
+    "I architect scalable systems handling millions of transactions daily, whether traditional web applications or production ML models.",
+    "I've reduced loan processing time by 50% and cut deployment time by 90% through pragmatic architectural decisions.",
+    "I help teams adopt modern patterns effectively, having successfully trained 60+ developers at AmeriSave in new technologies.",
+    "I implement practical AI/ML solutions including RAG systems, predictive maintenance, and cost optimization in production environments.",
+    "I excel equally at modernizing legacy systems (VB6 migrations) and implementing cutting-edge tech (LangChain, vector databases).",
+    "I measure success in business outcomes, choosing the right tool for each job rather than chasing trends."
+  ]
+}`;
+
+      const systemPrompt = prompt;
+      
+      const requestBody = {
+        system_instruction: {
+          parts: { text: systemPrompt }
+        },
+        contents: [{
+          role: 'user',
+          parts: [{ text: 'Generate personalized content for my portfolio based on the system prompt.' }]
+        }],
+        generationConfig: {
+          maxOutputTokens: 500,
+          temperature: 0.7,
+          topP: 0.9,
+          topK: 40
+        }
+      };
+      
+      const response = await fetch(LAMBDA_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API call failed with status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      
+      if (!result.candidates || result.candidates.length === 0 || !result.candidates[0].content.parts.length) {
+        throw new Error('Invalid API response');
+      }
+      
+      const text = result.candidates[0].content.parts[0].text;
+      
+      try {
+        // Remove markdown code blocks if present
+        const cleanText = text.replace(/```json\s*\n?/g, '').replace(/```\s*\n?/g, '').trim();
+        
+        // Parse JSON response
+        const parsed = JSON.parse(cleanText);
+        setPersonalizedContent(parsed);
+        setIsTyping(false);
+        return parsed;
+      } catch (parseError) {
+        
+        // Fallback to static content - use the full whatIBring array
+        const fallbackContent = { 
+          executiveSummary: profileData.personal.executiveSummary[0],
+          bulletPoints: profileData.personal.whatIBring
+        };
+        setPersonalizedContent(fallbackContent);
+        setIsTyping(false);
+        return fallbackContent;
+      }
+    } catch (error) {
+      console.error('Error generating personalized content:', error);
+      setIsTyping(false);
+      // Fallback to static content
+      return null;
+    }
   };
 
   // Handler for View My Resume button
@@ -981,7 +1200,19 @@ export default function App() {
           case 'me':
           case 'projects':
           case 'skills':
-              return <DetailedView mode={view} onClose={() => setView('chat')} profileData={profileData} />;
+              return <DetailedView 
+                mode={view} 
+                onClose={() => setView('chat')} 
+                profileData={profileData}
+                userInteractions={userInteractions}
+                personalizedContent={personalizedContent}
+                onGenerateContent={generatePersonalizedContent}
+                onGenerateExecutiveSummary={generateExecutiveSummary}
+                onContactClick={() => {
+                  setView('contact');
+                }}
+                isGenerating={isTyping}
+              />;
           case 'resume-standard':
           case 'resume-tailored':
               return <DetailedView 
@@ -992,6 +1223,13 @@ export default function App() {
                   resumeData={resumeData}
                   jobDescription={jobDescription}
                   onDownloadPDF={handleDownloadPDF}
+                  userInteractions={userInteractions}
+                  personalizedContent={personalizedContent}
+                  onGenerateContent={generatePersonalizedContent}
+                  onGenerateExecutiveSummary={generateExecutiveSummary}
+                  onContactClick={() => {
+                    setView('contact');
+                  }}
               />;
           case 'chat':
           default:
@@ -1096,9 +1334,9 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center gap-2 md:gap-4">
-              <button onClick={() => setView('me')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
-              <button onClick={() => setView('projects')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
-              <button onClick={() => setView('skills')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
+              <button onClick={() => changeView('me')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
+              <button onClick={() => changeView('projects')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
+              <button onClick={() => changeView('skills')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
               <div className="h-4 w-px bg-gray-600 hidden sm:block" />
               <div className="flex items-center gap-1 md:gap-2">
                 <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
@@ -1141,7 +1379,7 @@ export default function App() {
                         onMoreClick={() => setShowFlyout(true)}
                         isVisible={showQuickButtons}
                         onToggleVisibility={() => setShowQuickButtons(!showQuickButtons)}
-                        onViewChange={setView}
+                        onViewChange={changeView}
                     />
                 </div>
                 
@@ -1153,7 +1391,7 @@ export default function App() {
                         ) : (
                             <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview My AI" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
                         )}
-                        <ActionButton onClick={() => setView('stack')} icon={Layers} text="Elevate Your Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
+                        <ActionButton onClick={() => changeView('stack')} icon={Layers} text="Elevate Your Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-2 md:mb-3">
                         <ActionButton onClick={handleViewResume} icon={FileText} text="Get My Resume" colorClass="text-indigo-400" disabled={mode === 'interview'} title="View my standard resume with option to download PDF" />
@@ -1166,7 +1404,7 @@ export default function App() {
                             disabled={mode === 'interview'} 
                             title={experimentActive ? "Return to normal view" : "Launch a random interactive browser experiment"} 
                         />
-                        <ActionButton onClick={() => setShowHireModal(true)} text="Looking for Engineers?" colorClass="text-teal-400" disabled={mode === 'interview'} title="Start the hiring process - contract or full-time" showPulse={true} />
+                        <ActionButton onClick={() => setShowHireModal(true)} text="Hire Me Now" colorClass="text-teal-400" disabled={mode === 'interview'} title="Start the hiring process - contract or full-time" showPulse={true} />
                     </div>
                   </div>
                 )}

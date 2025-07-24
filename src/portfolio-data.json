@@ -1,21 +1,21 @@
 {
   "personal": {
-    "name": "Zachariah Ayers",
-    "title": "Senior Full Stack Engineer",
+    "name": "Zachariah James Ayers",
+    "title": "Staff Engineer & AI/ML Architect",
     "avatarPath": "/profile.jpeg",
     "aiAssistant": {
       "name": "Arlo",
       "avatarPath": "/ai-profile.png"
     },
     "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. Currently, I'm modernizing aerospace manufacturing at Northrop Grumman, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
-    "tagline": "Every architectural decision should trace back to a business outcome.",
+    "tagline": "From React™ to rocket science, I speak your stack.",
     "tenSecondPitch": {
       "yearsAndScale": "14+ Years & Architect @ Scale: Shipped code for 14+ years, currently modernizing aerospace manufacturing at Northrop Grumman. Previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
       "aiMlImplementer": "Pragmatic AI/ML Implementer: I don't just research AI, I ship it. Building RAG systems, computer vision automation, and predictive maintenance models in high-security production environments.",
       "teamMultiplier": "Proven Team Multiplier: I make teams better. Trained 60+ developers, created frameworks that cut development time by 85%, and championed processes that dramatically reduced bug rates."
     },
     "executiveSummary": [
-      "Senior Full Stack Software Engineer with 14+ years architecting scalable systems across web, cloud, and AI/ML domains. Currently modernizing aerospace manufacturing at Northrop Grumman while implementing ML automation and RAG systems. Proven technical leader who consistently delivers practical solutions that ship – from migrating 500+ microservices to optimizing legacy systems for 10x performance."
+      "Staff Software Engineer & AI/ML Architect with 14+ years building enterprise-scale systems across web, cloud, and AI domains. Currently modernizing aerospace manufacturing at Northrop Grumman through ML automation and RAG implementations. Proven technical leader who transforms complex challenges into shipped solutions – from architecting 500+ microservices to optimizing legacy systems for 10x performance gains."
     ],
     "valueProposition": "I'm a senior full stack engineer who ships production code that scales. After 14+ years building everything from React frontends to distributed microservices, I've deliberately moved into AI/ML implementation because that's where the highest-leverage problems are. Currently at Northrop Grumman, I'm not just theorizing about AI – I'm building RAG systems, implementing predictive maintenance, and automating critical aerospace manufacturing processes. My superpower is taking complex technical problems and delivering practical solutions that actually work in production. Whether it's architecting 500+ microservices at AmeriSave or migrating 20-year-old VB6 systems, I measure success by business impact, and my strength is applying 14 years of systems architecture experience to make AI/ML solutions work reliably in production.",
     "whatIBring": [
@@ -28,7 +28,7 @@
       "Modern & Legacy: Equally comfortable with cutting-edge tech (LangChain, vector DBs) and legacy systems (VB6 migrations)"
     ]
   },
-  "welcomeMessage": "Hi there! 👋 Welcome to my portfolio - I'm Zach, a Senior Full Stack Engineer with 14+ years of experience building scalable systems and implementing AI/ML solutions. Rather than making you dig through static content, I've created something much better: meet Arlo, my AI Assistant who knows absolutely everything about my experience, skills, and projects. Arlo can answer your questions instantly, generate custom resumes tailored to your specific needs, and even conduct mock interviews! Let's save time and get straight to what matters - just start chatting with Arlo below. Ask anything!",
+  "welcomeMessage": "Hi there! 👋 Welcome to my portfolio - I'm Zach, a Staff Software Engineer & AI/ML Architect with 14+ years of experience building enterprise-scale systems and implementing production AI solutions. Rather than making you dig through static content, I've created something much better: meet Arlo, my AI Assistant who knows absolutely everything about my experience, skills, and projects. Arlo can answer your questions instantly, generate custom resumes tailored to your specific needs, and even conduct mock interviews! Let's save time and get straight to what matters - just start chatting with Arlo below. Ask anything!",
   "contact": {
     "email": "ayers.dev@icloud.com",
     "linkedin": "https://www.linkedin.com/in/zachariahayers",

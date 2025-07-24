@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, UserSearch, BriefcaseBusiness, Code, GraduationCap, PartyPopper, Mail, ChevronRight, Sparkles } from 'lucide-react';
 
-const DrawerModal = ({ isOpen, onClose, onQuestionClick }) => {
+const DrawerModal = ({ isOpen, onClose, onQuestionClick, onViewChange }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -93,8 +93,13 @@ const DrawerModal = ({ isOpen, onClose, onQuestionClick }) => {
   ];
 
   const handleQuestionClick = (question) => {
-    onQuestionClick(question);
-    onClose();
+    if (question === 'Can I see your resume?') {
+      onViewChange && onViewChange('resume-standard');
+      onClose();
+    } else {
+      onQuestionClick(question);
+      onClose();
+    }
   };
 
   if (!isOpen) return null;

@@ -43,6 +43,8 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
                 onClick={() => {
                   if (key === 'Me' || key === 'Projects' || key === 'Skills') {
                     onViewChange(key.toLowerCase());
+                  } else if (key === 'Contact') {
+                    onViewChange('contact');
                   } else {
                     onCardClick(question);
                   }

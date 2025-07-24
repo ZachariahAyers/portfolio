@@ -1,7 +1,71 @@
 import React from 'react';
 import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download } from 'lucide-react';
+import StreamingText from './StreamingText';
+import StreamingTextSimple from './StreamingTextSimple';
 
-const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF }) => {
+const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF, userInteractions, personalizedContent, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
+  const [streamingContent, setStreamingContent] = React.useState(null);
+  const [executiveSummary, setExecutiveSummary] = React.useState(null);
+  const [isGenerating, setIsGenerating] = React.useState(false);
+  const [isGeneratingExecutive, setIsGeneratingExecutive] = React.useState(false);
+  const hasInitialized = React.useRef(false);
+
+  // Reset when mode changes
+  React.useEffect(() => {
+    if (mode !== 'me') {
+      hasInitialized.current = false;
+      setStreamingContent(null);
+      setExecutiveSummary(null);
+      setIsGenerating(false);
+      setIsGeneratingExecutive(false);
+    }
+  }, [mode]);
+
+  // Handle content generation when ME view opens
+  React.useEffect(() => {
+    if (mode === 'me' && !hasInitialized.current) {
+      hasInitialized.current = true;
+      
+      // Generate executive summary
+      if (onGenerateExecutiveSummary) {
+        setIsGeneratingExecutive(true);
+        onGenerateExecutiveSummary()
+          .then(summary => {
+            setExecutiveSummary(summary);
+            setIsGeneratingExecutive(false);
+          })
+          .catch((error) => {
+            console.error('Executive summary generation failed:', error);
+            setExecutiveSummary(profileData.personal.executiveSummary[0]);
+            setIsGeneratingExecutive(false);
+          });
+      } else {
+        setExecutiveSummary(profileData.personal.executiveSummary[0]);
+      }
+      
+      // Generate bullet points
+      if (onGenerateContent) {
+        setIsGenerating(true);
+        onGenerateContent()
+          .then(newContent => {
+            setStreamingContent(newContent);
+            setIsGenerating(false);
+          })
+          .catch((error) => {
+            console.error('AI generation failed:', error);
+            const fallback = {
+              bulletPoints: profileData.personal.whatIBring
+            };
+            setStreamingContent(fallback);
+            setIsGenerating(false);
+          });
+      } else {
+        setStreamingContent({
+          bulletPoints: profileData.personal.whatIBring
+        });
+      }
+    }
+  }, [mode, onGenerateContent, onGenerateExecutiveSummary, profileData.personal.whatIBring, profileData.personal.executiveSummary]);
   const renderMeView = () => (
     <div className="space-y-6 max-w-5xl mx-auto">
       {/* Hero Section: Image | Name/Title | Contact Info */}
@@ -16,15 +80,22 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         {/* Name and Title */}
         <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
           <h1 className="text-3xl font-bold text-white">{profileData.personal.name}</h1>
-          <p className="text-lg text-gray-300">{profileData.personal.title}</p>
-          <p className="text-blue-400 italic">"{profileData.personal.tagline}"</p>
+          <p className="text-lg text-gray-300 whitespace-nowrap">{profileData.personal.title}</p>
+          <p className="text-blue-400 italic text-sm mt-1">"{profileData.personal.tagline}"</p>
         </div>
 
         {/* Contact Info */}
         <div className="flex-shrink-0 bg-gray-800/50 rounded-lg p-4 min-w-[280px]">
           <h2 className="text-lg font-bold text-white mb-3">Connect With Me</h2>
           <div className="grid grid-cols-1 gap-2 text-sm">
-            <a href={`mailto:${profileData.contact.email}`} className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+            <a 
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                if (onContactClick) onContactClick();
+              }}
+              className="flex items-center gap-2 text-blue-400 hover:text-blue-300 cursor-pointer"
+            >
               <ExternalLink size={14} /> {profileData.contact.email}
             </a>
             <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
@@ -40,40 +111,46 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         </div>
       </div>
 
-      {/* Executive Summary - Full Width */}
-      <div className="bg-gray-800/50 rounded-lg p-5 space-y-3">
-        <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <Zap className="text-yellow-400" /> Executive Summary
+      {/* Executive Summary Section */}
+      <div className="bg-gradient-to-r from-blue-900/20 to-green-900/20 rounded-lg p-6 border border-blue-500/30">
+        <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+          <Briefcase className="text-blue-400" /> Executive Summary
         </h2>
-        {profileData.personal.executiveSummary.map((summary, idx) => (
-          <p key={idx} className="text-gray-300 leading-relaxed text-sm">{summary}</p>
-        ))}
+        {isGeneratingExecutive || !executiveSummary ? (
+          <div className="flex items-center gap-2 text-gray-400">
+            <div className="flex gap-1">
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:75ms]"></span>
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
+            </div>
+          </div>
+        ) : (
+          <StreamingTextSimple 
+            text={executiveSummary}
+            speed={8}
+          />
+        )}
       </div>
 
-      {/* Bottom Row: Why I Succeed | What I Bring */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Why I Succeed */}
-        <div className="bg-gray-800/50 rounded-lg p-5 space-y-3 max-h-64">
-          <h2 className="text-xl font-bold text-white">Why I Succeed</h2>
-          <div className="space-y-2 overflow-y-auto max-h-48 pr-2">
-            {profileData.whyISucceed.map((reason, idx) => (
-              <p key={idx} className="text-gray-300 pl-3 border-l-2 border-blue-500 text-sm">{reason}</p>
-            ))}
+      {/* What I Can Bring to Your Team Section */}
+      <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 rounded-lg p-6 border border-purple-500/30">
+        <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+          <Zap className="text-purple-400" /> What I Can Bring to Your Team
+        </h2>
+        {isGenerating || !streamingContent ? (
+          <div className="flex items-center gap-2 text-gray-400">
+            <div className="flex gap-1">
+              <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce"></span>
+              <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce [animation-delay:75ms]"></span>
+              <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
+            </div>
           </div>
-        </div>
-
-        {/* What I Bring */}
-        <div className="bg-gray-800/50 rounded-lg p-5 space-y-3 max-h-64">
-          <h2 className="text-xl font-bold text-white">What I Bring to Your Team</h2>
-          <div className="grid gap-2 overflow-y-auto max-h-48 pr-2">
-            {profileData.personal.whatIBring.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-2">
-                <span className="text-blue-400 mt-1 text-sm">▸</span>
-                <p className="text-gray-300 text-sm">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        ) : (
+          <StreamingText 
+            bulletPoints={streamingContent?.bulletPoints || []}
+            speed={8}
+          />
+        )}
       </div>
     </div>
   );
@@ -470,7 +547,9 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 Tailored Resume
               </>
             )}
-            {!mode.startsWith('resume') && mode}
+            {mode === 'me' && 'Hello There, Welcome to My Portfolio'}
+            {mode === 'projects' && 'Projects'}
+            {mode === 'skills' && 'Skills'}
           </h2>
           <div className="flex items-center gap-3">
             {(mode === 'resume-standard' || mode === 'resume-tailored') && onDownloadPDF && (
@@ -490,7 +569,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             </button>
           </div>
         </div>
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)] dialog-scrollbar">
           {renderContent()}
         </div>
       </div>
