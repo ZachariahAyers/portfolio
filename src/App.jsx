@@ -1348,7 +1348,7 @@ Return this exact JSON structure:
         {messages.length === 0 && view === 'chat' ? (
             <div className="text-center p-8 animate-fade-in flex-1 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-white mb-2">Welcome! I'm Zach 👋</h2>
-                <p className="text-gray-400 mb-6 max-w-2xl mx-auto">Let's save time by chatting with my AI Assistant - how can I help you today?</p>
+                <p className="text-gray-400 mb-6 max-w-2xl mx-auto">How can I help you today?</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
                     {suggestedQuestions.map((q, i) => (
                         <button 
