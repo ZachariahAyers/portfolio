@@ -41,7 +41,7 @@ const StreamingTextSimple = ({
   }, [text, speed, onComplete]);
 
   return (
-    <p className={`text-gray-300 leading-relaxed ${className}`}>
+    <p className={`text-gray-800 dark:text-gray-300 leading-relaxed ${className}`}>
       {displayedText}
       {displayedText.length < text.length && (
         <span className="inline-block w-2 h-4 bg-blue-400 animate-pulse ml-1" />

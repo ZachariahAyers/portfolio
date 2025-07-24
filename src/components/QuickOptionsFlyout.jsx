@@ -53,7 +53,7 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
     <>
       {/* Overlay */}
       <div 
-        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm animate-fade-in"
+        className="fixed inset-0 z-50 bg-black/60 dark:bg-black/70 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
       />
       
@@ -61,15 +61,15 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
       <div className={`fixed right-4 bottom-20 z-50 w-80 transform transition-all duration-300 ${
         isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
-        <div className="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 max-h-[60vh] overflow-hidden flex flex-col">
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-300 dark:border-gray-700 max-h-[60vh] overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-700">
-            <h3 className="text-lg font-semibold text-white">Quick Questions</h3>
+          <div className="flex items-center justify-between p-4 border-b border-gray-300 dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Quick Questions</h3>
             <button
               onClick={onClose}
-              className="p-1 rounded hover:bg-gray-700 transition-colors"
+              className="p-1 rounded hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
             >
-              <X size={20} className="text-gray-400" />
+              <X size={20} className="text-gray-600 dark:text-gray-400" />
             </button>
           </div>
           
@@ -78,11 +78,11 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
             {/* Special Resume Question */}
             <button
               onClick={() => handleQuestionClick('Can I see your resume?')}
-              className="w-full text-left p-3 rounded-lg mb-3 transition-all hover:translate-x-1 bg-gradient-to-r from-purple-900/30 to-blue-900/30 hover:from-purple-900/40 hover:to-blue-900/40 border border-purple-700/50"
+              className="w-full text-left p-3 rounded-lg mb-3 transition-all hover:translate-x-1 bg-gradient-to-r from-purple-200 to-blue-200 dark:from-purple-900/30 dark:to-blue-900/30 hover:from-purple-300 hover:to-blue-300 dark:hover:from-purple-900/40 dark:hover:to-blue-900/40 border border-purple-500 dark:border-purple-700/50"
             >
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span className="text-sm text-purple-300 font-medium">Can I see your resume?</span>
+                <span className="text-sm text-purple-700 dark:text-purple-300 font-medium">Can I see your resume?</span>
               </div>
             </button>
 
@@ -92,8 +92,8 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
               return (
                 <div key={category} className="mb-4">
                   <div className="flex items-center gap-2 px-2 py-1 mb-2">
-                    <Icon className="h-4 w-4 text-gray-500" />
-                    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <Icon className="h-4 w-4 text-gray-600 dark:text-gray-500" />
+                    <h4 className="text-xs font-semibold text-gray-600 dark:text-gray-500 uppercase tracking-wider">
                       {categoryLabels[category] || category}
                     </h4>
                   </div>
@@ -105,13 +105,13 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
                         onClick={() => handleQuestionClick(question)}
                         className={`w-full text-left p-3 rounded-lg mb-1 transition-all hover:translate-x-1 ${
                           isSpecial 
-                            ? 'bg-blue-900/30 hover:bg-blue-900/40 border border-blue-700/50' 
-                            : 'hover:bg-gray-700/50'
+                            ? 'bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/40 border border-blue-400 dark:border-blue-700/50' 
+                            : 'hover:bg-gray-100 dark:hover:bg-gray-700/50'
                         }`}
                       >
                         <div className="flex items-center gap-2">
                           {isSpecial && <Sparkles className="h-4 w-4 text-blue-400 flex-shrink-0" />}
-                          <span className={`text-sm ${isSpecial ? 'text-blue-300 font-medium' : 'text-gray-300'}`}>
+                          <span className={`text-sm ${isSpecial ? 'text-blue-600 dark:text-blue-300 font-medium' : 'text-gray-700 dark:text-gray-300'}`}>
                             {question}
                           </span>
                         </div>

@@ -10,6 +10,7 @@ import ResumeModal from './components/ResumeModal';
 import ExperimentCanvas from './components/ExperimentCanvas';
 import ExperimentSelector from './components/ExperimentSelector';
 import DetailedView from './components/DetailedView';
+import ThemeToggle from './components/ThemeToggle';
 import { generateStandardResume, generateTailoredResume } from './utils/resumeGenerator';
 import profileData from './portfolio-data.json';
 
@@ -384,28 +385,28 @@ const AnimatedMessage = ({ message, isAI }) => {
 
   return (
     <div className={`flex items-start gap-3 my-4 animate-fade-in-up ${isAI ? '' : 'flex-row-reverse'}`}>
-      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isAI ? 'bg-gray-700' : 'bg-blue-600'} overflow-hidden`}>
+      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isAI ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-600'} overflow-hidden`}>
         {isAI ? (
           <img src={profileData.personal.aiAssistant.avatarPath} alt="Arlo" className="w-full h-full object-cover" />
         ) : (
           <Icon className="w-5 h-5 text-white" />
         )}
       </div>
-      <div className={`p-4 rounded-lg max-w-lg ${isAI ? 'bg-gray-800 rounded-bl-none' : 'bg-blue-800 text-white rounded-br-none'}`}>
+      <div className={`p-4 rounded-lg max-w-lg ${isAI ? 'bg-gray-300 dark:bg-gray-800 rounded-bl-none' : 'bg-blue-600 dark:bg-blue-800 text-white rounded-br-none'}`}>
         <div className="text-sm leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
           <ReactMarkdown 
             components={{
             p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
             a: ({node, ...props}) => <a {...props} className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer" />,
-            strong: ({node, ...props}) => <strong className="font-bold text-white" {...props} />,
+            strong: ({node, ...props}) => <strong className="font-bold text-inherit" {...props} />,
             em: ({node, ...props}) => <em className="italic" {...props} />,
-            ul: ({node, ...props}) => <ul className="list-disc list-inside pl-4 mb-2 space-y-2 marker:text-gray-400" {...props} />,
+            ul: ({node, ...props}) => <ul className="list-disc list-inside pl-4 mb-2 space-y-2 marker:text-gray-600 dark:marker:text-gray-400" {...props} />,
             ol: ({node, ...props}) => <ol className="list-decimal list-inside pl-4 mb-2 space-y-2" {...props} />,
             li: ({node, ...props}) => <li className="mb-1 [&>p]:inline" {...props} />,
             code: ({node, inline, ...props}) => 
               inline ? 
-              <code className="bg-gray-700 px-1 py-0.5 rounded text-xs" {...props} /> :
-              <pre className="bg-gray-900 p-3 rounded-md overflow-x-auto mb-3"><code {...props} /></pre>,
+              <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-xs" {...props} /> :
+              <pre className="bg-gray-100 dark:bg-gray-900 p-3 rounded-md overflow-x-auto mb-3"><code {...props} /></pre>,
             h1: ({node, ...props}) => <h1 className="text-xl font-bold mb-2" {...props} />,
             h2: ({node, ...props}) => <h2 className="text-lg font-bold mb-2" {...props} />,
             h3: ({node, ...props}) => <h3 className="text-base font-bold mb-2" {...props} />,
@@ -420,8 +421,8 @@ const AnimatedMessage = ({ message, isAI }) => {
 };
 
 const ModalWrapper = ({ children, setView }) => (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 animate-fade-in" onClick={() => setView('chat')}>
-        <div className="bg-gray-800 rounded-lg max-w-lg w-full animate-scale-in" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 flex items-center justify-center p-4 z-50 animate-fade-in" onClick={() => setView('chat')}>
+        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg max-w-lg w-full animate-scale-in shadow-xl" onClick={e => e.stopPropagation()}>
             {children}
         </div>
     </div>
@@ -461,8 +462,8 @@ const ContactForm = ({ setView }) => {
   if (status === 'success') {
     return (
       <div className="p-8 text-center">
-        <h3 className="text-2xl font-bold text-white mb-4">Thank You!</h3>
-        <p className="text-gray-300 mb-6">Your message has been sent. I'll get back to you shortly.</p>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Thank You!</h3>
+        <p className="text-gray-800 dark:text-gray-300 mb-6">Your message has been sent. I'll get back to you shortly.</p>
         <button onClick={() => setView('chat')} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Back to Chat</button>
       </div>
     );
@@ -471,8 +472,8 @@ const ContactForm = ({ setView }) => {
   if (status === 'error') {
     return (
       <div className="p-8 text-center">
-        <h3 className="text-2xl font-bold text-white mb-4">Oops!</h3>
-        <p className="text-gray-300 mb-6">Something went wrong. Please try again or email me directly at {profileData.contact.email}</p>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Oops!</h3>
+        <p className="text-gray-800 dark:text-gray-300 mb-6">Something went wrong. Please try again or email me directly at {profileData.contact.email}</p>
         <button onClick={() => { setStatus('idle'); setFormData({ name: '', email: '', message: '' }); }} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Try Again</button>
       </div>
     );
@@ -481,8 +482,8 @@ const ContactForm = ({ setView }) => {
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-2xl font-bold text-white">Contact Zachariah Ayers</h3>
-        <button onClick={() => setView('chat')} className="text-gray-400 hover:text-white transition-colors"><X size={24} /></button>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Zachariah Ayers</h3>
+        <button onClick={() => setView('chat')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
       </div>
       <form 
         ref={formRef}
@@ -495,7 +496,7 @@ const ContactForm = ({ setView }) => {
         <input type="hidden" name="_captcha" value="false" />
         
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-300 text-sm font-bold mb-2">Your Name</label>
+          <label htmlFor="name" className="block text-gray-800 dark:text-gray-300 text-sm font-bold mb-2">Your Name</label>
           <input 
             type="text" 
             id="name" 
@@ -503,12 +504,12 @@ const ContactForm = ({ setView }) => {
             value={formData.name} 
             onChange={handleChange} 
             disabled={status === 'sending'}
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required 
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-300 text-sm font-bold mb-2">Your Email</label>
+          <label htmlFor="email" className="block text-gray-800 dark:text-gray-300 text-sm font-bold mb-2">Your Email</label>
           <input 
             type="email" 
             id="email" 
@@ -516,12 +517,12 @@ const ContactForm = ({ setView }) => {
             value={formData.email} 
             onChange={handleChange} 
             disabled={status === 'sending'}
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required 
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="message" className="block text-gray-300 text-sm font-bold mb-2">Message</label>
+          <label htmlFor="message" className="block text-gray-800 dark:text-gray-300 text-sm font-bold mb-2">Message</label>
           <textarea 
             id="message" 
             name="message" 
@@ -529,7 +530,7 @@ const ContactForm = ({ setView }) => {
             value={formData.message} 
             onChange={handleChange} 
             disabled={status === 'sending'}
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required
           ></textarea>
         </div>
@@ -582,20 +583,20 @@ const GeminiFeatureModal = ({ feature, setView, handleGeminiFeature }) => {
     return (
         <div className="p-8">
             <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                     {Icon && <Icon className={currentFeature.color}/>}
                     {currentFeature.title}
                 </h3>
-                <button onClick={() => setView('chat')} className="text-gray-400 hover:text-white"><X size={24} /></button>
+                <button onClick={() => setView('chat')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
             </div>
-            <p className="text-gray-300 mb-4">{currentFeature.description}</p>
+            <p className="text-gray-800 dark:text-gray-300 mb-4">{currentFeature.description}</p>
             <div className="mb-4">
                 <input 
                     type="text" 
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" 
                     placeholder={currentFeature.placeholder}
                 />
             </div>
@@ -1236,14 +1237,14 @@ Return this exact JSON structure:
                           {messages.map((msg, index) => <AnimatedMessage key={index} message={msg} isAI={msg.sender === 'ai'} />)}
                           {isTyping && (
                               <div className="flex items-start gap-3 my-4">
-                                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-700 overflow-hidden">
+                                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                                       <img src={profileData.personal.aiAssistant.avatarPath} alt="Arlo" className="w-full h-full object-cover" />
                                   </div>
-                                  <div className="p-4 rounded-lg bg-gray-800 rounded-bl-none">
+                                  <div className="p-4 rounded-lg bg-gray-300 dark:bg-gray-800 rounded-bl-none">
                                       <div className="flex items-center gap-2">
-                                          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
-                                          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:75ms]"></span>
-                                          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
+                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce"></span>
+                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:75ms]"></span>
+                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
                                       </div>
                                   </div>
                               </div>
@@ -1265,7 +1266,7 @@ Return this exact JSON structure:
                                                           handleSend(q, true);
                                                       }
                                                   }}
-                                                  className="text-xs px-3 py-1.5 rounded-full bg-gray-800/30 text-gray-400 hover:bg-gray-700/40 hover:text-gray-300 transition-all duration-200 active:scale-95 border border-gray-700/50"
+                                                  className="text-xs px-3 py-1.5 rounded-full bg-gray-200 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700/40 hover:text-gray-900 dark:hover:text-gray-300 transition-all duration-200 active:scale-95 border border-gray-300 dark:border-gray-700/50"
                                               >
                                                   {q}
                                               </button>
@@ -1286,7 +1287,7 @@ Return this exact JSON structure:
         onClick={onClick} 
         disabled={disabled}
         title={title}
-        className="bg-gray-800/80 p-2 rounded-lg text-left hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs sm:text-sm flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-800/80"
+        className="bg-gray-100 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 p-2 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs sm:text-sm flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800/80"
     >
         {showPulse && (
           <span className="relative flex h-2 w-2">
@@ -1299,7 +1300,7 @@ Return this exact JSON structure:
   );
 
   return (
-    <div className="bg-gray-900 text-gray-200 font-sans flex flex-col min-h-screen bg-gradient-to-br from-gray-900 to-slate-900">
+    <div className="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-200 font-sans flex flex-col min-h-screen dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-900">
       {/* Experiment Canvas */}
       <ExperimentCanvas experiment={currentExperiment} isActive={experimentActive} />
       
@@ -1316,14 +1317,14 @@ Return this exact JSON structure:
         }
         .animate-bounce { animation: bounce 1s ease-in-out infinite; }
       `}</style>
-      <header className="bg-gray-800/50 backdrop-blur-lg border-b border-white/10 p-3 md:p-4 sticky top-0 z-10">
+      <header className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-lg border-b border-gray-300 dark:border-white/10 p-3 md:p-4 sticky top-0 z-10">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg">
               <img src={profileData.personal.aiAssistant.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white">{profileData.personal.name}</h1>
+              <h1 className="text-lg font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
               <div className={`text-xs flex items-center gap-1.5 transition-colors duration-300 ${mode === 'interview' ? 'text-sky-400' : 'text-green-400'}`}>
                   <span className={`w-2 h-2 rounded-full animate-pulse ${mode === 'interview' ? 'bg-sky-400' : 'bg-green-400'}`}></span>
                   {mode === 'interview' ? 'Interview Mode Active' : 'Online & Ready to Chat'}
@@ -1331,13 +1332,14 @@ Return this exact JSON structure:
             </div>
           </div>
           <div className="flex items-center gap-2 md:gap-4">
-              <button onClick={() => changeView('me')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
-              <button onClick={() => changeView('projects')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
-              <button onClick={() => changeView('skills')} className="text-gray-400 hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
-              <div className="h-4 w-px bg-gray-600 hidden sm:block" />
+              <button onClick={() => changeView('me')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
+              <button onClick={() => changeView('projects')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
+              <button onClick={() => changeView('skills')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
+              <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden sm:block" />
               <div className="flex items-center gap-1 md:gap-2">
-                <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
-                <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
+                <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                <ThemeToggle />
                 <WelcomeModal />
               </div>
           </div>
@@ -1347,15 +1349,15 @@ Return this exact JSON structure:
       <div className="flex-1 flex flex-col min-h-0">
         {messages.length === 0 && view === 'chat' ? (
             <div className="text-center p-8 animate-fade-in flex-1 flex flex-col justify-center">
-                <h2 className="text-2xl font-bold text-white mb-2">Welcome! I'm Zach 👋</h2>
-                <p className="text-gray-400 mb-6 max-w-2xl mx-auto">How can I help you today?</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Welcome! I'm Zach 👋</h2>
+                <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">How can I help you today?</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
                     {suggestedQuestions.map((q, i) => (
                         <button 
                             key={q} 
                             style={{animationDelay: `${i * 100}ms`, animationFillMode: 'forwards'}} 
                             onClick={() => handleSend(q)} 
-                            className="bg-gray-800 p-3 rounded-lg text-left hover:bg-gray-700 transition-all duration-200 active:scale-95 text-sm animate-fade-in-up opacity-0"
+                            className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-sm animate-fade-in-up opacity-0"
                         >
                             {q}
                         </button>
@@ -1367,7 +1369,7 @@ Return this exact JSON structure:
         )}
 
         {view === 'chat' && (
-            <footer className="p-2 sm:p-3 md:p-4 md:px-6 md:pb-6 bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 md:bg-transparent md:border-0 md:sticky md:bottom-0">
+            <footer className="p-2 sm:p-3 md:p-4 md:px-6 md:pb-6 bg-gray-100/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-300 dark:border-gray-700 md:bg-transparent md:border-0 md:sticky md:bottom-0">
             <div className="max-w-3xl mx-auto">
                 {/* QuickCards section */}
                 <div className="mb-2 md:mb-3">
@@ -1405,29 +1407,37 @@ Return this exact JSON structure:
                     </div>
                   </div>
                 )}
-                <div className="flex items-center bg-gray-800 rounded-lg p-2 border border-white/10 focus-within:ring-2 focus-within:ring-blue-500 shadow-lg">
+                <div className="flex items-center bg-white dark:bg-gray-800 rounded-lg p-2 border border-gray-300 dark:border-white/10 focus-within:ring-2 focus-within:ring-blue-500 shadow-lg">
                 <textarea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                     placeholder={mode === 'interview' ? "Ask your question, or type 'exit interview'..." : "Ask a question about Zach's experience, skills, or projects..."}
-                    className="flex-1 bg-transparent text-white placeholder-gray-400 focus:outline-none resize-none px-2"
+                    className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none resize-none px-2"
                     rows={1}
                 />
-                <button id="send-button" onClick={() => handleSend()} className="bg-blue-600 rounded-md p-2 text-white hover:bg-blue-700 disabled:bg-gray-600 transition-all duration-200 active:scale-95" disabled={!input.trim() || isTyping}>
+                <button id="send-button" onClick={() => handleSend()} className="bg-blue-600 rounded-md p-2 text-white hover:bg-blue-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 transition-all duration-200 active:scale-95" disabled={!input.trim() || isTyping}>
                     <ArrowUp size={20} />
                 </button>
                 </div>
-                <div className="hidden sm:block mt-4 pt-4 border-t border-white/10 text-center text-xs text-gray-500">
+                
+                {/* AI Disclaimer */}
+                <div className="mt-2 text-center">
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                        My AI Model can make mistakes. Please verify all information with me via the Contact Form
+                    </p>
+                </div>
+                
+                <div className="hidden sm:block mt-4 pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400">
                     <div className="flex justify-center items-center gap-6 mb-2">
                         <span>© {new Date().getFullYear()} Zachariah Ayers</span>
-                        <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Meridian Vega</a>
-                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Chewable Studios</a>
-                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">AssembleJS</a>
-                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">Howland</a>
+                        <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
+                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
+                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
+                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland</a>
                     </div>
-                    <div className="text-gray-600">
-                        Messages Sent Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-500">- Running low!</span>}
+                    <div className="text-gray-600 dark:text-gray-500">
+                        Messages Sent Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
                     </div>
                 </div>
             </div>

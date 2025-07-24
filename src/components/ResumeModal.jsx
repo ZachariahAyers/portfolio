@@ -26,17 +26,17 @@ const ResumeModal = ({ isOpen, onClose, onGenerate }) => {
       />
       
       {/* Content */}
-      <div className="relative bg-gray-800 rounded-2xl max-w-lg w-full animate-scale-in shadow-2xl border border-gray-700">
+      <div className="relative bg-gray-100 dark:bg-gray-800 rounded-2xl max-w-lg w-full animate-scale-in shadow-2xl border border-gray-300 dark:border-gray-700">
         <div className="p-8">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <FileText className="h-6 w-6 text-blue-400" />
               Get My Perfectly Tailored Resume
             </h3>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               <X size={24} />
             </button>
@@ -44,7 +44,7 @@ const ResumeModal = ({ isOpen, onClose, onGenerate }) => {
 
           {/* Content */}
           <div className="space-y-4">
-            <p className="text-gray-300">
+            <p className="text-gray-700 dark:text-gray-300">
               Receive my resume perfectly tailored to your requirements in seconds. Just paste your job description below.
             </p>
 

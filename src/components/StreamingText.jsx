@@ -79,7 +79,7 @@ const StreamingText = ({
       {displayedBullets.map((bullet, idx) => (
         <div key={`completed-${idx}`} className="flex items-start gap-3">
           <span className="text-purple-400 mt-1">▸</span>
-          <p className="text-gray-300 flex-1">{bullet}</p>
+          <p className="text-gray-800 dark:text-gray-300 flex-1">{bullet}</p>
         </div>
       ))}
       
@@ -87,7 +87,7 @@ const StreamingText = ({
       {currentText && (
         <div className="flex items-start gap-3">
           <span className="text-purple-400 mt-1">▸</span>
-          <p className="text-gray-300 flex-1">
+          <p className="text-gray-800 dark:text-gray-300 flex-1">
             {currentText}
             <span className="inline-block w-2 h-4 bg-purple-400 animate-pulse ml-1" />
           </p>

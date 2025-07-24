@@ -17,7 +17,7 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
       <div className={isVisible ? 'mb-2 flex justify-center' : 'mb-0 flex justify-center'}>
         <button
           onClick={onToggleVisibility}
-          className="flex items-center gap-1 px-3 py-1 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+          className="flex items-center gap-1 px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
         >
           {isVisible ? (
             <>
@@ -49,11 +49,11 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
                     onCardClick(question);
                   }
                 }}
-                className="bg-gray-800/80 hover:bg-gray-700 transition-all duration-200 active:scale-95 
-                         h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl border border-gray-700
+                className="bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 
+                         h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl border border-gray-300 dark:border-gray-700
                          px-4 py-3 shadow-none backdrop-blur-sm"
               >
-                <div className="flex items-center gap-3 text-gray-300">
+                <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                   <Icon size={18} strokeWidth={2} style={{ color }} />
                   <span className="text-sm font-medium">{key}</span>
                 </div>
@@ -65,10 +65,10 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
               onClick={onMoreClick}
               className="group relative flex flex-shrink-0 items-center justify-center"
             >
-              <div className="hover:bg-gray-700 flex h-auto cursor-pointer items-center space-x-1 
-                            rounded-xl border border-gray-700 bg-gray-800/80 px-4 py-3 text-sm 
+              <div className="hover:bg-gray-200 dark:hover:bg-gray-700 flex h-auto cursor-pointer items-center space-x-1 
+                            rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800/80 px-4 py-3 text-sm 
                             backdrop-blur-sm transition-all duration-200 active:scale-95">
-                <div className="flex items-center gap-3 text-gray-300">
+                <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                   <CircleEllipsis className="h-[20px] w-[18px]" strokeWidth={2} />
                   <span className="text-sm font-medium">Questions</span>
                 </div>

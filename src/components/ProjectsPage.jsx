@@ -159,12 +159,12 @@ const ProjectsPage = () => {
   };
 
   const getProjectTheme = (project) => {
-    if (project.current) return 'from-cyan-900/30 via-cyan-800/25 to-yellow-700/20 border-green-500/40';
-    if (project.type === 'enterprise') return 'from-purple-900/20 to-pink-900/20 border-purple-500/30';
-    if (project.type === 'opensource') return 'from-blue-900/20 to-cyan-900/20 border-blue-500/30';
-    if (project.type === 'freelance') return 'from-amber-900/20 to-orange-900/20 border-amber-500/30';
-    if (project.type === 'other') return 'from-green-900/20 to-emerald-900/20 border-green-500/30';
-    return 'from-gray-800/20 to-gray-700/20 border-gray-600/30';
+    if (project.current) return 'dark:from-cyan-900/30 dark:via-cyan-800/25 dark:to-yellow-700/20 border-green-500 dark:border-green-500/40';
+    if (project.type === 'enterprise') return 'dark:from-purple-900/20 dark:to-pink-900/20 border-purple-500 dark:border-purple-500/30';
+    if (project.type === 'opensource') return 'dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-500 dark:border-blue-500/30';
+    if (project.type === 'freelance') return 'dark:from-amber-900/20 dark:to-orange-900/20 border-amber-500 dark:border-amber-500/30';
+    if (project.type === 'other') return 'dark:from-green-900/20 dark:to-emerald-900/20 border-green-500 dark:border-green-500/30';
+    return 'dark:from-gray-800/20 dark:to-gray-700/20 border-gray-500 dark:border-gray-600/30';
   };
 
   const toggleProjectExpanded = (projectId) => {
@@ -178,20 +178,20 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 sticky top-0 z-40">
+      <header className="bg-gray-100 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700 sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link to="/" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+              <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                 <ArrowLeft size={20} />
                 <span>Back to Portfolio</span>
               </Link>
-              <span className="text-gray-600">|</span>
-              <h1 className="text-xl font-bold text-white">All Projects</h1>
+              <span className="text-gray-400 dark:text-gray-600">|</span>
+              <h1 className="text-xl font-bold text-gray-900 dark:text-white">All Projects</h1>
             </div>
-            <Link to="/" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+            <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
               <Home size={20} />
               <span className="hidden sm:inline">Home</span>
             </Link>
@@ -203,13 +203,13 @@ const ProjectsPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-6 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg p-6 border border-blue-500/30">
+          <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
             {/* GitHub Stats in top right corner */}
             <div className="absolute top-4 right-4 text-sm">
-              <div className="bg-gray-800/50 rounded-lg px-3 py-1 flex items-center gap-2">
-                <Github className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-400">Stars: </span>
-                <span className="text-white font-bold inline-flex items-center gap-1">
+              <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1 flex items-center gap-2">
+                <Github className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                <span className="text-gray-600 dark:text-gray-400">Stars: </span>
+                <span className="text-gray-900 dark:text-white font-bold inline-flex items-center gap-1">
                   {githubStats.loading ? (
                     <span className="text-xs">Loading...</span>
                   ) : githubStats.error ? (
@@ -225,33 +225,33 @@ const ProjectsPage = () => {
             </div>
             
             <div className="text-center space-y-4">
-              <h1 className="text-3xl font-bold text-white flex items-center justify-center gap-3">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
                 <Rocket className="text-blue-400" />
                 Projects & Creations
               </h1>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
                 From enterprise transformations to open-source contributions
               </p>
               <div className="flex justify-center flex-wrap gap-4 text-sm">
-                <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-                  <span className="text-gray-400">Total: </span>
-                  <span className="text-white font-bold">{allProjects.length}</span>
+                <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+                  <span className="text-gray-600 dark:text-gray-400">Total: </span>
+                  <span className="text-gray-900 dark:text-white font-bold">{allProjects.length}</span>
                 </div>
-                <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-                  <span className="text-gray-400">Open Source: </span>
-                  <span className="text-white font-bold">
+                <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+                  <span className="text-gray-600 dark:text-gray-400">Open Source: </span>
+                  <span className="text-gray-900 dark:text-white font-bold">
                     {allProjects.filter(p => p.github).length}
                   </span>
                 </div>
-                <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-                  <span className="text-gray-400">Live Deployments: </span>
-                  <span className="text-white font-bold">
+                <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+                  <span className="text-gray-600 dark:text-gray-400">Live Deployments: </span>
+                  <span className="text-gray-900 dark:text-white font-bold">
                     {allProjects.filter(p => p.url).length}
                   </span>
                 </div>
-                <div className="bg-gray-800/50 rounded-lg px-3 py-1">
-                  <span className="text-gray-400">Case Studies: </span>
-                  <span className="text-white font-bold">
+                <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+                  <span className="text-gray-600 dark:text-gray-400">Case Studies: </span>
+                  <span className="text-gray-900 dark:text-white font-bold">
                     {allProjects.filter(p => p.caseStudy).length}
                   </span>
                 </div>
@@ -260,10 +260,10 @@ const ProjectsPage = () => {
           </div>
 
           {/* Type Filter */}
-          <div className="bg-gray-800/30 rounded-lg p-4">
+          <div className="bg-gray-300/50 dark:bg-gray-800/30 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-3">
               <Filter className="w-4 h-4 text-gray-400" />
-              <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+              <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                 Filter by Type
               </h3>
             </div>
@@ -277,7 +277,7 @@ const ProjectsPage = () => {
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                   selectedType === 'all' && !showCurrentOnly
                     ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                 }`}
               >
                 All ({allProjects.length})
@@ -295,7 +295,7 @@ const ProjectsPage = () => {
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                   showCurrentOnly 
                     ? 'bg-green-600 text-white' 
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                 }`}
               >
                 <Zap className="inline w-3 h-3 mr-1" />
@@ -309,7 +309,7 @@ const ProjectsPage = () => {
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                     selectedType === 'enterprise' && !showCurrentOnly
                       ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
                   Enterprise ({dynamicTypeCounts.enterprise})
@@ -322,7 +322,7 @@ const ProjectsPage = () => {
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                     selectedType === 'opensource' && !showCurrentOnly
                       ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
                   Open Source ({dynamicTypeCounts.opensource})
@@ -335,7 +335,7 @@ const ProjectsPage = () => {
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                     selectedType === 'freelance' && !showCurrentOnly
                       ? 'bg-amber-600 text-white' 
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
                   Freelance ({dynamicTypeCounts.freelance})
@@ -348,7 +348,7 @@ const ProjectsPage = () => {
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                     selectedType === 'other' && !showCurrentOnly
                       ? 'bg-green-600 text-white' 
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
                   Other ({dynamicTypeCounts.other})
@@ -357,10 +357,10 @@ const ProjectsPage = () => {
             </div>
 
             {/* Technology Filter */}
-            <div className="bg-gray-800/30 rounded-lg p-4">
+            <div className="bg-gray-300/50 dark:bg-gray-800/30 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Filter className="w-4 h-4 text-gray-400" />
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+                <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                   Filter by Technology
                 </h3>
               </div>
@@ -370,7 +370,7 @@ const ProjectsPage = () => {
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                     selectedTech === 'all' 
                       ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
                   All ({selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length})
@@ -387,7 +387,7 @@ const ProjectsPage = () => {
                         className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
                           selectedTech === tech 
                             ? 'bg-blue-600 text-white' 
-                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                         }`}
                       >
                         {tech} ({count})
@@ -415,7 +415,7 @@ const ProjectsPage = () => {
               return (
                 <div
                   key={project.id}
-                  className={`bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                  className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                     project.current 
                       ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                       : ''
@@ -427,7 +427,7 @@ const ProjectsPage = () => {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2 flex-1">
                         <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                        <h3 className="text-lg font-bold text-white">
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                           {project.name}
                         </h3>
                       </div>
@@ -448,14 +448,14 @@ const ProjectsPage = () => {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800">
+                        <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800">
                           <Icon className="w-12 h-12 text-gray-600" />
                         </div>
                       )}
                     </div>
 
                     {/* Project Description */}
-                    <p className={`text-gray-300 text-sm mb-3 ${!isExpanded ? 'line-clamp-2' : ''}`}>
+                    <p className={`text-gray-700 dark:text-gray-300 text-sm mb-3 ${!isExpanded ? 'line-clamp-2' : ''}`}>
                       {project.description || 'No description available'}
                     </p>
 
@@ -463,7 +463,7 @@ const ProjectsPage = () => {
                     {project.description && project.description.length > 120 && (
                       <button
                         onClick={() => toggleProjectExpanded(project.id)}
-                        className="text-xs text-blue-400 hover:text-blue-300 mb-3"
+                        className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 mb-3"
                       >
                         {isExpanded ? 'Show less' : 'Show more'}
                       </button>
@@ -472,7 +472,7 @@ const ProjectsPage = () => {
                     {/* Impact */}
                     {project.impact && (
                       <div className="bg-green-900/30 rounded-md px-3 py-1 mb-3">
-                        <p className="text-xs text-green-300">
+                        <p className="text-xs text-green-700 dark:text-green-300">
                           <span className="font-semibold">Impact:</span> {project.impact}
                         </p>
                       </div>
@@ -484,13 +484,13 @@ const ProjectsPage = () => {
                         {project.technologies.slice(0, 5).map((tech, idx) => (
                           <span 
                             key={idx}
-                            className="px-2 py-0.5 bg-gray-700/50 text-gray-300 rounded-full text-xs"
+                            className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 rounded-full text-xs"
                           >
                             {tech}
                           </span>
                         ))}
                         {project.technologies.length > 5 && (
-                          <span className="px-2 py-0.5 bg-gray-700/50 text-gray-400 rounded-full text-xs">
+                          <span className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400 rounded-full text-xs">
                             +{project.technologies.length - 5} more
                           </span>
                         )}
@@ -560,7 +560,7 @@ const ProjectsPage = () => {
                         href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 ml-auto"
+                        className="flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 ml-auto"
                       >
                         <Building className="w-3 h-3" />
                         Enterprise
@@ -571,7 +571,7 @@ const ProjectsPage = () => {
                         href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 ml-auto"
+                        className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 ml-auto"
                       >
                         <Briefcase className="w-3 h-3" />
                         Freelance
@@ -593,7 +593,7 @@ const ProjectsPage = () => {
                         href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-green-400 hover:text-green-300 ml-auto"
+                        className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 ml-auto"
                       >
                         <Code className="w-3 h-3" />
                         Other
@@ -608,7 +608,7 @@ const ProjectsPage = () => {
           {/* No results message */}
           {filteredProjects.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-400">
+              <p className="text-gray-600 dark:text-gray-400">
                 No projects found
                 {selectedType !== 'all' && ` of type "${selectedType}"`}
                 {selectedType !== 'all' && selectedTech !== 'all' && ' and'}
@@ -619,7 +619,7 @@ const ProjectsPage = () => {
                 {selectedType !== 'all' && (
                   <button
                     onClick={() => setSelectedType('all')}
-                    className="text-blue-400 hover:text-blue-300"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
                   >
                     Clear type filter
                   </button>
@@ -627,7 +627,7 @@ const ProjectsPage = () => {
                 {selectedTech !== 'all' && (
                   <button
                     onClick={() => setSelectedTech('all')}
-                    className="text-blue-400 hover:text-blue-300"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
                   >
                     Clear technology filter
                   </button>
