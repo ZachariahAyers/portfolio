@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, Maximize2, Star, Layers } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield } from 'lucide-react';
 import StreamingText from './StreamingText';
 import StreamingTextSimple from './StreamingTextSimple';
 import useGitHubStats from '../hooks/useGitHubStats';
+import { Tooltip } from './Tooltip';
 
 const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF, userInteractions, personalizedContent, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             setIsGeneratingExecutive(false);
           })
           .catch((error) => {
-            console.error('Executive summary generation failed:', error);
+            // Executive summary generation failed - using default
             setExecutiveSummary(profileData.personal.executiveSummary[0]);
             setIsGeneratingExecutive(false);
           });
@@ -55,7 +56,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             setIsGenerating(false);
           })
           .catch((error) => {
-            console.error('AI generation failed:', error);
+            // AI generation failed - using static content
             const fallback = {
               bulletPoints: profileData.personal.whatIBring
             };
@@ -91,25 +92,34 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         <div className="flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 min-w-[280px]">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
           <div className="grid grid-cols-1 gap-2 text-sm">
-            <a 
-              href="#" 
-              onClick={(e) => {
-                e.preventDefault();
-                if (onContactClick) onContactClick();
-              }}
-              className="flex items-center gap-2 text-blue-400 hover:text-blue-300 cursor-pointer"
-            >
-              <ExternalLink size={14} /> {profileData.contact.email}
-            </a>
-            <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-              <ExternalLink size={14} /> LinkedIn Profile
-            </a>
-            <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-              <Github size={14} /> GitHub Portfolio
-            </a>
-            <a href={profileData.contact.calendly} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-              <Calendar size={14} /> Schedule a Call
-            </a>
+            <Tooltip content="Send me an email">
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onContactClick) onContactClick();
+                }}
+                aria-label={`Send email to ${profileData.contact.email}`}
+                className="flex items-center gap-2 text-blue-400 hover:text-blue-300 cursor-pointer"
+              >
+                <ExternalLink size={14} /> {profileData.contact.email}
+              </a>
+            </Tooltip>
+            <Tooltip content="View my LinkedIn profile">
+              <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile in new tab" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                <ExternalLink size={14} /> LinkedIn Profile
+              </a>
+            </Tooltip>
+            <Tooltip content="Explore my GitHub repositories">
+              <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub portfolio in new tab" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                <Github size={14} /> GitHub Portfolio
+              </a>
+            </Tooltip>
+            <Tooltip content="Book a meeting with me">
+              <a href={profileData.contact.calendly} target="_blank" rel="noopener noreferrer" aria-label="Schedule a call via Calendly in new tab" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
+                <Calendar size={14} /> Schedule a Call
+              </a>
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -307,12 +317,12 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     };
 
     const getProjectTheme = (project) => {
-      if (project.current) return 'from-cyan-900/30 via-cyan-800/25 to-yellow-700/20 border-green-500/40';
-      if (project.type === 'enterprise') return 'from-purple-900/20 to-pink-900/20 border-purple-500/30';
-      if (project.type === 'opensource') return 'from-blue-900/20 to-cyan-900/20 border-blue-500/30';
-      if (project.type === 'freelance') return 'from-amber-900/20 to-orange-900/20 border-amber-500/30';
-      if (project.type === 'other') return 'from-green-900/20 to-emerald-900/20 border-green-500/30';
-      return 'from-gray-800/20 to-gray-700/20 border-gray-600/30';
+      if (project.current) return 'dark:from-cyan-900/30 dark:via-cyan-800/25 dark:to-yellow-700/20 from-green-50 via-cyan-50 to-yellow-50 border-green-500 dark:border-green-500/40';
+      if (project.type === 'enterprise') return 'dark:from-purple-900/20 dark:to-pink-900/20 from-purple-50 to-pink-50 border-purple-500 dark:border-purple-500/30';
+      if (project.type === 'opensource') return 'dark:from-blue-900/20 dark:to-cyan-900/20 from-blue-50 to-cyan-50 border-blue-500 dark:border-blue-500/30';
+      if (project.type === 'freelance') return 'dark:from-amber-900/20 dark:to-orange-900/20 from-amber-50 to-orange-50 border-amber-500 dark:border-amber-500/30';
+      if (project.type === 'other') return 'dark:from-green-900/20 dark:to-emerald-900/20 from-green-50 to-emerald-50 border-green-500 dark:border-green-500/30';
+      return 'dark:from-gray-800/20 dark:to-gray-700/20 from-gray-100 to-gray-200 border-gray-500 dark:border-gray-600/30';
     };
 
     const toggleProjectExpanded = (projectId) => {
@@ -385,90 +395,108 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
           
           {/* Type Filter Chips */}
           <div className="flex justify-center gap-2 mt-4">
-            <button
-              onClick={() => {
-                setSelectedType('all');
-                setShowCurrentOnly(false);
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                selectedType === 'all' && !showCurrentOnly
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              All Types
-            </button>
-            <button
-              onClick={() => {
-                if (showCurrentOnly) {
+            <Tooltip content="Show all project types">
+              <button
+                onClick={() => {
+                  setSelectedType('all');
                   setShowCurrentOnly(false);
-                  setSelectedType('all');
-                } else {
-                  setShowCurrentOnly(true);
-                  setSelectedType('all');
-                }
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                showCurrentOnly 
-                  ? 'bg-green-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              <Zap className="inline w-3 h-3 mr-1" />
-              Current Focus ({allProjects.filter(p => p.current).length})
-            </button>
-            <button
-              onClick={() => {
-                setSelectedType('opensource');
-                setShowCurrentOnly(false);
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                selectedType === 'opensource' && !showCurrentOnly
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              Featured/Open Source ({dynamicTypeCounts.opensource})
-            </button>
-            <button
-              onClick={() => {
-                setSelectedType('enterprise');
-                setShowCurrentOnly(false);
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                selectedType === 'enterprise' && !showCurrentOnly
-                  ? 'bg-purple-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              Enterprise ({dynamicTypeCounts.enterprise})
-            </button>
-            <button
-              onClick={() => {
-                setSelectedType('freelance');
-                setShowCurrentOnly(false);
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                selectedType === 'freelance' && !showCurrentOnly
-                  ? 'bg-amber-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              Freelance ({dynamicTypeCounts.freelance})
-            </button>
-            <button
-              onClick={() => {
-                setSelectedType('other');
-                setShowCurrentOnly(false);
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                selectedType === 'other' && !showCurrentOnly
-                  ? 'bg-green-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              Other ({dynamicTypeCounts.other})
-            </button>
+                }}
+                aria-label={`Show all project types, ${allProjects.length} total`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  selectedType === 'all' && !showCurrentOnly
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                All Types
+              </button>
+            </Tooltip>
+            <Tooltip content="Show projects I'm actively working on">
+              <button
+                onClick={() => {
+                  if (showCurrentOnly) {
+                    setShowCurrentOnly(false);
+                    setSelectedType('all');
+                  } else {
+                    setShowCurrentOnly(true);
+                    setSelectedType('all');
+                  }
+                }}
+                aria-label={`${showCurrentOnly ? 'Show all projects' : 'Show only current projects'}, ${allProjects.filter(p => p.current).length} current`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  showCurrentOnly 
+                    ? 'bg-green-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                <Zap className="inline w-3 h-3 mr-1" />
+                Current Focus ({allProjects.filter(p => p.current).length})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show open source contributions">
+              <button
+                onClick={() => {
+                  setSelectedType('opensource');
+                  setShowCurrentOnly(false);
+                }}
+                aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  selectedType === 'opensource' && !showCurrentOnly
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Featured/Open Source ({dynamicTypeCounts.opensource})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show large-scale corporate projects">
+              <button
+                onClick={() => {
+                  setSelectedType('enterprise');
+                  setShowCurrentOnly(false);
+                }}
+                aria-label={`Filter by enterprise projects, ${dynamicTypeCounts.enterprise} projects`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  selectedType === 'enterprise' && !showCurrentOnly
+                    ? 'bg-purple-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Enterprise ({dynamicTypeCounts.enterprise})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show freelance client projects">
+              <button
+                onClick={() => {
+                  setSelectedType('freelance');
+                  setShowCurrentOnly(false);
+                }}
+                aria-label={`Filter by freelance projects, ${dynamicTypeCounts.freelance} projects`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  selectedType === 'freelance' && !showCurrentOnly
+                    ? 'bg-amber-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Freelance ({dynamicTypeCounts.freelance})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show personal and experimental projects">
+              <button
+                onClick={() => {
+                  setSelectedType('other');
+                  setShowCurrentOnly(false);
+                }}
+                aria-label={`Filter by other projects, ${dynamicTypeCounts.other} projects`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  selectedType === 'other' && !showCurrentOnly
+                    ? 'bg-green-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Other ({dynamicTypeCounts.other})
+              </button>
+            </Tooltip>
           </div>
         </div>
 
@@ -481,42 +509,50 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             </h3>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedTech('all')}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                selectedTech === 'all' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              All ({selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length})
-            </button>
+            <Tooltip content="Show projects using any technology">
+              <button
+                onClick={() => setSelectedTech('all')}
+                aria-label={`Show all technologies, ${selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length} projects`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  selectedTech === 'all' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                All ({selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length})
+              </button>
+            </Tooltip>
             {sortedTechnologies
               .filter(tech => dynamicTechCounts[tech] > 0)
               .slice(0, showAllTechs ? undefined : 10)
               .map(tech => {
                 const count = dynamicTechCounts[tech] || 0;
                 return (
-                  <button
-                    key={tech}
-                    onClick={() => setSelectedTech(tech)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                      selectedTech === tech 
-                        ? 'bg-blue-600 text-white' 
-                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                    }`}
-                  >
-                    {tech} ({count})
-                  </button>
+                  <Tooltip key={tech} content={`Filter by ${tech} projects`}>
+                    <button
+                      onClick={() => setSelectedTech(tech)}
+                      aria-label={`Filter by ${tech}, ${count} projects`}
+                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                        selectedTech === tech 
+                          ? 'bg-blue-600 text-white' 
+                          : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                      }`}
+                    >
+                      {tech} ({count})
+                    </button>
+                  </Tooltip>
                 );
               })}
             {sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length > 10 && (
-              <button
-                onClick={() => setShowAllTechs(!showAllTechs)}
-                className="px-3 py-1 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
-              >
-                {showAllTechs ? 'Show less' : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more`}
-              </button>
+              <Tooltip content={showAllTechs ? "Show fewer technology filters" : "Show all available technologies"}>
+                <button
+                  onClick={() => setShowAllTechs(!showAllTechs)}
+                  aria-label={showAllTechs ? "Show fewer technology filters" : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more technology filters`}
+                  className="px-3 py-1 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
+                >
+                  {showAllTechs ? 'Show less' : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more`}
+                </button>
+              </Tooltip>
             )}
           </div>
         </div>
@@ -531,7 +567,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             return (
               <div
                 key={project.id}
-                className={`bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                   project.current 
                     ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                     : ''
@@ -556,7 +592,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   </div>
 
                   {/* Project Image */}
-                  <div className="relative w-full h-40 mb-3 bg-gray-200 dark:bg-gray-800 rounded-md overflow-hidden">
+                  <div className="relative w-full h-40 mb-3 bg-gray-800 rounded-md overflow-hidden">
                     {project.image ? (
                       <img 
                         src={project.image} 
@@ -565,7 +601,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800">
-                        <Icon className="w-12 h-12 text-gray-600" />
+                        <Icon className="w-12 h-12 text-gray-600 dark:text-gray-400" />
                       </div>
                     )}
                   </div>
@@ -577,18 +613,21 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
 
                   {/* Show more/less button */}
                   {project.description && project.description.length > 120 && (
-                    <button
-                      onClick={() => toggleProjectExpanded(project.id)}
-                      className="text-xs text-blue-400 hover:text-blue-300 mb-3"
-                    >
-                      {isExpanded ? 'Show less' : 'Show more'}
-                    </button>
+                    <Tooltip content={isExpanded ? "Show less details" : "Show full project details"}>
+                      <button
+                        onClick={() => toggleProjectExpanded(project.id)}
+                        aria-label={`${isExpanded ? 'Show less' : 'Show more'} details for ${project.name}`}
+                        className="text-xs text-blue-400 hover:text-blue-300 mb-3"
+                      >
+                        {isExpanded ? 'Show less' : 'Show more'}
+                      </button>
+                    </Tooltip>
                   )}
 
                   {/* Impact */}
                   {project.impact && (
-                    <div className="bg-green-900/30 rounded-md px-3 py-1 mb-3">
-                      <p className="text-xs text-green-300">
+                    <div className="bg-green-100 dark:bg-green-900/30 rounded-md px-3 py-1 mb-3">
+                      <p className="text-xs text-green-700 dark:text-green-300">
                         <span className="font-semibold">Impact:</span> {project.impact}
                       </p>
                     </div>
@@ -600,13 +639,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       {project.technologies.slice(0, 5).map((tech, idx) => (
                         <span 
                           key={idx}
-                          className="px-2 py-0.5 bg-gray-700/50 text-gray-300 rounded-full text-xs"
+                          className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 rounded-full text-xs"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 5 && (
-                        <span className="px-2 py-0.5 bg-gray-700/50 text-gray-400 rounded-full text-xs">
+                        <span className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400 rounded-full text-xs">
                           +{project.technologies.length - 5} more
                         </span>
                       )}
@@ -621,6 +660,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.url.startsWith('http') ? project.url : `https://${project.url}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View live deployment of ${project.name} in new tab`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
                       <Globe className="w-3 h-3" />
@@ -632,6 +672,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Watch video demo of ${project.name} in new tab`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
                       <Zap className="w-3 h-3" />
@@ -643,6 +684,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.github.startsWith('http') ? project.github : `https://${project.github}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View source code for ${project.name} on GitHub in new tab`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
                       <Github className="w-3 h-3" />
@@ -654,6 +696,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.devOps}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View DevOps pipeline for ${project.name} in new tab`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
                       <Zap className="w-3 h-3" />
@@ -665,6 +708,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Read case study for ${project.name} in new tab`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
                       <FileText className="w-3 h-3" />
@@ -676,6 +720,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="View enterprise project details in new tab"
                       className="flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 ml-auto"
                     >
                       <Building className="w-3 h-3" />
@@ -687,6 +732,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="View freelance project details in new tab"
                       className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 ml-auto"
                     >
                       <Briefcase className="w-3 h-3" />
@@ -698,6 +744,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.github ? (project.github.startsWith('http') ? project.github : `https://${project.github}`) : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="View open source project on GitHub in new tab"
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 ml-auto"
                     >
                       <Package className="w-3 h-3" />
@@ -709,6 +756,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="View project details in new tab"
                       className="flex items-center gap-1 text-xs text-green-400 hover:text-green-300 ml-auto"
                     >
                       <Code className="w-3 h-3" />
@@ -725,12 +773,15 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-600 dark:text-gray-400">No projects found with {selectedTech} technology.</p>
-            <button
-              onClick={() => setSelectedTech('all')}
-              className="mt-2 text-blue-400 hover:text-blue-300"
-            >
-              Clear filter
-            </button>
+            <Tooltip content="Show all technologies">
+              <button
+                onClick={() => setSelectedTech('all')}
+                aria-label="Clear technology filter"
+                className="mt-2 text-blue-400 hover:text-blue-300"
+              >
+                Clear filter
+              </button>
+            </Tooltip>
           </div>
         )}
 
@@ -742,7 +793,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     const [selectedCategory, setSelectedCategory] = React.useState('all');
     const [selectedLevel, setSelectedLevel] = React.useState('all');
     const [searchQuery, setSearchQuery] = React.useState('');
-    const [expandedCategories, setExpandedCategories] = React.useState(new Set(['expert']));
+    const [expandedCategories, setExpandedCategories] = React.useState(new Set(['expert', 'proficient', 'familiar']));
     const [viewMode, setViewMode] = React.useState('grid'); // grid or list
     const [showCertifications, setShowCertifications] = React.useState(false);
     
@@ -951,118 +1002,175 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
           
           {/* Level Filter */}
           <div className="flex justify-center gap-2 mt-4">
-            <button
-              onClick={() => setSelectedLevel('all')}
-              disabled={showCertifications}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                showCertifications 
-                  ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
-                  : selectedLevel === 'all'
+            <Tooltip content="Show skills from all proficiency levels">
+              <button
+                onClick={() => setSelectedLevel('all')}
+                disabled={showCertifications}
+                aria-label="Filter by all skill levels"
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  showCertifications 
+                    ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : selectedLevel === 'all'
+                      ? 'bg-purple-600 text-white' 
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                All Levels
+              </button>
+            </Tooltip>
+            <Tooltip content="Show only expert level skills">
+              <button
+                onClick={() => setSelectedLevel('expert')}
+                disabled={showCertifications}
+                aria-label={`Filter by expert level skills, ${dynamicLevelCounts.expert} skills`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  showCertifications 
+                    ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : selectedLevel === 'expert'
+                      ? 'bg-blue-600 text-white' 
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                <Award className="inline w-3 h-3 mr-1" />
+                Expert ({dynamicLevelCounts.expert})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show only proficient level skills">
+              <button
+                onClick={() => setSelectedLevel('proficient')}
+                disabled={showCertifications}
+                aria-label={`Filter by proficient level skills, ${dynamicLevelCounts.proficient} skills`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  showCertifications 
+                    ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : selectedLevel === 'proficient'
+                      ? 'bg-green-600 text-white' 
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Proficient ({dynamicLevelCounts.proficient})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show only familiar level skills">
+              <button
+                onClick={() => setSelectedLevel('familiar')}
+                disabled={showCertifications}
+                aria-label={`Filter by familiar level skills, ${dynamicLevelCounts.familiar} skills`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  showCertifications 
+                    ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : selectedLevel === 'familiar'
+                      ? 'bg-orange-600 text-white' 
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Familiar ({dynamicLevelCounts.familiar})
+              </button>
+            </Tooltip>
+            <div className="border-l border-gray-400 dark:border-gray-600 mx-2 h-6"></div>
+            <Tooltip content={showCertifications ? "Show skills" : "Show certifications and credentials"}>
+              <button
+                onClick={() => {
+                  setShowCertifications(!showCertifications);
+                  if (!showCertifications) {
+                    setSelectedLevel('all');
+                    setSelectedCategory('all');
+                  }
+                }}
+                aria-label={`${showCertifications ? 'Show skills' : 'Show certifications'}, ${certificationCounts.total} total`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  showCertifications
                     ? 'bg-purple-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              All Levels
-            </button>
-            <button
-              onClick={() => setSelectedLevel('expert')}
-              disabled={showCertifications}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                showCertifications 
-                  ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
-                  : selectedLevel === 'expert'
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              <Award className="inline w-3 h-3 mr-1" />
-              Expert ({dynamicLevelCounts.expert})
-            </button>
-            <button
-              onClick={() => setSelectedLevel('proficient')}
-              disabled={showCertifications}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                showCertifications 
-                  ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
-                  : selectedLevel === 'proficient'
-                    ? 'bg-green-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              Proficient ({dynamicLevelCounts.proficient})
-            </button>
-            <button
-              onClick={() => setSelectedLevel('familiar')}
-              disabled={showCertifications}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                showCertifications 
-                  ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
-                  : selectedLevel === 'familiar'
-                    ? 'bg-orange-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              Familiar ({dynamicLevelCounts.familiar})
-            </button>
-            <div className="border-l border-gray-400 dark:border-gray-600 mx-2 h-6"></div>
-            <button
-              onClick={() => {
-                setShowCertifications(!showCertifications);
-                if (!showCertifications) {
-                  setSelectedLevel('all');
-                  setSelectedCategory('all');
-                }
-              }}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                showCertifications
-                  ? 'bg-purple-600 text-white' 
-                  : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-              }`}
-            >
-              <Award className="inline w-3 h-3 mr-1" />
-              Certifications ({certificationCounts.total})
-            </button>
+                }`}
+              >
+                <Award className="inline w-3 h-3 mr-1" />
+                Certifications ({certificationCounts.total})
+              </button>
+            </Tooltip>
           </div>
         </div>
 
         {/* Skills Overview Grid */}
         {!showCertifications && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-4 border border-blue-400 dark:border-blue-500/30">
-            <div className="flex items-center gap-2 mb-2">
-              <Code className="w-5 h-5 text-blue-400" />
-              <h3 className="font-semibold text-gray-900 dark:text-white">Languages</h3>
-            </div>
-            <p className="text-2xl font-bold text-blue-400">{skillCounts.byCategory.languages || 0}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">Programming Languages</p>
-          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+          <Tooltip content="The coding languages I use to build software applications">
+            <a href="/casestudies/languages" target="_blank" rel="noopener noreferrer" aria-label="View programming languages overview in new tab" className="block hover:scale-[1.02] transition-transform">
+              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
+                <div className="flex items-center gap-2">
+                  <Code className="w-4 h-4 text-blue-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Languages</h3>
+                </div>
+                <p className="text-2xl font-bold text-blue-400">{skillCounts.byCategory.languages || 0}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Programming Languages</p>
+              </div>
+            </a>
+          </Tooltip>
           
-          <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-4 border border-green-400 dark:border-green-500/30">
-            <div className="flex items-center gap-2 mb-2">
-              <Globe className="w-5 h-5 text-green-400" />
-              <h3 className="font-semibold text-gray-900 dark:text-white">Frontend</h3>
-            </div>
-            <p className="text-2xl font-bold text-green-400">{skillCounts.byCategory.frontend || 0}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">UI Technologies</p>
-          </div>
+          <Tooltip content="Cloud platforms and artificial intelligence tools I work with">
+            <a href="/casestudies/cloudandai" target="_blank" rel="noopener noreferrer" aria-label="View cloud and AI skills overview in new tab" className="block hover:scale-[1.02] transition-transform">
+              <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-purple-400 dark:border-purple-500/30 h-full flex flex-col">
+                <div className="flex items-center gap-2">
+                  <Cloud className="w-4 h-4 text-purple-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Cloud & AI</h3>
+                </div>
+                <p className="text-2xl font-bold text-purple-400">{(skillCounts.byCategory.cloud || 0) + (skillCounts.byCategory.aiMl || 0)}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Cloud / AI / Machine Learning</p>
+              </div>
+            </a>
+          </Tooltip>
           
-          <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-4 border border-purple-400 dark:border-purple-500/30">
-            <div className="flex items-center gap-2 mb-2">
-              <Cloud className="w-5 h-5 text-purple-400" />
-              <h3 className="font-semibold text-gray-900 dark:text-white">Cloud & AI</h3>
-            </div>
-            <p className="text-2xl font-bold text-purple-400">{(skillCounts.byCategory.cloud || 0) + (skillCounts.byCategory.aiMl || 0)}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">Cloud & ML Services</p>
-          </div>
+          <Tooltip content="Technologies for creating user interfaces and web experiences">
+            <a href="/casestudies/frontend" target="_blank" rel="noopener noreferrer" aria-label="View frontend technologies overview in new tab" className="block hover:scale-[1.02] transition-transform">
+              <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-3 border border-green-400 dark:border-green-500/30 h-full flex flex-col">
+                <div className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-green-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Frontend</h3>
+                </div>
+                <p className="text-2xl font-bold text-green-400">{skillCounts.byCategory.frontend || 0}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Design / Markup / UI Frameworks</p>
+              </div>
+            </a>
+          </Tooltip>
           
-          <div className="bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-4 border border-orange-400 dark:border-orange-500/30">
-            <div className="flex items-center gap-2 mb-2">
-              <Database className="w-5 h-5 text-orange-400" />
-              <h3 className="font-semibold text-gray-900 dark:text-white">Backend</h3>
-            </div>
-            <p className="text-2xl font-bold text-orange-400">{(skillCounts.byCategory.backend || 0) + (skillCounts.byCategory.databases || 0)}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">Server & Data</p>
-          </div>
+          <Tooltip content="Server-side technologies that power applications behind the scenes">
+            <a href="/casestudies/backend" target="_blank" rel="noopener noreferrer" aria-label="View backend technologies overview in new tab" className="block hover:scale-[1.02] transition-transform">
+              <div className="bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-3 border border-orange-400 dark:border-orange-500/30 h-full flex flex-col">
+                <div className="flex items-center gap-2">
+                  <Database className="w-4 h-4 text-orange-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Backend</h3>
+                </div>
+                <p className="text-2xl font-bold text-orange-400">{(skillCounts.byCategory.backend || 0) + (skillCounts.byCategory.databases || 0)}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Servers / Databases</p>
+              </div>
+            </a>
+          </Tooltip>
+          
+          <Tooltip content="Tools and practices for automating software deployment and operations">
+            <a href="/casestudies/devops" target="_blank" rel="noopener noreferrer" aria-label="View DevOps tools overview in new tab" className="block hover:scale-[1.02] transition-transform">
+              <div className="bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-lg p-3 border border-indigo-400 dark:border-indigo-500/30 h-full flex flex-col">
+                <div className="flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-indigo-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">DevOps</h3>
+                </div>
+                <p className="text-2xl font-bold text-indigo-400">{skillCounts.byCategory.infrastructure || 0}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">CI/CD & Infrastructure</p>
+              </div>
+            </a>
+          </Tooltip>
+          
+          <Tooltip content="Security operations and compliance tools to protect systems and data">
+            <a href="/casestudies/specops" target="_blank" rel="noopener noreferrer" aria-label="View security operations overview in new tab" className="block hover:scale-[1.02] transition-transform">
+              <div className="bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-red-400 dark:border-red-500/30 h-full flex flex-col">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-red-400" />
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm">SpecOps</h3>
+                </div>
+                <p className="text-2xl font-bold text-red-400">{skillCounts.byCategory.tools || 0}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Security & Compliance</p>
+              </div>
+            </a>
+          </Tooltip>
         </div>
         )}
 
@@ -1076,9 +1184,10 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
               placeholder="Search skills..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search skills by name"
               className="w-full px-4 py-2 pl-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white"
             />
-            <Filter className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+            <Filter className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" aria-hidden="true" />
           </div>
           
           {/* Category Filter */}
@@ -1090,33 +1199,38 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
               </h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setSelectedCategory('all')}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === 'all' 
-                    ? 'bg-purple-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                }`}
-              >
-                All Categories
-              </button>
+              <Tooltip content="Show skills from all categories">
+                <button
+                  onClick={() => setSelectedCategory('all')}
+                  aria-label="Show all skill categories"
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    selectedCategory === 'all' 
+                      ? 'bg-purple-600 text-white' 
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  All Categories
+                </button>
+              </Tooltip>
               {uniqueCategories.map(category => {
                 const Icon = getCategoryIcon(category);
                 const count = dynamicCategoryCounts[category] || 0;
                 return (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${
-                      selectedCategory === category 
-                        ? 'bg-purple-600 text-white' 
-                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                    }`}
-                  >
-                    <Icon className="w-3 h-3" />
-                    <span className="capitalize">{category}</span>
-                    <span>({count})</span>
-                  </button>
+                  <Tooltip key={category} content={`Filter by ${category} skills`}>
+                    <button
+                      onClick={() => setSelectedCategory(category)}
+                      aria-label={`Filter by ${category} category, ${count} skills`}
+                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${
+                        selectedCategory === category 
+                          ? 'bg-purple-600 text-white' 
+                          : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                      }`}
+                    >
+                      <Icon className="w-3 h-3" />
+                      <span className="capitalize">{category}</span>
+                      <span>({count})</span>
+                    </button>
+                  </Tooltip>
                 );
               })}
             </div>
@@ -1140,6 +1254,8 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             <div key={level} className={`bg-gradient-to-br ${theme} rounded-lg border transition-all duration-200`}>
               <button
                 onClick={() => toggleCategory(level)}
+                aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${level} level skills section`}
+                aria-expanded={isExpanded}
                 className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-900/10 transition-colors"
               >
                 <div className="flex items-center gap-3">
@@ -1159,7 +1275,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   <span className={`text-lg font-semibold ${accentColor}`}>
                     {levelSkills.length} skills
                   </span>
-                  <Maximize2 className={`w-5 h-5 text-gray-400 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-5 h-5 text-gray-400 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                 </div>
               </button>
               
@@ -1168,42 +1284,44 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {levelSkills.map((skill, idx) => {
                       const CategoryIcon = getCategoryIcon(skill.category);
+                      const skillSlug = skill.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                       return (
-                        <div
-                          key={`${skill.name}-${idx}`}
-                          className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg overflow-hidden"
-                        >
-                          {/* Gradient overlay on hover */}
-                          <div className={`absolute inset-0 bg-gradient-to-br ${
-                            level === 'expert' ? 'from-blue-600/0 to-cyan-600/0 group-hover:from-blue-600/10 group-hover:to-cyan-600/10' :
-                            level === 'proficient' ? 'from-green-600/0 to-emerald-600/0 group-hover:from-green-600/10 group-hover:to-emerald-600/10' :
-                            'from-orange-600/0 to-amber-600/0 group-hover:from-orange-600/10 group-hover:to-amber-600/10'
-                          } transition-all duration-300`} />
-                          
-                          <div className="relative z-10 flex items-start justify-between">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
-                                <CategoryIcon className={`w-4 h-4 ${accentColor} group-hover:scale-110 transition-transform`} />
-                                <h3 className="font-semibold text-gray-900 dark:text-white">
-                                  {skill.name}
-                                </h3>
-                              </div>
-                              <p className="text-xs text-gray-600 dark:text-gray-400 capitalize">
-                                {skill.category}
-                              </p>
-                              {/* Skill level indicator */}
-                              <div className="mt-2 h-1 bg-gray-700/30 rounded-full overflow-hidden">
-                                <div 
-                                  className={`h-full transition-all duration-500 ${
-                                    level === 'expert' ? 'w-full bg-gradient-to-r from-blue-500 to-cyan-500' :
-                                    level === 'proficient' ? 'w-3/4 bg-gradient-to-r from-green-500 to-emerald-500' :
-                                    'w-1/2 bg-gradient-to-r from-orange-500 to-amber-500'
-                                  }`}
-                                />
+                        <Tooltip key={`${skill.name}-${idx}`} content={`See projects related to ${skill.name}`}>
+                          <a href={`/casestudies/${skillSlug}`} target="_blank" rel="noopener noreferrer" className="block">
+                            <div className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg overflow-hidden">
+                              {/* Gradient overlay on hover */}
+                              <div className={`absolute inset-0 bg-gradient-to-br ${
+                                level === 'expert' ? 'from-blue-600/0 to-cyan-600/0 group-hover:from-blue-600/10 group-hover:to-cyan-600/10' :
+                                level === 'proficient' ? 'from-green-600/0 to-emerald-600/0 group-hover:from-green-600/10 group-hover:to-emerald-600/10' :
+                                'from-orange-600/0 to-amber-600/0 group-hover:from-orange-600/10 group-hover:to-amber-600/10'
+                              } transition-all duration-300`} />
+                              
+                              <div className="relative z-10 flex items-start justify-between">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <CategoryIcon className={`w-4 h-4 ${accentColor} group-hover:scale-110 transition-transform`} />
+                                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                                      {skill.name}
+                                    </h3>
+                                  </div>
+                                  <p className="text-xs text-gray-600 dark:text-gray-400 capitalize">
+                                    {skill.category}
+                                  </p>
+                                  {/* Skill level indicator */}
+                                  <div className="mt-2 h-1 bg-gray-700/30 rounded-full overflow-hidden">
+                                    <div 
+                                      className={`h-full transition-all duration-500 ${
+                                        level === 'expert' ? 'w-full bg-gradient-to-r from-blue-500 to-cyan-500' :
+                                        level === 'proficient' ? 'w-3/4 bg-gradient-to-r from-green-500 to-emerald-500' :
+                                        'w-1/2 bg-gradient-to-r from-orange-500 to-amber-500'
+                                      }`}
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </a>
+                        </Tooltip>
                       );
                     })}
                   </div>
@@ -1273,6 +1391,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                                   href={certDetails.verifyUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  aria-label={`Verify ${cert.replace(' (In Progress)', '')} certification in new tab`}
                                   className="ml-2 text-purple-400 hover:text-purple-300 underline"
                                 >
                                   Verify
@@ -1295,16 +1414,19 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         {!showCertifications && filteredSkills.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-600 dark:text-gray-400">No skills found matching your criteria.</p>
-            <button
-              onClick={() => {
-                setSelectedCategory('all');
-                setSelectedLevel('all');
-                setSearchQuery('');
-              }}
-              className="mt-2 text-purple-400 hover:text-purple-300"
-            >
-              Clear all filters
-            </button>
+            <Tooltip content="Reset all skill filters">
+              <button
+                onClick={() => {
+                  setSelectedCategory('all');
+                  setSelectedLevel('all');
+                  setSearchQuery('');
+                }}
+                aria-label="Clear all skill filters"
+                className="mt-2 text-purple-400 hover:text-purple-300"
+              >
+                Clear all filters
+              </button>
+            </Tooltip>
           </div>
         )}
       </div>
@@ -1563,31 +1685,54 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
           </h2>
           <div className="flex items-center gap-3">
             {mode === 'projects' && (
-              <button
-                onClick={() => {
-                  window.open('/projects', '_blank');
-                }}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 flex items-center gap-2"
-              >
-                <ExternalLink size={16} />
-                See All Projects
-              </button>
+              <Tooltip content="Open projects page in new tab">
+                <button
+                  onClick={() => {
+                    window.open('/projects', '_blank');
+                  }}
+                  aria-label="View all projects in a new tab"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 flex items-center gap-2"
+                >
+                  <ExternalLink size={16} />
+                  See All Projects
+                </button>
+              </Tooltip>
+            )}
+            {mode === 'skills' && (
+              <Tooltip content="Open skills page in new tab">
+                <button
+                  onClick={() => {
+                    window.open('/skills', '_blank');
+                  }}
+                  aria-label="View all skills in a new tab"
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 flex items-center gap-2"
+                >
+                  <ExternalLink size={16} />
+                  See All Skills
+                </button>
+              </Tooltip>
             )}
             {(mode === 'resume-standard' || mode === 'resume-tailored') && onDownloadPDF && (
-              <button
-                onClick={onDownloadPDF}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 flex items-center gap-2"
-              >
-                <Download size={16} />
-                Download PDF
-              </button>
+              <Tooltip content="Download resume as PDF">
+                <button
+                  onClick={onDownloadPDF}
+                  aria-label="Download resume as PDF file"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 flex items-center gap-2"
+                >
+                  <Download size={16} />
+                  Download PDF
+                </button>
+              </Tooltip>
             )}
-            <button
-              onClick={onClose}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            >
-              <X className="h-6 w-6 text-gray-600 dark:text-gray-400" />
-            </button>
+            <Tooltip content="Close dialog">
+              <button
+                onClick={onClose}
+                aria-label="Close dialog"
+                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <X className="h-6 w-6 text-gray-600 dark:text-gray-400" />
+              </button>
+            </Tooltip>
           </div>
         </div>
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)] dialog-scrollbar bg-white dark:bg-gray-900">

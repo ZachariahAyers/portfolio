@@ -465,7 +465,9 @@ const ContactForm = ({ setView }) => {
       <div className="p-8 text-center">
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Thank You!</h3>
         <p className="text-gray-800 dark:text-gray-300 mb-6">Your message has been sent. I'll get back to you shortly.</p>
-        <button onClick={() => setView('chat')} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Back to Chat</button>
+        <Tooltip content="Return to chat">
+          <button onClick={() => setView('chat')} aria-label="Return to chat" className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Back to Chat</button>
+        </Tooltip>
       </div>
     );
   }
@@ -475,7 +477,9 @@ const ContactForm = ({ setView }) => {
       <div className="p-8 text-center">
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Oops!</h3>
         <p className="text-gray-800 dark:text-gray-300 mb-6">Something went wrong. Please try again or email me directly at {profileData.contact.email}</p>
-        <button onClick={() => { setStatus('idle'); setFormData({ name: '', email: '', message: '' }); }} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Try Again</button>
+        <Tooltip content="Reset form and try again">
+          <button onClick={() => { setStatus('idle'); setFormData({ name: '', email: '', message: '' }); }} aria-label="Reset form and try again" className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Try Again</button>
+        </Tooltip>
       </div>
     );
   }
@@ -484,7 +488,9 @@ const ContactForm = ({ setView }) => {
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Zachariah Ayers</h3>
-        <button onClick={() => setView('chat')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
+        <Tooltip content="Close contact form">
+          <button onClick={() => setView('chat')} aria-label="Close contact form" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
+        </Tooltip>
       </div>
       <form 
         ref={formRef}
@@ -536,13 +542,16 @@ const ContactForm = ({ setView }) => {
           ></textarea>
         </div>
         <div className="flex items-center justify-end">
-          <button 
-            type="submit" 
-            disabled={status === 'sending'} 
-            className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95 disabled:bg-gray-500 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            {status === 'sending' ? 'Sending...' : 'Send Message'} <Send size={16} />
-          </button>
+          <Tooltip content={status === 'sending' ? "Sending your message..." : "Send your message to Zach"}>
+            <button 
+              type="submit" 
+              disabled={status === 'sending'} 
+              aria-label={status === 'sending' ? 'Sending message' : 'Send message to Zach'}
+              className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95 disabled:bg-gray-500 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {status === 'sending' ? 'Sending...' : 'Send Message'} <Send size={16} />
+            </button>
+          </Tooltip>
         </div>
       </form>
     </div>
@@ -588,7 +597,9 @@ const GeminiFeatureModal = ({ feature, setView, handleGeminiFeature }) => {
                     {Icon && <Icon className={currentFeature.color}/>}
                     {currentFeature.title}
                 </h3>
-                <button onClick={() => setView('chat')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
+                <Tooltip content="Close contact form">
+          <button onClick={() => setView('chat')} aria-label="Close contact form" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
+        </Tooltip>
             </div>
             <p className="text-gray-800 dark:text-gray-300 mb-4">{currentFeature.description}</p>
             <div className="mb-4">
@@ -597,14 +608,17 @@ const GeminiFeatureModal = ({ feature, setView, handleGeminiFeature }) => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
+                    aria-label={currentFeature.title + " input"}
                     className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" 
                     placeholder={currentFeature.placeholder}
                 />
             </div>
             <div className="flex items-center justify-end">
-                <button onClick={handleSubmit} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95 flex items-center gap-2">
-                    {currentFeature.buttonText}
-                </button>
+                <Tooltip content={currentFeature.buttonText}>
+                  <button onClick={handleSubmit} aria-label={currentFeature.buttonText} className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95 flex items-center gap-2">
+                      {currentFeature.buttonText}
+                  </button>
+                </Tooltip>
             </div>
         </div>
     );
@@ -929,7 +943,7 @@ Return ONLY the executive summary text, no JSON, no formatting, just 2-3 sentenc
       const text = result.candidates[0].content.parts[0].text.trim();
       return text;
     } catch (error) {
-      console.error('Executive summary generation failed:', error);
+      // Executive summary generation failed - fallback to default
       return profileData.personal.executiveSummary[0];
     }
   };
@@ -1053,7 +1067,7 @@ Return this exact JSON structure:
         return fallbackContent;
       }
     } catch (error) {
-      console.error('Error generating personalized content:', error);
+      // Error generating personalized content - fallback to static
       setIsTyping(false);
       // Fallback to static content
       return null;
@@ -1088,7 +1102,7 @@ Return this exact JSON structure:
         text: "I've generated a customized resume based on that job description. It highlights my most relevant experience and skills for this specific role." 
       }]);
     } catch (error) {
-      console.error('Error generating tailored resume:', error);
+      // Error generating tailored resume
       setMessages(prev => [...prev, { 
         sender: 'ai', 
         text: "I encountered an issue generating the tailored resume. Please try again or contact me directly." 
@@ -1105,7 +1119,7 @@ Return this exact JSON structure:
         await generateTailoredResume(profileData, jobDescription, resumeData.analysis);
       }
     } catch (error) {
-      console.error('Error generating PDF:', error);
+      // Error generating PDF
       setMessages(prev => [...prev, { 
         sender: 'ai', 
         text: "I encountered an issue generating the PDF. Please try again or contact me directly." 
@@ -1428,6 +1442,7 @@ Return this exact JSON structure:
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                     placeholder={mode === 'interview' ? "Ask your question, or type 'exit interview'..." : "Ask a question about Zach's experience, skills, or projects..."}
+                    aria-label={mode === 'interview' ? "Interview question input" : "Chat message input"}
                     className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none resize-none px-2"
                     rows={1}
                 />

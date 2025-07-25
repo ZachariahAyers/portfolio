@@ -54,10 +54,10 @@ const useGitHubStats = () => {
             const linkHeader = response.headers.get('Link');
             if (linkHeader && linkHeader.includes('rel="next"')) {
               // For simplicity, we'll just note this - full pagination would require more complex logic
-              console.log(`Note: ${account} has more than 100 repos, showing first 100`);
+              // Note: ${account} has more than 100 repos, showing first 100
             }
           } catch (error) {
-            console.error(`Error fetching repos for ${account}:`, error);
+            // Error fetching repos for ${account}
           }
         }
 
@@ -79,7 +79,7 @@ const useGitHubStats = () => {
           error: null
         });
       } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
+        // Error fetching GitHub stats
         setStats({
           totalStars: 0,
           totalContributions: 0,

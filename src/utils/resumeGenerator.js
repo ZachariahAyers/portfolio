@@ -10,7 +10,6 @@ const formatDate = (dateStr) => {
 };
 
 export const generateStandardResume = async (profileData) => {
-  console.log('ProfileData structure:', profileData);
   // Create a temporary div to render the resume
   const resumeContainer = document.createElement('div');
   resumeContainer.style.position = 'absolute';
@@ -113,14 +112,12 @@ export const generateStandardResume = async (profileData) => {
   document.body.appendChild(resumeContainer);
   
   try {
-    console.log('Starting PDF generation...');
     const canvas = await html2canvas(resumeContainer, {
       scale: 2,
       logging: false,
       backgroundColor: '#ffffff'
     });
     
-    console.log('Canvas created, generating PDF...');
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF({
       orientation: 'portrait',
@@ -129,11 +126,8 @@ export const generateStandardResume = async (profileData) => {
     });
     
     pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-    console.log('Saving PDF...');
     pdf.save(`${profileData.personal.name.replace(' ', '_')}_Resume.pdf`);
-    console.log('PDF saved successfully');
   } catch (error) {
-    console.error('Error generating PDF:', error);
     throw error;
   } finally {
     document.body.removeChild(resumeContainer);
@@ -252,14 +246,12 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
   document.body.appendChild(resumeContainer);
   
   try {
-    console.log('Starting tailored PDF generation...');
     const canvas = await html2canvas(resumeContainer, {
       scale: 2,
       logging: false,
       backgroundColor: '#ffffff'
     });
     
-    console.log('Canvas created, generating tailored PDF...');
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF({
       orientation: 'portrait',
@@ -268,11 +260,8 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
     });
     
     pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-    console.log('Saving tailored PDF...');
     pdf.save(`${profileData.personal.name.replace(' ', '_')}_Tailored_Resume.pdf`);
-    console.log('Tailored PDF saved successfully');
   } catch (error) {
-    console.error('Error generating tailored PDF:', error);
     throw error;
   } finally {
     document.body.removeChild(resumeContainer);

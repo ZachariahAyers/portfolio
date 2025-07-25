@@ -27,7 +27,9 @@ Time: ${new Date().toISOString()}
     fetch('https://formsubmit.co/ayers.dev@icloud.com', {
       method: 'POST',
       body: formData,
-    }).catch(console.error);
+    }).catch(() => {
+      // Error reporting failed - silently continue
+    });
 
     this.setState({ error: error.toString() });
   }

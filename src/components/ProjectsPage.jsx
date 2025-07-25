@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
 import profileData from '../portfolio-data.json';
 import useGitHubStats from '../hooks/useGitHubStats';
+import { Tooltip } from './Tooltip';
 
 // Import the projects view logic from DetailedView
 import { 
@@ -184,17 +185,21 @@ const ProjectsPage = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                <ArrowLeft size={20} />
-                <span>Back to Portfolio</span>
-              </Link>
+              <Tooltip content="Return to the main portfolio page">
+                <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Navigate back to portfolio">
+                  <ArrowLeft size={20} />
+                  <span>Back to Portfolio</span>
+                </Link>
+              </Tooltip>
               <span className="text-gray-400 dark:text-gray-600">|</span>
               <h1 className="text-xl font-bold text-gray-900 dark:text-white">All Projects</h1>
             </div>
-            <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-              <Home size={20} />
-              <span className="hidden sm:inline">Home</span>
-            </Link>
+            <Tooltip content="Go to homepage">
+              <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Navigate to homepage">
+                <Home size={20} />
+                <span className="hidden sm:inline">Home</span>
+              </Link>
+            </Tooltip>
           </div>
         </div>
       </header>
@@ -269,90 +274,108 @@ const ProjectsPage = () => {
             </div>
             
             <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => {
-                  setSelectedType('all');
-                  setShowCurrentOnly(false);
-                }}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                  selectedType === 'all' && !showCurrentOnly
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                }`}
-              >
-                All ({allProjects.length})
-              </button>
-              <button
-                onClick={() => {
-                  if (showCurrentOnly) {
-                    setShowCurrentOnly(false);
-                    setSelectedType('all');
-                  } else {
-                    setShowCurrentOnly(true);
-                    setSelectedType('all');
-                  }
-                }}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                  showCurrentOnly 
-                    ? 'bg-green-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                }`}
-              >
-                <Zap className="inline w-3 h-3 mr-1" />
-                Current Focus ({allProjects.filter(p => p.current).length})
-              </button>
+              <Tooltip content="Show all projects">
                 <button
                   onClick={() => {
-                    setSelectedType('enterprise');
+                    setSelectedType('all');
                     setShowCurrentOnly(false);
                   }}
+                  aria-label={`Show all projects, ${allProjects.length} total`}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    selectedType === 'enterprise' && !showCurrentOnly
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  Enterprise ({dynamicTypeCounts.enterprise})
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedType('opensource');
-                    setShowCurrentOnly(false);
-                  }}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    selectedType === 'opensource' && !showCurrentOnly
+                    selectedType === 'all' && !showCurrentOnly
                       ? 'bg-blue-600 text-white' 
                       : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
-                  Open Source ({dynamicTypeCounts.opensource})
+                  All ({allProjects.length})
                 </button>
+              </Tooltip>
+              <Tooltip content="Show projects I'm actively working on">
                 <button
                   onClick={() => {
-                    setSelectedType('freelance');
-                    setShowCurrentOnly(false);
+                    if (showCurrentOnly) {
+                      setShowCurrentOnly(false);
+                      setSelectedType('all');
+                    } else {
+                      setShowCurrentOnly(true);
+                      setSelectedType('all');
+                    }
                   }}
+                  aria-label={`${showCurrentOnly ? 'Show all projects' : 'Show only current projects'}, ${allProjects.filter(p => p.current).length} current`}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    selectedType === 'freelance' && !showCurrentOnly
-                      ? 'bg-amber-600 text-white' 
-                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  Freelance ({dynamicTypeCounts.freelance})
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedType('other');
-                    setShowCurrentOnly(false);
-                  }}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    selectedType === 'other' && !showCurrentOnly
+                    showCurrentOnly 
                       ? 'bg-green-600 text-white' 
                       : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                 >
-                  Other ({dynamicTypeCounts.other})
+                  <Zap className="inline w-3 h-3 mr-1" />
+                  Current Focus ({allProjects.filter(p => p.current).length})
                 </button>
+              </Tooltip>
+                <Tooltip content="Show large-scale corporate projects">
+                  <button
+                    onClick={() => {
+                      setSelectedType('enterprise');
+                      setShowCurrentOnly(false);
+                    }}
+                    aria-label={`Filter by enterprise projects, ${dynamicTypeCounts.enterprise} projects`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      selectedType === 'enterprise' && !showCurrentOnly
+                        ? 'bg-purple-600 text-white' 
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    Enterprise ({dynamicTypeCounts.enterprise})
+                  </button>
+                </Tooltip>
+                <Tooltip content="Show open source contributions">
+                  <button
+                    onClick={() => {
+                      setSelectedType('opensource');
+                      setShowCurrentOnly(false);
+                    }}
+                    aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      selectedType === 'opensource' && !showCurrentOnly
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    Open Source ({dynamicTypeCounts.opensource})
+                  </button>
+                </Tooltip>
+                <Tooltip content="Show freelance client projects">
+                  <button
+                    onClick={() => {
+                      setSelectedType('freelance');
+                      setShowCurrentOnly(false);
+                    }}
+                    aria-label={`Filter by freelance projects, ${dynamicTypeCounts.freelance} projects`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      selectedType === 'freelance' && !showCurrentOnly
+                        ? 'bg-amber-600 text-white' 
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    Freelance ({dynamicTypeCounts.freelance})
+                  </button>
+                </Tooltip>
+                <Tooltip content="Show personal and experimental projects">
+                  <button
+                    onClick={() => {
+                      setSelectedType('other');
+                      setShowCurrentOnly(false);
+                    }}
+                    aria-label={`Filter by other projects, ${dynamicTypeCounts.other} projects`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      selectedType === 'other' && !showCurrentOnly
+                        ? 'bg-green-600 text-white' 
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    Other ({dynamicTypeCounts.other})
+                  </button>
+                </Tooltip>
               </div>
             </div>
 
@@ -365,42 +388,50 @@ const ProjectsPage = () => {
                 </h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setSelectedTech('all')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                    selectedTech === 'all' 
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  All ({selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length})
-                </button>
+                <Tooltip content="Show projects using any technology">
+                  <button
+                    onClick={() => setSelectedTech('all')}
+                    aria-label={`Show all technologies, ${selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length} projects`}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      selectedTech === 'all' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    All ({selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length})
+                  </button>
+                </Tooltip>
                 {sortedTechnologies
                   .filter(tech => dynamicTechCounts[tech] > 0)
                   .slice(0, showAllTechs ? undefined : 10)
                   .map(tech => {
                     const count = dynamicTechCounts[tech] || 0;
                     return (
-                      <button
-                        key={tech}
-                        onClick={() => setSelectedTech(tech)}
-                        className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                          selectedTech === tech 
-                            ? 'bg-blue-600 text-white' 
-                            : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                        }`}
-                      >
-                        {tech} ({count})
-                      </button>
+                      <Tooltip key={tech} content={`Filter by ${tech} projects`}>
+                        <button
+                          onClick={() => setSelectedTech(tech)}
+                          aria-label={`Filter by ${tech}, ${count} projects`}
+                          className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                            selectedTech === tech 
+                              ? 'bg-blue-600 text-white' 
+                              : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                          }`}
+                        >
+                          {tech} ({count})
+                        </button>
+                      </Tooltip>
                     );
                   })}
                 {sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length > 10 && (
-                  <button
-                    onClick={() => setShowAllTechs(!showAllTechs)}
-                    className="px-3 py-1 rounded-full text-sm font-medium bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all"
-                  >
-                    {showAllTechs ? 'Show less' : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more`}
-                  </button>
+                  <Tooltip content={showAllTechs ? "Show fewer technology filters" : "Show all available technologies"}>
+                    <button
+                      onClick={() => setShowAllTechs(!showAllTechs)}
+                      aria-label={showAllTechs ? "Show fewer technology filters" : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more technology filters`}
+                      className="px-3 py-1 rounded-full text-sm font-medium bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all"
+                    >
+                      {showAllTechs ? 'Show less' : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more`}
+                    </button>
+                  </Tooltip>
                 )}
               </div>
             </div>
@@ -461,12 +492,15 @@ const ProjectsPage = () => {
 
                     {/* Show more/less button */}
                     {project.description && project.description.length > 120 && (
-                      <button
-                        onClick={() => toggleProjectExpanded(project.id)}
-                        className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 mb-3"
-                      >
-                        {isExpanded ? 'Show less' : 'Show more'}
-                      </button>
+                      <Tooltip content={isExpanded ? "Show less details" : "Show full project details"}>
+                        <button
+                          onClick={() => toggleProjectExpanded(project.id)}
+                          aria-label={`${isExpanded ? 'Show less' : 'Show more'} details for ${project.title}`}
+                          className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 mb-3"
+                        >
+                          {isExpanded ? 'Show less' : 'Show more'}
+                        </button>
+                      </Tooltip>
                     )}
 
                     {/* Impact */}
@@ -617,20 +651,26 @@ const ProjectsPage = () => {
               </p>
               <div className="mt-2 space-x-2">
                 {selectedType !== 'all' && (
-                  <button
-                    onClick={() => setSelectedType('all')}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
-                  >
-                    Clear type filter
-                  </button>
+                  <Tooltip content="Show all project types">
+                    <button
+                      onClick={() => setSelectedType('all')}
+                      aria-label="Clear project type filter"
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
+                    >
+                      Clear type filter
+                    </button>
+                  </Tooltip>
                 )}
                 {selectedTech !== 'all' && (
-                  <button
-                    onClick={() => setSelectedTech('all')}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
-                  >
-                    Clear technology filter
-                  </button>
+                  <Tooltip content="Show all technologies">
+                    <button
+                      onClick={() => setSelectedTech('all')}
+                      aria-label="Clear technology filter"
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
+                    >
+                      Clear technology filter
+                    </button>
+                  </Tooltip>
                 )}
               </div>
             </div>
