@@ -704,40 +704,34 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                     </a>
                   )}
                   {project.caseStudy && (
-                    <a
-                      href={project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Read case study for ${project.name} in new tab`}
+                    <Link
+                      to={project.caseStudy}
+                      aria-label={`Read case study for ${project.name}`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
                       <FileText className="w-3 h-3" />
                       Case Study
-                    </a>
+                    </Link>
                   )}
-                  {project.type === 'enterprise' && (
-                    <a
-                      href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="View enterprise project details in new tab"
+                  {project.type === 'enterprise' && project.caseStudy && (
+                    <Link
+                      to={project.caseStudy}
+                      aria-label="View enterprise project details"
                       className="flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 ml-auto"
                     >
                       <Building className="w-3 h-3" />
                       Enterprise
-                    </a>
+                    </Link>
                   )}
-                  {project.type === 'freelance' && (
-                    <a
-                      href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="View freelance project details in new tab"
+                  {project.type === 'freelance' && project.caseStudy && (
+                    <Link
+                      to={project.caseStudy}
+                      aria-label="View freelance project details"
                       className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 ml-auto"
                     >
                       <Briefcase className="w-3 h-3" />
                       Freelance
-                    </a>
+                    </Link>
                   )}
                   {project.type === 'opensource' && (
                     <a
@@ -751,17 +745,15 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       Open Source
                     </a>
                   )}
-                  {project.type === 'other' && (
-                    <a
-                      href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="View project details in new tab"
+                  {project.type === 'other' && project.caseStudy && (
+                    <Link
+                      to={project.caseStudy}
+                      aria-label="View project details"
                       className="flex items-center gap-1 text-xs text-green-400 hover:text-green-300 ml-auto"
                     >
                       <Code className="w-3 h-3" />
                       Other
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>

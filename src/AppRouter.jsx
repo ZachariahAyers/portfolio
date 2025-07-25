@@ -4,7 +4,7 @@ import { ThemeProvider } from 'next-themes';
 import App from './App';
 import ProjectsPage from './components/ProjectsPage';
 import SkillsPage from './components/SkillsPage';
-import CaseStudyPage from './components/CaseStudyPage';
+import CaseStudyDashboard from './components/CaseStudyDashboard';
 
 const AppRouter = () => {
   return (
@@ -14,7 +14,7 @@ const AppRouter = () => {
           <Route path="/" element={<App />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/casestudies/:caseStudyId" element={<CaseStudyPage />} />
+          <Route path="/casestudies/:caseStudyId" element={<CaseStudyDashboard />} />
         </Routes>
       </Router>
     </ThemeProvider>

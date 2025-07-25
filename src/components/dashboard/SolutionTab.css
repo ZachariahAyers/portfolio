@@ -1,0 +1,29 @@
+/* Custom scrollbar styles for Mermaid diagram container */
+.mermaid-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.mermaid-scroll-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.mermaid-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px;
+}
+
+.mermaid-scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 3px solid #fffae6;
+}
+
+.mermaid-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.mermaid-scroll-container::-webkit-scrollbar-corner {
+  background: transparent;
+}

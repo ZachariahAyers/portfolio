@@ -385,7 +385,7 @@ const SkillsPage = () => {
           {!showCertifications && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <Tooltip content="The coding languages I use to build software applications">
-              <a href="https://zachayers.io/casestudies/languages" target="_blank" rel="noopener noreferrer" className="block hover:scale-[1.02] transition-transform">
+              <Link to="/casestudies/languages" className="block hover:scale-[1.02] transition-transform">
                 <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
                   <div className="flex items-center gap-2">
                     <Code className="w-4 h-4 text-blue-400" />
@@ -394,11 +394,11 @@ const SkillsPage = () => {
                   <p className="text-2xl font-bold text-blue-400">{allSkills.filter(skill => skill.category === 'languages').length}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Programming Languages</p>
                 </div>
-              </a>
+              </Link>
             </Tooltip>
             
             <Tooltip content="Cloud platforms and artificial intelligence tools I work with">
-              <a href="https://zachayers.io/casestudies/cloudandai" target="_blank" rel="noopener noreferrer" className="block hover:scale-[1.02] transition-transform">
+              <Link to="/casestudies/cloudandai" className="block hover:scale-[1.02] transition-transform">
                 <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-purple-400 dark:border-purple-500/30 h-full flex flex-col">
                   <div className="flex items-center gap-2">
                     <Cloud className="w-4 h-4 text-purple-400" />
@@ -407,11 +407,11 @@ const SkillsPage = () => {
                   <p className="text-2xl font-bold text-purple-400">{allSkills.filter(skill => skill.category === 'cloud' || skill.category === 'aiMl').length}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Cloud / AI / Machine Learning</p>
                 </div>
-              </a>
+              </Link>
             </Tooltip>
             
             <Tooltip content="Technologies for creating user interfaces and web experiences">
-              <a href="https://zachayers.io/casestudies/frontend" target="_blank" rel="noopener noreferrer" className="block hover:scale-[1.02] transition-transform">
+              <Link to="/casestudies/frontend" className="block hover:scale-[1.02] transition-transform">
                 <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-3 border border-green-400 dark:border-green-500/30 h-full flex flex-col">
                   <div className="flex items-center gap-2">
                     <Globe className="w-4 h-4 text-green-400" />
@@ -420,11 +420,11 @@ const SkillsPage = () => {
                   <p className="text-2xl font-bold text-green-400">{allSkills.filter(skill => skill.category === 'frontend').length}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Design / Markup / UI Frameworks</p>
                 </div>
-              </a>
+              </Link>
             </Tooltip>
             
             <Tooltip content="Server-side technologies that power applications behind the scenes">
-              <a href="https://zachayers.io/casestudies/backend" target="_blank" rel="noopener noreferrer" className="block hover:scale-[1.02] transition-transform">
+              <Link to="/casestudies/backend" className="block hover:scale-[1.02] transition-transform">
                 <div className="bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-3 border border-orange-400 dark:border-orange-500/30 h-full flex flex-col">
                   <div className="flex items-center gap-2">
                     <Database className="w-4 h-4 text-orange-400" />
@@ -433,11 +433,11 @@ const SkillsPage = () => {
                   <p className="text-2xl font-bold text-orange-400">{allSkills.filter(skill => skill.category === 'backend' || skill.category === 'databases').length}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Servers / Databases</p>
                 </div>
-              </a>
+              </Link>
             </Tooltip>
             
             <Tooltip content="Tools and practices for automating software deployment and operations">
-              <a href="https://zachayers.io/casestudies/devops" target="_blank" rel="noopener noreferrer" className="block hover:scale-[1.02] transition-transform">
+              <Link to="/casestudies/devops" className="block hover:scale-[1.02] transition-transform">
                 <div className="bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-lg p-3 border border-indigo-400 dark:border-indigo-500/30 h-full flex flex-col">
                   <div className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-indigo-400" />
@@ -446,11 +446,11 @@ const SkillsPage = () => {
                   <p className="text-2xl font-bold text-indigo-400">{allSkills.filter(skill => skill.category === 'infrastructure').length}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">CI/CD & Infrastructure</p>
                 </div>
-              </a>
+              </Link>
             </Tooltip>
             
             <Tooltip content="Security operations and compliance tools to protect systems and data">
-              <a href="https://zachayers.io/casestudies/specops" target="_blank" rel="noopener noreferrer" className="block hover:scale-[1.02] transition-transform">
+              <Link to="/casestudies/specops" className="block hover:scale-[1.02] transition-transform">
                 <div className="bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-red-400 dark:border-red-500/30 h-full flex flex-col">
                   <div className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-red-400" />
@@ -459,7 +459,7 @@ const SkillsPage = () => {
                   <p className="text-2xl font-bold text-red-400">{allSkills.filter(skill => skill.category === 'tools').length}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 mt-auto pt-1">Security & Compliance</p>
                 </div>
-              </a>
+              </Link>
             </Tooltip>
           </div>
           )}
@@ -587,7 +587,7 @@ const SkillsPage = () => {
                             const skillSlug = skill.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                             return (
                               <Tooltip key={`${skill.name}-${idx}`} content={`See projects related to ${skill.name}`}>
-                                <a href={`https://zachayers.io/casestudies/${skillSlug}`} target="_blank" rel="noopener noreferrer" className="block">
+                                <Link to={`/casestudies/${skillSlug}`} className="block">
                                   <div className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg overflow-hidden">
                                     {/* Gradient overlay on hover */}
                                     <div className={`absolute inset-0 bg-gradient-to-br ${
@@ -620,7 +620,7 @@ const SkillsPage = () => {
                                       </div>
                                     </div>
                                   </div>
-                                </a>
+                                </Link>
                               </Tooltip>
                             );
                           })}

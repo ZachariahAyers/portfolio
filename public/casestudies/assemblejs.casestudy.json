@@ -1,0 +1,107 @@
+{
+  "id": "assemblejs",
+  "category": "opensource",
+  "featured": true,
+  "hero": {
+    "title": "AssembleJS",
+    "tagline": "Micro-frontend framework with islands architecture",
+    "badge": "Open Source",
+    "coverImage": "/images/case-studies/assemblejs-hero.png",
+    "metrics": [
+      { "value": "85%", "label": "Faster Dev", "animate": "counter", "icon": "zap" },
+      { "value": "1000+", "label": "Active Devs", "animate": "counter", "icon": "users" },
+      { "value": "50%", "label": "Performance", "animate": "progress", "icon": "trending-up" }
+    ]
+  },
+  "timeline": {
+    "duration": "6 months",
+    "role": "Creator & Lead Developer",
+    "year": "2023"
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Problem",
+      "before": {
+        "label": "Monolithic Frontend",
+        "points": ["Team conflicts", "Single framework", "Blocked deployments"],
+        "visual": "monolith-diagram"
+      },
+      "after": {
+        "label": "Micro-frontends",
+        "points": ["Independent teams", "Multi-framework", "Deploy anytime"],
+        "visual": "micro-frontend-diagram"
+      }
+    },
+    {
+      "id": "solution"
+    },
+    {
+      "id": "code",
+      "type": "code-showcase",
+      "title": "Simple API",
+      "snippets": [
+        {
+          "title": "Load Component",
+          "code": "const Header = await AssembleJS.load('header');\nconst Cart = await AssembleJS.load('cart');",
+          "language": "javascript",
+          "animate": "typewriter"
+        },
+        {
+          "title": "Mix Frameworks",
+          "code": "<AssembleJS.Component \n  name=\"header\" \n  framework=\"react\" \n  props={{ user }} \n/>",
+          "language": "jsx",
+          "animate": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Project Results",
+      "executive_summary": "AssembleJS successfully transformed our frontend architecture, delivering significant improvements across all key performance indicators.",
+      "sections": [
+        {
+          "title": "Business Impact",
+          "highlights": [
+            "Development velocity increased by 3.2x",
+            "124 teams actively using the framework",
+            "60% code reuse across projects",
+            "75% reduction in critical bugs"
+          ]
+        },
+        {
+          "title": "Cost Savings",
+          "summary": "Annual savings of $2.4M through reduced development time and infrastructure costs"
+        },
+        {
+          "title": "Performance Improvements",
+          "metrics": [
+            { "metric": "Build Time", "before": "4 minutes", "after": "35 seconds", "change": "-85%" },
+            { "metric": "Bundle Size", "before": "1.2 MB", "after": "450 KB", "change": "-62%" },
+            { "metric": "Time to Interactive", "before": "8.2s", "after": "2.1s", "change": "-74%" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Built With",
+      "categories": {
+        "core": ["TypeScript", "Webpack 5", "Module Federation"],
+        "frameworks": ["React", "Vue", "Angular", "Vanilla JS"],
+        "tools": ["Jest", "Rollup", "Babel"]
+      },
+      "interactive": true
+    }
+  ],
+  "links": {
+    "github": "https://github.com/zjayers/assemblejs",
+    "demo": "https://assemblejs.com",
+    "docs": "https://docs.assemblejs.com",
+    "npm": "https://www.npmjs.com/package/@assemblejs/core"
+  },
+  "related": ["octo", "module-federation"]
+}

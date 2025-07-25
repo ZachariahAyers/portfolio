@@ -579,37 +579,31 @@ const ProjectsPage = () => {
                       </a>
                     )}
                     {project.caseStudy && (
-                      <a
-                        href={project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        to={project.caseStudy}
                         className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                       >
                         <FileText className="w-3 h-3" />
                         Case Study
-                      </a>
+                      </Link>
                     )}
-                    {project.type === 'enterprise' && (
-                      <a
-                        href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {project.type === 'enterprise' && project.caseStudy && (
+                      <Link
+                        to={project.caseStudy}
                         className="flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 ml-auto"
                       >
                         <Building className="w-3 h-3" />
                         Enterprise
-                      </a>
+                      </Link>
                     )}
-                    {project.type === 'freelance' && (
-                      <a
-                        href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {project.type === 'freelance' && project.caseStudy && (
+                      <Link
+                        to={project.caseStudy}
                         className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 ml-auto"
                       >
                         <Briefcase className="w-3 h-3" />
                         Freelance
-                      </a>
+                      </Link>
                     )}
                     {project.type === 'opensource' && (
                       <a
@@ -622,16 +616,14 @@ const ProjectsPage = () => {
                         Open Source
                       </a>
                     )}
-                    {project.type === 'other' && (
-                      <a
-                        href={project.caseStudy ? (project.caseStudy.startsWith('http') ? project.caseStudy : `https://${project.caseStudy}`) : '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {project.type === 'other' && project.caseStudy && (
+                      <Link
+                        to={project.caseStudy}
                         className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 ml-auto"
                       >
                         <Code className="w-3 h-3" />
                         Other
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </div>
