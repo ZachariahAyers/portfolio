@@ -1320,6 +1320,7 @@ Return this exact JSON structure:
       <header className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-lg border-b border-gray-300 dark:border-white/10 p-3 md:p-4 sticky top-0 z-10">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
+            <WelcomeModal />
             <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg">
               <img src={profileData.personal.aiAssistant.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
             </div>
@@ -1340,7 +1341,6 @@ Return this exact JSON structure:
                 <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
                 <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
                 <ThemeToggle />
-                <WelcomeModal />
               </div>
           </div>
         </div>

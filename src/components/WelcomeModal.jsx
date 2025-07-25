@@ -33,7 +33,7 @@ const WelcomeModal = ({ trigger }) => {
           />
           
           {/* Content */}
-          <div className="relative bg-white dark:bg-gray-800 rounded-2xl max-w-lg w-full animate-scale-in shadow-2xl border border-gray-200 dark:border-gray-700 mt-8 mb-8">
+          <div className="relative bg-white dark:bg-gray-800 rounded-2xl max-w-xl w-full animate-scale-in shadow-2xl border border-gray-200 dark:border-gray-700 mt-8 mb-8">
             <div className="p-8">
               {/* Header */}
               <div className="flex justify-between items-start mb-6">

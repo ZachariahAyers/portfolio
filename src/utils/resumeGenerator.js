@@ -1,5 +1,5 @@
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import { jsPDF } from 'jspdf';
 
 const formatDate = (dateStr) => {
   if (!dateStr) return '';
@@ -10,6 +10,7 @@ const formatDate = (dateStr) => {
 };
 
 export const generateStandardResume = async (profileData) => {
+  console.log('ProfileData structure:', profileData);
   // Create a temporary div to render the resume
   const resumeContainer = document.createElement('div');
   resumeContainer.style.position = 'absolute';
@@ -22,7 +23,7 @@ export const generateStandardResume = async (profileData) => {
   
   resumeContainer.innerHTML = `
     <div style="margin-bottom: 30px;">
-      <h1 style="margin: 0; font-size: 32px; color: #1a1a1a;">${profileData.name}</h1>
+      <h1 style="margin: 0; font-size: 32px; color: #1a1a1a;">${profileData.personal.name}</h1>
       <p style="margin: 5px 0; font-size: 18px; color: #333;">Senior Full Stack Engineer</p>
       <div style="margin-top: 10px; font-size: 14px; color: #555;">
         <span>${profileData.contact.email}</span> | 
@@ -34,7 +35,7 @@ export const generateStandardResume = async (profileData) => {
     <div style="margin-bottom: 25px;">
       <h2 style="font-size: 20px; color: #1a1a1a; border-bottom: 2px solid #333; padding-bottom: 5px;">Executive Summary</h2>
       <p style="font-size: 14px; line-height: 1.6; color: #333; margin-top: 10px;">
-        ${profileData.executiveSummary.join(' ')}
+        ${profileData.personal.executiveSummary.join(' ')}
       </p>
     </div>
 
@@ -112,12 +113,14 @@ export const generateStandardResume = async (profileData) => {
   document.body.appendChild(resumeContainer);
   
   try {
+    console.log('Starting PDF generation...');
     const canvas = await html2canvas(resumeContainer, {
       scale: 2,
       logging: false,
       backgroundColor: '#ffffff'
     });
     
+    console.log('Canvas created, generating PDF...');
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF({
       orientation: 'portrait',
@@ -126,7 +129,12 @@ export const generateStandardResume = async (profileData) => {
     });
     
     pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-    pdf.save(`${profileData.name.replace(' ', '_')}_Resume.pdf`);
+    console.log('Saving PDF...');
+    pdf.save(`${profileData.personal.name.replace(' ', '_')}_Resume.pdf`);
+    console.log('PDF saved successfully');
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    throw error;
   } finally {
     document.body.removeChild(resumeContainer);
   }
@@ -149,7 +157,7 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
   
   resumeContainer.innerHTML = `
     <div style="margin-bottom: 30px;">
-      <h1 style="margin: 0; font-size: 32px; color: #1a1a1a;">${profileData.name}</h1>
+      <h1 style="margin: 0; font-size: 32px; color: #1a1a1a;">${profileData.personal.name}</h1>
       <p style="margin: 5px 0; font-size: 18px; color: #333;">Senior Full Stack Engineer | AI/ML Implementation Specialist</p>
       <div style="margin-top: 10px; font-size: 14px; color: #555;">
         <span>${profileData.contact.email}</span> | 
@@ -161,7 +169,7 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
     <div style="margin-bottom: 25px; background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
       <h2 style="font-size: 18px; color: #1a1a1a; margin: 0 0 10px 0;">Tailored Summary for This Role</h2>
       <p style="font-size: 14px; line-height: 1.6; color: #333; margin: 0;">
-        ${analysis.split('\n')[0] || profileData.executiveSummary[0]}
+        ${analysis.split('\n')[0] || profileData.personal.executiveSummary[0]}
       </p>
     </div>
 
@@ -244,12 +252,14 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
   document.body.appendChild(resumeContainer);
   
   try {
+    console.log('Starting tailored PDF generation...');
     const canvas = await html2canvas(resumeContainer, {
       scale: 2,
       logging: false,
       backgroundColor: '#ffffff'
     });
     
+    console.log('Canvas created, generating tailored PDF...');
     const imgData = canvas.toDataURL('image/png');
     const pdf = new jsPDF({
       orientation: 'portrait',
@@ -258,7 +268,12 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
     });
     
     pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-    pdf.save(`${profileData.name.replace(' ', '_')}_Tailored_Resume.pdf`);
+    console.log('Saving tailored PDF...');
+    pdf.save(`${profileData.personal.name.replace(' ', '_')}_Tailored_Resume.pdf`);
+    console.log('Tailored PDF saved successfully');
+  } catch (error) {
+    console.error('Error generating tailored PDF:', error);
+    throw error;
   } finally {
     document.body.removeChild(resumeContainer);
   }

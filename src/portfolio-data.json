@@ -511,7 +511,6 @@
     ],
     "engineering": [
       "Hack Reactor Certified Full Stack Engineer (Aug 2020)",
-      "Triplebyte Certified Generalist Software Engineer (Aug 2020)",
       "CSWP - Certified SolidWorks Professional - Mechanical Design (Jun 2017)"
     ],
     "design": [
@@ -528,6 +527,88 @@
       "AWS Certified Machine Learning - Specialty",
       "Atlassian Certified Professional"
     ]
+  },
+  "certificationDetails": {
+    "AWS Certified Cloud Practitioner (Oct 2023 - Oct 2026)": {
+      "credentialId": "b8885cc1-c523-46a9-b194-aa33281144f4",
+      "verifyUrl": "https://www.credly.com/badges/b8885cc1-c523-46a9-b194-aa33281144f4/linked_in_profile",
+      "inProgress": false
+    },
+    "AWS Certified AI Practitioner (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "AWS Certified Solutions Architect - Associate (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "AWS Certified Solutions Architect - Professional (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "AWS Certified Developer - Associate (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "Redis RU101: Data Structures (Jul 2021)": {
+      "credentialId": "23ba802dc3464464b0f5d1690bde2d90",
+      "verifyUrl": "https://university.redislabs.com/certificates/23ba802dc3464464b0f5d1690bde2d90",
+      "inProgress": false
+    },
+    "Redis RU202: Streams (Jul 2021)": {
+      "credentialId": "8011d9160c5244759e9c730341dac321",
+      "verifyUrl": "https://university.redislabs.com/certificates/8011d9160c5244759e9c730341dac321",
+      "inProgress": false
+    },
+    "Redis RU203: Advanced Querying (Aug 2021)": {
+      "credentialId": "1bc51831125741d6b3ec226e6494478f",
+      "verifyUrl": "https://university.redislabs.com/certificates/1bc51831125741d6b3ec226e6494478f",
+      "inProgress": false
+    },
+    "Redis RU303: Security (Aug 2020)": {
+      "credentialId": "6e58139d3a504c47831ef64f7e8664df",
+      "verifyUrl": "https://university.redislabs.com/certificates/6e58139d3a504c47831ef64f7e8664df",
+      "inProgress": false
+    },
+    "ClickUp Expert Certificate (Jan 2023)": {
+      "credentialId": "yez497b6hxsz",
+      "verifyUrl": "https://verify.skilljar.com/c/yez497b6hxsz",
+      "inProgress": false
+    },
+    "ClickUp Intermediate Certificate (Jan 2023)": {
+      "credentialId": "f5cc9a24cxxv",
+      "verifyUrl": "https://verify.skilljar.com/c/f5cc9a24cxxv",
+      "inProgress": false
+    },
+    "ClickUp Novice Certificate (Jan 2023)": {
+      "credentialId": "d87wrsbwp8ue",
+      "verifyUrl": "https://verify.skilljar.com/c/d87wrsbwp8ue",
+      "inProgress": false
+    },
+    "Atlassian Certified Professional (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "Hack Reactor Certified Full Stack Engineer (Aug 2020)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": false
+    },
+    "Triplebyte Certified Generalist Software Engineer (Aug 2020)": {
+      "credentialId": "XG04ccc",
+      "verifyUrl": "https://triplebyte.com/tb/zach-ayers-0sqlwg9/certificate/track/generalist",
+      "inProgress": false
+    },
+    "CSWP - Certified SolidWorks Professional - Mechanical Design (Jun 2017)": {
+      "credentialId": "C-TVP4DMZZA3",
+      "verifyUrl": "https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-TVP4DMZZA3",
+      "inProgress": false
+    }
   },
   "architecturalPhilosophy": {
     "principles": [

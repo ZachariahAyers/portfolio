@@ -48,12 +48,12 @@ const ResumeModal = ({ isOpen, onClose, onGenerate }) => {
               Receive my resume perfectly tailored to your requirements in seconds. Just paste your job description below.
             </p>
 
-            <div className="bg-green-900/20 rounded-lg p-4 border border-green-700/30">
-              <h4 className="text-sm font-semibold text-green-400 mb-2 flex items-center gap-2">
+            <div className="bg-green-100 dark:bg-green-900/20 rounded-lg p-4 border border-green-300 dark:border-green-700/30">
+              <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2 flex items-center gap-2">
                 <Sparkles className="h-4 w-4" />
                 AI-Powered Customization
               </h4>
-              <ul className="text-xs text-gray-300 space-y-1">
+              <ul className="text-xs text-gray-700 dark:text-gray-300 space-y-1">
                 <li>• Analyzes job requirements and keywords</li>
                 <li>• Emphasizes relevant experience and projects</li>
                 <li>• Reorders skills based on job priorities</li>
@@ -62,7 +62,7 @@ const ResumeModal = ({ isOpen, onClose, onGenerate }) => {
             </div>
 
             <div>
-              <label htmlFor="job-description" className="block text-gray-300 text-sm font-bold mb-2">
+              <label htmlFor="job-description" className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                 Job Description
               </label>
               <textarea
@@ -70,8 +70,8 @@ const ResumeModal = ({ isOpen, onClose, onGenerate }) => {
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
                 placeholder="Paste the full job description here..."
-                className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white 
-                         focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500
+                className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-3 px-4 text-gray-900 dark:text-white 
+                         focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 dark:placeholder-gray-500
                          h-48 resize-none"
                 disabled={isGenerating}
               />
