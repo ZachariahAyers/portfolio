@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { X, Info, Bot, Zap } from 'lucide-react';
+import { Tooltip } from './Tooltip';
 
 const WelcomeModal = ({ trigger }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const defaultTrigger = (
-    <button
-      onClick={() => setIsOpen(true)}
-      className="hover:bg-gray-700 cursor-pointer rounded-2xl p-2 transition-colors"
-      title="About this AI Portfolio"
-    >
-      <Info className="text-gray-400 hover:text-gray-200 h-6 w-6" />
-    </button>
+    <Tooltip content="About this AI Portfolio">
+      <button
+        onClick={() => setIsOpen(true)}
+        className="hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-2xl p-2 transition-colors"
+        aria-label="About this AI Portfolio"
+      >
+        <Info className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 h-6 w-6" />
+      </button>
+    </Tooltip>
   );
 
   return (

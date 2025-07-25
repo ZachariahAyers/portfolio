@@ -11,6 +11,7 @@ import ExperimentCanvas from './components/ExperimentCanvas';
 import ExperimentSelector from './components/ExperimentSelector';
 import DetailedView from './components/DetailedView';
 import ThemeToggle from './components/ThemeToggle';
+import { Tooltip } from './components/Tooltip';
 import { generateStandardResume, generateTailoredResume } from './utils/resumeGenerator';
 import profileData from './portfolio-data.json';
 
@@ -1283,12 +1284,13 @@ Return this exact JSON structure:
   };
 
   const ActionButton = ({ onClick, icon: Icon, text, colorClass, disabled = false, title, showPulse = false }) => (
-    <button 
+    <Tooltip content={title}>
+      <button 
         onClick={onClick} 
         disabled={disabled}
-        title={title}
+        aria-label={title}
         className="bg-gray-100 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 p-2 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs sm:text-sm flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800/80"
-    >
+      >
         {showPulse && (
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
@@ -1296,7 +1298,8 @@ Return this exact JSON structure:
           </span>
         )}
         {Icon && <Icon className={colorClass} size={16}/>} {text}
-    </button>
+      </button>
+    </Tooltip>
   );
 
   return (
@@ -1333,13 +1336,23 @@ Return this exact JSON structure:
             </div>
           </div>
           <div className="flex items-center gap-2 md:gap-4">
-              <button onClick={() => changeView('me')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
-              <button onClick={() => changeView('projects')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
-              <button onClick={() => changeView('skills')} className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
+              <Tooltip content="About me">
+                <button onClick={() => changeView('me')} aria-label="View about me" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
+              </Tooltip>
+              <Tooltip content="View my projects">
+                <button onClick={() => changeView('projects')} aria-label="View projects" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
+              </Tooltip>
+              <Tooltip content="View my skills">
+                <button onClick={() => changeView('skills')} aria-label="View skills" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
+              </Tooltip>
               <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden sm:block" />
               <div className="flex items-center gap-1 md:gap-2">
-                <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
-                <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                <Tooltip content="LinkedIn Profile">
+                  <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
+                </Tooltip>
+                <Tooltip content="GitHub Profile">
+                  <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                </Tooltip>
                 <ThemeToggle />
               </div>
           </div>
@@ -1353,14 +1366,16 @@ Return this exact JSON structure:
                 <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">How can I help you today?</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
                     {suggestedQuestions.map((q, i) => (
-                        <button 
-                            key={q} 
-                            style={{animationDelay: `${i * 100}ms`, animationFillMode: 'forwards'}} 
-                            onClick={() => handleSend(q)} 
-                            className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-sm animate-fade-in-up opacity-0"
-                        >
-                            {q}
-                        </button>
+                        <Tooltip content="Click to ask this question" key={q}>
+                            <button 
+                                style={{animationDelay: `${i * 100}ms`, animationFillMode: 'forwards'}} 
+                                onClick={() => handleSend(q)} 
+                                aria-label={`Ask: ${q}`}
+                                className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-sm animate-fade-in-up opacity-0"
+                            >
+                                {q}
+                            </button>
+                        </Tooltip>
                     ))}
                 </div>
             </div>
@@ -1416,9 +1431,11 @@ Return this exact JSON structure:
                     className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none resize-none px-2"
                     rows={1}
                 />
-                <button id="send-button" onClick={() => handleSend()} className="bg-blue-600 rounded-md p-2 text-white hover:bg-blue-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 transition-all duration-200 active:scale-95" disabled={!input.trim() || isTyping}>
+                <Tooltip content="Send message">
+                  <button id="send-button" onClick={() => handleSend()} aria-label="Send message" className="bg-blue-600 rounded-md p-2 text-white hover:bg-blue-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 transition-all duration-200 active:scale-95" disabled={!input.trim() || isTyping}>
                     <ArrowUp size={20} />
-                </button>
+                  </button>
+                </Tooltip>
                 </div>
                 
                 {/* AI Disclaimer */}
@@ -1431,10 +1448,18 @@ Return this exact JSON structure:
                 <div className="hidden sm:block mt-4 pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400">
                     <div className="flex justify-center items-center gap-6 mb-2">
                         <span>© {new Date().getFullYear()} Zachariah Ayers</span>
-                        <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
-                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
-                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
-                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland</a>
+                        <Tooltip content="Visit Meridian Vega">
+                          <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
+                        </Tooltip>
+                        <Tooltip content="Visit Chewable Studios">
+                          <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
+                        </Tooltip>
+                        <Tooltip content="Visit AssembleJS">
+                          <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
+                        </Tooltip>
+                        <Tooltip content="Visit Howland AI">
+                          <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
+                        </Tooltip>
                     </div>
                     <div className="text-gray-600 dark:text-gray-500">
                         Messages Sent Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
