@@ -1,0 +1,38 @@
+{
+  "id": "natours",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "natours",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/natours-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "natours",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

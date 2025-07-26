@@ -1,0 +1,38 @@
+{
+  "id": "trillo",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "trillo",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/trillo-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "trillo",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

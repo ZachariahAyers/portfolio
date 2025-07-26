@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const LAMBDA_ENDPOINT = "https://336u617vke.execute-api.us-east-1.amazonaws.com/production/pagespeed";
+const LAMBDA_ENDPOINT = `${import.meta.env.VITE_API_ENDPOINT}/pagespeed`;
 const BROWSER_CACHE_KEY = 'pagespeed_cache';
 const BROWSER_CACHE_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds
 

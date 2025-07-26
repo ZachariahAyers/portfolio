@@ -1,0 +1,38 @@
+{
+  "id": "observability-cloud-migration",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "observability-cloud-migration",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/observability-cloud-migration-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "observability-cloud-migration",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

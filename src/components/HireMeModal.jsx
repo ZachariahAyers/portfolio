@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { X, Briefcase, Clock, Send, ArrowLeft } from 'lucide-react';
 
+const LAMBDA_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
+
 const HireMeModal = ({ isOpen, onClose, profileData }) => {
   const [step, setStep] = useState('choice'); // 'choice', 'form'
   const [hiringType, setHiringType] = useState('');
@@ -31,25 +33,39 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
     
-    // Create a hidden iframe target
-    const iframe = document.createElement('iframe');
-    iframe.name = 'hire-form-target';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    
-    // Submit the form to the iframe
-    formRef.current.target = 'hire-form-target';
-    formRef.current.submit();
-    
-    // Show success after a delay
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${LAMBDA_ENDPOINT}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || '',
+          description: formData.description,
+          timeline: formData.timeline || '',
+          hiringType: hiringType,
+          formType: `${hiringType === 'contract' ? 'Contract' : 'Full-Time'} Opportunity`,
+          subject: `${hiringType === 'contract' ? 'Contract' : 'Full-Time'} Opportunity - ${formData.company || 'Portfolio'}`,
+          message: formData.description, // Lambda expects 'message' field
+          honeypot: formData.honeypot || '' // Include honeypot for backend validation
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Failed to send message' }));
+        throw new Error(errorData.error || 'Failed to send message');
+      }
+      
+      await response.json();
       setStatus('success');
-      document.body.removeChild(iframe);
-    }, 2000);
+    } catch (error) {
+      console.error('Error sending form:', error);
+      setStatus('error');
+    }
   };
 
   const resetModal = () => {
@@ -83,6 +99,19 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
               className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95"
             >
               Close
+            </button>
+          </div>
+        ) : status === 'error' ? (
+          <div className="p-8 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Oops!</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              Something went wrong. Please try again or email me directly at {profileData.contact.email}
+            </p>
+            <button 
+              onClick={() => setStatus('idle')} 
+              className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95"
+            >
+              Try Again
             </button>
           </div>
         ) : (
@@ -157,14 +186,18 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
             ) : (
               <form 
                 ref={formRef}
-                action={`https://formsubmit.co/${profileData.contact.email}`}
-                method="POST"
                 onSubmit={handleSubmit}
               >
-                {/* Hidden fields */}
-                <input type="hidden" name="_subject" value={`${hiringType === 'contract' ? 'Contract' : 'Full-Time'} Opportunity - ${formData.company || 'Portfolio'}`} />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="hiring_type" value={hiringType} />
+                {/* Honeypot field for bot protection */}
+                <input 
+                  type="text" 
+                  name="honeypot" 
+                  style={{ display: 'none' }}
+                  tabIndex="-1"
+                  autoComplete="off"
+                  value={formData.honeypot || ''}
+                  onChange={handleChange}
+                />
                 
                 <div className="space-y-4">
                   <div>

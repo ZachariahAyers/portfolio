@@ -1,0 +1,38 @@
+{
+  "id": "rabcab",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "rabcab",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/rabcab-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "rabcab",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

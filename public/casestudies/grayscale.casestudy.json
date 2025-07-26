@@ -1,0 +1,38 @@
+{
+  "id": "grayscale",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "grayscale",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/grayscale-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "grayscale",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

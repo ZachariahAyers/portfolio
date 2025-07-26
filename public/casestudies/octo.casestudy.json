@@ -1,0 +1,38 @@
+{
+  "id": "octo",
+  "category": "enterprise",
+  "featured": true,
+  "hero": {
+    "title": "Octo",
+    "tagline": "Micro-frontend framework",
+    "badge": "Enterprise",
+    "coverImage": "/images/case-studies/octo-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "Octo",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "OCTO",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

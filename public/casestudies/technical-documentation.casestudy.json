@@ -1,0 +1,38 @@
+{
+  "id": "technical-documentation",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "technical-documentation",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/technical-documentation-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "technical-documentation",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

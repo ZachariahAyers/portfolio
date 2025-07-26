@@ -1,0 +1,38 @@
+{
+  "id": "done-with-it",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "done-with-it",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/done-with-it-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "done-with-it",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

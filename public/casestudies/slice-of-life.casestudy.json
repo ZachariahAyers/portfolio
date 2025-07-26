@@ -1,0 +1,38 @@
+{
+  "id": "slice-of-life",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "slice-of-life",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/slice-of-life-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "slice-of-life",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

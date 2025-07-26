@@ -1,0 +1,38 @@
+{
+  "id": "chalkboard",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "chalkboard",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/chalkboard-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "chalkboard",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

@@ -7,6 +7,12 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        gray: {
+          850: '#1a202e',
+          925: '#0f1419'
+        }
+      },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-in-out',
         'fade-in-up': 'fadeInUp 0.3s ease-in-out',

@@ -1,0 +1,38 @@
+{
+  "id": "azure-cloud-migration",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "azure-cloud-migration",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/azure-cloud-migration-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "azure-cloud-migration",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

@@ -11,8 +11,9 @@ const OverviewTab = ({ caseStudy }) => {
   const [showAcceptanceCriteria, setShowAcceptanceCriteria] = useState(true);
   const [showAttachments, setShowAttachments] = useState(true);
   
-  // Generate mock Jira ticket data from case study
-  const ticketId = `PROJ-${caseStudy.hero.title.replace(/[^A-Z]/g, '').slice(0, 3)}-${Math.floor(Math.random() * 9000) + 1000}`;
+  // Generate Jira ticket data from case study
+  const jiraPrefix = caseStudy.businessRequirements?.jiraPrefix || 'PROJ';
+  const ticketId = `${jiraPrefix}-${Math.floor(Math.random() * 9000) + 1000}`;
   const createdDate = new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000);
   const dueDate = new Date(createdDate.getTime() + 14 * 24 * 60 * 60 * 1000);
   
@@ -125,14 +126,15 @@ const OverviewTab = ({ caseStudy }) => {
                       <div>
                         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Business Context</h3>
                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                          {caseStudy.hero.subtitle}
+                          {caseStudy.businessRequirements?.businessContext || caseStudy.hero.subtitle}
                         </p>
                       </div>
                       
                       <div>
                         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Problem Statement</h3>
                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                          {caseStudy.sections.find(s => s.id === 'problem')?.items?.[0]?.content || 
+                          {caseStudy.businessRequirements?.problemStatement || 
+                           caseStudy.sections.find(s => s.id === 'problem')?.items?.[0]?.content || 
                            'The current system lacks the capability to efficiently handle the required operations, resulting in decreased productivity and user satisfaction.'}
                         </p>
                       </div>
@@ -140,18 +142,16 @@ const OverviewTab = ({ caseStudy }) => {
                       <div>
                         <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Business Value</h3>
                         <ul className="space-y-2">
-                          <li className="flex items-start gap-2">
-                            <Zap className="w-4 h-4 text-yellow-400 mt-0.5" />
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">Increase operational efficiency by 40%</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Zap className="w-4 h-4 text-yellow-400 mt-0.5" />
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">Reduce processing time from hours to minutes</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Zap className="w-4 h-4 text-yellow-400 mt-0.5" />
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">Enable real-time data insights and decision making</span>
-                          </li>
+                          {(caseStudy.businessRequirements?.businessValue || [
+                            'Increase operational efficiency by 40%',
+                            'Reduce processing time from hours to minutes',
+                            'Enable real-time data insights and decision making'
+                          ]).slice(0, 3).map((value, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <Zap className="w-4 h-4 text-yellow-400 mt-0.5" />
+                              <span className="text-gray-800 dark:text-gray-300 font-medium">{value}</span>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
@@ -175,36 +175,20 @@ const OverviewTab = ({ caseStudy }) => {
                   {showAcceptanceCriteria && (
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
                       <ul className="space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
-                          <div>
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">System can handle {caseStudy.sections.find(s => s.id === 'results')?.highlights?.[0]?.value || '10,000+'} concurrent operations</span>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
-                          <div>
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">Response time under 200ms for 95% of requests</span>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
-                          <div>
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">Automated deployment pipeline with rollback capabilities</span>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
-                          <div>
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">Comprehensive monitoring and alerting system in place</span>
-                          </div>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
-                          <div>
-                            <span className="text-gray-800 dark:text-gray-300 font-medium">All critical user journeys covered by automated tests</span>
-                          </div>
-                        </li>
+                        {(caseStudy.businessRequirements?.acceptanceCriteria || [
+                          'System can handle 10,000+ concurrent operations',
+                          'Response time under 200ms for 95% of requests',
+                          'Automated deployment pipeline with rollback capabilities',
+                          'Comprehensive monitoring and alerting system in place',
+                          'All critical user journeys covered by automated tests'
+                        ]).slice(0, 5).map((criteria, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
+                            <div>
+                              <span className="text-gray-800 dark:text-gray-300 font-medium">{criteria}</span>
+                            </div>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   )}
@@ -227,34 +211,20 @@ const OverviewTab = ({ caseStudy }) => {
                   {showAttachments && (
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="flex items-center gap-3 p-3 bg-gray-900 rounded hover:bg-gray-800 transition-colors cursor-pointer">
-                          <Paperclip className="w-5 h-5 text-gray-400" />
-                          <div className="flex-1">
-                            <p className="text-sm text-white">architecture-diagram.png</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-500">Updated 2 days ago</p>
+                        {(caseStudy.businessRequirements?.attachments || [
+                          { name: 'architecture-diagram.png', type: 'Image', size: '1.2 MB' },
+                          { name: 'requirements-v2.pdf', type: 'PDF', size: '456 KB' },
+                          { name: 'api-spec.yaml', type: 'YAML', size: '89 KB' },
+                          { name: 'test-results.xlsx', type: 'Excel', size: '234 KB' }
+                        ]).slice(0, 4).map((attachment, idx) => (
+                          <div key={idx} className="flex items-center gap-3 p-3 bg-gray-900 rounded hover:bg-gray-800 transition-colors cursor-pointer">
+                            <Paperclip className="w-5 h-5 text-gray-400" />
+                            <div className="flex-1">
+                              <p className="text-sm text-white">{attachment.name}</p>
+                              <p className="text-xs text-gray-600 dark:text-gray-500">{attachment.type} • {attachment.size}</p>
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-3 bg-gray-900 rounded hover:bg-gray-800 transition-colors cursor-pointer">
-                          <Paperclip className="w-5 h-5 text-gray-400" />
-                          <div className="flex-1">
-                            <p className="text-sm text-white">requirements-v2.pdf</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-500">Updated 1 week ago</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-3 bg-gray-900 rounded hover:bg-gray-800 transition-colors cursor-pointer">
-                          <Paperclip className="w-5 h-5 text-gray-400" />
-                          <div className="flex-1">
-                            <p className="text-sm text-white">api-spec.yaml</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-500">Updated 3 days ago</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-3 bg-gray-900 rounded hover:bg-gray-800 transition-colors cursor-pointer">
-                          <Paperclip className="w-5 h-5 text-gray-400" />
-                          <div className="flex-1">
-                            <p className="text-sm text-white">test-results.xlsx</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-500">Updated yesterday</p>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
                   )}
@@ -318,7 +288,7 @@ const OverviewTab = ({ caseStudy }) => {
                       <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Priority</p>
                       <div className="flex items-center gap-2">
                         <AlertCircle className="w-4 h-4 text-orange-400" />
-                        <span className="text-gray-900 dark:text-white">High</span>
+                        <span className="text-gray-900 dark:text-white">{caseStudy.businessRequirements?.priority || 'High'}</span>
                       </div>
                     </div>
                     

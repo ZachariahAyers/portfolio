@@ -43,7 +43,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-900 dark:to-gray-800 border border-gray-300 dark:border-gray-700 rounded-t-lg p-6"
+          className="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-850 border border-gray-300 dark:border-gray-700 rounded-t-lg p-6"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -65,14 +65,14 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="bg-gray-100 dark:bg-gray-900 border-x border-gray-300 dark:border-gray-700 p-6"
+        className="bg-gray-100 dark:bg-gray-800 border-x border-gray-300 dark:border-gray-700 p-6"
       >
         <h2 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-3">Executive Summary</h2>
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{section.executive_summary}</p>
       </motion.div>
 
       {/* Report Body */}
-      <div className="bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-b-lg overflow-hidden">
+      <div className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-b-lg overflow-hidden">
         {section.sections?.map((reportSection, idx) => (
           <motion.div
             key={idx}
@@ -83,7 +83,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
           >
             {/* Section Header */}
             <div
-              className="bg-gray-50 dark:bg-gray-850 px-6 py-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="bg-gray-50 dark:bg-gray-850 px-6 py-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
               onClick={() => setActiveSection(activeSection === idx ? null : idx)}
             >
               <div className="flex items-center justify-between">
@@ -112,7 +112,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="p-6 bg-gray-50 dark:bg-gray-925">
+              <div className="p-6 bg-white dark:bg-gray-850">
                 {/* Metrics Table */}
                 {reportSection.metrics && (
                   <motion.div
@@ -125,9 +125,9 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                       <thead>
                         <tr className="border-b border-gray-300 dark:border-gray-700">
                           <th className="text-left py-3 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Metric</th>
-                          <th className="text-center py-3 px-4 text-sm font-medium text-gray-400">Before</th>
-                          <th className="text-center py-3 px-4 text-sm font-medium text-gray-400">After</th>
-                          <th className="text-right py-3 px-4 text-sm font-medium text-gray-400">Change</th>
+                          <th className="text-center py-3 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Before</th>
+                          <th className="text-center py-3 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">After</th>
+                          <th className="text-right py-3 px-4 text-sm font-medium text-gray-600 dark:text-gray-400">Change</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -135,7 +135,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                           <motion.tr
                             key={i}
                             variants={rowVariants}
-                            className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors"
+                            className="border-b border-gray-200 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors"
                           >
                             <td className="py-3 px-4 text-sm text-gray-700 dark:text-gray-300">{metric.metric}</td>
                             <td className="py-3 px-4 text-sm text-center text-gray-600 dark:text-gray-400 font-mono">
@@ -172,7 +172,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                       <motion.div
                         key={i}
                         variants={rowVariants}
-                        className="flex items-start gap-3 p-3 bg-gray-100 dark:bg-gray-800/30 rounded-lg"
+                        className="flex items-start gap-3 p-3 bg-gray-100 dark:bg-gray-900/50 rounded-lg"
                       >
                         <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
                         <span className="text-sm text-gray-700 dark:text-gray-300">{highlight}</span>
@@ -187,7 +187,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="mt-4 p-4 bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-900/20 rounded-lg border border-blue-300 dark:border-blue-500/20"
+                    className="mt-4 p-4 bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/10 rounded-lg border border-blue-300 dark:border-blue-500/30"
                   >
                     <p className="text-lg text-blue-700 dark:text-blue-300 font-medium">{reportSection.summary}</p>
                   </motion.div>

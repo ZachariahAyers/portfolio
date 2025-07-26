@@ -1,0 +1,38 @@
+{
+  "id": "module-federation",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "module-federation",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/module-federation-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "module-federation",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

@@ -1,0 +1,38 @@
+{
+  "id": "vw-configurator",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "vw-configurator",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/vw-configurator-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "vw-configurator",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

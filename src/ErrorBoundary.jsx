@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const LAMBDA_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
+
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    const errorMessage = `
+    const errorDetails = `
 Error: ${error.toString()}
 Stack: ${error.stack}
 Component Stack: ${errorInfo.componentStack}
@@ -20,16 +22,23 @@ User Agent: ${navigator.userAgent}
 Time: ${new Date().toISOString()}
     `.trim();
 
-    const formData = new FormData();
-    formData.append('_subject', 'Portfolio AI - Production Error');
-    formData.append('error', errorMessage);
-
-    fetch('https://formsubmit.co/ayers.dev@icloud.com', {
-      method: 'POST',
-      body: formData,
-    }).catch(() => {
-      // Error reporting failed - silently continue
-    });
+    // Send error report via Lambda
+    if (LAMBDA_ENDPOINT) {
+      fetch(`${LAMBDA_ENDPOINT}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Error Reporter',
+          email: 'system@zachayers.io',
+          message: errorDetails,
+          formType: 'Error Report',
+          subject: 'Portfolio AI - Production Error'
+        })
+      }).catch(() => {
+        // Error reporting failed - log to console as fallback
+        console.error('Failed to report error:', errorDetails);
+      });
+    }
 
     this.setState({ error: error.toString() });
   }

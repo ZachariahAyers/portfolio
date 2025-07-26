@@ -1,0 +1,38 @@
+{
+  "id": "chewable-studios",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "chewable-studios",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/chewable-studios-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "chewable-studios",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

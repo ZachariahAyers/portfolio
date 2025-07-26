@@ -1,0 +1,38 @@
+{
+  "id": "aurora-grove",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "aurora-grove",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/aurora-grove-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "aurora-grove",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

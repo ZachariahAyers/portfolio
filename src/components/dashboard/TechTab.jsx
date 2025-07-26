@@ -83,8 +83,8 @@ const BlueScreenOfDeath = ({ onRestart }) => {
           <p className="whitespace-nowrap">The current application will be terminated.</p>
           <br />
           <p className="whitespace-nowrap">*  Press any key to terminate the current application.</p>
-          <p className="whitespace-nowrap">*  Press CTRL+ALT+DEL again to restart your computer. You will lose any</p>
-          <p className="whitespace-nowrap">   unsaved information in all applications.</p>
+          <p className="whitespace-nowrap">*  Press CTRL+ALT+DEL again to restart your computer.</p>
+          <p className="whitespace-nowrap">   You will lose any unsaved information in all applications.</p>
           <br />
           <p className="text-center text-2xl">Press any key to continue _</p>
         </div>
@@ -393,14 +393,14 @@ const highlightCode = (code, language) => {
   return highlighted;
 };
 
-const VSCodeInterface = ({ section, projectName }) => {
+const VSCodeInterface = ({ section, projectName, fileStructure }) => {
   const [openFolders, setOpenFolders] = useState(['frontend', 'backend', 'infrastructure', 'devops']);
   const [activeFile, setActiveFile] = useState(null);
   const [openTabs, setOpenTabs] = useState([]);
   const isDark = document.documentElement.classList.contains('dark');
   
-  // Technology files organized by category
-  const fileStructure = {
+  // Use provided fileStructure or fall back to default
+  const defaultFileStructure = {
     frontend: [
       { name: 'React.tsx', icon: '⚛️', tech: 'React', code: `import React, { useState, useEffect } from 'react';
 
@@ -700,6 +700,9 @@ spec:
     ]
   };
   
+  // Use provided fileStructure or default
+  const files = fileStructure || defaultFileStructure;
+  
   const toggleFolder = (folder) => {
     setOpenFolders(prev => 
       prev.includes(folder) 
@@ -735,7 +738,7 @@ spec:
           EXPLORER
         </div>
         <div className="px-2">
-          {Object.entries(fileStructure).map(([category, files]) => (
+          {Object.entries(files).map(([category, categoryFiles]) => (
             <div key={category} className="mb-1">
               <div
                 className={`flex items-center gap-1 py-1 cursor-pointer hover:${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}
@@ -751,7 +754,7 @@ spec:
               </div>
               {openFolders.includes(category) && (
                 <div className="ml-4">
-                  {files.map(file => (
+                  {categoryFiles.map(file => (
                     <div
                       key={file.name}
                       className={`
@@ -1076,14 +1079,15 @@ const TechTab = ({ section, caseStudy }) => {
   const handleBootComplete = () => {
     setShowBoot(false);
     // Open VSCode window automatically
-    setWindows([{
+    const vsCodeWindow = {
       id: 'vscode',
       title: `${projectName} - Tech Stack Analyzer`,
-      component: VSCodeInterface,
+      component: (props) => <VSCodeInterface {...props} fileStructure={caseStudy?.techStackAnalyzer?.fileStructure} />,
       position: { x: 100, y: 50 },
       zIndex: 1,
       icon: Code2
-    }]);
+    };
+    setWindows([vsCodeWindow]);
     setFocusedWindow('vscode');
   };
   
@@ -1198,7 +1202,7 @@ const TechTab = ({ section, caseStudy }) => {
                           const vsCodeWindow = {
                             id: 'vscode',
                             title: `${projectName} - Tech Stack Analyzer`,
-                            component: VSCodeInterface,
+                            component: (props) => <VSCodeInterface {...props} fileStructure={caseStudy?.techStackAnalyzer?.fileStructure} />,
                             position: { x: 100, y: 50 },
                             zIndex: nextZIndex,
                             icon: Code2
@@ -1312,6 +1316,11 @@ const TechTab = ({ section, caseStudy }) => {
                                     id: 'vscode',
                                     title: `${projectName} - Tech Stack Analyzer`,
                                     component: VSCodeInterface,
+                                    props: {
+                                      section: 'frontend',
+                                      projectName: caseStudy?.hero?.title || 'Project',
+                                      fileStructure: caseStudy?.techStackAnalyzer?.fileStructure
+                                    },
                                     position: { x: 100, y: 50 },
                                     zIndex: nextZIndex,
                                     icon: Code2
@@ -1419,7 +1428,11 @@ const TechTab = ({ section, caseStudy }) => {
               icon={window.icon}
             >
               <React.Suspense fallback={<div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>}>
-                <window.component section={section} projectName={projectName} />
+                <window.component 
+                  section={section} 
+                  projectName={projectName}
+                  fileStructure={window.id === 'vscode' ? caseStudy?.techStackAnalyzer?.fileStructure : undefined}
+                />
               </React.Suspense>
             </Window98>
           ))}

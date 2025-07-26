@@ -1,0 +1,38 @@
+{
+  "id": "vx-apps",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "vx-apps",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/vx-apps-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "vx-apps",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

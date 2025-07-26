@@ -1,0 +1,38 @@
+{
+  "id": "oauth-cloud-migration",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "oauth-cloud-migration",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/oauth-cloud-migration-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "oauth-cloud-migration",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

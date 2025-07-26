@@ -1,0 +1,38 @@
+{
+  "id": "meridian-vega",
+  "category": "enterprise",
+  "featured": false,
+  "hero": {
+    "title": "meridian-vega",
+    "tagline": "",
+    "badge": "",
+    "coverImage": "/images/case-studies/meridian-vega-hero.png",
+    "metrics": []
+  },
+  "timeline": {
+    "duration": "",
+    "role": "",
+    "year": ""
+  },
+  "sections": [],
+  "techStackAnalyzer": {
+    "projectName": "meridian-vega",
+    "fileStructure": {
+      "frontend": [],
+      "backend": [],
+      "infrastructure": [],
+      "devops": []
+    }
+  },
+  "businessRequirements": {
+    "jiraPrefix": "",
+    "businessContext": "",
+    "problemStatement": "",
+    "businessValue": [],
+    "acceptanceCriteria": [],
+    "attachments": [],
+    "risks": []
+  },
+  "links": {},
+  "related": []
+}

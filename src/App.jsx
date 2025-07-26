@@ -16,7 +16,7 @@ import { generateStandardResume, generateTailoredResume } from './utils/resumeGe
 import profileData from './portfolio-data.json';
 
 // --- Lambda API Integration ---
-const LAMBDA_ENDPOINT = "https://336u617vke.execute-api.us-east-1.amazonaws.com/production";
+const LAMBDA_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
 const getChatSystemPrompt = () => {
   return `<SYSTEM>
@@ -439,25 +439,35 @@ const ContactForm = ({ setView }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
     
-    // Create a hidden iframe target
-    const iframe = document.createElement('iframe');
-    iframe.name = 'form-target';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    
-    // Submit the form to the iframe
-    formRef.current.target = 'form-target';
-    formRef.current.submit();
-    
-    // Show success after a delay (FormSubmit doesn't provide a callback)
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${LAMBDA_ENDPOINT}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          formType: 'Portfolio Contact Form',
+          subject: 'Portfolio Contact Form Submission',
+          honeypot: formData.honeypot || '' // Include honeypot for backend validation
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Failed to send message' }));
+        throw new Error(errorData.error || 'Failed to send message');
+      }
+      
+      await response.json();
       setStatus('success');
-      document.body.removeChild(iframe);
-    }, 2000);
+    } catch (error) {
+      console.error('Error sending form:', error);
+      setStatus('error');
+    }
   };
 
   if (status === 'success') {
@@ -494,13 +504,18 @@ const ContactForm = ({ setView }) => {
       </div>
       <form 
         ref={formRef}
-        action={`https://formsubmit.co/${profileData.contact.email}`}
-        method="POST"
         onSubmit={handleSubmit}
       >
-        {/* Hidden fields for FormSubmit configuration */}
-        <input type="hidden" name="_subject" value="Portfolio Contact Form Submission" />
-        <input type="hidden" name="_captcha" value="false" />
+        {/* Honeypot field for bot protection */}
+        <input 
+          type="text" 
+          name="honeypot" 
+          style={{ display: 'none' }}
+          tabIndex="-1"
+          autoComplete="off"
+          value={formData.honeypot || ''}
+          onChange={handleChange}
+        />
         
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-800 dark:text-gray-300 text-sm font-bold mb-2">Your Name</label>
@@ -1353,8 +1368,8 @@ Return this exact JSON structure:
               <Tooltip content="About me">
                 <button onClick={() => changeView('me')} aria-label="View about me" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
               </Tooltip>
-              <Tooltip content="View my projects">
-                <button onClick={() => changeView('projects')} aria-label="View projects" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects</button>
+              <Tooltip content="View my projects and case studies">
+                <button onClick={() => changeView('projects')} aria-label="View projects and case studies" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects/Case Studies</button>
               </Tooltip>
               <Tooltip content="View my skills">
                 <button onClick={() => changeView('skills')} aria-label="View skills" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
