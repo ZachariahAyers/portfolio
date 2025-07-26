@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'next-themes';
 import App from './App';
 import ProjectsPage from './components/ProjectsPage';
 import SkillsPage from './components/SkillsPage';

@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown';
 import QuickCards from './components/QuickCards';
 import QuickOptionsFlyout from './components/QuickOptionsFlyout';
 import WelcomeModal from './components/WelcomeModal';
-import TalentButton from './components/TalentButton';
 import HireMeModal from './components/HireMeModal';
 import ResumeModal from './components/ResumeModal';
 import ExperimentCanvas from './components/ExperimentCanvas';
