@@ -1142,7 +1142,19 @@ Return this exact JSON structure:
     }
   };
   
-  const suggestedQuestions = [
+  // Check if mobile
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  const suggestedQuestions = isMobile ? [
+      "What makes you stand out from other senior engineers?",
+      "Show me your most impactful enterprise transformations"
+  ] : [
       "What makes you stand out from other senior engineers?",
       "Show me your most impactful enterprise transformations",
       "Tell me about your leadership and mentoring experience",
@@ -1262,7 +1274,7 @@ Return this exact JSON structure:
           case 'chat':
           default:
               return (
-                  <div className="w-full max-w-3xl h-full flex flex-col">
+                  <div className="w-full max-w-3xl flex flex-col min-h-0">
                       <div className="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-subtle">
                           {messages.map((msg, index) => <AnimatedMessage key={index} message={msg} isAI={msg.sender === 'ai'} />)}
                           {isTyping && (
@@ -1388,7 +1400,7 @@ Return this exact JSON structure:
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col min-h-0">
+      <div className="flex-1 flex flex-col min-h-0 relative">
         {messages.length === 0 && view === 'chat' ? (
             <div className="text-center p-8 animate-fade-in flex-1 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Welcome! I'm Zach 👋</h2>
@@ -1409,11 +1421,11 @@ Return this exact JSON structure:
                 </div>
             </div>
         ) : (
-             <main className="flex-1 overflow-y-auto flex justify-center">{renderView()}</main>
+             <main className="flex-1 flex justify-center min-h-0">{renderView()}</main>
         )}
 
         {view === 'chat' && (
-            <footer className="p-2 sm:p-3 md:p-4 md:px-6 md:pb-6 bg-gray-100/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-300 dark:border-gray-700 md:bg-transparent md:border-0 md:sticky md:bottom-0">
+            <footer className="p-2 sm:p-3 md:p-4 md:px-6 md:pb-6 bg-gray-100/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-300 dark:border-gray-700 md:bg-transparent md:border-0 sticky bottom-0">
             <div className="max-w-3xl mx-auto">
                 {/* QuickCards section */}
                 <div className="mb-2 md:mb-3">
@@ -1432,7 +1444,7 @@ Return this exact JSON structure:
                         {mode === 'interview' ? (
                             <ActionButton onClick={exitInterviewMode} icon={LogOut} text="Exit Interview" colorClass="text-red-400" title="Return to the AI assistant mode" />
                         ) : (
-                            <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview My AI" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
+                            <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview Me via ARLO" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
                         )}
                         <ActionButton onClick={() => changeView('stack')} icon={Layers} text="Elevate Your Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
                     </div>
@@ -1471,29 +1483,26 @@ Return this exact JSON structure:
                 {/* AI Disclaimer */}
                 <div className="mt-2 text-center">
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                        My AI Model can make mistakes. Please verify all information with me via the Contact Form
+                        ARLO can make mistakes. Please verify all information with me via the Contact Form
                     </p>
                 </div>
                 
-                <div className="hidden sm:block mt-4 pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400">
-                    <div className="flex justify-center items-center gap-6 mb-2">
-                        <span>© {new Date().getFullYear()} Zachariah Ayers</span>
-                        <Tooltip content="Visit Meridian Vega">
-                          <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
-                        </Tooltip>
-                        <Tooltip content="Visit Chewable Studios">
-                          <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
-                        </Tooltip>
-                        <Tooltip content="Visit AssembleJS">
-                          <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
-                        </Tooltip>
-                        <Tooltip content="Visit Howland AI">
-                          <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
-                        </Tooltip>
+                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400 space-y-2">
+                    <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
+                        <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
+                        <span className="hidden sm:inline">•</span>
+                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
+                        <span className="hidden sm:inline">•</span>
+                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
+                        <span className="hidden sm:inline">•</span>
+                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
                     </div>
+                    
                     <div className="text-gray-600 dark:text-gray-500">
-                        Messages Sent Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
+                        Messages Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
                     </div>
+                    
+                    <div>© {new Date().getFullYear()} Zachariah Ayers</div>
                 </div>
             </div>
             </footer>

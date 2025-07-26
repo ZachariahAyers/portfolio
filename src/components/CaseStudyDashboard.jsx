@@ -163,13 +163,13 @@ const CaseStudyDashboard = () => {
               </div>
             </div>
             
-            <div className="h-6 w-px bg-gradient-to-b from-transparent via-blue-500/30 to-transparent" />
+            <div className="h-6 w-px bg-gradient-to-b from-transparent via-blue-500/30 to-transparent hidden sm:block" />
             
             <a
               href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 hover:opacity-80 transition-opacity cursor-pointer"
+              className="hidden sm:flex items-center gap-4 hover:opacity-80 transition-opacity cursor-pointer"
             >
               <Activity className="w-5 h-5 text-blue-600 dark:text-blue-400 animate-pulse" />
               <span className="text-xs font-mono text-gray-600 dark:text-gray-500">LIVE</span>
@@ -189,8 +189,8 @@ const CaseStudyDashboard = () => {
       </header>
 
       {/* Tab Navigation - 60px to accommodate number indicators */}
-      <nav className="h-[60px] border-b border-gray-300 dark:border-gray-700/50 backdrop-blur-sm bg-gray-50/80 dark:bg-gray-800/30">
-        <div className="h-full px-6 flex items-center gap-1 pt-2">
+      <nav className="h-[60px] border-b border-gray-300 dark:border-gray-700/50 backdrop-blur-sm bg-gray-50/80 dark:bg-gray-800/30 overflow-x-auto">
+        <div className="h-full px-3 md:px-6 flex items-center gap-0.5 md:gap-1 pt-2 min-w-max">
           {tabs.map((tab, index) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -200,7 +200,7 @@ const CaseStudyDashboard = () => {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  relative px-6 py-2 flex items-center gap-2 font-light text-sm
+                  relative px-3 md:px-6 py-2 flex flex-col md:flex-row items-center gap-0.5 md:gap-2 font-light text-xs md:text-sm
                   transition-all duration-300 group
                   ${isActive 
                     ? 'text-blue-600 dark:text-blue-400' 
@@ -210,8 +210,8 @@ const CaseStudyDashboard = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Icon className="w-4 h-4" />
-                <span>{tab.label}</span>
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-500 dark:text-gray-600">
+                <span className="text-[10px] md:text-sm">{tab.label}</span>
+                <span className="hidden md:block absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-500 dark:text-gray-600">
                   {index + 1}
                 </span>
                 
@@ -227,7 +227,7 @@ const CaseStudyDashboard = () => {
             );
           })}
 
-          <div className="ml-auto flex items-center gap-2 text-xs text-gray-600 dark:text-gray-500">
+          <div className="ml-auto hidden md:flex items-center gap-2 text-xs text-gray-600 dark:text-gray-500">
             <span className="font-mono">Use 1-6 keys to navigate</span>
           </div>
         </div>
@@ -286,32 +286,51 @@ const CaseStudyDashboard = () => {
       </AnimatePresence>
 
       {/* Status Bar */}
-      <footer className="h-[30px] border-t border-gray-300 dark:border-gray-700/50 bg-gray-100/80 dark:bg-gray-800/50 px-6 flex items-center justify-between text-xs font-mono text-gray-600 dark:text-gray-500">
-        <div className="flex items-center gap-4">
-          <span>Duration: {caseStudy.timeline.duration || '6 months'}</span>
+      <footer className="min-h-[30px] md:h-[30px] border-t border-gray-300 dark:border-gray-700/50 bg-gray-100/80 dark:bg-gray-800/50 px-3 md:px-6 py-2 md:py-0 flex flex-col md:flex-row md:items-center md:justify-between text-xs font-mono text-gray-600 dark:text-gray-500">
+        <div className="flex flex-wrap items-center gap-2 md:gap-4 justify-center md:justify-start">
+          <span className="whitespace-nowrap">
+            <span className="hidden sm:inline">Duration: </span>
+            <span className="font-semibold">{caseStudy.timeline.duration || '6 months'}</span>
+          </span>
           <span>•</span>
-          <span>Role: {caseStudy.timeline.role || 'Creator & Lead Developer'}</span>
+          <span className="whitespace-nowrap">
+            <span className="hidden sm:inline">Role: </span>
+            <span className="font-semibold">{caseStudy.timeline.role || 'Creator & Lead Developer'}</span>
+          </span>
           <span>•</span>
-          <span>Year: {caseStudy.timeline.year || '2023'}</span>
-          <span>•</span>
+          <span className="whitespace-nowrap">
+            <span className="hidden sm:inline">Year: </span>
+            <span className="font-semibold">{caseStudy.timeline.year || '2023'}</span>
+          </span>
+          <span className="hidden md:inline">•</span>
           <a
             href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors hidden md:inline-flex items-center gap-1"
           >
             <span>Go To Full Site</span>
+            <ChevronRight className="w-3 h-3" />
           </a>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center md:justify-end gap-4 mt-2 md:mt-0">
           <a
             href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-1 px-2 md:px-0 rounded-md hover:bg-gray-200/50 dark:hover:bg-gray-700/30 md:hover:bg-transparent"
           >
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
             <span>System Operational</span>
+          </a>
+          <a
+            href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="md:hidden flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-1 px-2 rounded-md hover:bg-gray-200/50 dark:hover:bg-gray-700/30"
+          >
+            <span>Go To Full Site</span>
+            <ChevronRight className="w-3 h-3" />
           </a>
         </div>
       </footer>

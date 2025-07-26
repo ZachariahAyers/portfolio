@@ -43,7 +43,7 @@ const WelcomeModal = ({ trigger }) => {
                 <div>
                                     <h2 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                     <Zap className="text-blue-400" />
-                    Meet My AI
+                    Meet ARLO
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mt-1">Your personal guide to Zach's experience</p>
                 </div>
@@ -65,8 +65,8 @@ const WelcomeModal = ({ trigger }) => {
                     </h3>
                                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                       This isn't just another portfolio - it's an AI-powered conversation about my experience.
-                      Let's save some time - meet <strong className="text-gray-900 dark:text-white">My AI</strong>, my AI assistant who knows everything about my experience, 
-                      projects, and skills. Ask My AI anything you'd ask me in an interview.
+                      Let's save some time - meet <strong className="text-gray-900 dark:text-white">ARLO</strong> (Adaptive Response & Learning OS), my AI assistant who knows everything about my experience, 
+                      projects, and skills. Ask ARLO anything you'd ask me in an interview.
                     </p>
                   </div>
 
@@ -77,7 +77,7 @@ const WelcomeModal = ({ trigger }) => {
                     </h3>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                       Traditional portfolios waste your time with generic content. 
-                      My AI makes this portfolio <strong className="text-gray-900 dark:text-white">exactly what you need it to be</strong>. 
+                      ARLO makes this portfolio <strong className="text-gray-900 dark:text-white">exactly what you need it to be</strong>. 
                       Ask about specific technologies, dive deep into my projects, or see how I fit your tech stack - all in real-time!
                     </p>
                   </div>
@@ -104,7 +104,7 @@ const WelcomeModal = ({ trigger }) => {
                     className="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 
                              transition-all duration-200 active:scale-95 shadow-lg"
                   >
-                    Chat with My AI
+                    Chat with ARLO
                   </button>
                   <p className="text-sm text-gray-500 text-center">
                     Built with React, Node.js, and Google's Gemini AI

@@ -27,17 +27,27 @@ const ProblemTab = ({ section }) => {
     const percentage = (x / rect.width) * 100;
     setSliderPosition(Math.max(0, Math.min(100, percentage)));
   };
+  
+  const handleTouchMove = (e) => {
+    if (!isDragging.current) return;
+    
+    const rect = e.currentTarget.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const percentage = (x / rect.width) * 100;
+    setSliderPosition(Math.max(0, Math.min(100, percentage)));
+  };
 
   return (
-    <div className="h-full p-8 flex flex-col bg-gray-200 dark:bg-gray-900">
+    <div className="h-full p-4 md:p-8 flex flex-col bg-gray-200 dark:bg-gray-900">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-3xl font-thin mb-2">{section.title}</h2>
-        <p className="text-gray-600 dark:text-gray-400">Drag the slider to see what I fixed - broken system on the left, my solution on the right</p>
+        <h2 className="text-2xl md:text-3xl font-thin mb-2">{section.title}</h2>
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 px-4 md:px-0">Drag the slider to see what I fixed - broken system on the left, my solution on the right</p>
       </motion.div>
 
       {/* Interactive Comparison Slider */}
@@ -46,12 +56,15 @@ const ProblemTab = ({ section }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="relative h-full max-w-6xl mx-auto rounded-2xl overflow-hidden border border-gray-300 dark:border-blue-500/20 select-none"
+          className="relative h-full max-w-6xl mx-auto rounded-lg md:rounded-2xl overflow-hidden border border-gray-300 dark:border-blue-500/20 select-none"
           style={{ userSelect: 'none', WebkitUserSelect: 'none', MozUserSelect: 'none', msUserSelect: 'none' }}
           onMouseMove={handleMouseMove}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
+          onTouchMove={handleTouchMove}
         >
           {/* Before State */}
           <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-red-600/20 z-10">

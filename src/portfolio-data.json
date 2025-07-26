@@ -8,7 +8,7 @@
       "avatarPath": "/ai-profile.png"
     },
     "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. Currently, I'm modernizing aerospace manufacturing at Northrop Grumman, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
-    "tagline": "From React™ to rocket science, I speak your stack.",
+    "tagline": "From React™ to Rocket Science, I architect the future.",
     "tenSecondPitch": {
       "yearsAndScale": "14+ Years & Architect @ Scale: Shipped code for 14+ years, currently modernizing aerospace manufacturing at Northrop Grumman. Previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
       "aiMlImplementer": "Pragmatic AI/ML Implementer: I don't just research AI, I ship it. Building RAG systems, computer vision automation, and predictive maintenance models in high-security production environments.",
@@ -34,7 +34,6 @@
     "linkedin": "https://www.linkedin.com/in/zachariahayers",
     "github": "https://github.com/N73311",
     "portfolio": "https://www.zachayers.io",
-    "calendly": "https://calendly.com/zachayers",
     "meridianvega": "https://www.meridianvega.com",
     "chewableStudio": "https://www.chewable.studio",
     "location": "Dallas, TX 75204",

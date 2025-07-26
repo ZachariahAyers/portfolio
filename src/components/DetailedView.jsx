@@ -115,11 +115,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 <Github size={14} /> GitHub Portfolio
               </a>
             </Tooltip>
-            <Tooltip content="Book a meeting with me">
-              <a href={profileData.contact.calendly} target="_blank" rel="noopener noreferrer" aria-label="Schedule a call via Calendly in new tab" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-                <Calendar size={14} /> Schedule a Call
-              </a>
-            </Tooltip>
           </div>
         </div>
       </div>
@@ -1530,7 +1525,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
           <h1 className="text-4xl font-bold text-white">{profileData.personal.name}</h1>
           <p className="text-xl text-gray-300">{profileData.personal.title} | AI/ML Implementation Specialist</p>
           <div className="flex justify-center items-center gap-6 text-sm text-gray-400">
-            <span>{profileData.contact.email}</span>
+            <span>{profileData.contact.location}</span>
             <span>{profileData.contact.location}</span>
             <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
               LinkedIn Profile

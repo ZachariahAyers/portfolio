@@ -71,28 +71,36 @@ const BootScreen = ({ onBootComplete, projectName }) => {
 
 // Blue Screen of Death Component
 const BlueScreenOfDeath = ({ onRestart }) => {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   return (
-    <div className="fixed inset-0 bg-[#0000AA] text-white font-['Courier_New'] z-[10000] flex items-center justify-center p-8">
+    <div className="fixed inset-0 bg-[#0000AA] text-white font-['Courier_New'] z-[10000] flex items-center justify-center p-4 md:p-8">
       <div className="max-w-5xl w-full text-center">
-        <div className="bg-[#A8A8A8] text-[#0000AA] inline-block px-6 py-2 mb-8 text-xl font-bold">
+        <div className="bg-[#A8A8A8] text-[#0000AA] inline-block px-3 md:px-6 py-1 md:py-2 mb-4 md:mb-8 text-sm md:text-xl font-bold">
           &nbsp;Windows&nbsp;
         </div>
         
-        <div className="text-left space-y-6 text-xl leading-relaxed">
-          <p className="whitespace-nowrap">A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.</p>
-          <p className="whitespace-nowrap">The current application will be terminated.</p>
-          <br />
-          <p className="whitespace-nowrap">*  Press any key to terminate the current application.</p>
-          <p className="whitespace-nowrap">*  Press CTRL+ALT+DEL again to restart your computer.</p>
-          <p className="whitespace-nowrap">   You will lose any unsaved information in all applications.</p>
-          <br />
-          <p className="text-center text-2xl">Press any key to continue _</p>
+        <div className={`text-left space-y-2 md:space-y-6 ${isMobile ? 'text-xs' : 'text-xl'} leading-relaxed`}>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.</p>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>The current application will be terminated.</p>
+          <br className="hidden md:block" />
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>*  Press any key to terminate the current application.</p>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>*  Press CTRL+ALT+DEL again to restart your computer.</p>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>   You will lose any unsaved information in all applications.</p>
+          <br className="hidden md:block" />
+          <p className={`text-center ${isMobile ? 'text-base' : 'text-2xl'} mt-4`}>Press any key to continue _</p>
         </div>
         
-        <div className="mt-20 text-base opacity-75">
-          <p className="whitespace-nowrap">KERNEL32.DLL at 0137:BFF93780</p>
-          <p className="whitespace-nowrap">TECH_STACK_ANALYZER.EXE caused an exception in module DELETED_WIN_32.DLL</p>
-          <p className="whitespace-nowrap">Exception: 0xC0DE0S98 (Too Much Nostalgia)</p>
+        <div className={`mt-8 md:mt-20 ${isMobile ? 'text-xs' : 'text-base'} opacity-75`}>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>KERNEL32.DLL at 0137:BFF93780</p>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>TECH_STACK_ANALYZER.EXE caused an exception in module DELETED_WIN_32.DLL</p>
+          <p className={isMobile ? '' : 'whitespace-nowrap'}>Exception: 0xC0DE0S98 (Too Much Nostalgia)</p>
         </div>
         
         <button 
@@ -397,7 +405,15 @@ const VSCodeInterface = ({ section, projectName, fileStructure }) => {
   const [openFolders, setOpenFolders] = useState(['frontend', 'backend', 'infrastructure', 'devops']);
   const [activeFile, setActiveFile] = useState(null);
   const [openTabs, setOpenTabs] = useState([]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isDark = document.documentElement.classList.contains('dark');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Use provided fileStructure or fall back to default
   const defaultFileStructure = {
@@ -717,6 +733,9 @@ spec:
       setOpenTabs(prev => [...prev, { id: fileId, ...file, category }]);
     }
     setActiveFile(fileId);
+    if (isMobile) {
+      setMobileMenuOpen(false);
+    }
   };
   
   const closeTab = (tabId, e) => {
@@ -731,9 +750,33 @@ spec:
   const activeTab = openTabs.find(tab => tab.id === activeFile);
   
   return (
-    <div className="flex h-full">
+    <div className="flex h-full relative">
+      {/* Mobile Menu Toggle */}
+      {isMobile && (
+        <>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`absolute top-2 left-2 z-50 p-2 rounded ${isDark ? 'bg-gray-700 text-white' : 'bg-gray-200 text-black'}`}
+          >
+            <Folder className="w-5 h-5" />
+          </button>
+          
+          {/* Mobile Overlay */}
+          {mobileMenuOpen && (
+            <div 
+              className="fixed inset-0 bg-black/50 z-30 md:hidden" 
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          )}
+        </>
+      )}
+      
       {/* Sidebar */}
-      <div className={`w-64 ${isDark ? 'bg-gray-800' : 'bg-[#f3f3f3]'} border-r ${isDark ? 'border-gray-700' : 'border-gray-300'} overflow-y-auto dashboard-scroll`}>
+      <div className={`
+        ${isMobile ? 'absolute inset-y-0 left-0 z-40 transform transition-transform' : 'relative'}
+        ${isMobile && !mobileMenuOpen ? '-translate-x-full' : 'translate-x-0'}
+        w-64 ${isDark ? 'bg-gray-800' : 'bg-[#f3f3f3]'} border-r ${isDark ? 'border-gray-700' : 'border-gray-300'} overflow-y-auto dashboard-scroll
+      `}>
         <div className={`p-2 text-xs font-semibold ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
           EXPLORER
         </div>
@@ -782,7 +825,7 @@ spec:
       {/* Editor Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Tabs */}
-        <div className={`flex ${isDark ? 'bg-gray-800' : 'bg-[#f3f3f3]'} border-b ${isDark ? 'border-gray-700' : 'border-gray-300'}`}>
+        <div className={`flex ${isMobile ? 'overflow-x-auto' : ''} ${isDark ? 'bg-gray-800' : 'bg-[#f3f3f3]'} border-b ${isDark ? 'border-gray-700' : 'border-gray-300'}`}>
           {openTabs.map(tab => (
             <div
               key={tab.id}
@@ -1075,6 +1118,8 @@ const TechTab = ({ section, caseStudy }) => {
   const [showShutdownDialog, setShowShutdownDialog] = useState(false);
   const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [showBSOD, setShowBSOD] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileActiveApp, setMobileActiveApp] = useState(null);
   
   const handleBootComplete = () => {
     setShowBoot(false);
@@ -1140,6 +1185,17 @@ const TechTab = ({ section, caseStudy }) => {
   
   const isDark = document.documentElement.classList.contains('dark');
   
+  // Check for mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   // Update clock every second
   useEffect(() => {
     const timer = setInterval(() => {
@@ -1163,7 +1219,7 @@ const TechTab = ({ section, caseStudy }) => {
   }, [startMenuOpen]);
   
   return (
-    <div className={`relative h-full overflow-hidden ${isDark ? 'bg-black' : 'bg-[#008080]'}`}>
+    <div className="relative h-full overflow-hidden bg-[#008080]">
       <AnimatePresence>
         {showBoot && <BootScreen onBootComplete={handleBootComplete} projectName={projectName} />}
         {showBSOD && (
@@ -1182,10 +1238,10 @@ const TechTab = ({ section, caseStudy }) => {
         )}
       </AnimatePresence>
       
-      {!showBoot && (
+      {!showBoot && !isMobile && (
         <>
           {/* Desktop */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[#008080]">
             {/* Desktop Icons */}
             <div className="absolute inset-0 p-2" style={{ fontFamily: 'MS Sans Serif, sans-serif' }}>
               <div className="grid grid-cols-2 gap-2 w-[160px]">
@@ -1508,6 +1564,283 @@ const TechTab = ({ section, caseStudy }) => {
                         ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
                         active:border-t-gray-800 active:border-l-gray-800
                         active:border-r-white active:border-b-white
+                      `}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+      
+      {/* Mobile Interface */}
+      {!showBoot && isMobile && (
+        <>
+          {/* Mobile App View */}
+          {mobileActiveApp ? (
+            <div className="absolute inset-0 flex flex-col bg-[#008080]">
+              {/* Mobile Title Bar */}
+              <div className={`
+                h-12 px-3 flex items-center justify-between
+                ${isDark ? 'bg-gradient-to-r from-gray-700 to-gray-600' : 'bg-gradient-to-r from-[#000080] to-[#1084d0]'}
+              `}>
+                <div className="flex items-center gap-2">
+                  {(() => {
+                    const app = desktopApps.find(a => a.id === mobileActiveApp);
+                    const Icon = app?.icon || FileText;
+                    return (
+                      <>
+                        <Icon className="w-5 h-5 text-white" />
+                        <span className="text-white text-sm font-bold">{app?.name || 'App'}</span>
+                      </>
+                    );
+                  })()}
+                </div>
+                <button
+                  onClick={() => setMobileActiveApp(null)}
+                  className={`
+                    w-8 h-8 flex items-center justify-center
+                    ${isDark ? 'bg-gray-700' : 'bg-[#c0c0c0]'}
+                    border
+                    ${isDark ? 'border-t-gray-500 border-l-gray-500' : 'border-t-white border-l-white'}
+                    ${isDark ? 'border-r-gray-900 border-b-gray-900' : 'border-r-black border-b-black'}
+                  `}
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              
+              {/* Mobile App Content */}
+              <div className={`flex-1 ${isDark ? 'bg-gray-900' : 'bg-white'} overflow-auto`}>
+                {mobileActiveApp === 'vscode' ? (
+                  <VSCodeInterface 
+                    section={section} 
+                    projectName={projectName}
+                    fileStructure={caseStudy?.techStackAnalyzer?.fileStructure}
+                  />
+                ) : (
+                  (() => {
+                    const app = desktopApps.find(a => a.id === mobileActiveApp);
+                    const Component = app?.component;
+                    return Component ? <Component /> : <div className="p-4">App not available</div>;
+                  })()
+                )}
+              </div>
+            </div>
+          ) : (
+            /* Mobile Desktop */
+            <div className="absolute inset-0 flex flex-col bg-[#008080]">
+              {/* Mobile Desktop Grid */}
+              <div className="flex-1 overflow-auto p-2">
+                <div className="grid grid-cols-4 gap-1">
+                  {desktopApps.map((app) => (
+                    <button
+                      key={app.id}
+                      onClick={() => {
+                        if (app.id === 'crash') {
+                          setShowBSOD(true);
+                        } else {
+                          setMobileActiveApp(app.id);
+                        }
+                      }}
+                      className="flex flex-col items-center p-1"
+                    >
+                      <div className={`
+                        w-12 h-12 flex items-center justify-center mb-1
+                        ${isDark ? 'bg-gray-700' : 'bg-[#c0c0c0]'}
+                        border
+                        ${isDark ? 'border-t-gray-500 border-l-gray-500' : 'border-t-white border-l-white'}
+                        ${isDark ? 'border-r-gray-900 border-b-gray-900' : 'border-r-gray-600 border-b-gray-600'}
+                      `}>
+                        <app.icon className={`w-6 h-6 ${isDark ? 'text-white' : 'text-black'}`} />
+                      </div>
+                      <span className={`
+                        text-[10px] text-center px-0.5 leading-tight
+                        ${isDark ? 'text-white' : 'text-white'}
+                      `}
+                      style={{ 
+                        textShadow: isDark ? '1px 1px 1px rgba(0,0,0,0.8)' : '1px 1px 1px rgba(0,0,0,1)'
+                      }}>
+                        {app.name}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Mobile Taskbar */}
+              <div className={`
+                h-14 px-3 flex items-center justify-center relative
+                ${isDark ? 'bg-gray-800' : 'bg-[#c0c0c0]'}
+                border-t-2
+                ${isDark ? 'border-gray-600' : 'border-white'}
+              `}>
+                <div className="relative start-menu-container">
+                  <button 
+                    onClick={() => setStartMenuOpen(!startMenuOpen)}
+                    className={`
+                      px-4 py-2 text-sm font-bold flex items-center gap-2
+                      ${isDark ? 'bg-gray-700' : 'bg-[#c0c0c0]'}
+                      border
+                      ${startMenuOpen 
+                        ? (isDark ? 'border-b-gray-500 border-r-gray-500 border-t-gray-900 border-l-gray-900' : 
+                           'border-b-white border-r-white border-t-black border-l-black')
+                        : (isDark ? 'border-t-gray-500 border-l-gray-500 border-r-gray-900 border-b-gray-900' : 
+                           'border-t-white border-l-white border-r-black border-b-black')
+                      }
+                    `}
+                  >
+                    <div className="w-4 h-4 bg-gradient-to-br from-red-500 via-yellow-500 to-blue-500 rounded-sm" />
+                    Start
+                  </button>
+                  
+                  {/* Mobile Start Menu */}
+                  {startMenuOpen && (
+                    <div 
+                      className={`
+                        absolute bottom-full left-1/2 -translate-x-1/2 mb-0.5 w-[250px]
+                        ${isDark ? 'bg-gray-800' : 'bg-[#c0c0c0]'}
+                        border-2
+                        ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
+                        ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
+                      `}
+                      style={{ fontFamily: 'MS Sans Serif, sans-serif' }}
+                    >
+                      {/* Windows 98 banner */}
+                      <div className={`
+                        h-[60px] bg-gradient-to-b 
+                        ${isDark ? 'from-gray-700 to-gray-900' : 'from-[#000080] to-[#1084d0]'}
+                        flex items-center pl-1
+                      `}>
+                        <div className="text-white font-bold text-lg">
+                          CodeOS<span className="font-normal"> 98</span>
+                        </div>
+                      </div>
+                      
+                      {/* Menu items */}
+                      <div className={`${isDark ? 'bg-gray-800' : 'bg-white'}`}>
+                        {desktopApps.map((app, index) => (
+                          <React.Fragment key={app.id}>
+                            <button
+                              onClick={() => {
+                                setStartMenuOpen(false);
+                                if (app.id === 'crash') {
+                                  setShowBSOD(true);
+                                } else {
+                                  setMobileActiveApp(app.id);
+                                }
+                              }}
+                              className={`
+                                w-full px-3 py-2 flex items-center gap-3 text-sm text-left
+                                ${isDark ? 'hover:bg-blue-600 hover:text-white' : 'hover:bg-[#000080] hover:text-white'}
+                                transition-colors
+                              `}
+                            >
+                              <app.icon className="w-4 h-4" />
+                              <span>{app.name}</span>
+                            </button>
+                            {index === 0 && (
+                              <div className={`mx-2 h-px ${isDark ? 'bg-gray-600' : 'bg-gray-400'}`} />
+                            )}
+                          </React.Fragment>
+                        ))}
+                        
+                        <div className={`mx-2 h-px ${isDark ? 'bg-gray-600' : 'bg-gray-400'}`} />
+                        
+                        <button
+                          onClick={() => {
+                            setShowShutdownDialog(true);
+                            setStartMenuOpen(false);
+                          }}
+                          className={`
+                            w-full px-3 py-2 flex items-center gap-3 text-sm text-left
+                            ${isDark ? 'hover:bg-blue-600 hover:text-white' : 'hover:bg-[#000080] hover:text-white'}
+                            transition-colors
+                          `}
+                        >
+                          <Zap className="w-4 h-4" />
+                          <span>Shut Down...</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                <div className={`
+                  absolute right-3 px-2 py-1 text-xs
+                  ${isDark ? 'text-gray-300' : 'text-black'}
+                `}>
+                  {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Mobile Shutdown Dialog */}
+          {showShutdownDialog && (
+            <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
+              <div className="absolute inset-0 bg-black/50" onClick={() => setShowShutdownDialog(false)} />
+              <div 
+                className={`
+                  relative w-full max-w-sm
+                  ${isDark ? 'bg-gray-800' : 'bg-[#c0c0c0]'}
+                  border-2
+                  ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
+                  ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
+                `}
+              >
+                <div className={`
+                  h-8 px-2 flex items-center justify-between
+                  ${isDark ? 'bg-gradient-to-r from-gray-700 to-gray-900' : 'bg-gradient-to-r from-[#000080] to-[#1084d0]'}
+                `}>
+                  <span className="text-white text-sm font-bold">Shut Down CodeOS</span>
+                  <button
+                    onClick={() => setShowShutdownDialog(false)}
+                    className={`
+                      w-6 h-6 flex items-center justify-center text-black
+                      ${isDark ? 'bg-gray-600' : 'bg-[#c0c0c0]'}
+                      border
+                      ${isDark ? 'border-t-gray-400 border-l-gray-400' : 'border-t-white border-l-white'}
+                      ${isDark ? 'border-r-gray-800 border-b-gray-800' : 'border-r-black border-b-black'}
+                    `}
+                  >
+                    ×
+                  </button>
+                </div>
+                
+                <div className={`p-4 ${isDark ? 'text-white' : 'text-black'}`}>
+                  <div className="flex items-start gap-3 mb-4">
+                    <Power className="w-8 h-8 text-yellow-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm">Return to main site?</p>
+                      <p className="text-xs mt-1 opacity-75">This will close the CodeOS 98 environment.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end gap-2">
+                    <button
+                      onClick={() => navigate('/')}
+                      className={`
+                        px-4 py-2 text-sm
+                        ${isDark ? 'bg-gray-700' : 'bg-[#c0c0c0]'}
+                        border-2
+                        ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
+                        ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
+                      `}
+                    >
+                      OK
+                    </button>
+                    <button
+                      onClick={() => setShowShutdownDialog(false)}
+                      className={`
+                        px-4 py-2 text-sm
+                        ${isDark ? 'bg-gray-700' : 'bg-[#c0c0c0]'}
+                        border-2
+                        ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
+                        ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
                       `}
                     >
                       Cancel

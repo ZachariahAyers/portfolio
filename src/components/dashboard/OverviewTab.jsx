@@ -26,7 +26,7 @@ const OverviewTab = ({ caseStudy }) => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-200 dark:bg-gray-900 p-8">
+    <div className="h-full flex flex-col bg-gray-200 dark:bg-gray-900 p-4 md:p-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -79,14 +79,14 @@ const OverviewTab = ({ caseStudy }) => {
             </div>
 
             {/* Status bar */}
-            <div className="flex items-center gap-4 pb-6 border-b border-gray-300 dark:border-gray-700">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-6 border-b border-gray-300 dark:border-gray-700">
               <button className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded hover:bg-yellow-500/30 transition-colors">
                 <Clock className="w-4 h-4" />
                 <span>To Do</span>
                 <ChevronDown className="w-4 h-4 ml-1" />
               </button>
               
-              <div className="flex items-center gap-6 text-sm">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4 text-gray-500" />
                   <span className="text-gray-600 dark:text-gray-400">Assignee:</span>
@@ -104,9 +104,9 @@ const OverviewTab = ({ caseStudy }) => {
             </div>
 
             {/* Main content area */}
-            <div className="grid grid-cols-3 gap-8 mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
               {/* Left column - Main content */}
-              <div className="col-span-2 space-y-6">
+              <div className="lg:col-span-2 space-y-6">
                 {/* Description */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -210,7 +210,7 @@ const OverviewTab = ({ caseStudy }) => {
                   
                   {showAttachments && (
                     <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {(caseStudy.businessRequirements?.attachments || [
                           { name: 'architecture-diagram.png', type: 'Image', size: '1.2 MB' },
                           { name: 'requirements-v2.pdf', type: 'PDF', size: '456 KB' },

@@ -82,15 +82,15 @@ const SolutionTab = ({ caseStudyId }) => {
   }
 
   return (
-    <div className="h-full p-8 overflow-auto flex flex-col bg-gray-200 dark:bg-gray-900">
+    <div className="h-full p-4 md:p-8 overflow-auto flex flex-col bg-gray-200 dark:bg-gray-900">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-3xl font-thin mb-2">Technical Architecture</h2>
-        <p className="text-gray-600 dark:text-gray-400">This is how I architect solutions - the same technical thinking I'd bring to your team</p>
+        <h2 className="text-2xl md:text-3xl font-thin mb-2">Technical Architecture</h2>
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 px-4 md:px-0">This is how I architect solutions - the same technical thinking I'd bring to your team</p>
       </motion.div>
 
       {/* Diagram Container */}
@@ -100,7 +100,7 @@ const SolutionTab = ({ caseStudyId }) => {
         transition={{ delay: 0.2 }}
         className="flex-1 flex justify-center items-center"
       >
-        <div className="bg-[#fffae6] rounded-lg p-8 border border-gray-400 dark:border-gray-600 w-full max-w-7xl overflow-auto mermaid-scroll-container" style={{ height: '60vh' }}>
+        <div className="bg-[#fffae6] rounded-lg p-4 md:p-8 border border-gray-400 dark:border-gray-600 w-full max-w-7xl overflow-auto mermaid-scroll-container touch-pan-x touch-pan-y" style={{ height: '60vh' }}>
           <div ref={diagramRef} className="mermaid-container" />
         </div>
       </motion.div>
