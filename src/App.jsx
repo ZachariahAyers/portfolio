@@ -10,6 +10,7 @@ import ExperimentCanvas from './components/ExperimentCanvas';
 import ExperimentSelector from './components/ExperimentSelector';
 import DetailedView from './components/DetailedView';
 import ThemeToggle from './components/ThemeToggle';
+import LighthouseButton from './components/LighthouseButton';
 import { Tooltip } from './components/Tooltip';
 import { generateStandardResume, generateTailoredResume } from './utils/resumeGenerator';
 import profileData from './portfolio-data.json';
@@ -1428,6 +1429,7 @@ Return this exact JSON structure:
                   <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
                 </Tooltip>
                 <ThemeToggle />
+                <LighthouseButton />
               </div>
           </div>
         </div>
