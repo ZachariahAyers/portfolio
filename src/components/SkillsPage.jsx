@@ -297,7 +297,7 @@ const SkillsPage = () => {
                   onClick={() => setSelectedLevel('all')}
                   disabled={showCertifications}
                   aria-label="Filter by all skill levels"
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     showCertifications 
                       ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                       : selectedLevel === 'all'
@@ -313,7 +313,7 @@ const SkillsPage = () => {
                   onClick={() => setSelectedLevel('expert')}
                   disabled={showCertifications}
                   aria-label={`Filter by expert level skills, ${dynamicLevelCounts.expert} skills`}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     showCertifications 
                       ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                       : selectedLevel === 'expert'
@@ -330,7 +330,7 @@ const SkillsPage = () => {
                   onClick={() => setSelectedLevel('proficient')}
                   disabled={showCertifications}
                   aria-label={`Filter by proficient level skills, ${dynamicLevelCounts.proficient} skills`}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     showCertifications 
                       ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                       : selectedLevel === 'proficient'
@@ -346,7 +346,7 @@ const SkillsPage = () => {
                   onClick={() => setSelectedLevel('familiar')}
                   disabled={showCertifications}
                   aria-label={`Filter by familiar level skills, ${dynamicLevelCounts.familiar} skills`}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     showCertifications 
                       ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                       : selectedLevel === 'familiar'
@@ -368,7 +368,7 @@ const SkillsPage = () => {
                     }
                   }}
                   aria-label={`${showCertifications ? 'Show skills' : 'Show certifications'}, ${certificationCounts.total} total`}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     showCertifications
                       ? 'bg-purple-600 text-white' 
                       : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -475,12 +475,12 @@ const SkillsPage = () => {
                     Filter by Category
                   </h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1 sm:gap-2">
                   <Tooltip content="Show skills from all categories">
                     <button
                       onClick={() => setSelectedCategory('all')}
                       aria-label={`Show all skill categories, ${selectedLevel === 'all' ? allSkills.length : filteredSkills.length} skills`}
-                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                         selectedCategory === 'all' 
                           ? 'bg-purple-600 text-white' 
                           : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -500,7 +500,7 @@ const SkillsPage = () => {
                           <button
                             onClick={() => setSelectedCategory(category)}
                             aria-label={`Filter by ${formatCategoryName(category)} category, ${count} skills`}
-                            className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                            className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                               selectedCategory === category 
                                 ? 'bg-purple-600 text-white' 
                                 : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -517,7 +517,7 @@ const SkillsPage = () => {
                       <button
                         onClick={() => setShowAllCategories(!showAllCategories)}
                         aria-label={showAllCategories ? "Show fewer category filters" : `Show ${uniqueCategories.filter(cat => dynamicCategoryCounts[cat] > 0).length - 8} more category filters`}
-                        className="px-3 py-1 rounded-full text-sm font-medium bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 transition-all"
+                        className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 transition-all"
                       >
                         {showAllCategories ? 'Show less' : `Show ${uniqueCategories.filter(cat => dynamicCategoryCounts[cat] > 0).length - 8} more`}
                       </button>

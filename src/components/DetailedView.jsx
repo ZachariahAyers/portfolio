@@ -341,7 +341,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
           {/* GitHub Stats in top right corner */}
           <div className="absolute top-4 right-4 text-sm">
-            <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-3 py-1 flex items-center gap-2">
+            <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1 flex items-center gap-2">
               <Github className="w-4 h-4 text-gray-600 dark:text-gray-400" />
               <span className="text-gray-600 dark:text-gray-400">Stars: </span>
               <span className="text-gray-900 dark:text-white font-bold inline-flex items-center gap-1">
@@ -367,24 +367,24 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               From enterprise transformations to open-source contributions
             </p>
-            <div className="flex justify-center flex-wrap gap-4 text-sm">
-              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm">
+              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1">
                 <span className="text-gray-600 dark:text-gray-400">Total: </span>
                 <span className="text-gray-900 dark:text-white font-bold">{allProjects.length}</span>
               </div>
-              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1">
                 <span className="text-gray-600 dark:text-gray-400">Open Source: </span>
                 <span className="text-gray-900 dark:text-white font-bold">
                   {allProjects.filter(p => p.github).length}
                 </span>
               </div>
-              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1">
                 <span className="text-gray-600 dark:text-gray-400">Live Deployments: </span>
                 <span className="text-gray-900 dark:text-white font-bold">
                   {allProjects.filter(p => p.url).length}
                 </span>
               </div>
-              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-3 py-1">
+              <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1">
                 <span className="text-gray-600 dark:text-gray-400">Case Studies: </span>
                 <span className="text-gray-900 dark:text-white font-bold">
                   {allProjects.filter(p => p.caseStudy).length}
@@ -394,7 +394,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
           </div>
           
           {/* Type Filter Chips */}
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mt-4">
             <Tooltip content="Show all project types">
               <button
                 onClick={() => {
@@ -402,7 +402,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   setShowCurrentOnly(false);
                 }}
                 aria-label={`Show all project types, ${allProjects.length} total`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedType === 'all' && !showCurrentOnly
                     ? 'bg-blue-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -423,7 +423,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   }
                 }}
                 aria-label={`${showCurrentOnly ? 'Show all projects' : 'Show only current projects'}, ${allProjects.filter(p => p.current).length} current`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   showCurrentOnly 
                     ? 'bg-green-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -440,7 +440,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   setShowCurrentOnly(false);
                 }}
                 aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedType === 'opensource' && !showCurrentOnly
                     ? 'bg-blue-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -456,7 +456,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   setShowCurrentOnly(false);
                 }}
                 aria-label={`Filter by enterprise projects, ${dynamicTypeCounts.enterprise} projects`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedType === 'enterprise' && !showCurrentOnly
                     ? 'bg-purple-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -472,7 +472,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   setShowCurrentOnly(false);
                 }}
                 aria-label={`Filter by freelance projects, ${dynamicTypeCounts.freelance} projects`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedType === 'freelance' && !showCurrentOnly
                     ? 'bg-amber-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -488,7 +488,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   setShowCurrentOnly(false);
                 }}
                 aria-label={`Filter by other projects, ${dynamicTypeCounts.other} projects`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedType === 'other' && !showCurrentOnly
                     ? 'bg-green-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -508,12 +508,12 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
               Filter by Technology
             </h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1 sm:gap-2">
             <Tooltip content="Show projects using any technology">
               <button
                 onClick={() => setSelectedTech('all')}
                 aria-label={`Show all technologies, ${selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length} projects`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedTech === 'all' 
                     ? 'bg-blue-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -532,7 +532,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                     <button
                       onClick={() => setSelectedTech(tech)}
                       aria-label={`Filter by ${tech}, ${count} projects`}
-                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                      className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                         selectedTech === tech 
                           ? 'bg-blue-600 text-white' 
                           : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -548,7 +548,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 <button
                   onClick={() => setShowAllTechs(!showAllTechs)}
                   aria-label={showAllTechs ? "Show fewer technology filters" : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more technology filters`}
-                  className="px-3 py-1 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
                 >
                   {showAllTechs ? 'Show less' : `Show ${sortedTechnologies.filter(tech => dynamicTechCounts[tech] > 0).length - 10} more`}
                 </button>
@@ -993,13 +993,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
           </div>
           
           {/* Level Filter */}
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mt-4">
             <Tooltip content="Show skills from all proficiency levels">
               <button
                 onClick={() => setSelectedLevel('all')}
                 disabled={showCertifications}
                 aria-label="Filter by all skill levels"
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   showCertifications 
                     ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                     : selectedLevel === 'all'
@@ -1015,7 +1015,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 onClick={() => setSelectedLevel('expert')}
                 disabled={showCertifications}
                 aria-label={`Filter by expert level skills, ${dynamicLevelCounts.expert} skills`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   showCertifications 
                     ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                     : selectedLevel === 'expert'
@@ -1032,7 +1032,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 onClick={() => setSelectedLevel('proficient')}
                 disabled={showCertifications}
                 aria-label={`Filter by proficient level skills, ${dynamicLevelCounts.proficient} skills`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   showCertifications 
                     ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                     : selectedLevel === 'proficient'
@@ -1048,7 +1048,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 onClick={() => setSelectedLevel('familiar')}
                 disabled={showCertifications}
                 aria-label={`Filter by familiar level skills, ${dynamicLevelCounts.familiar} skills`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   showCertifications 
                     ? 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
                     : selectedLevel === 'familiar'
@@ -1070,7 +1070,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   }
                 }}
                 aria-label={`${showCertifications ? 'Show skills' : 'Show certifications'}, ${certificationCounts.total} total`}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   showCertifications
                     ? 'bg-purple-600 text-white' 
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -1190,12 +1190,12 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 Filter by Category
               </h3>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               <Tooltip content="Show skills from all categories">
                 <button
                   onClick={() => setSelectedCategory('all')}
                   aria-label="Show all skill categories"
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     selectedCategory === 'all' 
                       ? 'bg-purple-600 text-white' 
                       : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -1212,7 +1212,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                     <button
                       onClick={() => setSelectedCategory(category)}
                       aria-label={`Filter by ${category} category, ${count} skills`}
-                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all flex items-center gap-1 ${
+                      className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all flex items-center gap-1 ${
                         selectedCategory === category 
                           ? 'bg-purple-600 text-white' 
                           : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'

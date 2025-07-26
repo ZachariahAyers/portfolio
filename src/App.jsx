@@ -1353,10 +1353,10 @@ Return this exact JSON structure:
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <WelcomeModal />
-            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg hidden md:block">
               <img src={profileData.personal.aiAssistant.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
             </div>
-            <div>
+            <div className="hidden md:block">
               <h1 className="text-lg font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
               <div className={`text-xs flex items-center gap-1.5 transition-colors duration-300 ${mode === 'interview' ? 'text-sky-400' : 'text-green-400'}`}>
                   <span className={`w-2 h-2 rounded-full animate-pulse ${mode === 'interview' ? 'bg-sky-400' : 'bg-green-400'}`}></span>

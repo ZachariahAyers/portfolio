@@ -273,7 +273,7 @@ const ProjectsPage = () => {
               </h3>
             </div>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               <Tooltip content="Show all projects">
                 <button
                   onClick={() => {
@@ -281,7 +281,7 @@ const ProjectsPage = () => {
                     setShowCurrentOnly(false);
                   }}
                   aria-label={`Show all projects, ${allProjects.length} total`}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     selectedType === 'all' && !showCurrentOnly
                       ? 'bg-blue-600 text-white' 
                       : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -302,7 +302,7 @@ const ProjectsPage = () => {
                     }
                   }}
                   aria-label={`${showCurrentOnly ? 'Show all projects' : 'Show only current projects'}, ${allProjects.filter(p => p.current).length} current`}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                     showCurrentOnly 
                       ? 'bg-green-600 text-white' 
                       : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -319,7 +319,7 @@ const ProjectsPage = () => {
                       setShowCurrentOnly(false);
                     }}
                     aria-label={`Filter by enterprise projects, ${dynamicTypeCounts.enterprise} projects`}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                       selectedType === 'enterprise' && !showCurrentOnly
                         ? 'bg-purple-600 text-white' 
                         : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -335,7 +335,7 @@ const ProjectsPage = () => {
                       setShowCurrentOnly(false);
                     }}
                     aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                       selectedType === 'opensource' && !showCurrentOnly
                         ? 'bg-blue-600 text-white' 
                         : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -351,7 +351,7 @@ const ProjectsPage = () => {
                       setShowCurrentOnly(false);
                     }}
                     aria-label={`Filter by freelance projects, ${dynamicTypeCounts.freelance} projects`}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                       selectedType === 'freelance' && !showCurrentOnly
                         ? 'bg-amber-600 text-white' 
                         : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -367,7 +367,7 @@ const ProjectsPage = () => {
                       setShowCurrentOnly(false);
                     }}
                     aria-label={`Filter by other projects, ${dynamicTypeCounts.other} projects`}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                       selectedType === 'other' && !showCurrentOnly
                         ? 'bg-green-600 text-white' 
                         : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -387,12 +387,12 @@ const ProjectsPage = () => {
                   Filter by Technology
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1 sm:gap-2">
                 <Tooltip content="Show projects using any technology">
                   <button
                     onClick={() => setSelectedTech('all')}
                     aria-label={`Show all technologies, ${selectedType === 'all' ? allProjects.length : allProjects.filter(p => p.type === selectedType).length} projects`}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                       selectedTech === 'all' 
                         ? 'bg-blue-600 text-white' 
                         : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
@@ -411,7 +411,7 @@ const ProjectsPage = () => {
                         <button
                           onClick={() => setSelectedTech(tech)}
                           aria-label={`Filter by ${tech}, ${count} projects`}
-                          className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
+                          className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
                             selectedTech === tech 
                               ? 'bg-blue-600 text-white' 
                               : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
