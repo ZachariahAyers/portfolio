@@ -11,6 +11,7 @@ import ExperimentSelector from './components/ExperimentSelector';
 import DetailedView from './components/DetailedView';
 import ThemeToggle from './components/ThemeToggle';
 import LighthouseButton from './components/LighthouseButton';
+import MobileMenu from './components/MobileMenu';
 import { Tooltip } from './components/Tooltip';
 import { generateStandardResume, generateTailoredResume } from './utils/resumeGenerator';
 import profileData from './portfolio-data.json';
@@ -711,7 +712,7 @@ export default function App() {
   const [showHireModal, setShowHireModal] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
-  const [showQuickButtons, setShowQuickButtons] = useState(true);
+  const [showQuickButtons, setShowQuickButtons] = useState(window.innerWidth >= 768);
   const [experimentActive, setExperimentActive] = useState(false);
   const [currentExperiment, setCurrentExperiment] = useState(null);
   const [showExperimentSelector, setShowExperimentSelector] = useState(false);
@@ -1358,13 +1359,13 @@ Return this exact JSON structure:
       }
   };
 
-  const ActionButton = ({ onClick, icon: Icon, text, colorClass, disabled = false, title, showPulse = false }) => (
+  const ActionButton = ({ onClick, icon: Icon, text, colorClass, disabled = false, title, showPulse = false, hideTextOnMobile = false }) => (
     <Tooltip content={title}>
       <button 
         onClick={onClick} 
         disabled={disabled}
         aria-label={title}
-        className="bg-gray-100 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 p-2 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs sm:text-sm flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800/80"
+        className="bg-gray-100 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 p-2 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs flex items-center gap-1 md:gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800/80"
       >
         {showPulse && (
           <span className="relative flex h-2 w-2">
@@ -1372,7 +1373,8 @@ Return this exact JSON structure:
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
           </span>
         )}
-        {Icon && <Icon className={colorClass} size={16}/>} {text}
+        {Icon && <Icon className={colorClass} size={16}/>} 
+        {hideTextOnMobile ? <span className="hidden sm:inline">{text}</span> : text}
       </button>
     </Tooltip>
   );
@@ -1399,7 +1401,7 @@ Return this exact JSON structure:
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <WelcomeModal />
-            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg hidden md:block">
+            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg">
               <img src={profileData.personal.aiAssistant.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
             </div>
             <div className="hidden md:block">
@@ -1411,25 +1413,32 @@ Return this exact JSON structure:
             </div>
           </div>
           <div className="flex items-center gap-2 md:gap-4">
-              <Tooltip content="About me">
-                <button onClick={() => changeView('me')} aria-label="View about me" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
-              </Tooltip>
-              <Tooltip content="View my projects and case studies">
-                <button onClick={() => changeView('projects')} aria-label="View projects and case studies" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects/Case Studies</button>
-              </Tooltip>
-              <Tooltip content="View my skills">
-                <button onClick={() => changeView('skills')} aria-label="View skills" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
-              </Tooltip>
-              <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden sm:block" />
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center gap-4">
+                <Tooltip content="About me">
+                  <button onClick={() => changeView('me')} aria-label="View about me" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
+                </Tooltip>
+                <Tooltip content="View my projects and case studies">
+                  <button onClick={() => changeView('projects')} aria-label="View projects and case studies" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects/Case Studies</button>
+                </Tooltip>
+                <Tooltip content="View my skills">
+                  <button onClick={() => changeView('skills')} aria-label="View skills" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
+                </Tooltip>
+              </div>
+              <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden md:block" />
               <div className="flex items-center gap-1 md:gap-2">
-                <Tooltip content="LinkedIn Profile">
-                  <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
-                </Tooltip>
-                <Tooltip content="GitHub Profile">
-                  <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
-                </Tooltip>
+                <div className="hidden md:flex items-center gap-1 md:gap-2">
+                  <Tooltip content="LinkedIn Profile">
+                    <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
+                  </Tooltip>
+                  <Tooltip content="GitHub Profile">
+                    <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                  </Tooltip>
+                </div>
                 <ThemeToggle />
                 <LighthouseButton />
+                {/* Mobile Menu */}
+                <MobileMenu profileData={profileData} onViewChange={changeView} />
               </div>
           </div>
         </div>
@@ -1474,27 +1483,27 @@ Return this exact JSON structure:
                 </div>
                 
                 {showQuickButtons && (
-                  <div className="hidden sm:block">
-                    <div className="grid grid-cols-2 md:grid-cols-2 gap-2 mb-2 md:mb-3">
+                  <div className="block">
+                    <div className="grid grid-cols-2 gap-2 mb-2 md:mb-3">
                         {mode === 'interview' ? (
                             <ActionButton onClick={exitInterviewMode} icon={LogOut} text="Exit Interview" colorClass="text-red-400" title="Return to the AI assistant mode" />
                         ) : (
-                            <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview Me via ARLO" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
+                            <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview Me" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
                         )}
-                        <ActionButton onClick={() => changeView('stack')} icon={Layers} text="Elevate Your Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
+                        <ActionButton onClick={() => changeView('stack')} icon={Layers} text="Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-2 md:mb-3">
-                        <ActionButton onClick={handleViewResume} icon={FileText} text="Get My Resume" colorClass="text-indigo-400" disabled={mode === 'interview'} title="View my standard resume with option to download PDF" />
-                        <ActionButton onClick={() => setShowResumeModal(true)} icon={Sparkles} text="Get Custom Resume" colorClass="text-rose-400" disabled={mode === 'interview'} title="Generate a custom resume tailored to your job description" />
+                    <div className="grid grid-cols-2 gap-2 mb-2 md:mb-3">
+                        <ActionButton onClick={handleViewResume} icon={FileText} text="Resume" colorClass="text-indigo-400" disabled={mode === 'interview'} title="View my standard resume with option to download PDF" />
+                        <ActionButton onClick={() => setShowResumeModal(true)} icon={Sparkles} text="Custom Resume" colorClass="text-rose-400" disabled={mode === 'interview'} title="Generate a custom resume tailored to your job description" />
                         <ActionButton 
                             onClick={handleExperimentToggle} 
                             icon={experimentActive ? X : Zap} 
-                            text={experimentActive ? "Stop Experiment" : "Start Experiment"} 
+                            text={experimentActive ? "Stop" : "Experiment"} 
                             colorClass="text-purple-400" 
                             disabled={mode === 'interview'} 
                             title={experimentActive ? "Return to normal view" : "Launch a random interactive browser experiment"} 
                         />
-                        <ActionButton onClick={() => setShowHireModal(true)} text="Hire Me Now" colorClass="text-teal-400" disabled={mode === 'interview'} title="Start the hiring process - contract or full-time" showPulse={true} />
+                        <ActionButton onClick={() => setShowHireModal(true)} text="Hire Me" colorClass="text-teal-400" disabled={mode === 'interview'} title="Start the hiring process - contract or full-time" showPulse={true} />
                     </div>
                   </div>
                 )}
@@ -1522,22 +1531,33 @@ Return this exact JSON structure:
                     </p>
                 </div>
                 
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400 space-y-2">
-                    <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
-                        <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
-                        <span className="hidden sm:inline">•</span>
-                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
-                        <span className="hidden sm:inline">•</span>
-                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
-                        <span className="hidden sm:inline">•</span>
-                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
+                <div className="mt-2 md:mt-4 pt-2 md:pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400">
+                    {/* Mobile: Single row */}
+                    <div className="md:hidden flex items-center justify-between px-2">
+                        <span>© {new Date().getFullYear()} Zachariah Ayers</span>
+                        <span className="text-gray-600 dark:text-gray-500">
+                            {usageData.count}/50 Messages Today
+                        </span>
                     </div>
                     
-                    <div className="text-gray-600 dark:text-gray-500">
-                        Messages Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
+                    {/* Desktop: Full footer */}
+                    <div className="hidden md:block space-y-2">
+                        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
+                            <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
+                            <span>•</span>
+                            <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
+                            <span>•</span>
+                            <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
+                            <span>•</span>
+                            <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
+                        </div>
+                        
+                        <div className="text-gray-600 dark:text-gray-500">
+                            Messages Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
+                        </div>
+                        
+                        <div>© {new Date().getFullYear()} Zachariah Ayers</div>
                     </div>
-                    
-                    <div>© {new Date().getFullYear()} Zachariah Ayers</div>
                 </div>
             </div>
             </footer>

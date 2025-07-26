@@ -73,7 +73,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
   const renderMeView = () => (
     <div className="space-y-6 max-w-5xl mx-auto">
       {/* Hero Section: Image | Name/Title | Contact Info */}
-      <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center justify-center">
         {/* Image */}
         <div className="flex-shrink-0 flex items-center">
           <div className="w-24 h-24 rounded-full overflow-hidden shadow-xl">
@@ -83,14 +83,14 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
 
         {/* Name and Title */}
         <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300 whitespace-nowrap">{profileData.personal.title}</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
+          <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 whitespace-normal md:whitespace-nowrap">{profileData.personal.title}</p>
           <p className="text-blue-400 italic text-sm mt-1">"{profileData.personal.tagline}"</p>
         </div>
 
         {/* Contact Info */}
-        <div className="flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 min-w-[280px]">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
+        <div className="w-full lg:flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 lg:min-w-[280px]">
+          <h2 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
           <div className="grid grid-cols-1 gap-2 text-sm">
             <Tooltip content="Send me an email">
               <a 
@@ -120,8 +120,8 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Executive Summary Section */}
-      <div className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Briefcase className="text-blue-400" /> Executive Summary
         </h2>
         {isGeneratingExecutive || !executiveSummary ? (
@@ -141,8 +141,8 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* What I Can Bring to Your Team Section */}
-      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Zap className="text-purple-400" /> What I Can Bring to Your Team
         </h2>
         {isGenerating || !streamingContent ? (
@@ -333,7 +333,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
+        <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
           {/* GitHub Stats in top right corner */}
           <div className="absolute top-4 right-4 text-sm">
             <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1 flex items-center gap-2">
@@ -359,10 +359,10 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
               <Rocket className="text-blue-400" />
               Projects & Creations
             </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               From enterprise transformations to open-source contributions
             </p>
-            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm">
+            <div className="flex justify-center flex-wrap gap-2 md:gap-4 text-xs md:text-sm">
               <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1">
                 <span className="text-gray-600 dark:text-gray-400">Total: </span>
                 <span className="text-gray-900 dark:text-white font-bold">{allProjects.length}</span>
@@ -562,7 +562,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             return (
               <div
                 key={project.id}
-                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                   project.current 
                     ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                     : ''
@@ -574,7 +574,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2 flex-1">
                       <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
                         {project.name}
                       </h3>
                     </div>
@@ -976,13 +976,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
+        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
           <div className="text-center space-y-4">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
               <Brain className="text-purple-400" />
               Technical Skills & Expertise
             </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               14+ years of building production systems across the full stack
             </p>
           </div>
@@ -1423,9 +1423,9 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
   const renderStandardResumeView = () => (
     <div className="space-y-8">
       {/* Resume Header */}
-      <div className="text-center space-y-4 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6">
+      <div className="text-center space-y-4 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
-        <p className="text-xl text-gray-700 dark:text-gray-300">{profileData.personal.title}</p>
+        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">{profileData.personal.title}</p>
         <div className="flex justify-center items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
           <span>{profileData.contact.email}</span>
           <span>{profileData.contact.location}</span>
@@ -1436,7 +1436,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Executive Summary */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-4">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Executive Summary</h2>
         {profileData.personal.executiveSummary.map((summary, idx) => (
           <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">{summary}</p>
@@ -1444,7 +1444,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Experience */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-6">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Experience</h2>
         
         <div className="space-y-4">
@@ -1472,7 +1472,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Technical Skills */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-4">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Technical Skills</h2>
         <div className="grid gap-3">
           <p className="text-gray-700 dark:text-gray-300">
@@ -1494,7 +1494,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Education & Certifications */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-4">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Education & Certifications</h2>
         <div className="space-y-3">
           <div>

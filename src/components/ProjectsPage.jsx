@@ -192,7 +192,7 @@ const ProjectsPage = () => {
                 </Link>
               </Tooltip>
               <span className="text-gray-400 dark:text-gray-600">|</span>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">All Projects</h1>
+              <h1 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">All Projects</h1>
             </div>
             <Tooltip content="Go to homepage">
               <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Navigate to homepage">
@@ -208,7 +208,7 @@ const ProjectsPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-6 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
+          <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
             {/* GitHub Stats in top right corner */}
             <div className="absolute top-4 right-4 text-sm">
               <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1 flex items-center gap-2">
@@ -230,11 +230,11 @@ const ProjectsPage = () => {
             </div>
             
             <div className="text-center space-y-4">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
                 <Rocket className="text-blue-400" />
                 Projects & Creations
               </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
                 From enterprise transformations to open-source contributions
               </p>
               <div className="flex justify-center flex-wrap gap-4 text-sm">
@@ -437,7 +437,7 @@ const ProjectsPage = () => {
             </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {filteredProjects.map(project => {
               const Icon = getProjectIcon(project);
               const theme = getProjectTheme(project);
@@ -446,7 +446,7 @@ const ProjectsPage = () => {
               return (
                 <div
                   key={project.id}
-                  className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                  className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                     project.current 
                       ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                       : ''
@@ -458,7 +458,7 @@ const ProjectsPage = () => {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2 flex-1">
                         <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                        <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
                           {project.name}
                         </h3>
                       </div>

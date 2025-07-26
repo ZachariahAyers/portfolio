@@ -263,7 +263,7 @@ const SkillsPage = () => {
                 </Link>
               </Tooltip>
               <span className="text-gray-400 dark:text-gray-600">|</span>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">All Skills</h1>
+              <h1 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">All Skills</h1>
             </div>
             <Tooltip content="Go to homepage">
               <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Navigate to homepage">
@@ -279,13 +279,13 @@ const SkillsPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-6 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
+          <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
             <div className="text-center space-y-4">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
                 <Brain className="text-purple-400" />
                 Technical Skills & Expertise
               </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
                 14+ years of building production systems across the full stack
               </p>
             </div>
@@ -383,7 +383,7 @@ const SkillsPage = () => {
 
           {/* Skills Overview Grid */}
           {!showCertifications && (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
             <Tooltip content="The coding languages I use to build software applications">
               <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
@@ -544,7 +544,7 @@ const SkillsPage = () => {
                       onClick={() => toggleCategory(level)}
                       aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${level} level skills section, ${levelSkills.length} skills`}
                       aria-expanded={isExpanded}
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-900/10 transition-colors"
+                      className="w-full p-4 md:p-6 text-left flex items-center justify-between hover:bg-gray-900/10 transition-colors"
                     >
                       <div className="flex items-center gap-3">
                         {level === 'expert' && <Award className="text-yellow-400 w-6 h-6" />}
@@ -560,7 +560,7 @@ const SkillsPage = () => {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className={`text-lg font-semibold ${accentColor}`}>
+                        <span className={`text-base md:text-lg font-semibold ${accentColor}`}>
                           {levelSkills.length} skills
                         </span>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
@@ -568,7 +568,7 @@ const SkillsPage = () => {
                     </button>
                     
                     {isExpanded && levelSkills.length > 0 && (
-                      <div className="px-6 pb-6">
+                      <div className="px-4 md:px-6 pb-4 md:pb-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                           {levelSkills.map((skill, idx) => {
                             const CategoryIcon = getCategoryIcon(skill.category);
@@ -665,7 +665,7 @@ const SkillsPage = () => {
             </>
           ) : (
             /* Certifications View */
-            <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
+            <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
               <div className="flex items-center gap-3 mb-6">
                 <Award className="text-purple-400 w-6 h-6" />
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -678,7 +678,7 @@ const SkillsPage = () => {
                   .filter(([category]) => category !== 'inProgress')
                   .map(([category, certs]) => (
                   <div key={category} className="space-y-3">
-                    <h3 className="text-lg font-semibold text-purple-400 capitalize flex items-center gap-2">
+                    <h3 className="text-base md:text-lg font-semibold text-purple-400 capitalize flex items-center gap-2">
                       {category === 'cloud' && <Cloud className="w-4 h-4" />}
                       {category === 'database' && <Database className="w-4 h-4" />}
                       {category === 'projectManagement' && <Briefcase className="w-4 h-4" />}
