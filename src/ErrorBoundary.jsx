@@ -13,13 +13,29 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    // Sanitize error details - remove sensitive information
+    const sanitizedError = {
+      message: error.message || 'Unknown error',
+      // Only include the error name, not the full stack trace
+      type: error.name || 'Error',
+      // Only include the component name from the stack, not the full trace
+      component: errorInfo.componentStack?.split('\n')[0]?.trim() || 'Unknown component',
+      // Basic page info without full URL
+      page: window.location.pathname,
+      // Basic browser info without full user agent
+      browser: navigator.userAgent?.includes('Chrome') ? 'Chrome' : 
+               navigator.userAgent?.includes('Firefox') ? 'Firefox' : 
+               navigator.userAgent?.includes('Safari') ? 'Safari' : 'Other',
+      timestamp: new Date().toISOString()
+    };
+
     const errorDetails = `
-Error: ${error.toString()}
-Stack: ${error.stack}
-Component Stack: ${errorInfo.componentStack}
-URL: ${window.location.href}
-User Agent: ${navigator.userAgent}
-Time: ${new Date().toISOString()}
+Error Type: ${sanitizedError.type}
+Message: ${sanitizedError.message}
+Component: ${sanitizedError.component}
+Page: ${sanitizedError.page}
+Browser: ${sanitizedError.browser}
+Time: ${sanitizedError.timestamp}
     `.trim();
 
     // Send error report via Lambda
@@ -35,8 +51,10 @@ Time: ${new Date().toISOString()}
           subject: 'Portfolio AI - Production Error'
         })
       }).catch(() => {
-        // Error reporting failed - log to console as fallback
-        console.error('Failed to report error:', errorDetails);
+        // Error reporting failed - fail silently in production
+        if (import.meta.env.MODE === 'development') {
+          console.error('Failed to report error:', sanitizedError);
+        }
       });
     }
 

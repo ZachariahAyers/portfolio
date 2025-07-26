@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { X, Briefcase, Clock, Send, ArrowLeft } from 'lucide-react';
+import { sanitizeInput, validateEmail } from '../config/api';
 
 const LAMBDA_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
@@ -35,6 +36,33 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate honeypot
+    if (formData.honeypot) {
+      setStatus('success'); // Fake success for bots
+      return;
+    }
+    
+    // Validate email
+    if (!validateEmail(formData.email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    
+    // Validate required fields
+    if (!formData.name.trim() || !formData.description.trim()) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    // Validate field lengths
+    if (formData.name.length > 100 || formData.email.length > 254 || 
+        formData.company.length > 100 || formData.description.length > 5000 || 
+        formData.timeline.length > 100) {
+      alert('One or more fields exceed the maximum length');
+      return;
+    }
+    
     setStatus('sending');
     
     try {
@@ -42,15 +70,15 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company || '',
-          description: formData.description,
-          timeline: formData.timeline || '',
+          name: sanitizeInput(formData.name),
+          email: sanitizeInput(formData.email),
+          company: sanitizeInput(formData.company) || '',
+          description: sanitizeInput(formData.description),
+          timeline: sanitizeInput(formData.timeline) || '',
           hiringType: hiringType,
           formType: `${hiringType === 'contract' ? 'Contract' : 'Full-Time'} Opportunity`,
-          subject: `${hiringType === 'contract' ? 'Contract' : 'Full-Time'} Opportunity - ${formData.company || 'Portfolio'}`,
-          message: formData.description, // Lambda expects 'message' field
+          subject: `${hiringType === 'contract' ? 'Contract' : 'Full-Time'} Opportunity - ${sanitizeInput(formData.company) || 'Portfolio'}`,
+          message: sanitizeInput(formData.description), // Lambda expects 'message' field
           honeypot: formData.honeypot || '' // Include honeypot for backend validation
         })
       });
@@ -213,7 +241,10 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
                       disabled={status === 'sending'}
                       className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50" 
-                      required 
+                      required
+                      maxLength={100}
+                      pattern="^[a-zA-Z\s'-]+$"
+                      title="Please enter a valid name (letters, spaces, hyphens, and apostrophes only)"
                     />
                   </div>
 
@@ -230,7 +261,8 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
                       disabled={status === 'sending'}
                       className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50" 
-                      required 
+                      required
+                      maxLength={254}
                     />
                   </div>
 
@@ -247,6 +279,7 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
                       disabled={status === 'sending'}
                       className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50" 
+                      maxLength={100}
                     />
                   </div>
 
@@ -268,6 +301,7 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
                                focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 
                                placeholder-gray-400 dark:placeholder-gray-500" 
                       required
+                      maxLength={5000}
                     />
                   </div>
 
@@ -286,6 +320,7 @@ const HireMeModal = ({ isOpen, onClose, profileData }) => {
                       className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white 
                                focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 
                                placeholder-gray-400 dark:placeholder-gray-500" 
+                      maxLength={100}
                     />
                   </div>
 

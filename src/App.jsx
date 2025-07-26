@@ -14,6 +14,7 @@ import ThemeToggle from './components/ThemeToggle';
 import { Tooltip } from './components/Tooltip';
 import { generateStandardResume, generateTailoredResume } from './utils/resumeGenerator';
 import profileData from './portfolio-data.json';
+import { sanitizeInput, validateEmail } from './config/api';
 
 // --- Lambda API Integration ---
 const LAMBDA_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
@@ -441,6 +442,31 @@ const ContactForm = ({ setView }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate honeypot
+    if (formData.honeypot) {
+      setStatus('success'); // Fake success for bots
+      return;
+    }
+    
+    // Validate email
+    if (!validateEmail(formData.email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    
+    // Validate required fields
+    if (!formData.name.trim() || !formData.message.trim()) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    // Validate field lengths
+    if (formData.name.length > 100 || formData.email.length > 254 || formData.message.length > 5000) {
+      alert('One or more fields exceed the maximum length');
+      return;
+    }
+    
     setStatus('sending');
     
     try {
@@ -448,9 +474,9 @@ const ContactForm = ({ setView }) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
+          name: sanitizeInput(formData.name),
+          email: sanitizeInput(formData.email),
+          message: sanitizeInput(formData.message),
           formType: 'Portfolio Contact Form',
           subject: 'Portfolio Contact Form Submission',
           honeypot: formData.honeypot || '' // Include honeypot for backend validation
@@ -527,7 +553,10 @@ const ContactForm = ({ setView }) => {
             onChange={handleChange} 
             disabled={status === 'sending'}
             className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
-            required 
+            required
+            maxLength={100}
+            pattern="^[a-zA-Z\s'-]+$"
+            title="Please enter a valid name (letters, spaces, hyphens, and apostrophes only)"
           />
         </div>
         <div className="mb-4">
@@ -540,7 +569,8 @@ const ContactForm = ({ setView }) => {
             onChange={handleChange} 
             disabled={status === 'sending'}
             className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
-            required 
+            required
+            maxLength={254}
           />
         </div>
         <div className="mb-6">
@@ -554,6 +584,7 @@ const ContactForm = ({ setView }) => {
             disabled={status === 'sending'}
             className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required
+            maxLength={5000}
           ></textarea>
         </div>
         <div className="flex items-center justify-end">
@@ -599,9 +630,12 @@ const GeminiFeatureModal = ({ feature, setView, handleGeminiFeature }) => {
     const Icon = currentFeature.icon;
 
     const handleSubmit = () => {
-        if(inputValue.trim()){
-            handleGeminiFeature(feature, inputValue);
+        const sanitized = inputValue.trim();
+        if(sanitized && sanitized.length <= 500){
+            handleGeminiFeature(feature, sanitizeInput(sanitized));
             setView('chat');
+        } else if (sanitized.length > 500) {
+            alert('Input is too long. Please keep it under 500 characters.');
         }
     }
 
