@@ -54,8 +54,8 @@ const CaseStudyDashboard = () => {
     { id: 'problem', label: 'Problem', icon: Binary },
     { id: 'solution', label: 'Solution', icon: Cpu },
     { id: 'results', label: 'Results', icon: BarChart3 },
-    { id: 'tech', label: 'Tech Stack', icon: Layers },
-    { id: 'release', label: 'Release', icon: Activity }
+    { id: 'release', label: 'Release', icon: Activity },
+    { id: 'tech', label: 'Tech Stack', icon: Layers }
   ];
 
   // Keyboard navigation
@@ -112,6 +112,7 @@ const CaseStudyDashboard = () => {
         return <TechTab 
           section={caseStudy.sections.find(s => s.id === 'tech')} 
           onCodeClick={setShowCodeModal}
+          caseStudy={caseStudy}
         />;
       case 'release':
         return <ReleaseTab caseStudy={caseStudy} />;
@@ -164,10 +165,15 @@ const CaseStudyDashboard = () => {
             
             <div className="h-6 w-px bg-gradient-to-b from-transparent via-blue-500/30 to-transparent" />
             
-            <div className="flex items-center gap-4">
+            <a
+              href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 hover:opacity-80 transition-opacity cursor-pointer"
+            >
               <Activity className="w-5 h-5 text-blue-600 dark:text-blue-400 animate-pulse" />
               <span className="text-xs font-mono text-gray-600 dark:text-gray-500">LIVE</span>
-            </div>
+            </a>
           </div>
 
           <Tooltip content="Exit Lab (ESC)">
@@ -201,7 +207,6 @@ const CaseStudyDashboard = () => {
                     : 'text-gray-600 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300'
                   }
                 `}
-                whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Icon className="w-4 h-4" />
@@ -283,15 +288,31 @@ const CaseStudyDashboard = () => {
       {/* Status Bar */}
       <footer className="h-[30px] border-t border-gray-300 dark:border-gray-700/50 bg-gray-100/80 dark:bg-gray-800/50 px-6 flex items-center justify-between text-xs font-mono text-gray-600 dark:text-gray-500">
         <div className="flex items-center gap-4">
-          <span>Duration: {caseStudy.timeline.duration}</span>
+          <span>Duration: {caseStudy.timeline.duration || '6 months'}</span>
           <span>•</span>
-          <span>Role: {caseStudy.timeline.role}</span>
+          <span>Role: {caseStudy.timeline.role || 'Creator & Lead Developer'}</span>
           <span>•</span>
-          <span>Year: {caseStudy.timeline.year}</span>
+          <span>Year: {caseStudy.timeline.year || '2023'}</span>
+          <span>•</span>
+          <a
+            href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            <span>Go To Full Site</span>
+          </a>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span>System Active</span>
+        <div className="flex items-center gap-4">
+          <a
+            href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <span>System Operational</span>
+          </a>
         </div>
       </footer>
     </div>

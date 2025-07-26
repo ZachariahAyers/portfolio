@@ -10,7 +10,8 @@ const ProblemTab = ({ section }) => {
 
   const isDragging = React.useRef(false);
   
-  const handleMouseDown = () => {
+  const handleMouseDown = (e) => {
+    e.preventDefault(); // Prevent text selection
     isDragging.current = true;
   };
   
@@ -45,7 +46,8 @@ const ProblemTab = ({ section }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="relative h-full max-w-6xl mx-auto rounded-2xl overflow-hidden border border-gray-300 dark:border-blue-500/20"
+          className="relative h-full max-w-6xl mx-auto rounded-2xl overflow-hidden border border-gray-300 dark:border-blue-500/20 select-none"
+          style={{ userSelect: 'none', WebkitUserSelect: 'none', MozUserSelect: 'none', msUserSelect: 'none' }}
           onMouseMove={handleMouseMove}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
