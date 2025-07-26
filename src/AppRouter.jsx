@@ -7,7 +7,6 @@ import CaseStudyDashboard from './components/CaseStudyDashboard';
 
 const AppRouter = () => {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <Router>
         <Routes>
           <Route path="/" element={<App />} />
@@ -16,7 +15,6 @@ const AppRouter = () => {
           <Route path="/casestudies/:caseStudyId" element={<CaseStudyDashboard />} />
         </Routes>
       </Router>
-    </ThemeProvider>
   );
 };
 
