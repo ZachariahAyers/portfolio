@@ -64,14 +64,14 @@ const MobileMenu = ({ profileData, onViewChange }) => {
       {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in" 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden animate-fade-in" 
           onClick={() => setIsOpen(false)} 
         />
       )}
 
       {/* Slide-out Menu */}
       <div
-        className={`mobile-menu-container fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 backdrop-blur-xl shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`mobile-menu-container fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 backdrop-blur-xl shadow-2xl z-[70] transform transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

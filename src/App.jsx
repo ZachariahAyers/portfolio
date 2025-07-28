@@ -1444,7 +1444,7 @@ Return this exact JSON structure:
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col min-h-0 relative">
+      <div className="flex-1 flex flex-col min-h-0 relative z-0">
         {messages.length === 0 && view === 'chat' ? (
             <div className="text-center p-8 animate-fade-in flex-1 flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Welcome! I'm Zach 👋</h2>
