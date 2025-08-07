@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { FileText, TrendingUp, DollarSign, Users, CheckCircle } from 'lucide-react';
 import './dashboard.css';
 

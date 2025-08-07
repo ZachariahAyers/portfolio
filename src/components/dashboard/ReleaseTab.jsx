@@ -109,7 +109,7 @@ const ScoreCircle = ({ score, label, size = "large", delay = 0 }) => {
 };
 
 // Core Web Vital metric card with animation
-const MetricCard = ({ metric, label, value, displayValue, score, delay = 0 }) => {
+const MetricCard = ({ metric, label, displayValue, score, delay = 0 }) => {
   const getScoreColor = (score) => {
     if (score >= 0.9) return 'text-green-500 bg-green-500/10 border-green-500/30';
     if (score >= 0.5) return 'text-yellow-500 bg-yellow-500/10 border-yellow-500/30';
@@ -176,7 +176,7 @@ const AnimatedMetricBox = ({ label, value, unit = '', decimals = 0, delay = 0 })
 
 const ReleaseTab = ({ caseStudy }) => {
   const demoUrl = caseStudy.links?.demo || caseStudy.links?.github;
-  const { data, loading, error, isFromCache, cacheAge, browserCacheAge } = usePageSpeedInsights(demoUrl);
+  const { data, loading, isFromCache, cacheAge, browserCacheAge } = usePageSpeedInsights(demoUrl);
 
   return (
     <div className="h-full relative overflow-hidden bg-black">

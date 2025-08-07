@@ -8,7 +8,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -38,8 +38,8 @@ Browser: ${sanitizedError.browser}
 Time: ${sanitizedError.timestamp}
     `.trim();
 
-    // Send error report via Lambda
-    if (LAMBDA_ENDPOINT) {
+    // Send error report via Lambda only in production
+    if (LAMBDA_ENDPOINT && import.meta.env.MODE === 'production') {
       fetch(`${LAMBDA_ENDPOINT}/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,11 +51,10 @@ Time: ${sanitizedError.timestamp}
           subject: 'Portfolio AI - Production Error'
         })
       }).catch(() => {
-        // Error reporting failed - fail silently in production
-        if (import.meta.env.MODE === 'development') {
-          console.error('Failed to report error:', sanitizedError);
-        }
+        // Error reporting failed - fail silently
       });
+    } else if (import.meta.env.MODE === 'development') {
+      console.error('Error caught in development:', sanitizedError);
     }
 
     this.setState({ error: error.toString() });

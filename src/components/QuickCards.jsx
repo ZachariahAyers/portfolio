@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { User, Briefcase, Layers, Mail, CircleEllipsis, ChevronDown, ChevronUp } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 
@@ -55,8 +55,8 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
                   }}
                   aria-label={tooltip}
                   className="bg-gray-100 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 
-                           h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl border border-gray-300 dark:border-gray-700
-                           px-4 py-3 shadow-none backdrop-blur-sm"
+                           h-auto min-w-[100px] max-sm:min-w-[80px] flex-shrink-0 cursor-pointer rounded-xl border border-gray-300 dark:border-gray-700
+                           px-4 py-3 max-sm:px-3 max-sm:py-2.5 shadow-none backdrop-blur-sm"
                 >
                   <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                     <Icon size={18} strokeWidth={2} style={{ color }} />
@@ -74,7 +74,7 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
                 className="group relative flex flex-shrink-0 items-center justify-center"
               >
                 <div className="hover:bg-gray-200 dark:hover:bg-gray-700 flex h-auto cursor-pointer items-center space-x-1 
-                              rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800/80 px-4 py-3 text-sm 
+                              rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800/80 px-4 py-3 max-sm:px-3 max-sm:py-2.5 text-sm 
                               backdrop-blur-sm transition-all duration-200 active:scale-95">
                   <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                     <CircleEllipsis className="h-[20px] w-[18px]" strokeWidth={2} />

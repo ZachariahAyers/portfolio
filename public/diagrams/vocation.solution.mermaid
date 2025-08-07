@@ -1,3 +1,82 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph TB
+    subgraph "Chrome Extension Architecture"
+        Manifest[Manifest V2]
+        Background[Background Scripts]
+        ContentScript[Content Scripts]
+        Popup[Extension Popup]
+        
+        Manifest --> Background
+        Manifest --> ContentScript
+        Manifest --> Popup
+    end
+    
+    subgraph "Vue.js Application"
+        VueApp[Vue Instance]
+        Vuex[Vuex Store]
+        Components[Components]
+        Router[Vue Router]
+        
+        VueApp --> Vuex
+        VueApp --> Components
+        VueApp --> Router
+    end
+    
+    subgraph "Core Components"
+        Overlay[Overlay Interface]
+        ButtonDock[Button Dock]
+        SideBar[Side Panel]
+        JobBoard[Job Board Manager]
+        Templates[Template Engine]
+        Metrics[Metrics Dashboard]
+        
+        Components --> Overlay
+        Overlay --> ButtonDock
+        Overlay --> SideBar
+        SideBar --> JobBoard
+        SideBar --> Templates
+        SideBar --> Metrics
+    end
+    
+    subgraph "Job Board Integration"
+        LinkedIn[LinkedIn Jobs]
+        Indeed[Indeed]
+        Glassdoor[Glassdoor]
+        AngelList[AngelList]
+        Others[20+ Others]
+        
+        ContentScript --> |"Extract"| LinkedIn
+        ContentScript --> |"Extract"| Indeed
+        ContentScript --> |"Extract"| Glassdoor
+        ContentScript --> |"Extract"| AngelList
+        ContentScript --> |"Extract"| Others
+    end
+    
+    subgraph "Data Management"
+        ChromeStorage[Chrome Storage API]
+        LocalState[Local State]
+        SyncStorage[Sync Storage]
+        
+        Vuex --> ChromeStorage
+        ChromeStorage --> LocalState
+        ChromeStorage --> SyncStorage
+    end
+    
+    subgraph "User Features"
+        SaveJob[Save Jobs]
+        GenerateMsg[Generate Messages]
+        TrackApps[Track Applications]
+        ViewStats[View Statistics]
+        
+        ButtonDock --> SaveJob
+        Templates --> GenerateMsg
+        JobBoard --> TrackApps
+        Metrics --> ViewStats
+    end
+    
+    ContentScript --> |"Inject"| Overlay
+    Background --> |"Coordinate"| ContentScript
+    
+    style VueApp fill:#e1f5e1
+    style ContentScript fill:#dce4ff
+    style ChromeStorage fill:#fff4d4
+    style Templates fill:#ffd4d4

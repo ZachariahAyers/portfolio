@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { 
   AlertCircle, CheckCircle2, Clock, User, Calendar, Hash, Link2, Paperclip,
   MessageSquare, GitBranch, Tag, MoreHorizontal, ChevronDown, Zap, Bug, BookOpen

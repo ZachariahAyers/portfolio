@@ -1,3 +1,78 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph TB
+    subgraph "Page Structure"
+        Container[Main Container]
+        Header[Header Component]
+        Content[Content Wrapper]
+        Sidebar[Sidebar Navigation]
+        HotelView[Hotel View]
+        
+        Container --> Header
+        Container --> Content
+        Content --> Sidebar
+        Content --> HotelView
+    end
+    
+    subgraph "Flexbox Layout System"
+        FlexContainer[display: flex]
+        FlexDirection[flex-direction]
+        FlexGrow[flex: 1]
+        FlexBasis[flex-basis]
+        
+        FlexContainer --> |"Column/Row"| FlexDirection
+        FlexContainer --> |"Expand"| FlexGrow
+        FlexContainer --> |"Size"| FlexBasis
+    end
+    
+    subgraph "Component Architecture"
+        SearchBar[Search Component]
+        UserNav[User Navigation]
+        Gallery[Image Gallery]
+        Overview[Hotel Overview]
+        Details[Hotel Details]
+        Reviews[User Reviews]
+        CTA[Call to Action]
+        
+        Header --> SearchBar
+        Header --> UserNav
+        HotelView --> Gallery
+        HotelView --> Overview
+        HotelView --> Details
+        HotelView --> Reviews
+        HotelView --> CTA
+    end
+    
+    subgraph "CSS Features"
+        Variables[CSS Custom Properties]
+        SVGSprite[SVG Icon System]
+        Animations[CSS Animations]
+        BEM[BEM Methodology]
+        
+        Variables --> |"--color-primary"| Theme
+        SVGSprite --> |"use xlink:href"| Icons
+        Animations --> |"transition"| Hover
+        BEM --> |"block__element--modifier"| Naming
+    end
+    
+    subgraph "Build Process"
+        SCSS[Sass/SCSS]
+        NodeSass[node-sass]
+        Autoprefixer[PostCSS Autoprefixer]
+        LiveServer[Live Server]
+        
+        SCSS --> |"Compile"| NodeSass
+        NodeSass --> |"Prefix"| Autoprefixer
+        Autoprefixer --> |"Output"| CSS
+        LiveServer --> |"Serve"| Browser
+    end
+    
+    Theme[Theming System]
+    Icons[Icon Library]
+    Hover[Hover Effects]
+    Naming[Class Naming]
+    CSS[style.css]
+    Browser[Web Browser]
+    
+    style Container fill:#e1f5e1
+    style FlexContainer fill:#dce4ff
+    style Variables fill:#fff4d4
+    style SCSS fill:#ffd4d4

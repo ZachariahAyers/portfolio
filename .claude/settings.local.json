@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(git submodule add:*)",
+      "Bash(ls:*)",
+      "Bash(npm run lint)"
+    ],
+    "deny": []
+  }
+}

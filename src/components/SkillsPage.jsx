@@ -47,16 +47,6 @@ const SkillsPage = () => {
     return Array.from(categorySet).sort();
   }, [allSkills]);
 
-  // Calculate counts
-  const levelCounts = React.useMemo(() => {
-    const counts = { expert: 0, proficient: 0, familiar: 0 };
-    allSkills.forEach(skill => {
-      if (counts.hasOwnProperty(skill.level)) {
-        counts[skill.level]++;
-      }
-    });
-    return counts;
-  }, [allSkills]);
 
   // Dynamic category counts based on selected level
   const dynamicCategoryCounts = React.useMemo(() => {
@@ -82,7 +72,7 @@ const SkillsPage = () => {
       : allSkills.filter(skill => skill.category === selectedCategory);
     
     skillsToCount.forEach(skill => {
-      if (counts.hasOwnProperty(skill.level)) {
+      if (Object.prototype.hasOwnProperty.call(counts, skill.level)) {
         counts[skill.level]++;
       }
     });
@@ -180,12 +170,6 @@ const SkillsPage = () => {
     return 'dark:from-gray-800/20 dark:to-gray-700/20 border-gray-500 dark:border-gray-600/30';
   };
 
-  const getLevelColor = (level) => {
-    if (level === 'expert') return 'text-blue-400';
-    if (level === 'proficient') return 'text-green-400';
-    if (level === 'familiar') return 'text-orange-400';
-    return 'text-gray-400';
-  };
 
   const formatCategoryName = (category) => {
     const names = {

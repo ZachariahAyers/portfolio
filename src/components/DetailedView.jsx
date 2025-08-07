@@ -3,10 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield } from 'lucide-react';
 import StreamingText from './StreamingText';
 import StreamingTextSimple from './StreamingTextSimple';
-import useGitHubStats from '../hooks/useGitHubStats';
 import { Tooltip } from './Tooltip';
 
-const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF, userInteractions, personalizedContent, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
+const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, onDownloadPDF, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
   const navigate = useNavigate();
   const [streamingContent, setStreamingContent] = React.useState(null);
   const [executiveSummary, setExecutiveSummary] = React.useState(null);
@@ -83,13 +82,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
 
         {/* Name and Title */}
         <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
-          <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 whitespace-normal md:whitespace-nowrap">{profileData.personal.title}</p>
+          <h1 className="text-2xl md:text-3xl max-sm:text-xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
+          <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 whitespace-normal md:whitespace-nowrap">{profileData.personal.title}</p>
           <p className="text-blue-400 italic text-sm mt-1">"{profileData.personal.tagline}"</p>
         </div>
 
         {/* Contact Info */}
-        <div className="w-full lg:flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 lg:min-w-[280px]">
+        <div className="w-full lg:w-auto lg:flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 max-sm:p-3 lg:min-w-[280px]">
           <h2 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
           <div className="grid grid-cols-1 gap-2 text-sm">
             <Tooltip content="Send me an email">
@@ -141,8 +140,8 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* What I Can Bring to Your Team Section */}
-      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
-        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
+        <h2 className="text-xl md:text-2xl max-sm:text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Zap className="text-purple-400" /> What I Can Bring to Your Team
         </h2>
         {isGenerating || !streamingContent ? (
@@ -170,8 +169,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     const [showAllTechs, setShowAllTechs] = React.useState(false);
     const [showCurrentOnly, setShowCurrentOnly] = React.useState(false);
     
-    // Get GitHub stats
-    const githubStats = useGitHubStats();
 
     // Flatten all projects into a single array
     const allProjects = React.useMemo(() => {
@@ -335,31 +332,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         {/* Header Section */}
         <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
           {/* GitHub Stats in top right corner */}
-          <div className="absolute top-4 right-4 text-sm">
-            <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1 flex items-center gap-2">
-              <Github className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-              <span className="text-gray-600 dark:text-gray-400">Stars: </span>
-              <span className="text-gray-900 dark:text-white font-bold inline-flex items-center gap-1">
-                {githubStats.loading ? (
-                  <span className="text-xs">Loading...</span>
-                ) : githubStats.error ? (
-                  <span className="text-xs">--</span>
-                ) : (
-                  <>
-                    <Star className="w-3 h-3 text-yellow-500" />
-                    {githubStats.totalStars}
-                  </>
-                )}
-              </span>
-            </div>
-          </div>
           
           <div className="text-center space-y-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+            <h1 className="text-3xl max-sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
               <Rocket className="text-blue-400" />
               Projects & Creations
             </h1>
-            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               From enterprise transformations to open-source contributions
             </p>
             <div className="flex justify-center flex-wrap gap-2 md:gap-4 text-xs md:text-sm">
@@ -562,7 +541,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             return (
               <div
                 key={project.id}
-                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 max-sm:p-3 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                   project.current 
                     ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                     : ''
@@ -574,7 +553,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2 flex-1">
                       <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                      <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-base md:text-lg max-sm:text-sm font-bold text-gray-900 dark:text-white">
                         {project.name}
                       </h3>
                     </div>
@@ -976,13 +955,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
+        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
           <div className="text-center space-y-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+            <h1 className="text-3xl max-sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
               <Brain className="text-purple-400" />
               Technical Skills & Expertise
             </h1>
-            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               14+ years of building production systems across the full stack
             </p>
           </div>
@@ -1650,7 +1629,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fade-in">
       <div className="bg-white dark:bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-scale-in shadow-xl">
         <div className="sticky top-0 bg-gray-50 dark:bg-gray-800 p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white capitalize flex items-center gap-2">

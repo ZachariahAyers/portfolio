@@ -1,0 +1,77 @@
+graph TB
+    subgraph "Request Flow"
+        Browser[Browser Request]
+        Apache[Apache Server]
+        HTAccess[.htaccess]
+        Index[index.php]
+        
+        Browser --> Apache
+        Apache --> HTAccess
+        HTAccess --> |"Rewrite"| Index
+    end
+    
+    subgraph "MVC Architecture"
+        Core[Core Router]
+        Controller[Controller]
+        Model[Model]
+        View[View]
+        
+        Index --> Core
+        Core --> |"Instantiate"| Controller
+        Controller --> |"Load"| Model
+        Controller --> |"Render"| View
+        Model --> |"Data"| Controller
+    end
+    
+    subgraph "Core Components"
+        Bootstrapper[Bootstrapper]
+        Autoloader[PSR-4 Autoloader]
+        Config[Config Constants]
+        
+        Index --> Bootstrapper
+        Bootstrapper --> Autoloader
+        Bootstrapper --> Config
+    end
+    
+    subgraph "Database Layer"
+        Database[Database Class]
+        PDO[PDO Instance]
+        MySQL[MySQL Database]
+        
+        Model --> Database
+        Database --> |"Wrapper"| PDO
+        PDO --> |"Query"| MySQL
+    end
+    
+    subgraph "URL Routing"
+        URLParser[URL Parser]
+        ControllerResolver[Controller Resolver]
+        MethodResolver[Method Resolver]
+        ParamExtractor[Parameter Extractor]
+        
+        Core --> URLParser
+        URLParser --> ControllerResolver
+        URLParser --> MethodResolver
+        URLParser --> ParamExtractor
+    end
+    
+    subgraph "File Structure"
+        AppDir[app/]
+        PublicDir[public/]
+        Controllers[controllers/]
+        Models[models/]
+        Views[views/]
+        Libraries[libraries/]
+        
+        AppDir --> Controllers
+        AppDir --> Models
+        AppDir --> Views
+        AppDir --> Libraries
+    end
+    
+    View --> |"Response"| Browser
+    
+    style Core fill:#dce4ff
+    style Controller fill:#e1f5e1
+    style Model fill:#fff4d4
+    style Database fill:#ffd4d4

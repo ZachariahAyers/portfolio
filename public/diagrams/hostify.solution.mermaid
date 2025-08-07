@@ -1,3 +1,62 @@
 graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+    A[Hostify Architecture] --> B[Component System]
+    A --> C[Styling Architecture]
+    A --> D[Performance Layer]
+    A --> E[Build Process]
+    
+    B --> F[HTML Components]
+    F --> F1[Badges]
+    F --> F2[Buttons]
+    F --> F3[Cards]
+    F --> F4[Collapsibles]
+    F --> F5[Grids]
+    F --> F6[Lists]
+    F --> F7[Media Objects]
+    
+    B --> G[Layout Blocks]
+    G --> G1[Hero Section]
+    G --> G2[Features Block]
+    G --> G3[Plans/Pricing]
+    G --> G4[Testimonials]
+    G --> G5[Footer]
+    
+    C --> H[CSS Architecture]
+    H --> H1[Design System]
+    H --> H2[CSS Variables]
+    H --> H3[BEM Methodology]
+    H --> H4[Mobile-First]
+    
+    C --> I[Layout Systems]
+    I --> I1[CSS Grid]
+    I --> I2[Flexbox]
+    I --> I3[Responsive Breakpoints]
+    I --> I4[Container System]
+    
+    D --> J[Image Optimization]
+    J --> J1[WebP Format]
+    J --> J2[Responsive Images]
+    J --> J3[SVG Sprites]
+    J --> J4[Lazy Loading]
+    
+    D --> K[Loading Performance]
+    K --> K1[Critical CSS]
+    K --> K2[Async Resources]
+    K --> K3[Minification]
+    K --> K4[Compression]
+    
+    E --> L[Development]
+    L --> L1[Parcel Bundler]
+    L --> L2[PostCSS]
+    L --> L3[Autoprefixer]
+    L --> L4[Live Reload]
+    
+    E --> M[Production]
+    M --> M1[Build Optimization]
+    M --> M2[Asset Hashing]
+    M --> M3[Tree Shaking]
+    M --> M4[Code Splitting]
+    
+    style A fill:#2584ff,stroke:#1a5cbf,stroke-width:2px
+    style C fill:#00d9ff,stroke:#00a8cc,stroke-width:2px,color:#000
+    style D fill:#ff3400,stroke:#cc2900,stroke-width:2px,color:#fff
+    style H fill:#1b0760,stroke:#140545,stroke-width:2px,color:#fff

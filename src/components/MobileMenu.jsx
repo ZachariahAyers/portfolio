@@ -80,7 +80,7 @@ const MobileMenu = ({ profileData, onViewChange }) => {
           <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full overflow-hidden">
-                <img src={profileData.personal.aiAssistant.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
+                <img src="/ai-profile.png" alt="Arlo" className="w-full h-full object-cover" />
               </div>
               <div>
                 <h2 className="text-lg font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h2>

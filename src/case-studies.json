@@ -209,108 +209,6 @@
     },
     "metrics": {}
   },
-  "vx-apps": {
-    "id": "vx-apps",
-    "title": "VX Apps: 50x Performance Scaling Victory",
-    "subtitle": "Scaled marketplace backend from 100 to 5000 RPS through PostgreSQL mastery",
-    "category": "freelance",
-    "tags": [
-      "Performance",
-      "PostgreSQL",
-      "Node.js",
-      "Scaling",
-      "Optimization"
-    ],
-    "timeline": "2020 - Hack Reactor Project",
-    "role": "Full Stack Developer / Performance Engineer",
-    "sections": {
-      "executive": "During my Hack Reactor bootcamp, I took on the challenge of scaling VX Apps' marketplace backend from 100 to 5000 requests per second - a 50x improvement. Through PostgreSQL optimization, smart indexing, and strategic caching, I transformed a struggling system into a high-performance platform while actually reducing infrastructure costs.",
-      "challenge": "## The Challenge\n\nVX Apps faced a crisis as their marketplace grew:\n\n- **Performance Cliff**: System crashing at just 100 RPS\n- **Database Bottleneck**: Queries taking 5+ seconds\n- **User Experience**: Page loads timing out\n- **Business Risk**: Losing customers to competitors\n- **Cost Explosion**: Adding servers wasn't helping\n\nThe marketplace needed radical optimization, not just more hardware.",
-      "solution": "## The Solution\n\nI approached this as a systematic optimization challenge:\n\n### 1. Performance Profiling\n```javascript\n// Identified N+1 queries killing performance\nconst products = await Product.findAll();\nfor (const product of products) {\n  // This was making 1000+ queries!\n  product.reviews = await Review.findByProduct(product.id);\n}\n```\n\n### 2. PostgreSQL Optimization\n- **Smart Indexing**: Composite indexes on hot paths\n- **Query Rewriting**: Eliminated N+1 patterns\n- **Connection Pooling**: Optimized pg pool settings\n- **Materialized Views**: For complex aggregations\n\n### 3. Caching Strategy\n```javascript\n// Implemented multi-layer caching\nconst getProduct = async (id) => {\n  // L1: In-memory cache (10ms)\n  const cached = memCache.get(id);\n  if (cached) return cached;\n  \n  // L2: Redis cache (50ms)\n  const redis = await redisClient.get(`product:${id}`);\n  if (redis) return JSON.parse(redis);\n  \n  // L3: Database (optimized to <100ms)\n  const product = await optimizedQuery(id);\n  await cacheProduct(product);\n  return product;\n};\n```\n\n### 4. Database Schema Improvements\n- Denormalized hot data paths\n- Partitioned large tables\n- Optimized data types\n- Added database-level constraints",
-      "implementation": "## Technical Deep Dive\n\n### Query Optimization Journey\n\n**Before**: 5-second product listing\n```sql\nSELECT * FROM products p\nLEFT JOIN categories c ON p.category_id = c.id\nLEFT JOIN reviews r ON r.product_id = p.id\nLEFT JOIN users u ON r.user_id = u.id\nORDER BY p.created_at DESC;\n```\n\n**After**: 50ms with smart indexing\n```sql\n-- Added covering index\nCREATE INDEX idx_products_listing ON products(\n  created_at DESC,\n  id, name, price, category_id\n) INCLUDE (description, image_url);\n\n-- Separated review aggregation\nWITH review_stats AS (\n  SELECT product_id, \n         COUNT(*) as review_count,\n         AVG(rating) as avg_rating\n  FROM reviews\n  GROUP BY product_id\n)\nSELECT p.*, rs.review_count, rs.avg_rating\nFROM products p\nLEFT JOIN review_stats rs ON p.id = rs.product_id\nORDER BY p.created_at DESC\nLIMIT 20;\n```\n\n### Load Testing Results\n\n```bash\n# Artillery load test configuration\nconfig:\n  target: 'http://api.vxapps.com'\n  phases:\n    - duration: 60\n      arrivalRate: 100  # Start at 100 RPS\n    - duration: 300\n      arrivalRate: 5000 # Ramp to 5000 RPS\n\n# Results\n✓ min: 12ms\n✓ max: 89ms  \n✓ p95: 45ms\n✓ p99: 72ms\n```",
-      "results": "## Results & Impact\n\n### Performance Metrics\n\n- **50x Throughput**: 100 → 5000 RPS capacity\n- **98% Latency Reduction**: 5s → 100ms p99\n- **70% Cost Reduction**: Fewer servers needed\n- **Zero Downtime**: During entire optimization\n\n### Technical Achievements\n\n1. **Database Performance**\n   - Query time: 5000ms → 50ms\n   - Connection pool: 10 → 50 optimized\n   - Index hit rate: 99.8%\n\n2. **Application Optimization**\n   - Memory usage: 80% reduction\n   - CPU utilization: 60% improvement\n   - Cache hit rate: 85%\n\n3. **Infrastructure Efficiency**\n   - Server count: 10 → 3\n   - Database load: 95% → 30%\n   - Monthly costs: $5000 → $1500\n\n### Business Impact\n\n- User satisfaction increased dramatically\n- Page load times under 1 second\n- Supported Black Friday traffic\n- Enabled business growth",
-      "learnings": "## Key Learnings\n\n### Performance Principles\n\n1. **Measure First**: Profile before optimizing\n2. **Database is Key**: 80% of issues were SQL\n3. **Caching Strategy**: Multiple layers work best\n4. **Incremental Wins**: Small changes compound\n\n### PostgreSQL Mastery\n\n- EXPLAIN ANALYZE is your friend\n- Indexes aren't free - choose wisely\n- Connection pooling is critical\n- Vacuum and analyze regularly\n\n### Scalability Insights\n\n- Vertical scaling has limits\n- Optimize queries before adding cache\n- Monitor everything in production\n- Load test with realistic data"
-    },
-    "technologies": [
-      "Node.js",
-      "PostgreSQL",
-      "Express",
-      "Redis",
-      "Artillery",
-      "New Relic"
-    ],
-    "links": {},
-    "metrics": {
-      "throughput": {
-        "value": "50x",
-        "label": "Performance Gain",
-        "description": "Increased from 100 to 5000 RPS"
-      },
-      "latency": {
-        "value": "98%",
-        "label": "Latency Reduction",
-        "description": "Reduced from 5s to 100ms"
-      },
-      "cost": {
-        "value": "70%",
-        "label": "Cost Savings",
-        "description": "Reduced infrastructure costs"
-      }
-    }
-  },
-  "wonderfund": {
-    "id": "wonderfund",
-    "title": "WonderFund Platform: Microservices in 2 Weeks",
-    "subtitle": "Built complete crowdfunding platform with Docker/Kubernetes microservices architecture in intensive sprint",
-    "category": "freelance",
-    "tags": [
-      "Microservices",
-      "Docker",
-      "Kubernetes",
-      "React",
-      "Rapid Development"
-    ],
-    "timeline": "2 weeks",
-    "role": "Full Stack Developer",
-    "sections": {
-      "executive": "WonderFund demonstrates my ability to deliver complex systems under extreme time constraints. In just 2 weeks, I built a complete crowdfunding platform using microservices architecture, Docker containers, and Kubernetes orchestration with Skaffold for rapid development. The platform included user authentication, campaign management, payment processing, and real-time updates - all production-ready with automated deployment pipelines.",
-      "challenge": "## The Challenge\n\nThe client needed a fully functional crowdfunding platform delivered in an impossibly tight timeline:\n\n- **2-Week Deadline**: Complete platform from scratch to production\n- **Complex Requirements**: User accounts, campaigns, payments, analytics\n- **Scalability Needs**: Must handle growth from day one\n- **Production Ready**: No shortcuts on security or reliability\n- **Modern Architecture**: Microservices for future flexibility\n\nThis required extreme efficiency and architectural excellence.",
-      "solution": "## The Solution\n\nI leveraged modern cloud-native technologies for rapid development:\n\n### Microservices Architecture\n\n1. **Service Decomposition**\n   - Auth Service: JWT-based authentication\n   - Campaign Service: CRUD operations\n   - Payment Service: Stripe integration\n   - Notification Service: Real-time updates\n   - Analytics Service: Campaign metrics\n\n2. **Rapid Development Stack**\n   - Docker for containerization\n   - Kubernetes for orchestration\n   - Skaffold for hot-reloading\n   - GitHub Actions for CI/CD\n\n3. **Frontend Excellence**\n   - React with TypeScript\n   - Real-time WebSocket updates\n   - Responsive design\n   - Progressive Web App\n\n4. **DevOps Automation**\n   - Infrastructure as Code\n   - Automated testing\n   - One-click deployments\n   - Monitoring from day one",
-      "implementation": "## Technical Implementation\n\n### Microservices Setup\n\n```yaml\n# Skaffold configuration for rapid development\napiVersion: skaffold/v2beta\nkind: Config\ndeploy:\n  kubectl:\n    manifests:\n      - k8s/*.yaml\nbuild:\n  artifacts:\n    - image: wonderfund/auth\n      docker:\n        dockerfile: services/auth/Dockerfile\n    - image: wonderfund/campaigns\n      docker:\n        dockerfile: services/campaigns/Dockerfile\n    - image: wonderfund/payments\n      docker:\n        dockerfile: services/payments/Dockerfile\n```\n\n### Service Architecture\n\n```javascript\n// Campaign microservice with event sourcing\nclass CampaignService {\n  async createCampaign(data) {\n    const campaign = await Campaign.create(data);\n    \n    // Publish events for other services\n    await this.eventBus.publish('campaign.created', {\n      campaignId: campaign.id,\n      creatorId: data.userId,\n      goalAmount: data.goalAmount\n    });\n    \n    // Trigger analytics\n    await this.analytics.track('campaign_created', campaign);\n    \n    return campaign;\n  }\n}\n```\n\n### Payment Integration\n\n```javascript\n// Secure payment processing\nclass PaymentService {\n  async processDonation(campaignId, amount, token) {\n    // Idempotency for reliability\n    const idempotencyKey = crypto.randomUUID();\n    \n    const charge = await stripe.charges.create({\n      amount: amount * 100,\n      currency: 'usd',\n      source: token,\n      metadata: { campaignId }\n    }, { idempotencyKey });\n    \n    // Update campaign totals\n    await this.eventBus.publish('donation.processed', {\n      campaignId,\n      amount,\n      donorId: charge.metadata.donorId\n    });\n    \n    return charge;\n  }\n}\n```",
-      "results": "## Results\n\n### Delivery Success\n\n- **On-Time Delivery**: Full platform in 2 weeks\n- **11 Microservices**: Complete service mesh\n- **Zero Downtime**: Kubernetes rolling updates\n- **Instant Scaling**: Auto-scaling configured\n\n### Technical Achievements\n\n- **Development Speed**: 10x faster with Skaffold\n- **100% Containerized**: Every service Dockerized\n- **CI/CD Pipeline**: Automated testing and deployment\n- **Monitoring**: Prometheus + Grafana from start\n\n### Platform Features\n\n- User registration and authentication\n- Campaign creation and management\n- Secure payment processing\n- Real-time donation tracking\n- Social sharing integration\n- Admin dashboard\n- Email notifications\n- Analytics and reporting\n\n### Client Impact\n\n- Launched on schedule\n- Processed first donations day one\n- Scaled to 1000+ users week one\n- Foundation for continued growth",
-      "learnings": "## Key Learnings\n\n### Rapid Development Insights\n\n1. **Architecture Decisions**\n   - Start with clear service boundaries\n   - Use event-driven communication\n   - Plan for observability early\n   - Automate everything possible\n\n2. **Technology Choices**\n   - Skaffold transformed development speed\n   - Kubernetes complexity worth it for scaling\n   - TypeScript prevented many bugs\n   - Monitoring crucial from day one\n\n3. **Time Management**\n   - Daily deployments maintain momentum\n   - Feature flags for gradual rollouts\n   - Parallel development across services\n   - Clear communication with client\n\n### Microservices Best Practices\n\n- Keep services truly independent\n- Implement circuit breakers\n- Use structured logging\n- Plan for service discovery\n- Handle partial failures gracefully\n\n### Would Do Differently\n\n- Add integration tests earlier\n- Use message queue for all async\n- Implement distributed tracing\n- More comprehensive error handling"
-    },
-    "technologies": [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Docker",
-      "Kubernetes",
-      "Skaffold",
-      "PostgreSQL",
-      "Redis",
-      "Stripe API",
-      "GitHub Actions"
-    ],
-    "links": {},
-    "metrics": {
-      "timeline": {
-        "value": "2 weeks",
-        "label": "Development Time",
-        "description": "Concept to production"
-      },
-      "services": {
-        "value": "11",
-        "label": "Microservices",
-        "description": "Independent services deployed"
-      },
-      "speed": {
-        "value": "10x",
-        "label": "Dev Velocity",
-        "description": "Faster with Skaffold"
-      }
-    }
-  },
   "chalkboard": {
     "id": "chalkboard",
     "title": "Chalkboard: Real-Time Collaborative Drawing",
@@ -344,7 +242,7 @@
       "Express"
     ],
     "links": {
-      "github": "https://github.com/zjayers/chalkboard"
+      "github": "https://github.com/N73311/chalkboard"
     },
     "metrics": {
       "users": {
@@ -390,7 +288,7 @@
     ],
     "links": {
       "demo": "https://chrome.google.com/webstore/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
-      "github": "https://github.com/zjayers/proto.vue.jobscan/tree/master/src"
+      "github": "https://github.com/N73311/vocation-chrome"
     },
     "metrics": {}
   },
@@ -452,37 +350,6 @@
     ],
     "links": {
       "demo": "https://youtu.be/uRbGMZ9oPjw"
-    },
-    "metrics": {}
-  },
-  "personai": {
-    "id": "personai",
-    "title": "PersonAI Platform",
-    "subtitle": "AI-powered personal assistant platform",
-    "category": "other",
-    "tags": [
-      "AI",
-      "Machine Learning",
-      "React",
-      "Python"
-    ],
-    "timeline": "6 months",
-    "role": "AI/ML Engineer",
-    "sections": {
-      "executive": "AI-powered personal assistant platform leveraging modern machine learning techniques.",
-      "challenge": "## The Challenge\n\nBuilding an intelligent personal assistant that could understand and respond to user needs effectively.",
-      "solution": "## The Solution\n\nImplemented AI/ML models with natural language processing capabilities.",
-      "results": "## Results\n\nCreated functional AI assistant with practical applications."
-    },
-    "technologies": [
-      "React",
-      "Python",
-      "TensorFlow",
-      "OpenAI API"
-    ],
-    "links": {
-      "demo": "https://ai.zachayers.io",
-      "video": "https://www.youtube.com/watch?v=iEhKcDaNYrs"
     },
     "metrics": {}
   },
@@ -574,7 +441,8 @@
       "TypeScript"
     ],
     "links": {
-      "demo": "https://grayscale.zachayers.io"
+      "demo": "https://grayscale.zachayers.io",
+      "github": "https://github.com/N73311/grayscale"
     },
     "metrics": {}
   },
@@ -640,10 +508,10 @@
     },
     "metrics": {}
   },
-  "cratermvc": {
-    "id": "cratermvc",
-    "title": "CraterMVC Framework",
-    "subtitle": "Custom PHP MVC framework",
+  "galaxymvc": {
+    "id": "galaxymvc",
+    "title": "GalaxyMVC Framework",
+    "subtitle": "Lightweight PHP MVC framework demonstrating clean architecture",
     "category": "other",
     "tags": [
       "PHP",
@@ -664,8 +532,8 @@
       "MVC Architecture"
     ],
     "links": {
-      "demo": "https://cratersmvc.zachayers.io/shareposts/public/",
-      "github": "https://github.com/zjayers/php.mvc.framework"
+      "demo": "https://galaxymvc.zachayers.io",
+      "github": "https://github.com/N73311/GalaxyMVC"
     },
     "metrics": {}
   },
@@ -696,7 +564,7 @@
     ],
     "links": {
       "demo": "https://hostify.zachayers.io",
-      "github": "https://github.com/zjayers/hostify"
+      "github": "https://github.com/N73311/hostify"
     },
     "metrics": {}
   },
@@ -819,56 +687,87 @@
     ],
     "links": {
       "demo": "https://trillo.zachayers.io",
-      "github": "https://github.com/zjayers/design.trillo"
+      "github": "https://github.com/N73311/trillo"
     },
     "metrics": {}
   },
   "aurora-grove": {
     "id": "aurora-grove",
     "title": "Aurora Grove",
-    "subtitle": "Bootstrap-based responsive website",
+    "subtitle": "Modern camping website with Bootstrap 4",
     "category": "other",
     "tags": [
-      "Bootstrap",
+      "Bootstrap 4",
+      "SCSS",
       "Responsive Design",
-      "JavaScript",
-      "HTML"
+      "jQuery"
     ],
-    "timeline": "2 weeks",
+    "timeline": "3 weeks",
     "role": "Frontend Developer",
     "sections": {
-      "executive": "Responsive website built with Bootstrap framework showcasing component-based design.",
-      "challenge": "## The Challenge\n\nBuilding a responsive website quickly using Bootstrap framework.",
-      "solution": "## The Solution\n\nLeveraged Bootstrap components and grid system for rapid development.",
-      "results": "## Results\n\nDelivered responsive website with consistent design system."
+      "executive": "Modern camping website showcasing advanced Bootstrap 4 customization and SCSS architecture.",
+      "challenge": "## The Challenge\n\nCreating a visually stunning camping website with modern design techniques.",
+      "solution": "## The Solution\n\nCustom Bootstrap theme with SCSS, parallax effects, and interactive components.",
+      "results": "## Results\n\n98/100 Lighthouse score with perfect mobile responsiveness."
     },
     "technologies": [
-      "Bootstrap",
-      "JavaScript",
-      "HTML5",
-      "CSS3"
+      "Bootstrap 4",
+      "SCSS/SASS",
+      "jQuery",
+      "HTML5"
     ],
     "links": {
       "demo": "https://aurora.zachayers.io",
-      "github": "https://github.com/zjayers/design.bootstrap"
+      "github": "https://github.com/N73311/auroragrove"
+    },
+    "metrics": {}
+  },
+  "remix": {
+    "id": "remix",
+    "title": "Remix IDE",
+    "subtitle": "Ethereum development IDE built with Electron",
+    "category": "other",
+    "tags": [
+      "Ethereum",
+      "Electron",
+      "IDE",
+      "Blockchain"
+    ],
+    "timeline": "4 months",
+    "role": "Full Stack Developer",
+    "sections": {
+      "executive": "Desktop IDE for Ethereum smart contract development using Electron framework.",
+      "challenge": "## The Challenge\n\nEthereum developers needed a powerful desktop IDE for smart contract development.",
+      "solution": "## The Solution\n\nBuilt comprehensive IDE with Electron supporting Solidity development and deployment.",
+      "results": "## Results\n\nDelivered full-featured Ethereum development environment for desktop."
+    },
+    "technologies": [
+      "Electron",
+      "Node.js",
+      "JavaScript",
+      "Ethereum"
+    ],
+    "links": {
+      "github": "https://github.com/N73311/remix.ide"
     },
     "metrics": {}
   },
   "rabcab": {
     "id": "rabcab",
     "title": "RabCab Enterprise Solution",
-    "subtitle": "Complete carpentry workflow automation system",
+    "subtitle": "Transforms carpentry workflows with 3D modeling automation",
     "category": "enterprise",
     "tags": [
       "C#",
       "C++",
       "AutoCAD",
-      "MongoDB"
+      "MongoDB",
+      "ASP.NET Core"
     ],
     "timeline": "2+ years",
     "role": "Lead Developer",
     "sections": {
-      "executive": "Comprehensive carpentry workflow automation transforming 3D CAD modeling to 2D CNC processes.",
+      "executive": "Transforms carpentry workflows with customized entities, routines, and 3D modeling tools built using ObjectARX, and automates the 3D CAD modeling to 2D CNC process, including annotation and plan printing, for optimal productivity and precision.",
       "challenge": "## The Challenge\n\nCarpentry workflows required extensive manual translation between design and manufacturing.",
       "solution": "## The Solution\n\nBuilt complete automation suite using ObjectARX and custom tooling.",
       "results": "## Results\n\n90% reduction in errors and 30% decrease in support calls."
@@ -878,9 +777,15 @@
       "C++",
       "ASP.NET Core",
       "MongoDB",
-      "AutoCAD"
+      "AutoCAD",
+      "3DS Max",
+      "Inventor",
+      "Acrobat",
+      "Photoshop"
     ],
-    "links": {},
+    "links": {
+      "github": "https://github.com/N73311/RabCab"
+    },
     "metrics": {}
   },
   "aussie": {

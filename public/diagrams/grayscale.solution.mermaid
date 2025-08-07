@@ -1,3 +1,55 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph TB
+    subgraph "Client Browser"
+        UI[Web UI - index.html]
+        JS[JavaScript - main.js]
+        WASM[WebAssembly Module]
+        FileAPI[HTML5 File API]
+        
+        UI --> |"User uploads PNG"| FileAPI
+        FileAPI --> |"FileReader API"| JS
+        JS --> |"Base64 encoded image"| WASM
+        WASM --> |"Grayscale data URL"| JS
+        JS --> |"Update img src"| UI
+    end
+    
+    subgraph "Build Pipeline"
+        Rust[Rust Source - lib.rs]
+        WasmPack[wasm-pack]
+        Webpack[Webpack Bundler]
+        
+        Rust --> |"wasm-pack build"| WasmPack
+        WasmPack --> |"Generate bindings"| WASM
+        Webpack --> |"Bundle modules"| JS
+    end
+    
+    subgraph "Rust Processing"
+        Decode[Base64 Decode]
+        LoadImg[Load Image to Memory]
+        Grayscale[Apply Grayscale Filter]
+        Encode[Encode to PNG]
+        DataURL[Create Data URL]
+        
+        Decode --> LoadImg
+        LoadImg --> Grayscale
+        Grayscale --> Encode
+        Encode --> DataURL
+    end
+    
+    subgraph "Technologies"
+        RustLang[Rust Language]
+        WasmBind[wasm-bindgen]
+        ImageRS[image-rs crate]
+        Base64Crate[base64 crate]
+        TailwindCSS[Tailwind CSS]
+        
+        RustLang --> |"Compiles to"| WASM
+        WasmBind --> |"JS bindings"| WASM
+        ImageRS --> |"Image processing"| Grayscale
+        Base64Crate --> |"Encoding"| Decode
+        TailwindCSS --> |"Styling"| UI
+    end
+    
+    style UI fill:#e1f5e1
+    style WASM fill:#ffd4d4
+    style Rust fill:#dce4ff
+    style Grayscale fill:#fff4d4

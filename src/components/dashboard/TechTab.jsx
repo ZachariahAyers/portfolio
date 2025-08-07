@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
   FileText, Folder, FolderOpen, X, Minus, Square,
@@ -401,7 +401,7 @@ const highlightCode = (code, language) => {
   return highlighted;
 };
 
-const VSCodeInterface = ({ section, projectName, fileStructure }) => {
+const VSCodeInterface = ({ fileStructure }) => {
   const [openFolders, setOpenFolders] = useState(['frontend', 'backend', 'infrastructure', 'devops']);
   const [activeFile, setActiveFile] = useState(null);
   const [openTabs, setOpenTabs] = useState([]);

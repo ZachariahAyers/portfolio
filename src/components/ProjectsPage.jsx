@@ -38,8 +38,7 @@ const ProjectsPage = () => {
             type: category,
             technologies: project.technologies ? 
               (Array.isArray(project.technologies) ? project.technologies : project.technologies.split(', ')) : [],
-            image: project.image || project.screenshot || null,
-            demo: project.demo || null
+            image: project.image || project.screenshot || null
           });
         });
       }
@@ -545,17 +544,6 @@ const ProjectsPage = () => {
                         Live Deployment
                       </a>
                     )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
-                      >
-                        <Zap className="w-3 h-3" />
-                        Video Demo
-                      </a>
-                    )}
                     {project.github && (
                       <a
                         href={project.github.startsWith('http') ? project.github : `https://${project.github}`}
@@ -565,17 +553,6 @@ const ProjectsPage = () => {
                       >
                         <Github className="w-3 h-3" />
                         Source
-                      </a>
-                    )}
-                    {project.devOps && (
-                      <a
-                        href={project.devOps}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
-                      >
-                        <Zap className="w-3 h-3" />
-                        DevOps
                       </a>
                     )}
                     {project.caseStudy && (

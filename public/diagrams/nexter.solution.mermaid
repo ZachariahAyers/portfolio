@@ -1,3 +1,47 @@
 graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+    A[Nexter Architecture] --> B[Frontend Structure]
+    A --> C[Build Pipeline]
+    A --> D[Design System]
+    
+    B --> E[HTML5 Structure]
+    E --> E1[Semantic Sections]
+    E --> E2[BEM Class Names]
+    E --> E3[Accessible Markup]
+    
+    B --> F[CSS Grid System]
+    F --> F1[Main Container Grid]
+    F --> F2[Feature Grid - Auto-fit]
+    F --> F3[Gallery Grid - Dynamic]
+    F --> F4[Property Card Grid]
+    
+    B --> G[SCSS Architecture]
+    G --> G1[Variables & Mixins]
+    G --> G2[Component Partials]
+    G --> G3[Layout Partials]
+    G --> G4[Utility Classes]
+    
+    C --> H[Development]
+    H --> H1[Live Server]
+    H --> H2[SASS Watch]
+    H --> H3[Hot Reload]
+    
+    C --> I[Production Build]
+    I --> I1[SASS Compilation]
+    I --> I2[Autoprefixer]
+    I --> I3[CSS Minification]
+    I --> I4[Optimization]
+    
+    D --> J[Visual Design]
+    J --> J1[Golden Ratio]
+    J --> J2[Typography Scale]
+    J --> J3[Color System]
+    
+    D --> K[Responsive Strategy]
+    K --> K1[Mobile First]
+    K --> K2[Fluid Typography]
+    K --> K3[Flexible Images]
+    K --> K4[Grid Auto-placement]
+    
+    style A fill:#c69963,stroke:#B28451,stroke-width:2px
+    style F fill:#101d2c,stroke:#54483A,stroke-width:2px,color:#fff
+    style I fill:#54483A,stroke:#6D5D4B,stroke-width:2px,color:#fff

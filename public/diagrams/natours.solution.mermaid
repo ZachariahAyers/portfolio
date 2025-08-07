@@ -1,3 +1,69 @@
 graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+    A[Natours Architecture] --> B[Frontend Layer]
+    A --> C[Backend API]
+    A --> D[Data Layer]
+    A --> E[Infrastructure]
+    
+    B --> F[Server-Side Rendering]
+    F --> F1[Pug Templates]
+    F --> F2[Dynamic Content]
+    F --> F3[SEO Optimized]
+    
+    B --> G[Client-Side JS]
+    G --> G1[Stripe Integration]
+    G --> G2[Mapbox Maps]
+    G --> G3[Form Handling]
+    G --> G4[AJAX Requests]
+    
+    C --> H[RESTful API]
+    H --> H1[Tour Routes]
+    H --> H2[User Routes]
+    H --> H3[Booking Routes]
+    H --> H4[Review Routes]
+    
+    C --> I[Authentication]
+    I --> I1[JWT Tokens]
+    I --> I2[Role-Based Access]
+    I --> I3[Password Reset]
+    I --> I4[Email Verification]
+    
+    C --> J[Business Logic]
+    J --> J1[API Features Class]
+    J --> J2[Error Handling]
+    J --> J3[Email Service]
+    J --> J4[Image Processing]
+    
+    D --> K[MongoDB Database]
+    K --> K1[Tour Collection]
+    K --> K2[User Collection]
+    K --> K3[Review Collection]
+    K --> K4[Booking Collection]
+    
+    D --> L[Data Features]
+    L --> L1[Geospatial Queries]
+    L --> L2[Aggregation Pipeline]
+    L --> L3[Virtual Properties]
+    L --> L4[Document Middleware]
+    
+    E --> M[Security Layer]
+    M --> M1[Rate Limiting]
+    M --> M2[Data Sanitization]
+    M --> M3[XSS Protection]
+    M --> M4[HTTPS & Helmet]
+    
+    E --> N[External Services]
+    N --> N1[Stripe Payments]
+    N --> N2[SendGrid Email]
+    N --> N3[Mapbox API]
+    N --> N4[MongoDB Atlas]
+    
+    E --> O[Performance]
+    O --> O1[Database Indexing]
+    O --> O2[Query Optimization]
+    O --> O3[Compression]
+    O --> O4[Caching Strategy]
+    
+    style A fill:#27ae60,stroke:#229954,stroke-width:2px
+    style H fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style K fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff
+    style M fill:#f39c12,stroke:#d68910,stroke-width:2px

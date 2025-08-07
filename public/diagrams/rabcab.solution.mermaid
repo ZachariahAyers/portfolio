@@ -1,3 +1,76 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph TB
+    subgraph "AutoCAD Environment"
+        ACAD[AutoCAD Application]
+        NET[.NET API Layer]
+        ARX[ObjectARX Core]
+        
+        ACAD --> NET
+        NET --> ARX
+    end
+    
+    subgraph "RabCab Plugin Architecture"
+        Core[RabCab Core]
+        Commands[Command Suites]
+        Agents[Processing Agents]
+        Extensions[API Extensions]
+        
+        Core --> Commands
+        Core --> Agents
+        Core --> Extensions
+    end
+    
+    subgraph "Command Suites"
+        Annotation[Annotation Suite]
+        Assembly[Assembly Suite]
+        CNC[CNC Suite]
+        Structural[Structural Suite]
+        Carpentry[Carpentry Suite]
+        Analysis[Analysis Suite]
+        
+        Commands --> Annotation
+        Commands --> Assembly
+        Commands --> CNC
+        Commands --> Structural
+        Commands --> Carpentry
+        Commands --> Analysis
+    end
+    
+    subgraph "External Integration"
+        Excel[Excel Agent]
+        PDF[PDF Agent]
+        Inventor[Inventor Agent]
+        Max3ds[3ds Max Agent]
+        
+        Core --> Excel
+        Core --> PDF
+        Core --> Inventor
+        Core --> Max3ds
+    end
+    
+    subgraph "User Interface"
+        Ribbon[Custom Ribbon]
+        Palettes[Tool Palettes]
+        Dialogs[WPF Dialogs]
+        Commands --> |"CUI"| Ribbon
+        Agents --> |"UI"| Palettes
+        Extensions --> |"Forms"| Dialogs
+    end
+    
+    subgraph "Data Flow"
+        DWG[DWG Files]
+        XLS[Excel Files]
+        PDFFiles[PDF Output]
+        XML[XML Config]
+        
+        ACAD --> |"Read/Write"| DWG
+        Excel --> |"Export"| XLS
+        PDF --> |"Generate"| PDFFiles
+        Core --> |"Settings"| XML
+    end
+    
+    NET --> |"Loads"| Core
+    
+    style Core fill:#dce4ff
+    style Commands fill:#e1f5e1
+    style ACAD fill:#fff4d4
+    style Ribbon fill:#ffd4d4
