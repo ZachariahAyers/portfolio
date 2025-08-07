@@ -1,0 +1,33 @@
+[submodule "projects/nexter"]
+	path = projects/nexter
+	url = git@github.com:N73311/nexter.git
+[submodule "projects/natours"]
+	path = projects/natours
+	url = git@github.com:N73311/natours.git
+[submodule "projects/chalkboard"]
+	path = projects/chalkboard
+	url = git@github.com:N73311/chalkboard.git
+[submodule "projects/hostify"]
+	path = projects/hostify
+	url = git@github.com:N73311/hostify.git
+[submodule "projects/grayscale"]
+	path = projects/grayscale
+	url = git@github.com:N73311/grayscale.git
+[submodule "projects/remix.ide"]
+	path = projects/remix.ide
+	url = git@github.com:N73311/remix.ide.git
+[submodule "projects/trillo"]
+	path = projects/trillo
+	url = git@github.com:N73311/trillo.git
+[submodule "projects/RabCab"]
+	path = projects/RabCab
+	url = git@github.com:N73311/RabCab.git
+[submodule "projects/vocation-chrome"]
+	path = projects/vocation-chrome
+	url = git@github.com:N73311/vocation-chrome.git
+[submodule "projects/GalaxyMVC"]
+	path = projects/GalaxyMVC
+	url = git@github.com:N73311/GalaxyMVC.git
+[submodule "projects/auroragrove"]
+	path = projects/auroragrove
+	url = git@github.com:N73311/auroragrove.git
