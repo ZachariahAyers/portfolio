@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Beaker, Activity, Atom, CircuitBoard, Sparkles, Zap, Brain, 
          FlaskConical, Binary, BarChart3, Cpu, Layers, X, ChevronRight } from 'lucide-react';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Tooltip } from './Tooltip';
 
 // Tab components

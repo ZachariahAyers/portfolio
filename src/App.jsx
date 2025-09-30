@@ -1588,8 +1588,12 @@ Return this exact JSON structure:
       <div className="flex-1 flex flex-col min-h-0 relative z-0">
         {messages.length === 0 && view === 'chat' ? (
             <div className="text-center p-8 max-sm:p-4 animate-fade-in flex-1 flex flex-col justify-center">
-                <h2 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Welcome! I'm Zach 👋</h2>
-                <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">How can I help you today?</p>
+                <h2 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Welcome to my Portfolio! I'm Zach 👋</h2>
+
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto" style={{ animationDelay: '120ms', animationFillMode: 'forwards' }}>
+                Click the cards below or start typing in the chatbox to get started.
+              </p>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
                     {suggestedQuestions.map((q, i) => (
                         <Tooltip content="Click to ask this question" key={q}>

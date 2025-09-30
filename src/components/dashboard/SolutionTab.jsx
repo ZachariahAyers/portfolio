@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FileCode2 } from 'lucide-react';
 import mermaid from 'mermaid';
+import { motion } from 'framer-motion';
 import './SolutionTab.css';
 
 const SolutionTab = ({ caseStudyId }) => {

@@ -34,3 +34,8 @@ dist-ssr
 .DS_Store
 Thumbs.db
 NUL
+.claude/
+
+# Sensitive credentials
+*.pem
+github-credentials.json
