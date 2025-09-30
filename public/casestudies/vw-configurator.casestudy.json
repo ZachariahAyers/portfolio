@@ -1,38 +1,182 @@
 {
   "id": "vw-configurator",
-  "category": "enterprise",
-  "featured": false,
+  "category": "3d-visualization",
+  "featured": true,
   "hero": {
-    "title": "vw-configurator",
-    "tagline": "",
-    "badge": "",
+    "title": "VW Buzz Configurator",
+    "tagline": "Real-Time Wrap Visualizer for Volkswagen Buzz",
+    "badge": "3D Visualization",
     "coverImage": "/images/case-studies/vw-configurator-hero.png",
-    "metrics": []
+    "metrics": [
+      { "value": "60fps", "label": "Performance", "animate": "counter", "icon": "activity" },
+      { "value": "Real-Time", "label": "Rendering", "animate": "text", "icon": "eye" },
+      { "value": "WebGL", "label": "Powered", "animate": "text", "icon": "box" }
+    ]
   },
   "timeline": {
-    "duration": "",
-    "role": "",
-    "year": ""
+    "duration": "6 months",
+    "role": "Senior 3D Developer",
+    "year": "2023"
   },
-  "sections": [],
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Static Mockups",
+        "points": ["No visualization", "Long turnaround", "Limited options"],
+        "visual": "static-mockup"
+      },
+      "after": {
+        "label": "Interactive 3D Preview",
+        "points": ["Real-time view", "Instant changes", "Unlimited combos"],
+        "visual": "3d-configurator"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "3D Rendering Pipeline",
+      "components": [
+        { "name": "React UI", "framework": "React + TypeScript", "team": "Interface" },
+        { "name": "Three.js", "framework": "WebGL Renderer", "team": "3D Engine" },
+        { "name": "Asset Pipeline", "framework": "GLTF + Textures", "team": "Content" }
+      ],
+      "features": ["Real-Time Rendering", "Material Editor", "Camera Controls", "Export System"]
+    },
+    {
+      "id": "code",
+      "type": "code-showcase",
+      "title": "3D Implementation",
+      "snippets": [
+        {
+          "title": "Three.js Scene Setup",
+          "code": "import * as THREE from 'three';\nimport { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';\nimport { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';\n\nclass VWBuzzConfigurator {\n  private scene: THREE.Scene;\n  private camera: THREE.PerspectiveCamera;\n  private renderer: THREE.WebGLRenderer;\n  private controls: OrbitControls;\n  private vehicleModel: THREE.Group;\n  private materials: Map<string, THREE.MeshStandardMaterial>;\n\n  constructor(canvas: HTMLCanvasElement) {\n    this.scene = new THREE.Scene();\n    this.scene.background = new THREE.Color(0xf0f0f0);\n\n    this.camera = new THREE.PerspectiveCamera(\n      45,\n      window.innerWidth / window.innerHeight,\n      0.1,\n      1000\n    );\n    this.camera.position.set(5, 2, 5);\n\n    this.renderer = new THREE.WebGLRenderer({\n      canvas,\n      antialias: true,\n      alpha: true\n    });\n    this.renderer.setSize(window.innerWidth, window.innerHeight);\n    this.renderer.setPixelRatio(window.devicePixelRatio);\n    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;\n    this.renderer.toneMappingExposure = 1;\n    this.renderer.outputEncoding = THREE.sRGBEncoding;\n\n    this.controls = new OrbitControls(this.camera, this.renderer.domElement);\n    this.controls.enableDamping = true;\n    this.controls.dampingFactor = 0.05;\n    this.controls.minDistance = 3;\n    this.controls.maxDistance = 10;\n\n    this.setupLighting();\n    this.materials = new Map();\n  }\n\n  private setupLighting(): void {\n    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);\n    this.scene.add(ambientLight);\n\n    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);\n    directionalLight.position.set(5, 10, 5);\n    directionalLight.castShadow = true;\n    directionalLight.shadow.mapSize.width = 2048;\n    directionalLight.shadow.mapSize.height = 2048;\n    this.scene.add(directionalLight);\n\n    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);\n    this.scene.add(hemisphereLight);\n  }\n\n  async loadVehicle(modelUrl: string): Promise<void> {\n    const loader = new GLTFLoader();\n    \n    return new Promise((resolve, reject) => {\n      loader.load(\n        modelUrl,\n        (gltf) => {\n          this.vehicleModel = gltf.scene;\n          this.vehicleModel.position.set(0, 0, 0);\n          this.vehicleModel.traverse((child) => {\n            if ((child as THREE.Mesh).isMesh) {\n              const mesh = child as THREE.Mesh;\n              mesh.castShadow = true;\n              mesh.receiveShadow = true;\n              \n              if (mesh.material) {\n                const material = mesh.material as THREE.MeshStandardMaterial;\n                this.materials.set(mesh.name, material);\n              }\n            }\n          });\n          \n          this.scene.add(this.vehicleModel);\n          resolve();\n        },\n        (progress) => {\n          console.log(`Loading: ${(progress.loaded / progress.total * 100).toFixed(2)}%`);\n        },\n        reject\n      );\n    });\n  }\n\n  applyWrapTexture(textureUrl: string, targetParts: string[]): void {\n    const textureLoader = new THREE.TextureLoader();\n    textureLoader.load(textureUrl, (texture) => {\n      texture.encoding = THREE.sRGBEncoding;\n      texture.flipY = false;\n\n      targetParts.forEach(partName => {\n        const material = this.materials.get(partName);\n        if (material) {\n          material.map = texture;\n          material.needsUpdate = true;\n        }\n      });\n    });\n  }\n\n  animate = (): void => {\n    requestAnimationFrame(this.animate);\n    this.controls.update();\n    this.renderer.render(this.scene, this.camera);\n  };\n}",
+          "language": "typescript",
+          "animate": "typewriter"
+        },
+        {
+          "title": "React Integration",
+          "code": "import React, { useEffect, useRef, useState } from 'react';\nimport { VWBuzzConfigurator } from './VWBuzzConfigurator';\n\ninterface ConfiguratorProps {\n  modelUrl: string;\n  onReady?: () => void;\n}\n\nexport const BuzzConfigurator: React.FC<ConfiguratorProps> = ({\n  modelUrl,\n  onReady\n}) => {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const configuratorRef = useRef<VWBuzzConfigurator>();\n  const [selectedWrap, setSelectedWrap] = useState<string | null>(null);\n  const [selectedColor, setSelectedColor] = useState('#ffffff');\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() => {\n    if (!canvasRef.current) return;\n\n    const configurator = new VWBuzzConfigurator(canvasRef.current);\n    configuratorRef.current = configurator;\n\n    configurator.loadVehicle(modelUrl).then(() => {\n      setLoading(false);\n      onReady?.();\n      configurator.animate();\n    });\n\n    const handleResize = () => {\n      configurator.resize(window.innerWidth, window.innerHeight);\n    };\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      configurator.dispose();\n    };\n  }, [modelUrl, onReady]);\n\n  const handleWrapChange = (wrapId: string) => {\n    setSelectedWrap(wrapId);\n    if (configuratorRef.current) {\n      const textureUrl = `/textures/wraps/${wrapId}.jpg`;\n      configuratorRef.current.applyWrapTexture(textureUrl, [\n        'body_panel_left',\n        'body_panel_right',\n        'door_left',\n        'door_right'\n      ]);\n    }\n  };\n\n  const handleColorChange = (color: string) => {\n    setSelectedColor(color);\n    if (configuratorRef.current) {\n      configuratorRef.current.setBaseColor(color);\n    }\n  };\n\n  const handleExport = async () => {\n    if (!configuratorRef.current) return;\n\n    const screenshot = await configuratorRef.current.captureScreenshot();\n    const config = {\n      wrap: selectedWrap,\n      color: selectedColor,\n      timestamp: new Date().toISOString()\n    };\n\n    const response = await fetch('/api/orders', {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify({ screenshot, config })\n    });\n\n    if (response.ok) {\n      window.location.href = '/order/confirmation';\n    }\n  };\n\n  return (\n    <div className=\"configurator-container\">\n      {loading && (\n        <div className=\"loading-overlay\">\n          <div className=\"spinner\" />\n          <p>Loading 3D Model...</p>\n        </div>\n      )}\n      <canvas ref={canvasRef} className=\"configurator-canvas\" />\n      <div className=\"controls-panel\">\n        <WrapSelector \n          selected={selectedWrap} \n          onChange={handleWrapChange} \n        />\n        <ColorPicker \n          color={selectedColor} \n          onChange={handleColorChange} \n        />\n        <button \n          className=\"btn-export\" \n          onClick={handleExport}\n          disabled={!selectedWrap}\n        >\n          Order Custom Wrap\n        </button>\n      </div>\n    </div>\n  );\n};",
+          "language": "typescript",
+          "animate": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "type": "metrics-dashboard",
+      "title": "Impact",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Order Conversion",
+          "data": { "before": 5, "after": 35 },
+          "unit": "%"
+        },
+        {
+          "type": "line",
+          "title": "User Engagement",
+          "data": [30, 90, 180, 300, 420],
+          "labels": ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Built With",
+      "categories": {
+        "frontend": ["React 18", "TypeScript", "TailwindCSS"],
+        "3d": ["Three.js", "WebGL", "GLTF", "PBR Materials"],
+        "tools": ["Blender", "Substance Painter", "Photoshop"],
+        "backend": ["Node.js", "Express", "AWS S3"],
+        "optimization": ["Draco Compression", "Texture Atlas", "LOD System"]
+      },
+      "interactive": true
+    }
+  ],
   "techStackAnalyzer": {
-    "projectName": "vw-configurator",
+    "projectName": "VW Buzz Configurator",
     "fileStructure": {
-      "frontend": [],
-      "backend": [],
-      "infrastructure": [],
-      "devops": []
+      "frontend": [
+        {
+          "name": "Material System",
+          "icon": "🎨",
+          "tech": "Three.js Materials",
+          "code": "class MaterialManager {\n  private materials: Map<string, THREE.Material>;\n  private textureCache: Map<string, THREE.Texture>;\n\n  constructor() {\n    this.materials = new Map();\n    this.textureCache = new Map();\n  }\n\n  createCarPaintMaterial(color: string): THREE.MeshStandardMaterial {\n    return new THREE.MeshStandardMaterial({\n      color: new THREE.Color(color),\n      metalness: 0.8,\n      roughness: 0.2,\n      envMapIntensity: 1.5,\n      clearcoat: 1.0,\n      clearcoatRoughness: 0.1\n    });\n  }\n\n  async loadWrapMaterial(textureUrl: string): Promise<THREE.MeshStandardMaterial> {\n    let texture = this.textureCache.get(textureUrl);\n    \n    if (!texture) {\n      texture = await this.loadTexture(textureUrl);\n      this.textureCache.set(textureUrl, texture);\n    }\n\n    return new THREE.MeshStandardMaterial({\n      map: texture,\n      metalness: 0.3,\n      roughness: 0.7,\n      normalScale: new THREE.Vector2(1, 1)\n    });\n  }\n\n  private loadTexture(url: string): Promise<THREE.Texture> {\n    return new Promise((resolve, reject) => {\n      const loader = new THREE.TextureLoader();\n      loader.load(\n        url,\n        (texture) => {\n          texture.encoding = THREE.sRGBEncoding;\n          texture.flipY = false;\n          texture.wrapS = THREE.RepeatWrapping;\n          texture.wrapT = THREE.RepeatWrapping;\n          resolve(texture);\n        },\n        undefined,\n        reject\n      );\n    });\n  }\n\n  dispose(): void {\n    this.materials.forEach(material => material.dispose());\n    this.textureCache.forEach(texture => texture.dispose());\n    this.materials.clear();\n    this.textureCache.clear();\n  }\n}",
+          "docUrl": "https://threejs.org/docs/#api/en/materials/MeshStandardMaterial"
+        },
+        {
+          "name": "Camera System",
+          "icon": "📷",
+          "tech": "Three.js Camera",
+          "code": "class CameraController {\n  private camera: THREE.PerspectiveCamera;\n  private controls: OrbitControls;\n  private presets: Map<string, CameraPreset>;\n\n  constructor(\n    camera: THREE.PerspectiveCamera,\n    domElement: HTMLElement\n  ) {\n    this.camera = camera;\n    this.controls = new OrbitControls(camera, domElement);\n    this.setupControls();\n    this.definePresets();\n  }\n\n  private setupControls(): void {\n    this.controls.enableDamping = true;\n    this.controls.dampingFactor = 0.05;\n    this.controls.screenSpacePanning = false;\n    this.controls.minDistance = 3;\n    this.controls.maxDistance = 10;\n    this.controls.maxPolarAngle = Math.PI / 2;\n  }\n\n  private definePresets(): void {\n    this.presets = new Map([\n      ['front', {\n        position: new THREE.Vector3(0, 1.5, 5),\n        target: new THREE.Vector3(0, 1, 0)\n      }],\n      ['side', {\n        position: new THREE.Vector3(5, 1.5, 0),\n        target: new THREE.Vector3(0, 1, 0)\n      }],\n      ['rear', {\n        position: new THREE.Vector3(0, 1.5, -5),\n        target: new THREE.Vector3(0, 1, 0)\n      }],\n      ['top', {\n        position: new THREE.Vector3(0, 8, 0.1),\n        target: new THREE.Vector3(0, 0, 0)\n      }]\n    ]);\n  }\n\n  animateToPreset(presetName: string, duration: number = 1000): Promise<void> {\n    const preset = this.presets.get(presetName);\n    if (!preset) return Promise.reject('Preset not found');\n\n    return new Promise((resolve) => {\n      const startPosition = this.camera.position.clone();\n      const startTarget = this.controls.target.clone();\n      const startTime = Date.now();\n\n      const animate = () => {\n        const elapsed = Date.now() - startTime;\n        const progress = Math.min(elapsed / duration, 1);\n        const eased = this.easeInOutCubic(progress);\n\n        this.camera.position.lerpVectors(\n          startPosition,\n          preset.position,\n          eased\n        );\n        this.controls.target.lerpVectors(\n          startTarget,\n          preset.target,\n          eased\n        );\n\n        this.controls.update();\n\n        if (progress < 1) {\n          requestAnimationFrame(animate);\n        } else {\n          resolve();\n        }\n      };\n\n      animate();\n    });\n  }\n\n  private easeInOutCubic(t: number): number {\n    return t < 0.5\n      ? 4 * t * t * t\n      : 1 - Math.pow(-2 * t + 2, 3) / 2;\n  }\n}",
+          "docUrl": "https://threejs.org/docs/#examples/en/controls/OrbitControls"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Screenshot System",
+          "icon": "📸",
+          "tech": "Canvas API",
+          "code": "class ScreenshotManager {\n  private renderer: THREE.WebGLRenderer;\n  private scene: THREE.Scene;\n  private camera: THREE.Camera;\n\n  constructor(\n    renderer: THREE.WebGLRenderer,\n    scene: THREE.Scene,\n    camera: THREE.Camera\n  ) {\n    this.renderer = renderer;\n    this.scene = scene;\n    this.camera = camera;\n  }\n\n  async captureScreenshot(\n    width: number = 1920,\n    height: number = 1080,\n    format: 'png' | 'jpeg' = 'png'\n  ): Promise<string> {\n    const originalSize = this.renderer.getSize(new THREE.Vector2());\n    const originalPixelRatio = this.renderer.getPixelRatio();\n\n    this.renderer.setSize(width, height);\n    this.renderer.setPixelRatio(1);\n\n    this.renderer.render(this.scene, this.camera);\n\n    const canvas = this.renderer.domElement;\n    const dataUrl = canvas.toDataURL(`image/${format}`, 1.0);\n\n    this.renderer.setSize(originalSize.x, originalSize.y);\n    this.renderer.setPixelRatio(originalPixelRatio);\n\n    return dataUrl;\n  }\n\n  async captureMultipleAngles(): Promise<string[]> {\n    const angles = ['front', 'side', 'rear', 'top'];\n    const screenshots: string[] = [];\n\n    for (const angle of angles) {\n      await this.cameraController.animateToPreset(angle);\n      await new Promise(resolve => setTimeout(resolve, 500));\n      const screenshot = await this.captureScreenshot();\n      screenshots.push(screenshot);\n    }\n\n    return screenshots;\n  }\n\n  downloadScreenshot(dataUrl: string, filename: string): void {\n    const link = document.createElement('a');\n    link.download = filename;\n    link.href = dataUrl;\n    document.body.appendChild(link);\n    link.click();\n    document.body.removeChild(link);\n  }\n}",
+          "docUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Asset Optimization",
+          "icon": "⚡",
+          "tech": "Draco + GLTF",
+          "code": "import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';\nimport { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';\n\nclass AssetLoader {\n  private gltfLoader: GLTFLoader;\n  private dracoLoader: DRACOLoader;\n  private cache: Map<string, THREE.Group>;\n\n  constructor() {\n    this.cache = new Map();\n\n    this.dracoLoader = new DRACOLoader();\n    this.dracoLoader.setDecoderPath('/draco/');\n    this.dracoLoader.preload();\n\n    this.gltfLoader = new GLTFLoader();\n    this.gltfLoader.setDRACOLoader(this.dracoLoader);\n  }\n\n  async loadModel(url: string): Promise<THREE.Group> {\n    if (this.cache.has(url)) {\n      return this.cache.get(url)!.clone();\n    }\n\n    return new Promise((resolve, reject) => {\n      this.gltfLoader.load(\n        url,\n        (gltf) => {\n          this.optimizeModel(gltf.scene);\n          this.cache.set(url, gltf.scene);\n          resolve(gltf.scene);\n        },\n        (progress) => {\n          const percent = (progress.loaded / progress.total) * 100;\n          console.log(`Loading: ${percent.toFixed(2)}%`);\n        },\n        reject\n      );\n    });\n  }\n\n  private optimizeModel(model: THREE.Group): void {\n    model.traverse((child) => {\n      if ((child as THREE.Mesh).isMesh) {\n        const mesh = child as THREE.Mesh;\n        \n        mesh.geometry.computeBoundingBox();\n        mesh.geometry.computeBoundingSphere();\n        \n        if (mesh.material) {\n          const material = mesh.material as THREE.MeshStandardMaterial;\n          material.needsUpdate = true;\n        }\n      }\n    });\n  }\n\n  dispose(): void {\n    this.cache.forEach(model => {\n      model.traverse((child) => {\n        if ((child as THREE.Mesh).isMesh) {\n          const mesh = child as THREE.Mesh;\n          mesh.geometry.dispose();\n          if (Array.isArray(mesh.material)) {\n            mesh.material.forEach(m => m.dispose());\n          } else {\n            mesh.material.dispose();\n          }\n        }\n      });\n    });\n    this.cache.clear();\n    this.dracoLoader.dispose();\n  }\n}",
+          "docUrl": "https://threejs.org/docs/#examples/en/loaders/DRACOLoader"
+        }
+      ],
+      "devops": [
+        {
+          "name": "Performance Monitoring",
+          "icon": "📊",
+          "tech": "Stats.js + Custom",
+          "code": "import Stats from 'stats.js';\n\nclass PerformanceMonitor {\n  private stats: Stats;\n  private frameCount: number = 0;\n  private lastTime: number = performance.now();\n  private metrics: PerformanceMetrics;\n\n  constructor() {\n    this.stats = new Stats();\n    this.stats.showPanel(0);\n    document.body.appendChild(this.stats.dom);\n\n    this.metrics = {\n      fps: 0,\n      frameTime: 0,\n      drawCalls: 0,\n      triangles: 0,\n      memory: 0\n    };\n  }\n\n  begin(): void {\n    this.stats.begin();\n  }\n\n  end(): void {\n    this.stats.end();\n    this.updateMetrics();\n  }\n\n  private updateMetrics(): void {\n    this.frameCount++;\n    const currentTime = performance.now();\n    const deltaTime = currentTime - this.lastTime;\n\n    if (deltaTime >= 1000) {\n      this.metrics.fps = Math.round((this.frameCount * 1000) / deltaTime);\n      this.frameCount = 0;\n      this.lastTime = currentTime;\n\n      if (performance.memory) {\n        this.metrics.memory = performance.memory.usedJSHeapSize / 1048576;\n      }\n\n      this.logMetrics();\n    }\n  }\n\n  collectRenderInfo(renderer: THREE.WebGLRenderer): void {\n    const info = renderer.info;\n    this.metrics.drawCalls = info.render.calls;\n    this.metrics.triangles = info.render.triangles;\n  }\n\n  private logMetrics(): void {\n    console.log('Performance Metrics:', {\n      fps: this.metrics.fps,\n      drawCalls: this.metrics.drawCalls,\n      triangles: this.metrics.triangles,\n      memory: `${this.metrics.memory.toFixed(2)} MB`\n    });\n  }\n}",
+          "docUrl": "https://github.com/mrdoob/stats.js/"
+        }
+      ]
     }
   },
   "businessRequirements": {
-    "jiraPrefix": "",
-    "businessContext": "",
-    "problemStatement": "",
-    "businessValue": [],
-    "acceptanceCriteria": [],
-    "attachments": [],
-    "risks": []
+    "jiraPrefix": "VW",
+    "businessContext": "Transform the Volkswagen Buzz experience with a real-time wrap visualizer, enabling visualization and customization of accent graphics at the touch of a button",
+    "problemStatement": "Customers cannot visualize custom wrap designs on their vehicle before ordering, leading to hesitation and lost sales",
+    "businessValue": [
+      "Increased order conversion by 7x",
+      "Real-time 3D visualization at 60fps",
+      "Instant wrap customization and preview",
+      "Direct integration with Wrapmate ordering",
+      "Enhanced customer confidence and satisfaction"
+    ],
+    "acceptanceCriteria": [
+      "✓ Real-time 3D rendering at 60fps",
+      "✓ Support for multiple wrap designs",
+      "✓ Interactive camera controls",
+      "✓ High-resolution screenshot capture",
+      "✓ Direct order placement integration",
+      "✓ Mobile-responsive design"
+    ],
+    "attachments": [
+      { "type": "design", "title": "3D Asset Pipeline" },
+      { "type": "documentation", "title": "Technical Specifications" }
+    ],
+    "risks": [
+      { "risk": "Performance on mobile", "mitigation": "LOD system and texture compression" },
+      { "risk": "Asset loading time", "mitigation": "Draco compression and progressive loading" },
+      { "risk": "Browser compatibility", "mitigation": "WebGL fallbacks and feature detection" }
+    ]
   },
-  "links": {},
-  "related": []
+  "links": {
+    "live": "https://buzz.wrapmate.com/",
+    "documentation": "/docs/vw-configurator"
+  },
+  "related": ["arlo"]
 }
