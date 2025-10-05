@@ -1,3 +1,56 @@
-graph TD
-    A[AssembleJS Solution] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Shell["Shell Application"]
+        HOST[Host Container<br/>TypeScript]
+        ROUTER[Module Router<br/>Dynamic Imports]
+        SHARED[Shared Dependencies<br/>React, React-DOM]
+    end
+
+    subgraph Federation["Module Federation"]
+        WEBPACK[Webpack 5<br/>Federation Plugin]
+        CONTAINER[Module Container<br/>Remote Entry Points]
+        RESOLVER[Dependency Resolver<br/>Version Matching]
+    end
+
+    subgraph Remotes["Remote Modules"]
+        HEADER[Header Module<br/>React App]
+        CART[Cart Module<br/>Vue App]
+        CHECKOUT[Checkout Module<br/>React App]
+        ADMIN[Admin Module<br/>Angular App]
+    end
+
+    subgraph Communication["Inter-Module Communication"]
+        EVENTS[Event Bus<br/>Cross-Framework]
+        STATE[Shared State<br/>Module Context]
+        ERRORS[Error Boundaries<br/>Isolation + Fallbacks]
+    end
+
+    subgraph Deploy["Deployment"]
+        CI[GitHub Actions<br/>Independent Builds]
+        CDN[CloudFront CDN<br/>Module Distribution]
+        MANIFEST[Module Manifest<br/>Version Registry]
+    end
+
+    HOST --> ROUTER
+    ROUTER --> WEBPACK
+    WEBPACK --> CONTAINER
+    CONTAINER --> RESOLVER
+    RESOLVER --> SHARED
+    RESOLVER --> HEADER
+    RESOLVER --> CART
+    RESOLVER --> CHECKOUT
+    RESOLVER --> ADMIN
+    HEADER --> EVENTS
+    CART --> EVENTS
+    CHECKOUT --> EVENTS
+    ADMIN --> EVENTS
+    EVENTS --> STATE
+    STATE --> ERRORS
+    CI --> MANIFEST
+    MANIFEST --> CDN
+    CDN --> CONTAINER
+
+    style Shell fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Federation fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Remotes fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Communication fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Deploy fill:#fce4ec,stroke:#ad1457,stroke-width:2px

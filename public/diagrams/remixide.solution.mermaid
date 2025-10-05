@@ -1,62 +1,39 @@
-graph TB
-    subgraph "Electron Application"
-        Main[Main Process - index.js]
-        Renderer[Renderer Process]
-        BrowserWindow[BrowserWindow Instance]
-        
-        Main --> |"Creates"| BrowserWindow
-        BrowserWindow --> |"Contains"| Renderer
-        Renderer --> |"Loads"| RemixWeb
+graph LR
+    subgraph Desktop["Electron Desktop"]
+        ELECTRON[Electron Framework<br/>Cross-Platform]
+        IPC[IPC Communication<br/>Main ↔ Renderer]
     end
-    
-    subgraph "Platform Integration"
-        Windows[Windows Installer]
-        MacOS[macOS App Bundle]
-        Linux[Linux Packages]
-        
-        Windows --> |"Squirrel.Windows"| AutoUpdate
-        MacOS --> |".app bundle"| DockIntegration
-        Linux --> |".deb/.rpm"| PackageManager
+
+    subgraph Editor["Code Editor"]
+        MONACO[Monaco Editor<br/>VS Code Engine]
+        SYNTAX[Syntax Highlighting<br/>Multi-Language]
+        INTELLISENSE[IntelliSense<br/>Auto-Completion]
     end
-    
-    subgraph "Build Pipeline"
-        ElectronForge[Electron Forge]
-        Makers[Platform Makers]
-        Assets[Icon Assets]
-        
-        ElectronForge --> |"Packages"| Makers
-        Assets --> |"Embedded in"| Makers
-        Makers --> |"Generates"| Installers
+
+    subgraph Compiler["Solidity Compiler"]
+        SOLC[solc-js<br/>JavaScript Binding]
+        COMPILE[Compilation<br/>Smart Contracts]
+        ABI[ABI Generation<br/>Contract Interface]
     end
-    
-    subgraph "Runtime Components"
-        RemixWeb[Remix IDE Web]
-        DevTools[Chrome DevTools]
-        NodeAPIs[Node.js APIs]
-        
-        RemixWeb --> |"HTTP"| Ethereum
-        DevTools --> |"Debug"| SmartContracts
-        NodeAPIs --> |"File System"| LocalProjects
+
+    subgraph Blockchain["Web3 Integration"]
+        WEB3[Web3.js<br/>Ethereum Library]
+        DEPLOY[Contract Deployment<br/>Testnet/Mainnet]
+        INTERACT[Contract Interaction<br/>Function Calls]
     end
-    
-    subgraph "Distribution"
-        GitHub[GitHub Releases]
-        AutoUpdate[Auto Update]
-        Installers[Native Installers]
-        
-        GitHub --> |"Hosts"| Installers
-        AutoUpdate --> |"Downloads"| GitHub
-        Installers --> |"Install"| ElectronApp
-    end
-    
-    Ethereum[Ethereum Network]
-    SmartContracts[Smart Contracts]
-    LocalProjects[Local Projects]
-    ElectronApp[Installed App]
-    DockIntegration[Dock Integration]
-    PackageManager[Package Managers]
-    
-    style Main fill:#dce4ff
-    style RemixWeb fill:#fff4d4
-    style ElectronForge fill:#e1f5e1
-    style BrowserWindow fill:#ffd4d4
+
+    ELECTRON --> IPC
+    IPC --> MONACO
+    MONACO --> SYNTAX
+    SYNTAX --> INTELLISENSE
+    INTELLISENSE --> SOLC
+    SOLC --> COMPILE
+    COMPILE --> ABI
+    ABI --> WEB3
+    WEB3 --> DEPLOY
+    DEPLOY --> INTERACT
+
+    style Desktop fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Editor fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Compiler fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Blockchain fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

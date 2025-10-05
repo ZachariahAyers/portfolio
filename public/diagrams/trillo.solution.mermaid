@@ -1,78 +1,41 @@
-graph TB
-    subgraph "Page Structure"
-        Container[Main Container]
-        Header[Header Component]
-        Content[Content Wrapper]
-        Sidebar[Sidebar Navigation]
-        HotelView[Hotel View]
-        
-        Container --> Header
-        Container --> Content
-        Content --> Sidebar
-        Content --> HotelView
+graph LR
+    subgraph Layout["Flexbox Layout"]
+        CONTAINER[Container<br/>Flex Parent]
+        SIDEBAR[Sidebar<br/>Navigation]
+        CONTENT[Content Area<br/>Main View]
     end
-    
-    subgraph "Flexbox Layout System"
-        FlexContainer[display: flex]
-        FlexDirection[flex-direction]
-        FlexGrow[flex: 1]
-        FlexBasis[flex-basis]
-        
-        FlexContainer --> |"Column/Row"| FlexDirection
-        FlexContainer --> |"Expand"| FlexGrow
-        FlexContainer --> |"Size"| FlexBasis
+
+    subgraph Components["UI Components"]
+        HOTEL[Hotel Card<br/>Flex Item]
+        GALLERY[Photo Gallery<br/>Flex Grid]
+        REVIEWS[User Reviews<br/>Flex Layout]
     end
-    
-    subgraph "Component Architecture"
-        SearchBar[Search Component]
-        UserNav[User Navigation]
-        Gallery[Image Gallery]
-        Overview[Hotel Overview]
-        Details[Hotel Details]
-        Reviews[User Reviews]
-        CTA[Call to Action]
-        
-        Header --> SearchBar
-        Header --> UserNav
-        HotelView --> Gallery
-        HotelView --> Overview
-        HotelView --> Details
-        HotelView --> Reviews
-        HotelView --> CTA
+
+    subgraph Styling["SCSS Architecture"]
+        VARIABLES[SCSS Variables<br/>Design Tokens]
+        MIXINS[Flexbox Mixins<br/>Responsive]
+        BEM[BEM Naming<br/>Component Classes]
     end
-    
-    subgraph "CSS Features"
-        Variables[CSS Custom Properties]
-        SVGSprite[SVG Icon System]
-        Animations[CSS Animations]
-        BEM[BEM Methodology]
-        
-        Variables --> |"--color-primary"| Theme
-        SVGSprite --> |"use xlink:href"| Icons
-        Animations --> |"transition"| Hover
-        BEM --> |"block__element--modifier"| Naming
+
+    subgraph Assets["Asset Pipeline"]
+        IMAGES[Optimized Images<br/>WebP + Fallback]
+        ICONS[SVG Sprites<br/>Icon System]
+        FONTS[Web Fonts<br/>Google Fonts]
     end
-    
-    subgraph "Build Process"
-        SCSS[Sass/SCSS]
-        NodeSass[node-sass]
-        Autoprefixer[PostCSS Autoprefixer]
-        LiveServer[Live Server]
-        
-        SCSS --> |"Compile"| NodeSass
-        NodeSass --> |"Prefix"| Autoprefixer
-        Autoprefixer --> |"Output"| CSS
-        LiveServer --> |"Serve"| Browser
-    end
-    
-    Theme[Theming System]
-    Icons[Icon Library]
-    Hover[Hover Effects]
-    Naming[Class Naming]
-    CSS[style.css]
-    Browser[Web Browser]
-    
-    style Container fill:#e1f5e1
-    style FlexContainer fill:#dce4ff
-    style Variables fill:#fff4d4
-    style SCSS fill:#ffd4d4
+
+    CONTAINER --> SIDEBAR
+    CONTAINER --> CONTENT
+    CONTENT --> HOTEL
+    CONTENT --> GALLERY
+    CONTENT --> REVIEWS
+    REVIEWS --> VARIABLES
+    VARIABLES --> MIXINS
+    MIXINS --> BEM
+    BEM --> IMAGES
+    IMAGES --> ICONS
+    ICONS --> FONTS
+
+    style Layout fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Components fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Styling fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Assets fill:#fff3e0,stroke:#f57c00,stroke-width:2px

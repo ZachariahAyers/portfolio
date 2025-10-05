@@ -8,9 +8,24 @@
     "badge": "Full Stack",
     "coverImage": "/images/case-studies/lively-hero.png",
     "metrics": [
-      { "value": "Real-Time", "label": "Chat with SignalR", "animate": "text", "icon": "message-circle" },
-      { "value": "CQRS", "label": "Pattern", "animate": "text", "icon": "layers" },
-      { "value": "< 100ms", "label": "API Response", "animate": "counter", "icon": "zap" }
+      {
+        "value": "Real-Time",
+        "label": "Chat with SignalR",
+        "animate": "text",
+        "icon": "message-circle"
+      },
+      {
+        "value": "CQRS",
+        "label": "Pattern",
+        "animate": "text",
+        "icon": "layers"
+      },
+      {
+        "value": "< 100ms",
+        "label": "API Response",
+        "animate": "counter",
+        "icon": "zap"
+      }
     ]
   },
   "timeline": {
@@ -25,12 +40,20 @@
       "title": "The Challenge",
       "before": {
         "label": "Monolithic Social Apps",
-        "points": ["Tightly coupled code", "Poor scalability", "Hard to test"],
+        "points": [
+          "Tightly coupled code",
+          "Poor scalability",
+          "Hard to test"
+        ],
         "visual": "monolithic-social"
       },
       "after": {
         "label": "Clean Architecture",
-        "points": ["Separated concerns", "Easy to scale", "Testable code"],
+        "points": [
+          "Separated concerns",
+          "Easy to scale",
+          "Testable code"
+        ],
         "visual": "clean-architecture"
       }
     },
@@ -39,11 +62,28 @@
       "type": "interactive-architecture",
       "title": "Clean Architecture with CQRS",
       "components": [
-        { "name": "API", "framework": "ASP.NET Core", "team": "Backend" },
-        { "name": "Core", "framework": "MediatR", "team": "Business Logic" },
-        { "name": "Client", "framework": "React", "team": "Frontend" }
+        {
+          "name": "API",
+          "framework": "ASP.NET Core",
+          "team": "Backend"
+        },
+        {
+          "name": "Core",
+          "framework": "MediatR",
+          "team": "Business Logic"
+        },
+        {
+          "name": "Client",
+          "framework": "React",
+          "team": "Frontend"
+        }
       ],
-      "features": ["SignalR Real-Time", "Photo Uploads", "Activity Management", "JWT Auth"]
+      "features": [
+        "SignalR Real-Time",
+        "Photo Uploads",
+        "Activity Management",
+        "JWT Auth"
+      ]
     },
     {
       "id": "code",
@@ -66,33 +106,71 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
+      "type": "business-report",
       "title": "Impact",
       "charts": [
         {
           "type": "bar",
           "title": "Code Quality",
-          "data": { "before": 100, "after": 20 },
+          "data": {
+            "before": 100,
+            "after": 20
+          },
           "unit": "% coupling"
         },
         {
           "type": "line",
           "title": "Performance",
-          "data": [100, 85, 70, 55, 40],
-          "labels": ["Start", "Month 1", "Month 2", "Month 3", "Final"]
+          "data": [
+            100,
+            85,
+            70,
+            55,
+            40
+          ],
+          "labels": [
+            "Start",
+            "Month 1",
+            "Month 2",
+            "Month 3",
+            "Final"
+          ]
         }
-      ]
+      ],
+      "executive_summary": "Lively demonstrates enterprise ASP.NET Core architecture with CQRS pattern, SignalR real-time updates, and complex Entity Framework relationships. Achieved sub-100ms API responses, <50ms SignalR latency, and successfully tested with 100+ concurrent users."
     },
     {
       "id": "tech",
       "type": "tech-stack",
       "title": "Built With",
       "categories": {
-        "backend": ["ASP.NET Core 3.1", "Entity Framework Core", "MediatR", "AutoMapper", "SignalR"],
-        "frontend": ["React 16", "MobX", "Semantic UI React", "React Router DOM", "Axios"],
-        "authentication": ["JWT", "ASP.NET Core Identity"],
-        "database": ["SQLite", "SQL Server"],
-        "tools": ["Postman", "Visual Studio", "VS Code"]
+        "backend": [
+          "ASP.NET Core 3.1",
+          "Entity Framework Core",
+          "MediatR",
+          "AutoMapper",
+          "SignalR"
+        ],
+        "frontend": [
+          "React 16",
+          "MobX",
+          "Semantic UI React",
+          "React Router DOM",
+          "Axios"
+        ],
+        "authentication": [
+          "JWT",
+          "ASP.NET Core Identity"
+        ],
+        "database": [
+          "SQLite",
+          "SQL Server"
+        ],
+        "tools": [
+          "Postman",
+          "Visual Studio",
+          "VS Code"
+        ]
       },
       "interactive": true
     }
@@ -179,12 +257,24 @@
       "✓ Responsive React frontend with MobX state management"
     ],
     "attachments": [
-      { "type": "architecture", "title": "Clean Architecture Diagram" },
-      { "type": "documentation", "title": "CQRS Pattern Implementation" }
+      {
+        "type": "architecture",
+        "title": "Clean Architecture Diagram"
+      },
+      {
+        "type": "documentation",
+        "title": "CQRS Pattern Implementation"
+      }
     ],
     "risks": [
-      { "risk": "SignalR scaling with multiple servers", "mitigation": "Redis backplane for horizontal scaling" },
-      { "risk": "Photo storage costs", "mitigation": "Cloudinary free tier with optimization" }
+      {
+        "risk": "SignalR scaling with multiple servers",
+        "mitigation": "Redis backplane for horizontal scaling"
+      },
+      {
+        "risk": "Photo storage costs",
+        "mitigation": "Cloudinary free tier with optimization"
+      }
     ]
   },
   "links": {
@@ -192,5 +282,9 @@
     "live": "https://lively.zachayers.io",
     "documentation": "/projects/lively/README.md"
   },
-  "related": ["chalkboard", "done-with-it", "natours"]
+  "related": [
+    "chalkboard",
+    "done-with-it",
+    "natours"
+  ]
 }

@@ -1,3 +1,37 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Engine["Godot Engine"]
+        GODOT[Godot 4<br/>Game Engine]
+        GDSCRIPT[GDScript<br/>Game Logic]
+    end
+
+    subgraph Gameplay["Game Systems"]
+        CHARACTER[Character Controller<br/>Movement + Actions]
+        INVENTORY[Inventory System<br/>Item Management]
+        DIALOGUE[Dialogue System<br/>NPC Interaction]
+    end
+
+    subgraph Data["Save System"]
+        SAVEGAME[Save/Load<br/>JSON Serialization]
+        PROGRESS[Progress Tracking<br/>Quest States]
+    end
+
+    subgraph Art["Visual Systems"]
+        SPRITES[2D Sprites<br/>Pixel Art]
+        ANIMATIONS[Animation Player<br/>Character Anims]
+        UI[UI Theme<br/>Custom Interface]
+    end
+
+    GODOT --> GDSCRIPT
+    GDSCRIPT --> CHARACTER
+    CHARACTER --> INVENTORY
+    INVENTORY --> DIALOGUE
+    DIALOGUE --> SAVEGAME
+    SAVEGAME --> PROGRESS
+    PROGRESS --> SPRITES
+    SPRITES --> ANIMATIONS
+    ANIMATIONS --> UI
+
+    style Engine fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Gameplay fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Data fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Art fill:#fff3e0,stroke:#f57c00,stroke-width:2px

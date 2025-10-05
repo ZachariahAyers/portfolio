@@ -1,189 +1,116 @@
 {
   "id": "chewable-studios",
-  "category": "game-studio",
-  "featured": false,
+  "category": "enterprise",
+  "featured": true,
   "hero": {
     "title": "Chewable Studios",
-    "tagline": "Independent Game Development Studio",
-    "badge": "Game Studio",
-    "coverImage": "/images/case-studies/chewable-studios-hero.png",
+    "tagline": "Reimagining Educational Gaming for Children",
+    "badge": "EdTech Enterprise",
     "metrics": [
-      { "value": "Unity", "label": "Game Engine", "animate": "text", "icon": "gamepad-2" },
-      { "value": "3", "label": "Games Shipped", "animate": "counter", "icon": "trophy" },
-      { "value": "C#", "label": "Primary Language", "animate": "text", "icon": "code" }
+      { "value": "Games First", "label": "Philosophy", "animate": "fade", "icon": "gamepad-2" },
+      { "value": "Cross-Platform", "label": "Deployment", "animate": "fade", "icon": "layout" },
+      { "value": "AI-Driven", "label": "Difficulty", "animate": "fade", "icon": "brain" }
     ]
   },
   "timeline": {
-    "duration": "Ongoing",
+    "duration": "2023 - Present",
     "role": "Founder & Lead Developer",
-    "year": "2020-Present"
+    "year": "2023-Present"
   },
   "sections": [
     {
       "id": "problem",
       "type": "visual-comparison",
-      "title": "The Vision",
+      "title": "The Challenge",
       "before": {
-        "label": "Traditional Games",
-        "points": ["Linear gameplay", "Weak narratives", "Limited mechanics"],
-        "visual": "traditional-games"
+        "label": "Modern EdTech Games",
+        "points": ["Dressed-up worksheets", "Not genuinely fun", "Lost the magic"],
+        "visual": "boring-edtech"
       },
       "after": {
-        "label": "Narrative-Driven Experiences",
-        "points": ["Story-first design", "Deep mechanics", "Player agency"],
-        "visual": "narrative-games"
+        "label": "Chewable Approach",
+        "points": ["Games first, education second", "Math Blaster spirit", "Actually enjoyable"],
+        "visual": "fun-learning"
       }
     },
     {
       "id": "solution",
       "type": "interactive-architecture",
-      "title": "Studio Technology Stack",
+      "title": "Studio Architecture",
       "components": [
-        { "name": "Unity Engine", "framework": "Unity 2021+", "team": "Core" },
-        { "name": "Narrative System", "framework": "Inky", "team": "Story" },
-        { "name": "Asset Pipeline", "framework": "Maya + Blender", "team": "Art" }
+        { "name": "Unity Game Engine", "framework": "Unity + C#", "team": "Core Development" },
+        { "name": "Parent Portal", "framework": "React + TypeScript", "team": "Web Platform" },
+        { "name": "Adaptive Learning", "framework": "AI Difficulty", "team": "EdTech" },
+        { "name": "Progress Analytics", "framework": "MongoDB + Charts", "team": "Data" }
       ],
-      "features": ["Dialogue System", "Quest Management", "Save System", "Animation Pipeline"]
-    },
-    {
-      "id": "code",
-      "type": "code-showcase",
-      "title": "Game Systems",
-      "snippets": [
-        {
-          "title": "Narrative Manager",
-          "code": "public class NarrativeManager : MonoBehaviour\n{\n    private Story _story;\n    private List<string> _currentChoices;\n\n    void Start()\n    {\n        _story = new Story(inkJSONAsset.text);\n        RefreshView();\n    }\n\n    void RefreshView()\n    {\n        while (_story.canContinue)\n        {\n            string text = _story.Continue();\n            DisplayDialogue(text);\n        }\n\n        if (_story.currentChoices.Count > 0)\n        {\n            _currentChoices = _story.currentChoices\n                .Select(c => c.text)\n                .ToList();\n            DisplayChoices(_currentChoices);\n        }\n        else\n        {\n            EndDialogue();\n        }\n    }\n\n    public void MakeChoice(int choiceIndex)\n    {\n        _story.ChooseChoiceIndex(choiceIndex);\n        RefreshView();\n    }\n}",
-          "language": "csharp",
-          "animate": "typewriter"
-        },
-        {
-          "title": "Character Controller",
-          "code": "public class CharacterController : MonoBehaviour\n{\n    [SerializeField] private float moveSpeed = 5f;\n    [SerializeField] private Animator animator;\n    private NavMeshAgent _agent;\n    private Vector2 _movement;\n\n    void Start()\n    {\n        _agent = GetComponent<NavMeshAgent>();\n        _agent.updateRotation = false;\n        _agent.updateUpAxis = false;\n    }\n\n    void Update()\n    {\n        _movement.x = Input.GetAxisRaw(\"Horizontal\");\n        _movement.y = Input.GetAxisRaw(\"Vertical\");\n\n        animator.SetFloat(\"Horizontal\", _movement.x);\n        animator.SetFloat(\"Vertical\", _movement.y);\n        animator.SetFloat(\"Speed\", _movement.sqrMagnitude);\n    }\n\n    void FixedUpdate()\n    {\n        Vector3 moveDirection = new Vector3(_movement.x, _movement.y, 0);\n        _agent.velocity = moveDirection * moveSpeed;\n    }\n}",
-          "language": "csharp",
-          "animate": "highlight"
-        }
-      ]
+      "features": ["Adaptive Difficulty", "Progress Tracking", "Parent Dashboard", "Multiplayer Learning"]
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Studio Impact",
-      "charts": [
+      "type": "business-report",
+      "title": "Studio Progress",
+      "executive_summary": "Chewable Studios is actively developing multiple educational game prototypes with core technology systems established. The focus on genuinely fun gameplay combined with effective learning outcomes positions the studio to revive the golden age of educational gaming with modern technology.",
+      "sections": [
         {
-          "type": "bar",
-          "title": "Development Time",
-          "data": { "before": 24, "after": 12 },
-          "unit": "months"
+          "title": "Development Status",
+          "highlights": [
+            "Multiple game prototypes in active development",
+            "Core systems and frameworks established",
+            "Technology foundation complete",
+            "Community building with educators and parents"
+          ]
         },
         {
-          "type": "line",
-          "title": "Player Engagement",
-          "data": [100, 150, 280, 420, 650],
-          "labels": ["Launch", "Month 1", "Month 3", "Month 6", "Year 1"]
+          "title": "Vision & Goals",
+          "summary": "Creating games that children genuinely choose to play, making learning enjoyable through entertainment-first design. Targeting platform expansion to mobile/tablet, curriculum integration partnerships with schools, and global reach through localization."
+        },
+        {
+          "title": "Technical Foundation",
+          "metrics": [
+            { "metric": "Game Philosophy", "before": "Education first", "after": "Entertainment first", "change": "100%" },
+            { "metric": "Platform Support", "before": "Desktop only", "after": "Windows/Mac/iOS/Android", "change": "4x" },
+            { "metric": "Learning Analytics", "before": "None", "after": "AI-driven dashboards", "change": "New" }
+          ]
         }
       ]
     },
     {
       "id": "tech",
       "type": "tech-stack",
-      "title": "Studio Technology",
+      "title": "Technology Stack",
       "categories": {
-        "engine": ["Unity 2021+", "C#", ".NET Framework"],
-        "narrative": ["Inky", "Ink Language", "Dialogue System"],
-        "art": ["Maya", "Blender", "Photoshop", "Substance Painter"],
-        "tools": ["Git", "Plastic SCM", "Unity Collaborate"],
-        "audio": ["FMOD", "Audacity", "Pro Tools"]
+        "engine": ["Unity", "C#", "Photon Networking"],
+        "web": ["React", "TypeScript", "Node.js", "MongoDB"],
+        "analytics": ["Chart.js", "Custom Telemetry", "AWS"],
+        "tools": ["Unity Collaborate", "Git", "Blender"]
       },
       "interactive": true
     }
   ],
-  "techStackAnalyzer": {
-    "projectName": "Chewable Studios",
-    "fileStructure": {
-      "frontend": [
-        {
-          "name": "UI Toolkit System",
-          "icon": "🎮",
-          "tech": "Unity UI Toolkit",
-          "code": "<ui:UXML xmlns:ui=\"UnityEngine.UIElements\">\n  <ui:VisualElement class=\"dialogue-container\">\n    <ui:Label name=\"speaker-name\" class=\"speaker\" />\n    <ui:Label name=\"dialogue-text\" class=\"dialogue\" />\n    <ui:VisualElement name=\"choices-container\" class=\"choices\">\n      <ui:Button name=\"choice-1\" class=\"choice-button\" />\n      <ui:Button name=\"choice-2\" class=\"choice-button\" />\n      <ui:Button name=\"choice-3\" class=\"choice-button\" />\n    </ui:VisualElement>\n  </ui:VisualElement>\n</ui:UXML>",
-          "docUrl": "https://docs.unity3d.com/Manual/UIElements.html"
-        },
-        {
-          "name": "Animator Controller",
-          "icon": "🎬",
-          "tech": "Unity Animator",
-          "code": "public class AnimationController : MonoBehaviour\n{\n    private Animator _animator;\n    private static readonly int Speed = Animator.StringToHash(\"Speed\");\n    private static readonly int IsAttacking = Animator.StringToHash(\"IsAttacking\");\n\n    void Awake()\n    {\n        _animator = GetComponent<Animator>();\n    }\n\n    public void SetSpeed(float speed)\n    {\n        _animator.SetFloat(Speed, speed);\n    }\n\n    public void TriggerAttack()\n    {\n        _animator.SetTrigger(IsAttacking);\n    }\n\n    public void OnAttackAnimationComplete()\n    {\n        // Called via Animation Event\n        GameEvents.OnAttackComplete?.Invoke();\n    }\n}",
-          "docUrl": "https://docs.unity3d.com/Manual/class-AnimatorController.html"
-        }
-      ],
-      "backend": [
-        {
-          "name": "Save System",
-          "icon": "💾",
-          "tech": "Binary Serialization",
-          "code": "public class SaveSystem : MonoBehaviour\n{\n    private const string SaveFileName = \"save.dat\";\n\n    public static void SaveGame(GameData data)\n    {\n        string path = Path.Combine(\n            Application.persistentDataPath, \n            SaveFileName\n        );\n\n        BinaryFormatter formatter = new BinaryFormatter();\n        FileStream stream = new FileStream(path, FileMode.Create);\n\n        formatter.Serialize(stream, data);\n        stream.Close();\n    }\n\n    public static GameData LoadGame()\n    {\n        string path = Path.Combine(\n            Application.persistentDataPath, \n            SaveFileName\n        );\n\n        if (File.Exists(path))\n        {\n            BinaryFormatter formatter = new BinaryFormatter();\n            FileStream stream = new FileStream(path, FileMode.Open);\n            GameData data = formatter.Deserialize(stream) as GameData;\n            stream.Close();\n            return data;\n        }\n\n        return null;\n    }\n}",
-          "docUrl": "https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html"
-        },
-        {
-          "name": "Event System",
-          "icon": "📡",
-          "tech": "C# Events",
-          "code": "public static class GameEvents\n{\n    public static event Action<Item> OnItemCollected;\n    public static event Action<Quest> OnQuestStarted;\n    public static event Action<Quest> OnQuestCompleted;\n    public static event Action OnPlayerDeath;\n    public static event Action OnGamePaused;\n    public static event Action OnGameResumed;\n\n    public static void ItemCollected(Item item)\n    {\n        OnItemCollected?.Invoke(item);\n    }\n\n    public static void StartQuest(Quest quest)\n    {\n        OnQuestStarted?.Invoke(quest);\n    }\n\n    public static void CompleteQuest(Quest quest)\n    {\n        OnQuestCompleted?.Invoke(quest);\n    }\n}",
-          "docUrl": "https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/"
-        }
-      ],
-      "infrastructure": [
-        {
-          "name": "Asset Bundle System",
-          "icon": "📦",
-          "tech": "Unity Asset Bundles",
-          "code": "public class AssetBundleManager : MonoBehaviour\n{\n    private Dictionary<string, AssetBundle> _loadedBundles = \n        new Dictionary<string, AssetBundle>();\n\n    public async Task<T> LoadAssetAsync<T>(string bundleName, string assetName) \n        where T : UnityEngine.Object\n    {\n        if (!_loadedBundles.ContainsKey(bundleName))\n        {\n            string path = Path.Combine(\n                Application.streamingAssetsPath, \n                bundleName\n            );\n            var bundleRequest = AssetBundle.LoadFromFileAsync(path);\n            await bundleRequest;\n            _loadedBundles[bundleName] = bundleRequest.assetBundle;\n        }\n\n        var bundle = _loadedBundles[bundleName];\n        var assetRequest = bundle.LoadAssetAsync<T>(assetName);\n        await assetRequest;\n        return assetRequest.asset as T;\n    }\n}",
-          "docUrl": "https://docs.unity3d.com/Manual/AssetBundlesIntro.html"
-        }
-      ],
-      "devops": [
-        {
-          "name": "Build Pipeline",
-          "icon": "🔧",
-          "tech": "Unity Build System",
-          "code": "public class BuildScript\n{\n    [MenuItem(\"Build/Build All Platforms\")]\n    public static void BuildAllPlatforms()\n    {\n        BuildPlatform(BuildTarget.StandaloneWindows64, \"Builds/Windows\");\n        BuildPlatform(BuildTarget.StandaloneOSX, \"Builds/Mac\");\n        BuildPlatform(BuildTarget.StandaloneLinux64, \"Builds/Linux\");\n    }\n\n    private static void BuildPlatform(BuildTarget target, string path)\n    {\n        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions\n        {\n            scenes = GetScenePaths(),\n            locationPathName = path,\n            target = target,\n            options = BuildOptions.None\n        };\n\n        BuildPipeline.BuildPlayer(buildPlayerOptions);\n    }\n\n    private static string[] GetScenePaths()\n    {\n        return EditorBuildSettings.scenes\n            .Where(s => s.enabled)\n            .Select(s => s.path)\n            .ToArray();\n    }\n}",
-          "docUrl": "https://docs.unity3d.com/ScriptReference/BuildPipeline.html"
-        }
-      ]
-    }
-  },
   "businessRequirements": {
     "jiraPrefix": "CHW",
-    "businessContext": "Establish an independent game studio focused on narrative-driven experiences with polished mechanics",
-    "problemStatement": "Many indie games lack cohesive narrative experiences and production quality due to limited resources and technical expertise",
+    "businessContext": "Founded educational game development studio creating interactive learning experiences for children in the spirit of Math Blaster and Zoombinis",
+    "problemStatement": "Modern educational games feel like dressed-up worksheets and have lost the magic that made classics like Math Blaster genuinely fun while teaching",
     "businessValue": [
-      "Creates reusable game systems and pipelines",
-      "Establishes studio brand and identity",
-      "Demonstrates professional game development capabilities",
-      "Builds portfolio of shipped titles",
-      "Enables rapid prototyping of new concepts"
+      "Games first, education second philosophy",
+      "Making learning genuinely enjoyable for children",
+      "Cross-platform deployment (Windows, Mac, iOS, Android)",
+      "Adaptive AI-driven difficulty keeping players engaged",
+      "Parent dashboards for tracking progress"
     ],
     "acceptanceCriteria": [
-      "✓ Narrative system supporting branching dialogues",
-      "✓ Character controller with smooth animations",
-      "✓ Save/load system with multiple slots",
-      "✓ Quest management with tracking",
-      "✓ Audio integration with dynamic music",
-      "✓ Multi-platform build pipeline"
+      "Create genuinely fun gameplay experiences",
+      "Learning happens naturally through play",
+      "Adaptive difficulty prevents frustration",
+      "Progress tracking for parents/teachers",
+      "Multiplayer support for collaborative learning"
     ],
-    "attachments": [
-      { "type": "design", "title": "Studio Pipeline Documentation" },
-      { "type": "documentation", "title": "Game Systems Architecture" }
-    ],
-    "risks": [
-      { "risk": "Limited budget for assets", "mitigation": "In-house asset creation and free tools" },
-      { "risk": "Team scaling challenges", "mitigation": "Modular systems for easy onboarding" },
-      { "risk": "Platform-specific bugs", "mitigation": "Comprehensive testing on all targets" }
-    ]
+    "attachments": [],
+    "risks": []
   },
   "links": {
-    "website": "https://chewablestudios.com",
-    "documentation": "/docs/chewable-studios"
+    "demo": "https://chewable.studio",
+    "linkedin": "https://www.linkedin.com/company/chewable-studios"
   },
-  "related": ["slice-of-life"]
+  "related": ["meridian-vega", "unity"]
 }

@@ -8,10 +8,22 @@
     "badge": "WebAssembly",
     "coverImage": "/images/case-studies/grayscale-hero.png",
     "metrics": [
-      { "label": "Processing Speed", "value": "<50ms" },
-      { "label": "Network Usage", "value": "0KB" },
-      { "label": "Memory Safety", "value": "100%" },
-      { "label": "Browser Support", "value": "All Modern" }
+      {
+        "label": "Processing Speed",
+        "value": "<50ms"
+      },
+      {
+        "label": "Network Usage",
+        "value": "0KB"
+      },
+      {
+        "label": "Memory Safety",
+        "value": "100%"
+      },
+      {
+        "label": "Browser Support",
+        "value": "All Modern"
+      }
     ]
   },
   "timeline": {
@@ -127,5 +139,9 @@
     "github": "https://github.com/N73311/grayscale",
     "documentation": "/projects/grayscale/README.md"
   },
-  "related": ["webassembly", "rust", "image-processing"]
+  "related": [
+    "webassembly",
+    "rust",
+    "image-processing"
+  ]
 }

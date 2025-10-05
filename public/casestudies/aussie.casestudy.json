@@ -8,9 +8,24 @@
     "badge": "Enterprise",
     "coverImage": "/images/case-studies/aussie-hero.png",
     "metrics": [
-      { "value": "Months to Minutes", "label": "Processing Time", "animate": "text", "icon": "zap" },
-      { "value": "AI-Powered", "label": "Underwriting", "animate": "text", "icon": "cpu" },
-      { "value": "Multi-Loan", "label": "Workflows", "animate": "text", "icon": "file-text" }
+      {
+        "value": "Months to Minutes",
+        "label": "Processing Time",
+        "animate": "text",
+        "icon": "zap"
+      },
+      {
+        "value": "AI-Powered",
+        "label": "Underwriting",
+        "animate": "text",
+        "icon": "cpu"
+      },
+      {
+        "value": "Multi-Loan",
+        "label": "Workflows",
+        "animate": "text",
+        "icon": "file-text"
+      }
     ]
   },
   "timeline": {
@@ -25,12 +40,20 @@
       "title": "The Challenge",
       "before": {
         "label": "Manual Loan Processing",
-        "points": ["Months to close", "Error-prone manual data entry", "Inconsistent underwriting"],
+        "points": [
+          "Months to close",
+          "Error-prone manual data entry",
+          "Inconsistent underwriting"
+        ],
         "visual": "manual-loan-processing"
       },
       "after": {
         "label": "AI-Powered Automation",
-        "points": ["Minutes to process", "Automated data extraction", "Consistent AI decisions"],
+        "points": [
+          "Minutes to process",
+          "Automated data extraction",
+          "Consistent AI decisions"
+        ],
         "visual": "ai-loan-processing"
       }
     },
@@ -39,12 +62,33 @@
       "type": "interactive-architecture",
       "title": "Microservices Architecture on Azure",
       "components": [
-        { "name": "GraphQL API", "framework": "Spring Cloud Gateway", "team": "API" },
-        { "name": "Loan Services", "framework": "Spring Boot", "team": "Backend" },
-        { "name": "AI Engine", "framework": "Machine Learning", "team": "Data Science" },
-        { "name": "Legacy UI", "framework": "jQuery + ColdFusion", "team": "Frontend" }
+        {
+          "name": "GraphQL API",
+          "framework": "Spring Cloud Gateway",
+          "team": "API"
+        },
+        {
+          "name": "Loan Services",
+          "framework": "Spring Boot",
+          "team": "Backend"
+        },
+        {
+          "name": "AI Engine",
+          "framework": "Machine Learning",
+          "team": "Data Science"
+        },
+        {
+          "name": "Legacy UI",
+          "framework": "jQuery + ColdFusion",
+          "team": "Frontend"
+        }
       ],
-      "features": ["AI Underwriting", "Document OCR", "Real-Time Processing", "Multi-Loan Support"]
+      "features": [
+        "AI Underwriting",
+        "Document OCR",
+        "Real-Time Processing",
+        "Multi-Loan Support"
+      ]
     },
     {
       "id": "code",
@@ -79,34 +123,73 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
+      "type": "business-report",
       "title": "Impact",
       "charts": [
         {
           "type": "bar",
           "title": "Processing Time",
-          "data": { "before": 100, "after": 0.1 },
+          "data": {
+            "before": 100,
+            "after": 0.1
+          },
           "unit": "% of original time"
         },
         {
           "type": "line",
           "title": "Loan Volume Growth",
-          "data": [100, 250, 500, 850, 1200],
-          "labels": ["Q1 2018", "Q3 2018", "Q1 2019", "Q3 2019", "Q1 2020"]
+          "data": [
+            100,
+            250,
+            500,
+            850,
+            1200
+          ],
+          "labels": [
+            "Q1 2018",
+            "Q3 2018",
+            "Q1 2019",
+            "Q3 2019",
+            "Q1 2020"
+          ]
         }
-      ]
+      ],
+      "executive_summary": "Aussie revolutionized AmeriSave loan processing, migrating from ColdFusion monolith to Spring Boot microservices. Reduced loan processing time from 45 to 21 days (50% faster), integrated Fannie Mae HomeReady generating $3M monthly revenue, and optimized database queries from 30s to sub-second with zero regression."
     },
     {
       "id": "tech",
       "type": "tech-stack",
       "title": "Built With",
       "categories": {
-        "backend": ["Java 8/11/14", "Spring Boot", "Spring Cloud", "GraphQL"],
-        "cloud": ["Azure Cloud", "Azure Kubernetes Service", "Azure SQL"],
-        "database": ["SQL Server", "Redis Cache"],
-        "frontend": ["jQuery", "ColdFusion 9"],
-        "devops": ["Kubernetes", "Docker", "Azure DevOps", "Mercurial"],
-        "ai": ["Python ML Models", "Azure Machine Learning"]
+        "backend": [
+          "Java 8/11/14",
+          "Spring Boot",
+          "Spring Cloud",
+          "GraphQL"
+        ],
+        "cloud": [
+          "Azure Cloud",
+          "Azure Kubernetes Service",
+          "Azure SQL"
+        ],
+        "database": [
+          "SQL Server",
+          "Redis Cache"
+        ],
+        "frontend": [
+          "jQuery",
+          "ColdFusion 9"
+        ],
+        "devops": [
+          "Kubernetes",
+          "Docker",
+          "Azure DevOps",
+          "Mercurial"
+        ],
+        "ai": [
+          "Python ML Models",
+          "Azure Machine Learning"
+        ]
       },
       "interactive": true
     }
@@ -202,18 +285,40 @@
       "✓ Integration with legacy ColdFusion UI maintained"
     ],
     "attachments": [
-      { "type": "architecture", "title": "Microservices Architecture Diagram" },
-      { "type": "documentation", "title": "AI Model Documentation" },
-      { "type": "compliance", "title": "Regulatory Compliance Report" }
+      {
+        "type": "architecture",
+        "title": "Microservices Architecture Diagram"
+      },
+      {
+        "type": "documentation",
+        "title": "AI Model Documentation"
+      },
+      {
+        "type": "compliance",
+        "title": "Regulatory Compliance Report"
+      }
     ],
     "risks": [
-      { "risk": "AI model bias in underwriting decisions", "mitigation": "Regular model audits and fairness testing with diverse training data" },
-      { "risk": "Legacy system integration complexity", "mitigation": "GraphQL abstraction layer and gradual migration strategy" },
-      { "risk": "Data privacy and security", "mitigation": "End-to-end encryption, Azure security best practices, SOC 2 compliance" }
+      {
+        "risk": "AI model bias in underwriting decisions",
+        "mitigation": "Regular model audits and fairness testing with diverse training data"
+      },
+      {
+        "risk": "Legacy system integration complexity",
+        "mitigation": "GraphQL abstraction layer and gradual migration strategy"
+      },
+      {
+        "risk": "Data privacy and security",
+        "mitigation": "End-to-end encryption, Azure security best practices, SOC 2 compliance"
+      }
     ]
   },
   "links": {
-    "live": "https://www.awms.com/s/aussie"
+    "demo": "https://www.awms.com/s/aussie"
   },
-  "related": ["graphql-cloud-migration", "azure-cloud-migration", "leadership"]
+  "related": [
+    "graphql-cloud-migration",
+    "azure-cloud-migration",
+    "leadership"
+  ]
 }

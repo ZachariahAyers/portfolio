@@ -1,55 +1,29 @@
-graph TB
-    subgraph "Client Browser"
-        UI[Web UI - index.html]
-        JS[JavaScript - main.js]
-        WASM[WebAssembly Module]
-        FileAPI[HTML5 File API]
-        
-        UI --> |"User uploads PNG"| FileAPI
-        FileAPI --> |"FileReader API"| JS
-        JS --> |"Base64 encoded image"| WASM
-        WASM --> |"Grayscale data URL"| JS
-        JS --> |"Update img src"| UI
+graph LR
+    subgraph Client["Browser Client"]
+        UI[Tailwind UI<br/>Gradient Background]
+        INPUT[File Input<br/>User Image Upload]
     end
-    
-    subgraph "Build Pipeline"
-        Rust[Rust Source - lib.rs]
-        WasmPack[wasm-pack]
-        Webpack[Webpack Bundler]
-        
-        Rust --> |"wasm-pack build"| WasmPack
-        WasmPack --> |"Generate bindings"| WASM
-        Webpack --> |"Bundle modules"| JS
+
+    subgraph WASM["WebAssembly"]
+        RUST[Rust Module<br/>wasm-bindgen]
+        DECODE[Image Decode<br/>Base64 → Bytes]
+        PROCESS[Grayscale Algorithm<br/>Pixel Transformation]
+        ENCODE[Image Encode<br/>PNG Output]
     end
-    
-    subgraph "Rust Processing"
-        Decode[Base64 Decode]
-        LoadImg[Load Image to Memory]
-        Grayscale[Apply Grayscale Filter]
-        Encode[Encode to PNG]
-        DataURL[Create Data URL]
-        
-        Decode --> LoadImg
-        LoadImg --> Grayscale
-        Grayscale --> Encode
-        Encode --> DataURL
+
+    subgraph Output["Client Output"]
+        DISPLAY[Image Display<br/>Base64 Data URL]
+        DOWNLOAD[Download Option<br/>No Server Required]
     end
-    
-    subgraph "Technologies"
-        RustLang[Rust Language]
-        WasmBind[wasm-bindgen]
-        ImageRS[image-rs crate]
-        Base64Crate[base64 crate]
-        TailwindCSS[Tailwind CSS]
-        
-        RustLang --> |"Compiles to"| WASM
-        WasmBind --> |"JS bindings"| WASM
-        ImageRS --> |"Image processing"| Grayscale
-        Base64Crate --> |"Encoding"| Decode
-        TailwindCSS --> |"Styling"| UI
-    end
-    
-    style UI fill:#e1f5e1
-    style WASM fill:#ffd4d4
-    style Rust fill:#dce4ff
-    style Grayscale fill:#fff4d4
+
+    UI --> INPUT
+    INPUT --> RUST
+    RUST --> DECODE
+    DECODE --> PROCESS
+    PROCESS --> ENCODE
+    ENCODE --> DISPLAY
+    DISPLAY --> DOWNLOAD
+
+    style Client fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style WASM fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Output fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

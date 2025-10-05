@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Chalkboard - Collaborative drawing app
+  chalkboard:
+    build: ./projects/chalkboard
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  # Done With It API - Backend API
+  done-with-it-api:
+    build: ./projects/done-with-it-api
+    ports:
+      - "9000:9000"
+    environment:
+      - NODE_ENV=production
+      - PORT=9000
+    restart: unless-stopped
+
+  # Module Federation - Micro-frontend demo
+  modulefederation:
+    build: ./projects/modulefederation
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  # Natours - Tour booking app
+  natours:
+    build: ./projects/natours
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+
+  # GalaxyMVC - PHP MVC framework
+  galaxymvc:
+    build: ./projects/GalaxyMVC
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+
+  # Lively - .NET social app
+  lively:
+    build: ./projects/lively
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_ENVIRONMENT=Production
+    restart: unless-stopped
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  nginx-certs:

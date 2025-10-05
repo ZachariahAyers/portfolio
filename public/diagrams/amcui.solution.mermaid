@@ -1,3 +1,37 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Design["Design Tokens"]
+        TOKENS[SCSS Variables<br/>Colors, Spacing, Typography]
+        FIGMA[Figma Library<br/>Design Source of Truth]
+    end
+
+    subgraph Components["Component Library"]
+        PREACT[Preact Components<br/>100+ UI Elements]
+        TS[TypeScript<br/>Type Safety]
+        A11Y[WCAG 2.1 AA<br/>Accessibility]
+    end
+
+    subgraph Documentation["Developer Experience"]
+        STORYBOOK[Storybook<br/>Interactive Docs]
+        NPM[npm Package<br/>@company/ui-components]
+    end
+
+    subgraph Applications["50+ Applications"]
+        APP1[Customer Apps]
+        APP2[Internal Tools]
+        APP3[Admin Dashboards]
+    end
+
+    FIGMA --> TOKENS
+    TOKENS --> PREACT
+    TS --> PREACT
+    A11Y --> PREACT
+    PREACT --> STORYBOOK
+    PREACT --> NPM
+    NPM --> APP1
+    NPM --> APP2
+    NPM --> APP3
+
+    style Design fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Components fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Documentation fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Applications fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

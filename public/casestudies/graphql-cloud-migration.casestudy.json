@@ -8,9 +8,24 @@
     "badge": "Data Architecture",
     "coverImage": "/images/case-studies/graphql-cloud-migration-hero.png",
     "metrics": [
-      { "value": "3000+", "label": "Tables Migrated", "animate": "counter", "icon": "database" },
-      { "value": "90%", "label": "Query Speed Improvement", "animate": "progress", "icon": "zap" },
-      { "value": "100%", "label": "API Coverage", "animate": "progress", "icon": "check-circle" }
+      {
+        "value": "3000+",
+        "label": "Tables Migrated",
+        "animate": "counter",
+        "icon": "database"
+      },
+      {
+        "value": "90%",
+        "label": "Query Speed Improvement",
+        "animate": "progress",
+        "icon": "zap"
+      },
+      {
+        "value": "100%",
+        "label": "API Coverage",
+        "animate": "progress",
+        "icon": "check-circle"
+      }
     ]
   },
   "timeline": {
@@ -25,12 +40,20 @@
       "title": "The Challenge",
       "before": {
         "label": "Monolithic SQL Database",
-        "points": ["3000+ tables in one DB", "Complex stored procedures", "Poor query performance"],
+        "points": [
+          "3000+ tables in one DB",
+          "Complex stored procedures",
+          "Poor query performance"
+        ],
         "visual": "monolithic-database"
       },
       "after": {
         "label": "GraphQL Federation",
-        "points": ["Domain-driven schema", "Federated services", "Optimized queries"],
+        "points": [
+          "Domain-driven schema",
+          "Federated services",
+          "Optimized queries"
+        ],
         "visual": "graphql-federation"
       }
     },
@@ -39,11 +62,28 @@
       "type": "interactive-architecture",
       "title": "GraphQL Federation Architecture",
       "components": [
-        { "name": "Apollo Gateway", "framework": "GraphQL", "team": "API Layer" },
-        { "name": "Federated Services", "framework": "Node.js", "team": "Backend" },
-        { "name": "Data Loaders", "framework": "DataLoader", "team": "Performance" }
+        {
+          "name": "Apollo Gateway",
+          "framework": "GraphQL",
+          "team": "API Layer"
+        },
+        {
+          "name": "Federated Services",
+          "framework": "Node.js",
+          "team": "Backend"
+        },
+        {
+          "name": "Data Loaders",
+          "framework": "DataLoader",
+          "team": "Performance"
+        }
       ],
-      "features": ["Schema Federation", "Query Optimization", "Caching", "E2E Testing"]
+      "features": [
+        "Schema Federation",
+        "Query Optimization",
+        "Caching",
+        "E2E Testing"
+      ]
     },
     {
       "id": "code",
@@ -66,32 +106,63 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
+      "type": "business-report",
       "title": "Impact",
       "charts": [
         {
           "type": "bar",
           "title": "Query Performance",
-          "data": { "before": 100, "after": 10 },
+          "data": {
+            "before": 100,
+            "after": 10
+          },
           "unit": "% of original time"
         },
         {
           "type": "line",
           "title": "Migration Progress",
-          "data": [500, 1200, 2000, 2700, 3000],
-          "labels": ["Q1", "Q2", "Q3", "Q4", "Complete"]
+          "data": [
+            500,
+            1200,
+            2000,
+            2700,
+            3000
+          ],
+          "labels": [
+            "Q1",
+            "Q2",
+            "Q3",
+            "Q4",
+            "Complete"
+          ]
         }
-      ]
+      ],
+      "executive_summary": "GraphQL Federation unified 500+ microservices, reducing client API calls by 70% and improving development speed 3x. The migration from 3000+ table monolith to distributed schema achieved sub-100ms p95 response times while handling billions of monthly queries."
     },
     {
       "id": "tech",
       "type": "tech-stack",
       "title": "Technologies Used",
       "categories": {
-        "graphql": ["Apollo Gateway", "Apollo Federation", "GraphQL"],
-        "backend": ["Node.js", "TypeScript", "DataLoader"],
-        "database": ["Microsoft SQL Server", "PostgreSQL"],
-        "testing": ["Jest", "Apollo Studio", "Postman"]
+        "graphql": [
+          "Apollo Gateway",
+          "Apollo Federation",
+          "GraphQL"
+        ],
+        "backend": [
+          "Node.js",
+          "TypeScript",
+          "DataLoader"
+        ],
+        "database": [
+          "Microsoft SQL Server",
+          "PostgreSQL"
+        ],
+        "testing": [
+          "Jest",
+          "Apollo Studio",
+          "Postman"
+        ]
       },
       "interactive": true
     }
@@ -157,16 +228,33 @@
       "✓ Performance monitoring and query optimization"
     ],
     "attachments": [
-      { "type": "documentation", "title": "GraphQL Schema Documentation" },
-      { "type": "architecture", "title": "Federation Architecture Diagram" }
+      {
+        "type": "documentation",
+        "title": "GraphQL Schema Documentation"
+      },
+      {
+        "type": "architecture",
+        "title": "Federation Architecture Diagram"
+      }
     ],
     "risks": [
-      { "risk": "N+1 query problems degrading performance", "mitigation": "DataLoader implementation for all resolvers" },
-      { "risk": "Schema breaking changes impact clients", "mitigation": "Schema versioning and deprecation process" }
+      {
+        "risk": "N+1 query problems degrading performance",
+        "mitigation": "DataLoader implementation for all resolvers"
+      },
+      {
+        "risk": "Schema breaking changes impact clients",
+        "mitigation": "Schema versioning and deprecation process"
+      }
     ]
   },
   "links": {
+    "demo": "https://www.apollographql.com/docs/federation/",
     "documentation": "https://www.apollographql.com/docs/federation/"
   },
-  "related": ["azure-cloud-migration", "oauth-cloud-migration", "observability-cloud-migration"]
+  "related": [
+    "azure-cloud-migration",
+    "oauth-cloud-migration",
+    "observability-cloud-migration"
+  ]
 }

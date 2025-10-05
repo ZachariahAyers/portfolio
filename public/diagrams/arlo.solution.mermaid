@@ -1,3 +1,52 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Frontend["React Frontend"]
+        UI[Chat Interface<br/>React + Vite]
+        THEME[Dark/Light Theme<br/>TailwindCSS]
+        PDF[Resume Generator<br/>jsPDF]
+    end
+
+    subgraph Gateway["API Gateway"]
+        APIGW[API Gateway<br/>HTTPS Endpoint]
+        RATELIMIT[Rate Limiter<br/>50 requests/day]
+        CORS[CORS Handler<br/>Origin Validation]
+    end
+
+    subgraph Backend["Lambda Handler"]
+        LAMBDA[Lambda Function<br/>Node.js Runtime]
+        MIDDLEWARE[Middleware Pipeline<br/>Security + Validation]
+        SANITIZE[Input Sanitizer<br/>XSS Protection]
+        ERROR_HANDLER[Error Handler<br/>Centralized Logging]
+    end
+
+    subgraph AI["AI Layer"]
+        GEMINI[Google Gemini Pro<br/>8K Context Window]
+        PROMPT[System Prompts<br/>Portfolio Knowledge]
+        RESPONSE[Response Formatter<br/>Markdown + Features]
+    end
+
+    subgraph Monitoring["Observability"]
+        CLOUDWATCH[CloudWatch Logs<br/>Centralized Logging]
+        METRICS[CloudWatch Metrics<br/>Performance Tracking]
+    end
+
+    UI --> APIGW
+    APIGW --> RATELIMIT
+    RATELIMIT --> CORS
+    CORS --> LAMBDA
+    LAMBDA --> MIDDLEWARE
+    MIDDLEWARE --> SANITIZE
+    SANITIZE --> GEMINI
+    GEMINI --> PROMPT
+    PROMPT --> RESPONSE
+    RESPONSE --> UI
+    MIDDLEWARE --> ERROR_HANDLER
+    ERROR_HANDLER --> CLOUDWATCH
+    LAMBDA --> METRICS
+    UI --> PDF
+    UI --> THEME
+
+    style Frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Gateway fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style AI fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Monitoring fill:#fce4ec,stroke:#ad1457,stroke-width:2px

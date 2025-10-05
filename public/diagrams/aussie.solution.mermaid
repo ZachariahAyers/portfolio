@@ -1,3 +1,59 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Frontend["Legacy Frontend"]
+        JQUERY[jQuery UI<br/>ColdFusion Templates]
+        FORMS[Complex Forms<br/>Multi-Step Workflows]
+    end
+
+    subgraph API["GraphQL API Gateway"]
+        GATEWAY[Spring Cloud Gateway<br/>GraphQL Federation]
+        RESOLVER[GraphQL Resolvers<br/>Schema Stitching]
+        SCHEMA[Federated Schema<br/>Service Composition]
+    end
+
+    subgraph Services["Microservices"]
+        LOAN[Loan Service<br/>Application Processing]
+        OCR[Document OCR<br/>AI Data Extraction]
+        UNDERWRITING[AI Underwriting<br/>Risk Assessment]
+        WORKFLOW[Workflow Engine<br/>Orchestration]
+    end
+
+    subgraph DataFlow["Data Processing"]
+        EXTRACT[OCR Extraction<br/>Structured Data]
+        VALIDATE[Data Validation<br/>Business Rules]
+        ENRICH[Data Enrichment<br/>External Sources]
+    end
+
+    subgraph Azure["Azure Cloud"]
+        AKS[Azure Kubernetes<br/>Container Platform]
+        COSMOS[Cosmos DB<br/>Application Data]
+        CACHE[Redis Cache<br/>Query Performance]
+        QUEUE[Service Bus<br/>Async Messaging]
+    end
+
+    JQUERY --> GATEWAY
+    FORMS --> GATEWAY
+    GATEWAY --> RESOLVER
+    RESOLVER --> SCHEMA
+    SCHEMA --> LOAN
+    SCHEMA --> OCR
+    SCHEMA --> UNDERWRITING
+    SCHEMA --> WORKFLOW
+    OCR --> EXTRACT
+    EXTRACT --> VALIDATE
+    VALIDATE --> ENRICH
+    ENRICH --> UNDERWRITING
+    UNDERWRITING --> LOAN
+    WORKFLOW --> QUEUE
+    LOAN --> COSMOS
+    UNDERWRITING --> COSMOS
+    LOAN --> AKS
+    OCR --> AKS
+    UNDERWRITING --> AKS
+    AKS --> CACHE
+    AKS --> QUEUE
+
+    style Frontend fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style API fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Services fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style DataFlow fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Azure fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

@@ -1,82 +1,39 @@
-graph TB
-    subgraph "Chrome Extension Architecture"
-        Manifest[Manifest V2]
-        Background[Background Scripts]
-        ContentScript[Content Scripts]
-        Popup[Extension Popup]
-        
-        Manifest --> Background
-        Manifest --> ContentScript
-        Manifest --> Popup
+graph LR
+    subgraph Extension["Chrome Extension"]
+        MANIFEST[Manifest V3<br/>Configuration]
+        BACKGROUND[Service Worker<br/>Background Tasks]
+        CONTENT[Content Script<br/>Page Injection]
     end
-    
-    subgraph "Vue.js Application"
-        VueApp[Vue Instance]
-        Vuex[Vuex Store]
-        Components[Components]
-        Router[Vue Router]
-        
-        VueApp --> Vuex
-        VueApp --> Components
-        VueApp --> Router
+
+    subgraph UI["User Interface"]
+        VUE[Vue.js 3<br/>Composition API]
+        POPUP[Extension Popup<br/>Quick Actions]
+        OPTIONS[Options Page<br/>Settings]
     end
-    
-    subgraph "Core Components"
-        Overlay[Overlay Interface]
-        ButtonDock[Button Dock]
-        SideBar[Side Panel]
-        JobBoard[Job Board Manager]
-        Templates[Template Engine]
-        Metrics[Metrics Dashboard]
-        
-        Components --> Overlay
-        Overlay --> ButtonDock
-        Overlay --> SideBar
-        SideBar --> JobBoard
-        SideBar --> Templates
-        SideBar --> Metrics
+
+    subgraph Features["Core Features"]
+        SCRAPE[Job Scraping<br/>DOM Parsing]
+        TRACK[Application Tracking<br/>Local Storage]
+        EXPORT[Data Export<br/>CSV/JSON]
     end
-    
-    subgraph "Job Board Integration"
-        LinkedIn[LinkedIn Jobs]
-        Indeed[Indeed]
-        Glassdoor[Glassdoor]
-        AngelList[AngelList]
-        Others[20+ Others]
-        
-        ContentScript --> |"Extract"| LinkedIn
-        ContentScript --> |"Extract"| Indeed
-        ContentScript --> |"Extract"| Glassdoor
-        ContentScript --> |"Extract"| AngelList
-        ContentScript --> |"Extract"| Others
+
+    subgraph Storage["Data Layer"]
+        CHROME_STORAGE[Chrome Storage<br/>Sync Across Devices]
+        INDEXED_DB[IndexedDB<br/>Large Data Sets]
     end
-    
-    subgraph "Data Management"
-        ChromeStorage[Chrome Storage API]
-        LocalState[Local State]
-        SyncStorage[Sync Storage]
-        
-        Vuex --> ChromeStorage
-        ChromeStorage --> LocalState
-        ChromeStorage --> SyncStorage
-    end
-    
-    subgraph "User Features"
-        SaveJob[Save Jobs]
-        GenerateMsg[Generate Messages]
-        TrackApps[Track Applications]
-        ViewStats[View Statistics]
-        
-        ButtonDock --> SaveJob
-        Templates --> GenerateMsg
-        JobBoard --> TrackApps
-        Metrics --> ViewStats
-    end
-    
-    ContentScript --> |"Inject"| Overlay
-    Background --> |"Coordinate"| ContentScript
-    
-    style VueApp fill:#e1f5e1
-    style ContentScript fill:#dce4ff
-    style ChromeStorage fill:#fff4d4
-    style Templates fill:#ffd4d4
+
+    MANIFEST --> BACKGROUND
+    BACKGROUND --> CONTENT
+    CONTENT --> VUE
+    VUE --> POPUP
+    VUE --> OPTIONS
+    OPTIONS --> SCRAPE
+    SCRAPE --> TRACK
+    TRACK --> EXPORT
+    EXPORT --> CHROME_STORAGE
+    CHROME_STORAGE --> INDEXED_DB
+
+    style Extension fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style UI fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Features fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Storage fill:#fff3e0,stroke:#f57c00,stroke-width:2px

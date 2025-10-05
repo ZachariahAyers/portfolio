@@ -1,22 +1,21 @@
 {
   "id": "howland",
-  "category": "ai-model",
+  "category": "enterprise",
   "featured": true,
   "hero": {
     "title": "Howland",
-    "tagline": "Flagship AI Model for Code Porting",
-    "badge": "AI/ML",
-    "coverImage": "/images/case-studies/howland-hero.png",
+    "tagline": "Custom-Trained LLM for Legacy Code Modernization",
+    "badge": "AI Model",
     "metrics": [
-      { "value": "97%", "label": "Port Accuracy", "animate": "counter", "icon": "check-circle" },
-      { "value": "100+", "label": "Lang Pairs", "animate": "counter", "icon": "git-fork" },
-      { "value": "< 5s", "label": "Transform Time", "animate": "counter", "icon": "timer" }
+      { "value": "~13B", "label": "Parameters", "animate": "fade", "icon": "cpu" },
+      { "value": "95%+", "label": "Accuracy", "animate": "counter", "icon": "check-circle" },
+      { "value": "COBOL/VB6/RPG", "label": "Legacy Support", "animate": "fade", "icon": "code" }
     ]
   },
   "timeline": {
-    "duration": "18 months",
-    "role": "ML Engineer",
-    "year": "2023-2024"
+    "duration": "2024 - Present",
+    "role": "Founder & ML Engineer",
+    "year": "2024-Present"
   },
   "sections": [
     {
@@ -24,159 +23,93 @@
       "type": "visual-comparison",
       "title": "The Challenge",
       "before": {
-        "label": "Traditional LLMs",
-        "points": ["Generic code gen", "Lost semantics", "Syntax errors"],
+        "label": "Generic LLMs",
+        "points": ["Don't understand COBOL/FORTRAN", "Lose business logic", "Poor at legacy idioms"],
         "visual": "generic-llm"
       },
       "after": {
-        "label": "Specialized Code Model",
-        "points": ["Code-aware", "Preserves logic", "Runnable output"],
-        "visual": "specialized-model"
+        "label": "Specialized Model",
+        "points": ["Trained on legacy code", "Preserves semantics", "Understands patterns"],
+        "visual": "howland-llm"
       }
     },
     {
       "id": "solution",
       "type": "interactive-architecture",
-      "title": "Model Architecture",
+      "title": "LLM Architecture",
       "components": [
-        { "name": "AST Parser", "framework": "Tree-sitter", "team": "Analysis" },
-        { "name": "Semantic Engine", "framework": "Custom ML", "team": "Understanding" },
-        { "name": "Code Generator", "framework": "Transformer", "team": "Synthesis" }
+        { "name": "Transformer Model", "framework": "PyTorch 13B params", "team": "Core Model" },
+        { "name": "Code Tokenizer", "framework": "Custom BPE", "team": "Tokenization" },
+        { "name": "Training Pipeline", "framework": "Distributed GPU", "team": "Training" },
+        { "name": "Inference API", "framework": "TorchServe", "team": "Deployment" }
       ],
-      "features": ["Pattern Recognition", "Type Inference", "Semantic Preservation", "Idiom Translation"]
-    },
-    {
-      "id": "code",
-      "type": "code-showcase",
-      "title": "Model Integration",
-      "snippets": [
-        {
-          "title": "Howland API Client",
-          "code": "interface HowlandRequest {\n  semanticModel: SemanticModel;\n  targetLanguage: string;\n  options?: TransformOptions;\n}\n\ninterface HowlandResponse {\n  targetCode: string;\n  confidence: number;\n  warnings: Warning[];\n  metadata: TransformMetadata;\n}\n\nclass HowlandClient {\n  private apiUrl: string;\n  private apiKey: string;\n\n  constructor(config: HowlandConfig) {\n    this.apiUrl = config.apiUrl;\n    this.apiKey = config.apiKey;\n  }\n\n  async transform(request: HowlandRequest): Promise<HowlandResponse> {\n    const response = await fetch(`${this.apiUrl}/transform`, {\n      method: 'POST',\n      headers: {\n        'Content-Type': 'application/json',\n        'Authorization': `Bearer ${this.apiKey}`,\n        'X-Model-Version': '2.0'\n      },\n      body: JSON.stringify({\n        model: request.semanticModel,\n        target: request.targetLanguage,\n        options: {\n          preserveComments: true,\n          optimizeOutput: true,\n          targetVersion: 'latest',\n          ...request.options\n        }\n      })\n    });\n\n    if (!response.ok) {\n      throw new HowlandError(\n        `Transformation failed: ${response.statusText}`,\n        response.status\n      );\n    }\n\n    const result = await response.json();\n    return this.validateResponse(result);\n  }\n\n  private validateResponse(response: any): HowlandResponse {\n    if (!response.targetCode || response.confidence < 0.5) {\n      throw new HowlandError(\n        'Low confidence transformation',\n        400,\n        response\n      );\n    }\n\n    return response;\n  }\n}",
-          "language": "typescript",
-          "animate": "typewriter"
-        },
-        {
-          "title": "Semantic Model Builder",
-          "code": "import { SemanticModel, Symbol, Type, Pattern } from './types';\n\nclass SemanticModelBuilder {\n  private symbols: Map<string, Symbol>;\n  private types: Map<string, Type>;\n  private patterns: Pattern[];\n\n  constructor() {\n    this.symbols = new Map();\n    this.types = new Map();\n    this.patterns = [];\n  }\n\n  build(ast: AST): SemanticModel {\n    this.extractSymbols(ast);\n    this.inferTypes(ast);\n    this.detectPatterns(ast);\n    this.buildControlFlow(ast);\n\n    return {\n      language: ast.metadata.language,\n      version: ast.metadata.version,\n      symbols: Array.from(this.symbols.values()),\n      types: Array.from(this.types.values()),\n      patterns: this.patterns,\n      controlFlow: this.controlFlowGraph,\n      dependencies: this.extractDependencies(ast)\n    };\n  }\n\n  private inferTypes(ast: AST): void {\n    for (const [name, symbol] of this.symbols) {\n      if (symbol.kind === 'function') {\n        const returnType = this.analyzeReturnType(symbol.node);\n        const paramTypes = symbol.parameters.map(p => \n          this.inferParameterType(p)\n        );\n        \n        this.types.set(name, {\n          kind: 'function',\n          parameters: paramTypes,\n          returns: returnType,\n          generic: this.detectGenerics(symbol.node)\n        });\n      } else if (symbol.kind === 'class') {\n        const methods = this.extractMethods(symbol.node);\n        const properties = this.extractProperties(symbol.node);\n        \n        this.types.set(name, {\n          kind: 'class',\n          methods: methods.map(m => this.types.get(m.name)),\n          properties: properties.map(p => ({\n            name: p.name,\n            type: this.inferPropertyType(p)\n          })),\n          inheritance: this.extractInheritance(symbol.node)\n        });\n      }\n    }\n  }\n\n  private detectPatterns(ast: AST): void {\n    const patterns = [\n      new SingletonDetector(),\n      new FactoryDetector(),\n      new ObserverDetector(),\n      new StrategyDetector()\n    ];\n\n    for (const detector of patterns) {\n      const found = detector.detect(ast, this.symbols, this.types);\n      if (found) {\n        this.patterns.push(found);\n      }\n    }\n  }\n}",
-          "language": "typescript",
-          "animate": "highlight"
-        }
-      ]
+      "features": ["Legacy Language Understanding", "Modern Code Generation", "Semantic Preservation", "Pattern Recognition"]
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
+      "type": "business-report",
       "title": "Model Performance",
-      "charts": [
+      "executive_summary": "Howland is a custom-built Large Language Model trained from scratch for legacy code modernization. With ~13B parameters, the model transforms COBOL, RPG, FORTRAN, and VB6 to modern .NET 8, Java, and Python with 95%+ accuracy, preserving business logic and design patterns through specialized training.",
+      "sections": [
         {
-          "type": "bar",
-          "title": "Accuracy by Language",
-          "data": { "before": 70, "after": 97 },
-          "unit": "%"
+          "title": "Model Capabilities",
+          "highlights": [
+            "Custom LLM built and trained from scratch",
+            "13B parameter transformer architecture",
+            "Legacy languages: COBOL, RPG, FORTRAN, VB6",
+            "Modern targets: .NET 8, Java, Python"
+          ]
         },
         {
-          "type": "line",
-          "title": "Training Progress",
-          "data": [60, 75, 85, 92, 97],
-          "labels": ["Epoch 100", "Epoch 200", "Epoch 300", "Epoch 400", "Epoch 500"]
+          "title": "Technical Achievements",
+          "summary": "95%+ transformation accuracy, semantic preservation of business logic, production deployment at howland.meridianvega.com, distributed training on GPU clusters."
+        },
+        {
+          "title": "Innovation",
+          "metrics": [
+            { "metric": "Model Type", "before": "Generic LLM", "after": "Custom Code LLM", "change": "Specialized" },
+            { "metric": "Legacy Understanding", "before": "Poor", "after": "95%+ accurate", "change": "+90%" },
+            { "metric": "Training Approach", "before": "Fine-tuning", "after": "From scratch", "change": "Complete" }
+          ]
         }
       ]
     },
     {
       "id": "tech",
       "type": "tech-stack",
-      "title": "Built With",
+      "title": "Technology Stack",
       "categories": {
-        "ml": ["Transformer Architecture", "Custom Attention", "Code Embeddings"],
-        "training": ["PyTorch", "Hugging Face", "CUDA", "Distributed Training"],
-        "infrastructure": ["AWS SageMaker", "S3", "EC2 GPU Instances"],
-        "analysis": ["Tree-sitter", "ANTLR", "Language Servers"],
-        "tools": ["TensorBoard", "Weights & Biases", "MLflow"]
+        "model": ["PyTorch", "Transformer Architecture", "Custom Tokenizer"],
+        "training": ["Distributed Training", "GPU Clusters", "CUDA", "Mixed Precision"],
+        "deployment": ["TorchServe", "FastAPI", "Docker", "Kubernetes"],
+        "infrastructure": ["AWS", "GPU Instances", "Model Registry"]
       },
       "interactive": true
     }
   ],
-  "techStackAnalyzer": {
-    "projectName": "Howland",
-    "fileStructure": {
-      "frontend": [
-        {
-          "name": "Model Inference API",
-          "icon": "🤖",
-          "tech": "FastAPI + Python",
-          "code": "from fastapi import FastAPI, HTTPException\nfrom pydantic import BaseModel\nimport torch\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\napp = FastAPI()\n\nclass TransformRequest(BaseModel):\n    semantic_model: dict\n    target_language: str\n    options: dict = {}\n\nclass TransformResponse(BaseModel):\n    target_code: str\n    confidence: float\n    warnings: list[str]\n    metadata: dict\n\nclass HowlandModel:\n    def __init__(self, model_path: str):\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\n        self.tokenizer = AutoTokenizer.from_pretrained(model_path)\n        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_path)\n        self.model.to(self.device)\n        self.model.eval()\n\n    def transform(self, request: TransformRequest) -> TransformResponse:\n        prompt = self._build_prompt(\n            request.semantic_model,\n            request.target_language,\n            request.options\n        )\n\n        inputs = self.tokenizer(\n            prompt,\n            return_tensors='pt',\n            max_length=2048,\n            truncation=True\n        ).to(self.device)\n\n        with torch.no_grad():\n            outputs = self.model.generate(\n                **inputs,\n                max_length=4096,\n                num_beams=5,\n                temperature=0.7,\n                do_sample=True,\n                top_p=0.95\n            )\n\n        code = self.tokenizer.decode(outputs[0], skip_special_tokens=True)\n        confidence = self._calculate_confidence(outputs)\n        warnings = self._extract_warnings(code, request.semantic_model)\n\n        return TransformResponse(\n            target_code=code,\n            confidence=confidence,\n            warnings=warnings,\n            metadata={\n                'source_language': request.semantic_model['language'],\n                'target_language': request.target_language,\n                'model_version': '2.0'\n            }\n        )\n\nmodel = HowlandModel('/models/howland-v2')\n\n@app.post('/transform', response_model=TransformResponse)\nasync def transform(request: TransformRequest):\n    try:\n        return model.transform(request)\n    except Exception as e:\n        raise HTTPException(status_code=500, detail=str(e))",
-          "docUrl": "https://fastapi.tiangolo.com/"
-        }
-      ],
-      "backend": [
-        {
-          "name": "Training Pipeline",
-          "icon": "🏋️",
-          "tech": "PyTorch + Hugging Face",
-          "code": "import torch\nfrom torch.utils.data import DataLoader\nfrom transformers import (\n    AutoModelForSeq2SeqLM,\n    AutoTokenizer,\n    Seq2SeqTrainingArguments,\n    Seq2SeqTrainer\n)\nfrom datasets import load_dataset\n\nclass HowlandTrainer:\n    def __init__(self, config: dict):\n        self.config = config\n        self.model_name = config['base_model']\n        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)\n        self.model = AutoModelForSeq2SeqLM.from_pretrained(self.model_name)\n\n    def prepare_dataset(self):\n        dataset = load_dataset('code_transformations')\n        \n        def preprocess(examples):\n            inputs = [\n                self._format_input(ex['semantic_model'], ex['target_lang'])\n                for ex in examples\n            ]\n            targets = [ex['target_code'] for ex in examples]\n\n            model_inputs = self.tokenizer(\n                inputs,\n                max_length=2048,\n                truncation=True,\n                padding='max_length'\n            )\n\n            labels = self.tokenizer(\n                targets,\n                max_length=4096,\n                truncation=True,\n                padding='max_length'\n            )\n\n            model_inputs['labels'] = labels['input_ids']\n            return model_inputs\n\n        return dataset.map(\n            preprocess,\n            batched=True,\n            remove_columns=dataset['train'].column_names\n        )\n\n    def train(self):\n        dataset = self.prepare_dataset()\n\n        training_args = Seq2SeqTrainingArguments(\n            output_dir='./results',\n            num_train_epochs=500,\n            per_device_train_batch_size=8,\n            per_device_eval_batch_size=8,\n            warmup_steps=500,\n            weight_decay=0.01,\n            logging_dir='./logs',\n            logging_steps=100,\n            eval_steps=1000,\n            save_steps=1000,\n            evaluation_strategy='steps',\n            load_best_model_at_end=True,\n            metric_for_best_model='accuracy',\n            greater_is_better=True,\n            fp16=True,\n            gradient_accumulation_steps=4,\n            learning_rate=5e-5\n        )\n\n        trainer = Seq2SeqTrainer(\n            model=self.model,\n            args=training_args,\n            train_dataset=dataset['train'],\n            eval_dataset=dataset['validation'],\n            tokenizer=self.tokenizer,\n            compute_metrics=self.compute_metrics\n        )\n\n        trainer.train()\n        trainer.save_model('./final_model')\n\n    def compute_metrics(self, eval_pred):\n        predictions, labels = eval_pred\n        decoded_preds = self.tokenizer.batch_decode(\n            predictions,\n            skip_special_tokens=True\n        )\n        decoded_labels = self.tokenizer.batch_decode(\n            labels,\n            skip_special_tokens=True\n        )\n\n        accuracy = sum(\n            1 for pred, label in zip(decoded_preds, decoded_labels)\n            if self._is_syntactically_valid(pred) and \n               self._semantic_similarity(pred, label) > 0.95\n        ) / len(decoded_preds)\n\n        return {'accuracy': accuracy}",
-          "docUrl": "https://huggingface.co/docs/transformers/"
-        },
-        {
-          "name": "Code Embeddings",
-          "icon": "🧬",
-          "tech": "Custom Transformer",
-          "code": "import torch\nimport torch.nn as nn\nfrom transformers import PreTrainedModel\n\nclass CodeEmbedding(nn.Module):\n    def __init__(self, config):\n        super().__init__()\n        self.token_embedding = nn.Embedding(\n            config.vocab_size,\n            config.hidden_size\n        )\n        self.position_embedding = nn.Embedding(\n            config.max_position_embeddings,\n            config.hidden_size\n        )\n        self.type_embedding = nn.Embedding(\n            config.num_types,\n            config.hidden_size\n        )\n        self.layer_norm = nn.LayerNorm(config.hidden_size)\n        self.dropout = nn.Dropout(config.dropout)\n\n    def forward(self, input_ids, type_ids=None, position_ids=None):\n        seq_length = input_ids.size(1)\n        \n        if position_ids is None:\n            position_ids = torch.arange(\n                seq_length,\n                dtype=torch.long,\n                device=input_ids.device\n            )\n            position_ids = position_ids.unsqueeze(0).expand_as(input_ids)\n\n        if type_ids is None:\n            type_ids = torch.zeros_like(input_ids)\n\n        token_embeds = self.token_embedding(input_ids)\n        position_embeds = self.position_embedding(position_ids)\n        type_embeds = self.type_embedding(type_ids)\n\n        embeddings = token_embeds + position_embeds + type_embeds\n        embeddings = self.layer_norm(embeddings)\n        embeddings = self.dropout(embeddings)\n\n        return embeddings\n\nclass CodeTransformer(PreTrainedModel):\n    def __init__(self, config):\n        super().__init__(config)\n        self.embeddings = CodeEmbedding(config)\n        self.encoder = nn.TransformerEncoder(\n            nn.TransformerEncoderLayer(\n                d_model=config.hidden_size,\n                nhead=config.num_attention_heads,\n                dim_feedforward=config.intermediate_size,\n                dropout=config.dropout\n            ),\n            num_layers=config.num_hidden_layers\n        )\n        self.decoder = nn.TransformerDecoder(\n            nn.TransformerDecoderLayer(\n                d_model=config.hidden_size,\n                nhead=config.num_attention_heads,\n                dim_feedforward=config.intermediate_size,\n                dropout=config.dropout\n            ),\n            num_layers=config.num_hidden_layers\n        )\n        self.output_projection = nn.Linear(\n            config.hidden_size,\n            config.vocab_size\n        )\n\n    def forward(self, src_ids, tgt_ids, src_types=None, tgt_types=None):\n        src_embeds = self.embeddings(src_ids, src_types)\n        tgt_embeds = self.embeddings(tgt_ids, tgt_types)\n\n        memory = self.encoder(src_embeds)\n        output = self.decoder(tgt_embeds, memory)\n        logits = self.output_projection(output)\n\n        return logits",
-          "docUrl": "https://pytorch.org/docs/stable/nn.html"
-        }
-      ],
-      "infrastructure": [
-        {
-          "name": "Model Serving",
-          "icon": "⚡",
-          "tech": "TorchServe",
-          "code": "import torch\nfrom ts.torch_handler.base_handler import BaseHandler\nimport json\n\nclass HowlandHandler(BaseHandler):\n    def __init__(self):\n        super().__init__()\n        self.initialized = False\n\n    def initialize(self, context):\n        self.manifest = context.manifest\n        properties = context.system_properties\n        model_dir = properties.get('model_dir')\n        \n        self.device = torch.device(\n            'cuda' if torch.cuda.is_available() else 'cpu'\n        )\n        \n        self.model = torch.jit.load(\n            f'{model_dir}/model.pt',\n            map_location=self.device\n        )\n        self.model.eval()\n        \n        with open(f'{model_dir}/tokenizer.json', 'r') as f:\n            self.tokenizer_config = json.load(f)\n        \n        self.initialized = True\n\n    def preprocess(self, requests):\n        inputs = []\n        for req in requests:\n            data = req.get('data') or req.get('body')\n            if isinstance(data, bytes):\n                data = data.decode('utf-8')\n            \n            semantic_model = json.loads(data)['semantic_model']\n            target_lang = json.loads(data)['target_language']\n            \n            prompt = self._build_prompt(semantic_model, target_lang)\n            inputs.append(prompt)\n        \n        return inputs\n\n    def inference(self, inputs):\n        outputs = []\n        with torch.no_grad():\n            for input_text in inputs:\n                tokens = self._tokenize(input_text)\n                result = self.model.generate(\n                    tokens.to(self.device),\n                    max_length=4096,\n                    num_beams=5,\n                    temperature=0.7\n                )\n                outputs.append(result)\n        return outputs\n\n    def postprocess(self, outputs):\n        responses = []\n        for output in outputs:\n            code = self._decode(output)\n            confidence = self._calculate_confidence(output)\n            \n            responses.append({\n                'target_code': code,\n                'confidence': float(confidence),\n                'warnings': []\n            })\n        return responses",
-          "docUrl": "https://pytorch.org/serve/"
-        }
-      ],
-      "devops": [
-        {
-          "name": "Distributed Training",
-          "icon": "🔄",
-          "tech": "PyTorch DDP",
-          "code": "import torch\nimport torch.distributed as dist\nfrom torch.nn.parallel import DistributedDataParallel as DDP\nfrom torch.utils.data.distributed import DistributedSampler\n\ndef setup(rank, world_size):\n    os.environ['MASTER_ADDR'] = 'localhost'\n    os.environ['MASTER_PORT'] = '12355'\n    dist.init_process_group('nccl', rank=rank, world_size=world_size)\n\ndef cleanup():\n    dist.destroy_process_group()\n\ndef train_distributed(rank, world_size, config):\n    setup(rank, world_size)\n    \n    model = HowlandModel(config).to(rank)\n    ddp_model = DDP(model, device_ids=[rank])\n    \n    dataset = load_dataset(config['dataset_path'])\n    sampler = DistributedSampler(\n        dataset,\n        num_replicas=world_size,\n        rank=rank\n    )\n    \n    dataloader = DataLoader(\n        dataset,\n        batch_size=config['batch_size'],\n        sampler=sampler,\n        num_workers=4\n    )\n    \n    optimizer = torch.optim.AdamW(\n        ddp_model.parameters(),\n        lr=config['learning_rate']\n    )\n    \n    for epoch in range(config['num_epochs']):\n        sampler.set_epoch(epoch)\n        for batch in dataloader:\n            optimizer.zero_grad()\n            \n            outputs = ddp_model(\n                batch['input_ids'].to(rank),\n                batch['labels'].to(rank)\n            )\n            \n            loss = outputs.loss\n            loss.backward()\n            optimizer.step()\n            \n            if rank == 0 and step % 100 == 0:\n                print(f'Epoch {epoch}, Step {step}, Loss: {loss.item()}')\n    \n    cleanup()\n\nif __name__ == '__main__':\n    world_size = torch.cuda.device_count()\n    torch.multiprocessing.spawn(\n        train_distributed,\n        args=(world_size, config),\n        nprocs=world_size,\n        join=True\n    )",
-          "docUrl": "https://pytorch.org/tutorials/intermediate/ddp_tutorial.html"
-        }
-      ]
-    }
-  },
   "businessRequirements": {
-    "jiraPrefix": "HOW",
-    "businessContext": "Develop a specialized AI model for accurate code transformation between programming languages, forming the core of Meridian Vega's platform",
-    "problemStatement": "Generic language models lack the domain-specific knowledge needed for accurate code transformation, resulting in syntactic errors and lost semantics",
+    "jiraPrefix": "HWL",
+    "businessContext": "Build custom Large Language Model trained from scratch for legacy system modernization - transforming COBOL, RPG, FORTRAN, VB6 to modern platforms",
+    "problemStatement": "Generic LLMs don't understand legacy languages like COBOL or FORTRAN, resulting in poor transformation accuracy and lost business logic",
     "businessValue": [
-      "Achieves 97% transformation accuracy",
-      "Preserves code semantics and design patterns",
-      "Supports 100+ language pairs",
-      "Transforms code in under 5 seconds",
-      "Enables automated technology migrations"
+      "Custom LLM trained specifically for legacy code",
+      "95%+ transformation accuracy",
+      "Understands archaic language patterns",
+      "Preserves business logic and semantics",
+      "Complete model training, not fine-tuning"
     ],
     "acceptanceCriteria": [
-      "✓ Parse and understand code structure",
-      "✓ Infer types and dependencies",
-      "✓ Detect and preserve design patterns",
-      "✓ Generate syntactically valid code",
-      "✓ Maintain semantic equivalence",
-      "✓ Provide confidence scores"
+      "Build complete transformer model from scratch",
+      "Train on millions of legacy code examples",
+      "Achieve 95%+ transformation accuracy",
+      "Support COBOL, RPG, FORTRAN, VB6 inputs",
+      "Generate compilable .NET 8, Java, Python output"
     ],
-    "attachments": [
-      { "type": "research", "title": "Model Architecture Paper" },
-      { "type": "documentation", "title": "Training Methodology" }
-    ],
-    "risks": [
-      { "risk": "Training data quality", "mitigation": "Curated dataset with manual verification" },
-      { "risk": "Model bias", "mitigation": "Diverse training examples across languages" },
-      { "risk": "Inference latency", "mitigation": "Model optimization and GPU acceleration" }
-    ]
+    "attachments": [],
+    "risks": []
   },
   "links": {
-    "documentation": "https://docs.meridianvega.com/howland",
-    "research": "https://arxiv.org/howland-paper"
+    "demo": "https://howland.meridianvega.com"
   },
-  "related": ["meridian-vega", "arlo"]
+  "related": ["meridian-vega", "aussie"]
 }

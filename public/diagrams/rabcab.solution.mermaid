@@ -1,76 +1,37 @@
-graph TB
-    subgraph "AutoCAD Environment"
-        ACAD[AutoCAD Application]
-        NET[.NET API Layer]
-        ARX[ObjectARX Core]
-        
-        ACAD --> NET
-        NET --> ARX
+graph LR
+    subgraph CAD["AutoCAD Platform"]
+        AUTOCAD[AutoCAD 2020+<br/>Design Environment]
+        NET[.NET API<br/>Plugin Framework]
     end
-    
-    subgraph "RabCab Plugin Architecture"
-        Core[RabCab Core]
-        Commands[Command Suites]
-        Agents[Processing Agents]
-        Extensions[API Extensions]
-        
-        Core --> Commands
-        Core --> Agents
-        Core --> Extensions
+
+    subgraph Plugin["Custom Plugin"]
+        COMMANDS[Custom Commands<br/>C# Implementation]
+        ENTITIES[Entity Management<br/>Drawing Objects]
+        AUTOMATION[Automation Scripts<br/>Batch Processing]
     end
-    
-    subgraph "Command Suites"
-        Annotation[Annotation Suite]
-        Assembly[Assembly Suite]
-        CNC[CNC Suite]
-        Structural[Structural Suite]
-        Carpentry[Carpentry Suite]
-        Analysis[Analysis Suite]
-        
-        Commands --> Annotation
-        Commands --> Assembly
-        Commands --> CNC
-        Commands --> Structural
-        Commands --> Carpentry
-        Commands --> Analysis
+
+    subgraph Database["Data Layer"]
+        SQL[SQL Server<br/>Project Data]
+        FILES[File System<br/>DWG Storage]
     end
-    
-    subgraph "External Integration"
-        Excel[Excel Agent]
-        PDF[PDF Agent]
-        Inventor[Inventor Agent]
-        Max3ds[3ds Max Agent]
-        
-        Core --> Excel
-        Core --> PDF
-        Core --> Inventor
-        Core --> Max3ds
+
+    subgraph Features["Key Features"]
+        BATCH[Batch Operations<br/>Multi-File Processing]
+        VALIDATION[Data Validation<br/>QA Checks]
+        EXPORT[Export Tools<br/>Multiple Formats]
     end
-    
-    subgraph "User Interface"
-        Ribbon[Custom Ribbon]
-        Palettes[Tool Palettes]
-        Dialogs[WPF Dialogs]
-        Commands --> |"CUI"| Ribbon
-        Agents --> |"UI"| Palettes
-        Extensions --> |"Forms"| Dialogs
-    end
-    
-    subgraph "Data Flow"
-        DWG[DWG Files]
-        XLS[Excel Files]
-        PDFFiles[PDF Output]
-        XML[XML Config]
-        
-        ACAD --> |"Read/Write"| DWG
-        Excel --> |"Export"| XLS
-        PDF --> |"Generate"| PDFFiles
-        Core --> |"Settings"| XML
-    end
-    
-    NET --> |"Loads"| Core
-    
-    style Core fill:#dce4ff
-    style Commands fill:#e1f5e1
-    style ACAD fill:#fff4d4
-    style Ribbon fill:#ffd4d4
+
+    AUTOCAD --> NET
+    NET --> COMMANDS
+    COMMANDS --> ENTITIES
+    ENTITIES --> AUTOMATION
+    AUTOMATION --> SQL
+    AUTOMATION --> FILES
+    COMMANDS --> BATCH
+    COMMANDS --> VALIDATION
+    COMMANDS --> EXPORT
+
+    style CAD fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Plugin fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Database fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Features fill:#fff3e0,stroke:#f57c00,stroke-width:2px

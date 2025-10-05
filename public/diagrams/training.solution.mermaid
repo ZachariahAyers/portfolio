@@ -1,3 +1,39 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Platform["Learning Platform"]
+        LMS[Learning Management<br/>Course Structure]
+        CONTENT[Course Content<br/>Video + Text]
+    end
+
+    subgraph Delivery["Content Delivery"]
+        VIDEO[Video Streaming<br/>CDN + HLS]
+        INTERACTIVE[Interactive Exercises<br/>Code Challenges]
+        QUIZZES[Assessments<br/>Quiz Engine]
+    end
+
+    subgraph Progress["Progress Tracking"]
+        COMPLETION[Completion Tracking<br/>User Progress]
+        CERTIFICATES[Certificates<br/>PDF Generation]
+        ANALYTICS[Analytics Dashboard<br/>Learning Insights]
+    end
+
+    subgraph Stack["Tech Stack"]
+        REACT[React Frontend<br/>TypeScript]
+        NODE[Node.js API<br/>Express]
+        MONGO[MongoDB<br/>User Data]
+    end
+
+    LMS --> CONTENT
+    CONTENT --> VIDEO
+    VIDEO --> INTERACTIVE
+    INTERACTIVE --> QUIZZES
+    QUIZZES --> COMPLETION
+    COMPLETION --> CERTIFICATES
+    CERTIFICATES --> ANALYTICS
+    ANALYTICS --> REACT
+    REACT --> NODE
+    NODE --> MONGO
+
+    style Platform fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Delivery fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Progress fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Stack fill:#fff3e0,stroke:#f57c00,stroke-width:2px

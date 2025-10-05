@@ -1,22 +1,21 @@
 {
   "id": "meridian-vega",
-  "category": "ai-platform",
+  "category": "enterprise",
   "featured": true,
   "hero": {
-    "title": "Meridian Vega",
-    "tagline": "AI-Powered Code Transformation Platform",
-    "badge": "AI Platform",
-    "coverImage": "/images/case-studies/meridian-vega-hero.png",
+    "title": "Meridian Vega LLC",
+    "tagline": "Enterprise Technology Consulting & AI/ML Integration",
+    "badge": "Enterprise Consulting",
     "metrics": [
-      { "value": "95%", "label": "Accuracy", "animate": "counter", "icon": "target" },
-      { "value": "10x", "label": "Faster Porting", "animate": "counter", "icon": "zap" },
-      { "value": "50+", "label": "Languages", "animate": "counter", "icon": "code" }
+      { "value": "Fortune 500", "label": "Clients", "animate": "fade", "icon": "building" },
+      { "value": "2+ Years", "label": "Active", "animate": "counter", "icon": "calendar" },
+      { "value": "AI/ML + Legacy", "label": "Expertise", "animate": "fade", "icon": "brain" }
     ]
   },
   "timeline": {
-    "duration": "12 months",
-    "role": "Senior Engineer",
-    "year": "2023-2024"
+    "duration": "February 2023 - Present",
+    "role": "Founder & Principal Consultant",
+    "year": "2023-Present"
   },
   "sections": [
     {
@@ -24,166 +23,94 @@
       "type": "visual-comparison",
       "title": "The Challenge",
       "before": {
-        "label": "Manual Code Porting",
-        "points": ["Weeks of effort", "High error rate", "Expensive resources"],
-        "visual": "manual-porting"
+        "label": "Enterprise Pain Points",
+        "points": ["20+ year legacy systems", "AI demos that don't scale", "Slow time-to-market"],
+        "visual": "enterprise-challenges"
       },
       "after": {
-        "label": "AI-Powered Transformation",
-        "points": ["Hours not weeks", "95% accuracy", "Automated process"],
-        "visual": "ai-porting"
+        "label": "Production Solutions",
+        "points": ["Working modernization", "Production AI systems", "Rapid delivery"],
+        "visual": "consulting-solutions"
       }
     },
     {
       "id": "solution",
       "type": "interactive-architecture",
-      "title": "Platform Architecture",
+      "title": "Service Offerings",
       "components": [
-        { "name": "Web Interface", "framework": "React + TypeScript", "team": "Frontend" },
-        { "name": "API Layer", "framework": "Node.js + Express", "team": "Backend" },
-        { "name": "Howland AI", "framework": "Custom LLM", "team": "AI/ML" }
+        { "name": "E-Commerce Solutions", "framework": "Stripe/Shopify + React/NestJS", "team": "Full Stack" },
+        { "name": "Creative Tools", "framework": "Adobe/DaVinci Resolve Plugins", "team": "Desktop" },
+        { "name": "3D Visualization", "framework": "Three.js + WebGL", "team": "Graphics" },
+        { "name": "AI/ML Integration", "framework": "LangChain + RAG", "team": "AI/ML" }
       ],
-      "features": ["Code Analysis", "AST Parsing", "Semantic Understanding", "Multi-Language Support"]
-    },
-    {
-      "id": "code",
-      "type": "code-showcase",
-      "title": "Platform Integration",
-      "snippets": [
-        {
-          "title": "Code Transformation API",
-          "code": "interface TransformRequest {\n  sourceCode: string;\n  sourceLanguage: string;\n  targetLanguage: string;\n  options?: TransformOptions;\n}\n\ninterface TransformOptions {\n  preserveComments: boolean;\n  optimizeOutput: boolean;\n  targetVersion?: string;\n}\n\nclass CodeTransformer {\n  async transform(request: TransformRequest): Promise<TransformResult> {\n    const ast = await this.parseToAST(request.sourceCode, request.sourceLanguage);\n    \n    const semanticModel = await this.analyzeSemantics(ast);\n    \n    const targetAST = await this.howlandTransform(\n      semanticModel,\n      request.targetLanguage,\n      request.options\n    );\n    \n    const targetCode = await this.generateCode(\n      targetAST,\n      request.targetLanguage\n    );\n    \n    return {\n      code: targetCode,\n      confidence: this.calculateConfidence(targetAST),\n      warnings: this.extractWarnings(targetAST),\n      metadata: this.generateMetadata(semanticModel)\n    };\n  }\n\n  private async howlandTransform(\n    model: SemanticModel,\n    targetLang: string,\n    options?: TransformOptions\n  ): Promise<AST> {\n    const prompt = this.buildTransformPrompt(model, targetLang, options);\n    const response = await HowlandAPI.transform(prompt);\n    return this.parseHowlandResponse(response);\n  }\n}",
-          "language": "typescript",
-          "animate": "typewriter"
-        },
-        {
-          "title": "AST Analysis Engine",
-          "code": "class ASTAnalyzer {\n  private parsers: Map<string, Parser>;\n\n  async parseToAST(code: string, language: string): Promise<AST> {\n    const parser = this.getParser(language);\n    const tree = parser.parse(code);\n    \n    return {\n      type: 'Program',\n      body: this.traverseTree(tree.rootNode),\n      metadata: {\n        language,\n        version: parser.getVersion(),\n        sourceHash: this.hashCode(code)\n      }\n    };\n  }\n\n  async analyzeSemantics(ast: AST): Promise<SemanticModel> {\n    const symbols = this.extractSymbols(ast);\n    const types = await this.inferTypes(ast, symbols);\n    const dependencies = this.analyzeDependencies(ast);\n    const patterns = this.detectPatterns(ast);\n\n    return {\n      symbols,\n      types,\n      dependencies,\n      patterns,\n      controlFlow: this.buildControlFlowGraph(ast)\n    };\n  }\n\n  private extractSymbols(ast: AST): SymbolTable {\n    const symbols = new Map<string, Symbol>();\n    \n    this.walk(ast, (node) => {\n      if (node.type === 'FunctionDeclaration') {\n        symbols.set(node.name, {\n          type: 'function',\n          scope: node.scope,\n          parameters: node.params,\n          returnType: this.inferReturnType(node)\n        });\n      }\n    });\n\n    return symbols;\n  }\n\n  private detectPatterns(ast: AST): Pattern[] {\n    const patterns: Pattern[] = [];\n    \n    if (this.isFactoryPattern(ast)) {\n      patterns.push({ type: 'factory', nodes: this.getFactoryNodes(ast) });\n    }\n    \n    if (this.isSingletonPattern(ast)) {\n      patterns.push({ type: 'singleton', nodes: this.getSingletonNodes(ast) });\n    }\n\n    return patterns;\n  }\n}",
-          "language": "typescript",
-          "animate": "highlight"
-        }
-      ]
+      "features": ["Payment Integration", "Plugin Development", "3D Configurators", "Game Development Support"]
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Platform Impact",
-      "charts": [
+      "type": "business-report",
+      "title": "Business Impact",
+      "executive_summary": "Meridian Vega successfully delivers high-impact technology solutions for Fortune 500 companies, with projects consistently affecting client revenue streams. Notable achievements include doubling Timelapse+ plugin sales, building first-to-market VW ID.Buzz configurator, and deploying production AI systems.",
+      "sections": [
         {
-          "type": "bar",
-          "title": "Development Time",
-          "data": { "before": 160, "after": 16 },
-          "unit": "hours"
+          "title": "Client Success",
+          "highlights": [
+            "Multiple Fortune 500 client engagements",
+            "Direct revenue impact on all projects",
+            "Client retention with repeat business",
+            "Referral-driven new client acquisition"
+          ]
         },
         {
-          "type": "line",
-          "title": "Transformation Accuracy",
-          "data": [70, 80, 87, 92, 95],
-          "labels": ["V1", "V2", "V3", "V4", "V5"]
+          "title": "Notable Projects",
+          "summary": "Timelapse+ creative tools doubled plugin sales. VW ID.Buzz configurator first-to-market. E-commerce platforms with Stripe/Shopify integration deployed to production."
+        },
+        {
+          "title": "Technical Achievements",
+          "metrics": [
+            { "metric": "Legacy Modernization", "before": "20+ year VB6 systems", "after": ".NET 8 production", "change": "Success" },
+            { "metric": "AI Implementation", "before": "Demos only", "after": "Production RAG systems", "change": "Deployed" },
+            { "metric": "Client Satisfaction", "before": "N/A", "after": "Repeat engagements", "change": "+100%" }
+          ]
         }
       ]
     },
     {
       "id": "tech",
       "type": "tech-stack",
-      "title": "Built With",
+      "title": "Technology Stack",
       "categories": {
-        "frontend": ["React 18", "TypeScript", "TailwindCSS", "Monaco Editor"],
-        "backend": ["Node.js", "Express", "Python", "FastAPI"],
-        "ai": ["Custom LLM", "AST Parsing", "Semantic Analysis", "Code Generation"],
-        "infrastructure": ["AWS", "Docker", "Kubernetes", "Redis"],
-        "tools": ["Tree-sitter", "Babel", "ESLint", "Prettier"]
+        "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Three.js"],
+        "backend": ["Node.js", "NestJS", "Python", "FastAPI", "C#"],
+        "aiml": ["LangChain", "OpenAI API", "TensorFlow", "RAG", "Vector DBs"],
+        "cloud": ["AWS", "Azure", "Docker", "Kubernetes"],
+        "specialized": ["Unity", "Unreal Engine", "Stripe", "Shopify"]
       },
       "interactive": true
     }
   ],
-  "techStackAnalyzer": {
-    "projectName": "Meridian Vega",
-    "fileStructure": {
-      "frontend": [
-        {
-          "name": "Code Editor Integration",
-          "icon": "📝",
-          "tech": "Monaco Editor",
-          "code": "import * as monaco from 'monaco-editor';\n\ninterface EditorProps {\n  language: string;\n  value: string;\n  onChange: (value: string) => void;\n}\n\nexport const CodeEditor: React.FC<EditorProps> = ({\n  language,\n  value,\n  onChange\n}) => {\n  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();\n\n  useEffect(() => {\n    const editor = monaco.editor.create(containerRef.current, {\n      value,\n      language,\n      theme: 'vs-dark',\n      automaticLayout: true,\n      minimap: { enabled: false },\n      fontSize: 14,\n      lineNumbers: 'on',\n      roundedSelection: false,\n      scrollBeyondLastLine: false,\n      readOnly: false\n    });\n\n    editor.onDidChangeModelContent(() => {\n      onChange(editor.getValue());\n    });\n\n    editorRef.current = editor;\n\n    return () => editor.dispose();\n  }, [language]);\n\n  return <div ref={containerRef} style={{ height: '100%' }} />;\n};",
-          "docUrl": "https://microsoft.github.io/monaco-editor/"
-        },
-        {
-          "name": "Transformation Dashboard",
-          "icon": "📊",
-          "tech": "React + TypeScript",
-          "code": "interface TransformationState {\n  status: 'idle' | 'analyzing' | 'transforming' | 'complete' | 'error';\n  progress: number;\n  result?: TransformResult;\n  error?: Error;\n}\n\nexport const TransformationDashboard: React.FC = () => {\n  const [state, setState] = useState<TransformationState>({\n    status: 'idle',\n    progress: 0\n  });\n\n  const handleTransform = async (request: TransformRequest) => {\n    setState({ status: 'analyzing', progress: 0 });\n\n    try {\n      const response = await fetch('/api/transform', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        body: JSON.stringify(request)\n      });\n\n      const reader = response.body?.getReader();\n      const decoder = new TextDecoder();\n\n      while (true) {\n        const { done, value } = await reader!.read();\n        if (done) break;\n\n        const chunk = decoder.decode(value);\n        const progress = JSON.parse(chunk);\n\n        setState(prev => ({\n          ...prev,\n          status: progress.status,\n          progress: progress.percentage\n        }));\n      }\n\n      setState(prev => ({\n        ...prev,\n        status: 'complete',\n        result: await response.json()\n      }));\n    } catch (error) {\n      setState({ status: 'error', progress: 0, error });\n    }\n  };\n\n  return (\n    <div className=\"dashboard\">\n      <TransformationProgress state={state} />\n      <ResultsViewer result={state.result} />\n    </div>\n  );\n};",
-          "docUrl": "https://react.dev/"
-        }
-      ],
-      "backend": [
-        {
-          "name": "Transformation Pipeline",
-          "icon": "⚙️",
-          "tech": "Node.js + Python",
-          "code": "import { Parser } from 'tree-sitter';\nimport Python from 'tree-sitter-python';\nimport JavaScript from 'tree-sitter-javascript';\n\nclass TransformationPipeline {\n  private parsers: Map<string, Parser>;\n\n  constructor() {\n    this.parsers = new Map();\n    this.initializeParsers();\n  }\n\n  async execute(request: TransformRequest): Promise<TransformResult> {\n    const stages = [\n      this.validateInput,\n      this.parseSource,\n      this.analyzeSemantics,\n      this.transformWithHowland,\n      this.generateTarget,\n      this.validateOutput\n    ];\n\n    let context = { request, data: {} };\n\n    for (const stage of stages) {\n      context = await stage.call(this, context);\n      this.emitProgress(stage.name, context);\n    }\n\n    return context.data.result;\n  }\n\n  private async transformWithHowland(context: PipelineContext) {\n    const { semanticModel, targetLanguage } = context.data;\n\n    const response = await fetch('http://howland-api/transform', {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify({\n        model: semanticModel,\n        target: targetLanguage,\n        options: context.request.options\n      })\n    });\n\n    const transformation = await response.json();\n\n    return {\n      ...context,\n      data: {\n        ...context.data,\n        transformation\n      }\n    };\n  }\n}",
-          "docUrl": "https://tree-sitter.github.io/"
-        },
-        {
-          "name": "Semantic Analyzer",
-          "icon": "🧠",
-          "tech": "Python + ML",
-          "code": "from typing import Dict, List, Optional\nfrom dataclasses import dataclass\nimport ast\n\n@dataclass\nclass SemanticContext:\n    symbols: Dict[str, Symbol]\n    types: Dict[str, Type]\n    dependencies: List[Dependency]\n    patterns: List[Pattern]\n\nclass SemanticAnalyzer:\n    def __init__(self, language: str):\n        self.language = language\n        self.symbol_table = {}\n        self.type_system = TypeSystem(language)\n\n    def analyze(self, source_ast: ast.AST) -> SemanticContext:\n        symbols = self._extract_symbols(source_ast)\n        types = self._infer_types(source_ast, symbols)\n        deps = self._analyze_dependencies(source_ast)\n        patterns = self._detect_patterns(source_ast)\n\n        return SemanticContext(\n            symbols=symbols,\n            types=types,\n            dependencies=deps,\n            patterns=patterns\n        )\n\n    def _infer_types(self, node: ast.AST, symbols: Dict) -> Dict[str, Type]:\n        type_map = {}\n        \n        for name, symbol in symbols.items():\n            if isinstance(symbol.node, ast.FunctionDef):\n                return_type = self._infer_return_type(symbol.node)\n                param_types = self._infer_param_types(symbol.node)\n                type_map[name] = FunctionType(param_types, return_type)\n            elif isinstance(symbol.node, ast.ClassDef):\n                methods = self._extract_methods(symbol.node)\n                type_map[name] = ClassType(methods)\n\n        return type_map\n\n    def _detect_patterns(self, node: ast.AST) -> List[Pattern]:\n        patterns = []\n        \n        if self._is_singleton(node):\n            patterns.append(Pattern('singleton', self._get_singleton_impl(node)))\n        \n        if self._is_factory(node):\n            patterns.append(Pattern('factory', self._get_factory_impl(node)))\n\n        return patterns",
-          "docUrl": "https://docs.python.org/3/library/ast.html"
-        }
-      ],
-      "infrastructure": [
-        {
-          "name": "Caching Layer",
-          "icon": "💾",
-          "tech": "Redis",
-          "code": "import { Redis } from 'ioredis';\n\nclass TransformationCache {\n  private redis: Redis;\n  private ttl = 3600;\n\n  constructor() {\n    this.redis = new Redis({\n      host: process.env.REDIS_HOST,\n      port: parseInt(process.env.REDIS_PORT || '6379'),\n      password: process.env.REDIS_PASSWORD\n    });\n  }\n\n  async get(key: string): Promise<TransformResult | null> {\n    const cached = await this.redis.get(key);\n    return cached ? JSON.parse(cached) : null;\n  }\n\n  async set(key: string, value: TransformResult): Promise<void> {\n    await this.redis.setex(\n      key,\n      this.ttl,\n      JSON.stringify(value)\n    );\n  }\n\n  generateKey(request: TransformRequest): string {\n    const normalized = {\n      source: request.sourceCode.trim(),\n      sourceLang: request.sourceLanguage,\n      targetLang: request.targetLanguage,\n      options: request.options || {}\n    };\n    return crypto\n      .createHash('sha256')\n      .update(JSON.stringify(normalized))\n      .digest('hex');\n  }\n}",
-          "docUrl": "https://redis.io/"
-        }
-      ],
-      "devops": [
-        {
-          "name": "Docker Deployment",
-          "icon": "🐳",
-          "tech": "Docker + Kubernetes",
-          "code": "# Dockerfile\nFROM node:18-alpine AS builder\n\nWORKDIR /app\n\nCOPY package*.json ./\nRUN npm ci\n\nCOPY . .\nRUN npm run build\n\nFROM node:18-alpine\n\nWORKDIR /app\n\nCOPY --from=builder /app/dist ./dist\nCOPY --from=builder /app/node_modules ./node_modules\nCOPY package*.json ./\n\nEXPOSE 3000\n\nCMD [\"node\", \"dist/server.js\"]\n\n# kubernetes.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: meridian-vega-api\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: meridian-vega\n  template:\n    metadata:\n      labels:\n        app: meridian-vega\n    spec:\n      containers:\n      - name: api\n        image: meridianvega/api:latest\n        ports:\n        - containerPort: 3000\n        env:\n        - name: REDIS_HOST\n          value: redis-service\n        - name: HOWLAND_API_URL\n          value: http://howland-service:8000",
-          "docUrl": "https://kubernetes.io/docs/"
-        }
-      ]
-    }
-  },
   "businessRequirements": {
     "jiraPrefix": "MV",
-    "businessContext": "Build an AI-powered platform that automates code transformation between programming languages, reducing manual porting effort by 90%",
-    "problemStatement": "Manual code porting is time-consuming, error-prone, and requires deep expertise in multiple programming languages",
+    "businessContext": "Enterprise technology consulting company specializing in AI/ML integration, legacy modernization, and scalable architecture design for Fortune 500 companies",
+    "problemStatement": "Enterprises struggle with complex technology challenges: modernizing 20+ year legacy systems, implementing production-ready AI, and scaling architectures to support business growth",
     "businessValue": [
-      "Reduces code porting time from weeks to hours",
-      "Achieves 95% transformation accuracy",
-      "Supports 50+ programming languages",
-      "Enables seamless technology migrations",
-      "Preserves code semantics and patterns"
+      "Ship production code, not just recommendations",
+      "Specialize in high-impact areas: AI/ML, legacy modernization, e-commerce",
+      "Direct revenue impact on client projects",
+      "Practical solutions over perfect solutions"
     ],
     "acceptanceCriteria": [
-      "✓ Parse and analyze code from 50+ languages",
-      "✓ Transform code with 95% accuracy",
-      "✓ Preserve design patterns and idioms",
-      "✓ Generate runnable target code",
-      "✓ Provide confidence scores and warnings",
-      "✓ Cache transformations for performance"
+      "Deliver working software to production",
+      "Achieve measurable business impact for clients",
+      "Build AI systems that work at scale",
+      "Successfully modernize legacy systems",
+      "Maintain Fortune 500 client relationships"
     ],
-    "attachments": [
-      { "type": "architecture", "title": "Platform Architecture Diagram" },
-      { "type": "documentation", "title": "Howland AI Integration Guide" }
-    ],
-    "risks": [
-      { "risk": "Language-specific edge cases", "mitigation": "Comprehensive test suite with 10,000+ examples" },
-      { "risk": "AI model accuracy", "mitigation": "Continuous training with user feedback" },
-      { "risk": "Scaling challenges", "mitigation": "Kubernetes orchestration with auto-scaling" }
-    ]
+    "attachments": [],
+    "risks": []
   },
   "links": {
-    "live": "https://meridianvega.com",
-    "documentation": "https://docs.meridianvega.com"
+    "demo": "https://www.meridianvega.com",
+    "linkedin": "https://www.linkedin.com/company/meridian-vega"
   },
-  "related": ["howland", "arlo"]
+  "related": ["howland", "chewable-studios", "vw-configurator"]
 }

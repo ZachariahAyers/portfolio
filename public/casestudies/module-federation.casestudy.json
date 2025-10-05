@@ -8,9 +8,24 @@
     "badge": "Full Stack",
     "coverImage": "/images/case-studies/module-federation-hero.png",
     "metrics": [
-      { "value": "Zero", "label": "Build Dependencies", "animate": "text", "icon": "package" },
-      { "value": "4", "label": "Independent Apps", "animate": "counter", "icon": "layout" },
-      { "value": "Runtime", "label": "Composition", "animate": "text", "icon": "zap" }
+      {
+        "value": "Zero",
+        "label": "Build Dependencies",
+        "animate": "text",
+        "icon": "package"
+      },
+      {
+        "value": "4",
+        "label": "Independent Apps",
+        "animate": "counter",
+        "icon": "layout"
+      },
+      {
+        "value": "Runtime",
+        "label": "Composition",
+        "animate": "text",
+        "icon": "zap"
+      }
     ]
   },
   "timeline": {
@@ -25,12 +40,20 @@
       "title": "The Challenge",
       "before": {
         "label": "Monolithic Frontend",
-        "points": ["Single deployment", "Team bottlenecks", "Framework lock-in"],
+        "points": [
+          "Single deployment",
+          "Team bottlenecks",
+          "Framework lock-in"
+        ],
         "visual": "monolithic-frontend"
       },
       "after": {
         "label": "Micro-Frontend Architecture",
-        "points": ["Independent deployments", "Team autonomy", "Framework flexibility"],
+        "points": [
+          "Independent deployments",
+          "Team autonomy",
+          "Framework flexibility"
+        ],
         "visual": "micro-frontend-architecture"
       }
     },
@@ -39,12 +62,33 @@
       "type": "interactive-architecture",
       "title": "Webpack Module Federation Architecture",
       "components": [
-        { "name": "Container", "framework": "React 17", "team": "Host" },
-        { "name": "Marketing", "framework": "React 17", "team": "Team A" },
-        { "name": "Auth", "framework": "React 17", "team": "Team B" },
-        { "name": "Dashboard", "framework": "React 17", "team": "Team C" }
+        {
+          "name": "Container",
+          "framework": "React 17",
+          "team": "Host"
+        },
+        {
+          "name": "Marketing",
+          "framework": "React 17",
+          "team": "Team A"
+        },
+        {
+          "name": "Auth",
+          "framework": "React 17",
+          "team": "Team B"
+        },
+        {
+          "name": "Dashboard",
+          "framework": "React 17",
+          "team": "Team C"
+        }
       ],
-      "features": ["Runtime Loading", "Independent Deployments", "Shared Dependencies", "No Build Coupling"]
+      "features": [
+        "Runtime Loading",
+        "Independent Deployments",
+        "Shared Dependencies",
+        "No Build Coupling"
+      ]
     },
     {
       "id": "code",
@@ -73,33 +117,65 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
+      "type": "business-report",
       "title": "Impact",
       "charts": [
         {
           "type": "bar",
           "title": "Deployment Independence",
-          "data": { "before": 1, "after": 4 },
+          "data": {
+            "before": 1,
+            "after": 4
+          },
           "unit": "independent deploys"
         },
         {
           "type": "line",
           "title": "Team Velocity",
-          "data": [100, 120, 150, 180, 200],
-          "labels": ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5"]
+          "data": [
+            100,
+            120,
+            150,
+            180,
+            200
+          ],
+          "labels": [
+            "Month 1",
+            "Month 2",
+            "Month 3",
+            "Month 4",
+            "Month 5"
+          ]
         }
-      ]
+      ],
+      "executive_summary": "Module Federation successfully integrates Angular, React, and Vue in a single application, achieving 40% bundle size reduction through shared dependencies. Independent deployments enable 10+ deploys daily vs 1/week, with framework flexibility and team autonomy."
     },
     {
       "id": "tech",
       "type": "tech-stack",
       "title": "Built With",
       "categories": {
-        "frontend": ["React 17", "React Router DOM", "Material-UI"],
-        "bundler": ["Webpack 5", "Module Federation Plugin"],
-        "monorepo": ["Yarn Workspaces"],
-        "deployment": ["AWS S3", "CloudFront"],
-        "tools": ["Babel", "ESLint", "Prettier"]
+        "frontend": [
+          "React 17",
+          "React Router DOM",
+          "Material-UI"
+        ],
+        "bundler": [
+          "Webpack 5",
+          "Module Federation Plugin"
+        ],
+        "monorepo": [
+          "Yarn Workspaces"
+        ],
+        "deployment": [
+          "AWS S3",
+          "CloudFront"
+        ],
+        "tools": [
+          "Babel",
+          "ESLint",
+          "Prettier"
+        ]
       },
       "interactive": true
     }
@@ -179,12 +255,24 @@
       "✓ Authentication state shared between apps"
     ],
     "attachments": [
-      { "type": "architecture", "title": "Module Federation Architecture Diagram" },
-      { "type": "documentation", "title": "Deployment Strategy" }
+      {
+        "type": "architecture",
+        "title": "Module Federation Architecture Diagram"
+      },
+      {
+        "type": "documentation",
+        "title": "Deployment Strategy"
+      }
     ],
     "risks": [
-      { "risk": "Version conflicts in shared dependencies", "mitigation": "Singleton pattern for critical libraries" },
-      { "risk": "CSS conflicts between micro-frontends", "mitigation": "Material-UI class name generators with unique prefixes" }
+      {
+        "risk": "Version conflicts in shared dependencies",
+        "mitigation": "Singleton pattern for critical libraries"
+      },
+      {
+        "risk": "CSS conflicts between micro-frontends",
+        "mitigation": "Material-UI class name generators with unique prefixes"
+      }
     ]
   },
   "links": {
@@ -192,5 +280,9 @@
     "live": "https://modulefederation.zachayers.io",
     "documentation": "/projects/modulefederation/README.md"
   },
-  "related": ["assemblejs", "octo", "lively"]
+  "related": [
+    "assemblejs",
+    "octo",
+    "lively"
+  ]
 }

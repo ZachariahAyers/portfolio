@@ -1,3 +1,39 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Input["Source Code"]
+        SOURCE[Source Language<br/>100+ Languages]
+        AST[AST Parser<br/>Tree-sitter]
+    end
+
+    subgraph Analysis["Semantic Analysis"]
+        SYMBOLS[Symbol Extraction<br/>Variables, Functions]
+        TYPES[Type Inference<br/>Static Analysis]
+        PATTERNS[Pattern Detection<br/>Design Patterns]
+    end
+
+    subgraph Model["AI Model"]
+        TRANSFORMER[Transformer Model<br/>Custom Architecture]
+        SEMANTIC[Semantic Preservation<br/>Logic Retention]
+        IDIOM[Idiom Translation<br/>Language-Specific]
+    end
+
+    subgraph Output["Target Code"]
+        GENERATE[Code Generation<br/>Target Language]
+        VALIDATE[Validation<br/>97% Accuracy]
+        RUNNABLE[Runnable Output<br/>< 5s Transform]
+    end
+
+    SOURCE --> AST
+    AST --> SYMBOLS
+    SYMBOLS --> TYPES
+    TYPES --> PATTERNS
+    PATTERNS --> TRANSFORMER
+    TRANSFORMER --> SEMANTIC
+    SEMANTIC --> IDIOM
+    IDIOM --> GENERATE
+    GENERATE --> VALIDATE
+    VALIDATE --> RUNNABLE
+
+    style Input fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Analysis fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Model fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Output fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
