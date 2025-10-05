@@ -31,15 +31,15 @@
 [submodule "projects/auroragrove"]
 	path = projects/auroragrove
 	url = git@github.com:N73311/auroragrove.git
-[submodule "projects/lively"]
-	path = projects/lively
-	url = git@github.com:n73311/lively.git
-[submodule "projects/done-with-it"]
-	path = projects/done-with-it
-	url = git@github.com:n73311/done-with-it.git
-[submodule "projects/modulefederation"]
-	path = projects/modulefederation
-	url = git@github.com:N73311/modulefederation.git
 [submodule "projects/done-with-it-api"]
 	path = projects/done-with-it-api
 	url = git@github.com:N73311/done-with-it-api.git
+[submodule "projects/lively"]
+	path = projects/lively
+	url = git@github.com:n73311/lively.git
+[submodule "projects/modulefederation"]
+	path = projects/modulefederation
+	url = git@github.com:N73311/modulefederation.git
+[submodule "projects/done-with-it"]
+	path = projects/done-with-it
+	url = git@github.com:n73311/done-with-it.git
