@@ -8,9 +8,24 @@
     "badge": "E-Commerce Platform",
     "coverImage": "/images/case-studies/natours-hero.png",
     "metrics": [
-      { "value": "RESTful", "label": "API Design", "animate": "text", "icon": "server" },
-      { "value": "< 200ms", "label": "Response Time", "animate": "counter", "icon": "zap" },
-      { "value": "JWT Auth", "label": "Security", "animate": "text", "icon": "shield" }
+      {
+        "value": "RESTful",
+        "label": "API Design",
+        "animate": "text",
+        "icon": "server"
+      },
+      {
+        "value": "< 200ms",
+        "label": "Response Time",
+        "animate": "counter",
+        "icon": "zap"
+      },
+      {
+        "value": "JWT Auth",
+        "label": "Security",
+        "animate": "text",
+        "icon": "shield"
+      }
     ]
   },
   "timeline": {
@@ -25,12 +40,20 @@
       "title": "The Challenge",
       "before": {
         "label": "Traditional Booking Systems",
-        "points": ["Manual booking processes", "No real-time availability", "Complex payment handling"],
+        "points": [
+          "Manual booking processes",
+          "No real-time availability",
+          "Complex payment handling"
+        ],
         "visual": "legacy-booking"
       },
       "after": {
         "label": "Modern Platform",
-        "points": ["Automated bookings", "Real-time tour availability", "Secure Stripe integration"],
+        "points": [
+          "Automated bookings",
+          "Real-time tour availability",
+          "Secure Stripe integration"
+        ],
         "visual": "modern-platform"
       }
     },
@@ -87,9 +110,24 @@
         {
           "title": "Features Delivered",
           "metrics": [
-            { "metric": "API Response", "before": "1000ms", "after": "<200ms", "change": "-80%" },
-            { "metric": "Database Queries", "before": "Slow", "after": "3x faster", "change": "+200%" },
-            { "metric": "Payment Success", "before": "N/A", "after": "99.5%", "change": "New" }
+            {
+              "metric": "API Response",
+              "before": "1000ms",
+              "after": "<200ms",
+              "change": "-80%"
+            },
+            {
+              "metric": "Database Queries",
+              "before": "Slow",
+              "after": "3x faster",
+              "change": "+200%"
+            },
+            {
+              "metric": "Payment Success",
+              "before": "N/A",
+              "after": "99.5%",
+              "change": "New"
+            }
           ]
         }
       ]
@@ -99,12 +137,38 @@
       "type": "tech-stack",
       "title": "Technologies Used",
       "categories": {
-        "backend": ["Node.js", "Express.js", "MongoDB", "Mongoose ODM"],
-        "authentication": ["JWT", "bcrypt", "Passport.js"],
-        "payments": ["Stripe API", "Webhooks"],
-        "frontend": ["Pug Templates", "JavaScript", "Mapbox GL"],
-        "tools": ["Postman", "MongoDB Atlas", "Nodemailer", "Sharp"],
-        "security": ["Helmet", "express-rate-limit", "express-mongo-sanitize", "XSS-clean"]
+        "backend": [
+          "Node.js",
+          "Express.js",
+          "MongoDB",
+          "Mongoose ODM"
+        ],
+        "authentication": [
+          "JWT",
+          "bcrypt",
+          "Passport.js"
+        ],
+        "payments": [
+          "Stripe API",
+          "Webhooks"
+        ],
+        "frontend": [
+          "Pug Templates",
+          "JavaScript",
+          "Mapbox GL"
+        ],
+        "tools": [
+          "Postman",
+          "MongoDB Atlas",
+          "Nodemailer",
+          "Sharp"
+        ],
+        "security": [
+          "Helmet",
+          "express-rate-limit",
+          "express-mongo-sanitize",
+          "XSS-clean"
+        ]
       },
       "interactive": true
     }
@@ -197,18 +261,35 @@
       "✓ Mobile-responsive design for all devices"
     ],
     "attachments": [
-      { "type": "design", "title": "Tour Booking Flow Diagrams" },
-      { "type": "documentation", "title": "API Documentation" }
+      {
+        "type": "design",
+        "title": "Tour Booking Flow Diagrams"
+      },
+      {
+        "type": "documentation",
+        "title": "API Documentation"
+      }
     ],
     "risks": [
-      { "risk": "Payment processing failures", "mitigation": "Stripe webhooks and retry mechanisms" },
-      { "risk": "High traffic spikes", "mitigation": "Rate limiting and caching strategies" }
+      {
+        "risk": "Payment processing failures",
+        "mitigation": "Stripe webhooks and retry mechanisms"
+      },
+      {
+        "risk": "High traffic spikes",
+        "mitigation": "Rate limiting and caching strategies"
+      }
     ]
   },
   "links": {
     "github": "https://github.com/N73311/natours",
     "live": "https://natours.zachayers.io",
-    "documentation": "/projects/natours/README.md"
+    "documentation": "/projects/natours/README.md",
+    "demo": "https://natours.zachayers.io"
   },
-  "related": ["nexter", "trillo", "module-federation"]
+  "related": [
+    "nexter",
+    "trillo",
+    "module-federation"
+  ]
 }

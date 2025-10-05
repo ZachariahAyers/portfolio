@@ -278,7 +278,8 @@
   "links": {
     "github": "https://github.com/N73311/modulefederation",
     "live": "https://modulefederation.zachayers.io",
-    "documentation": "/projects/modulefederation/README.md"
+    "documentation": "/projects/modulefederation/README.md",
+    "demo": "https://federation.zachayers.io"
   },
   "related": [
     "assemblejs",

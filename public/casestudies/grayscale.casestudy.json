@@ -59,6 +59,27 @@
       }
     },
     {
+      "id": "results",
+      "type": "business-report",
+      "title": "Performance Results",
+      "executive_summary": "Grayscale demonstrates WebAssembly performance with sub-50ms image processing compiled from Rust. Achieves 95% of native application speed with 100% client-side privacy, 15KB optimized WASM bundle, and zero server dependencies - proving WASM viability for production compute-intensive browser applications.",
+      "sections": [
+        {
+          "title": "Performance Achievements",
+          "highlights": [
+            "Sub-50ms processing for 1920x1080 images",
+            "95% of native application speed",
+            "Zero network latency - instant processing",
+            "Memory-safe Rust prevents crashes"
+          ]
+        },
+        {
+          "title": "Technical Benefits",
+          "summary": "100% client-side processing, cross-platform browser support, offline capability, 15KB WASM bundle size"
+        }
+      ]
+    },
+    {
       "title": "Results & Impact",
       "content": "Achieved instant grayscale conversion with zero network latency, demonstrating WebAssembly's viability for performance-critical web applications. The project serves as a reference implementation for Rust/WASM integration patterns.",
       "metrics": [
@@ -137,7 +158,8 @@
   },
   "links": {
     "github": "https://github.com/N73311/grayscale",
-    "documentation": "/projects/grayscale/README.md"
+    "documentation": "/projects/grayscale/README.md",
+    "demo": "https://grayscale.zachayers.io"
   },
   "related": [
     "webassembly",

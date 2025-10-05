@@ -8,10 +8,22 @@
     "badge": "PHP Framework",
     "coverImage": "/images/case-studies/galaxymvc-hero.png",
     "metrics": [
-      { "label": "Lines of Code", "value": "<1K" },
-      { "label": "Zero Dependencies", "value": "100%" },
-      { "label": "Load Time", "value": "<50ms" },
-      { "label": "Learning Curve", "value": "Minimal" }
+      {
+        "label": "Lines of Code",
+        "value": "<1K"
+      },
+      {
+        "label": "Zero Dependencies",
+        "value": "100%"
+      },
+      {
+        "label": "Load Time",
+        "value": "<50ms"
+      },
+      {
+        "label": "Learning Curve",
+        "value": "Minimal"
+      }
     ]
   },
   "timeline": {
@@ -45,6 +57,27 @@
         "language": "php",
         "code": "// Core routing system\nclass Core {\n    protected $currentController = 'Home';\n    protected $currentMethod = 'index';\n    protected $params = [];\n    \n    public function __construct() {\n        $url = $this->getUrl();\n        \n        // Look for controller\n        if(file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {\n            $this->currentController = ucwords($url[0]);\n            unset($url[0]);\n        }\n        \n        // Require and instantiate controller\n        require_once '../app/controllers/' . $this->currentController . '.php';\n        $this->currentController = new $this->currentController;\n        \n        // Check for method\n        if(isset($url[1]) && method_exists($this->currentController, $url[1])) {\n            $this->currentMethod = $url[1];\n            unset($url[1]);\n        }\n        \n        // Get params\n        $this->params = $url ? array_values($url) : [];\n        \n        // Call controller method with params\n        call_user_func_array([$this->currentController, $this->currentMethod], $this->params);\n    }\n}"
       }
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Framework Results",
+      "executive_summary": "GalaxyMVC demonstrates complete MVC framework implementation in pure PHP under 1000 lines with zero dependencies. Achieves sub-50ms response times, includes custom router with named routes, PDO wrapper preventing SQL injection, and PSR-4 compliant autoloading - perfect for understanding framework internals.",
+      "sections": [
+        {
+          "title": "Framework Success",
+          "highlights": [
+            "Complete MVC in under 1000 lines",
+            "Sub-50ms response times",
+            "Zero external dependencies",
+            "Production-ready security"
+          ]
+        },
+        {
+          "title": "Educational Value",
+          "summary": "Perfect for teaching MVC concepts, code simple enough to understand completely, demonstrates framework design decisions and security best practices"
+        }
+      ]
     },
     {
       "title": "Results & Impact",
@@ -130,7 +163,13 @@
   },
   "links": {
     "github": "https://github.com/N73311/GalaxyMVC",
-    "documentation": "/projects/GalaxyMVC/README.md"
+    "documentation": "/projects/GalaxyMVC/README.md",
+    "demo": "https://galaxymvc.zachayers.io"
   },
-  "related": ["php", "mvc", "framework", "web-development"]
+  "related": [
+    "php",
+    "mvc",
+    "framework",
+    "web-development"
+  ]
 }
