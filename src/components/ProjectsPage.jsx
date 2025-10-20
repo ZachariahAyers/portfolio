@@ -26,7 +26,7 @@ const ProjectsPage = () => {
     const projects = [];
     
     // Process each category in order of importance
-    const categories = ['opensource', 'enterprise', 'freelance', 'other']; // opensource acts as featured
+    const categories = ['opensource', 'enterprise', 'freelance', 'leadership']; // opensource acts as featured
     
     categories.forEach(category => {
       if (profileData.projects?.[category]) {
@@ -38,8 +38,7 @@ const ProjectsPage = () => {
             type: category,
             technologies: project.technologies ? 
               (Array.isArray(project.technologies) ? project.technologies : project.technologies.split(', ')) : [],
-            image: project.image || project.screenshot || null,
-            demo: project.demo || null
+            image: project.image || project.screenshot || null
           });
         });
       }
@@ -87,7 +86,7 @@ const ProjectsPage = () => {
       opensource: 0,
       enterprise: 0,
       freelance: 0,
-      other: 0
+      leadership: 0
     };
     
     // Use projects filtered by technology for counting
@@ -151,7 +150,7 @@ const ProjectsPage = () => {
     if (project.type === 'enterprise') return Building;
     if (project.type === 'opensource') return Package;
     if (project.type === 'freelance') return Briefcase;
-    if (project.type === 'other') return Code;
+    if (project.type === 'leadership') return Code;
     // Secondary icon based on technology
     if (project.technologies && project.technologies.some(t => t.includes('AI') || t.includes('ML'))) return Brain;
     if (project.technologies && project.technologies.some(t => t.includes('AWS') || t.includes('Azure'))) return Cloud;
@@ -164,7 +163,7 @@ const ProjectsPage = () => {
     if (project.type === 'enterprise') return 'dark:from-purple-900/20 dark:to-pink-900/20 border-purple-500 dark:border-purple-500/30';
     if (project.type === 'opensource') return 'dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-500 dark:border-blue-500/30';
     if (project.type === 'freelance') return 'dark:from-amber-900/20 dark:to-orange-900/20 border-amber-500 dark:border-amber-500/30';
-    if (project.type === 'other') return 'dark:from-green-900/20 dark:to-emerald-900/20 border-green-500 dark:border-green-500/30';
+    if (project.type === 'leadership') return 'dark:from-green-900/20 dark:to-emerald-900/20 border-green-500 dark:border-green-500/30';
     return 'dark:from-gray-800/20 dark:to-gray-700/20 border-gray-500 dark:border-gray-600/30';
   };
 
@@ -192,7 +191,7 @@ const ProjectsPage = () => {
                 </Link>
               </Tooltip>
               <span className="text-gray-400 dark:text-gray-600">|</span>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">All Projects</h1>
+              <h1 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">All Projects</h1>
             </div>
             <Tooltip content="Go to homepage">
               <Link to="/" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Navigate to homepage">
@@ -208,33 +207,13 @@ const ProjectsPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-6 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
-            {/* GitHub Stats in top right corner */}
-            <div className="absolute top-4 right-4 text-sm">
-              <div className="bg-gray-300 dark:bg-gray-800/50 rounded-lg px-3 py-1 flex items-center gap-2">
-                <Github className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                <span className="text-gray-600 dark:text-gray-400">Stars: </span>
-                <span className="text-gray-900 dark:text-white font-bold inline-flex items-center gap-1">
-                  {githubStats.loading ? (
-                    <span className="text-xs">Loading...</span>
-                  ) : githubStats.error ? (
-                    <span className="text-xs">--</span>
-                  ) : (
-                    <>
-                      <Star className="w-3 h-3 text-yellow-500" />
-                      {githubStats.totalStars}
-                    </>
-                  )}
-                </span>
-              </div>
-            </div>
-            
+          <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
             <div className="text-center space-y-4">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
                 <Rocket className="text-blue-400" />
                 Projects & Creations
               </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
                 From enterprise transformations to open-source contributions
               </p>
               <div className="flex justify-center flex-wrap gap-4 text-sm">
@@ -328,22 +307,6 @@ const ProjectsPage = () => {
                     Enterprise ({dynamicTypeCounts.enterprise})
                   </button>
                 </Tooltip>
-                <Tooltip content="Show open source contributions">
-                  <button
-                    onClick={() => {
-                      setSelectedType('opensource');
-                      setShowCurrentOnly(false);
-                    }}
-                    aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
-                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
-                      selectedType === 'opensource' && !showCurrentOnly
-                        ? 'bg-blue-600 text-white' 
-                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                    }`}
-                  >
-                    Open Source ({dynamicTypeCounts.opensource})
-                  </button>
-                </Tooltip>
                 <Tooltip content="Show freelance client projects">
                   <button
                     onClick={() => {
@@ -360,20 +323,36 @@ const ProjectsPage = () => {
                     Freelance ({dynamicTypeCounts.freelance})
                   </button>
                 </Tooltip>
-                <Tooltip content="Show personal and experimental projects">
+                <Tooltip content="Show leadership and organizational impact projects">
                   <button
                     onClick={() => {
-                      setSelectedType('other');
+                      setSelectedType('leadership');
                       setShowCurrentOnly(false);
                     }}
-                    aria-label={`Filter by other projects, ${dynamicTypeCounts.other} projects`}
+                    aria-label={`Filter by leadership projects, ${dynamicTypeCounts.leadership} projects`}
                     className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
-                      selectedType === 'other' && !showCurrentOnly
-                        ? 'bg-green-600 text-white' 
+                      selectedType === 'leadership' && !showCurrentOnly
+                        ? 'bg-green-600 text-white'
                         : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                     }`}
                   >
-                    Other ({dynamicTypeCounts.other})
+                    Leadership ({dynamicTypeCounts.leadership})
+                  </button>
+                </Tooltip>
+                <Tooltip content="Show open source contributions">
+                  <button
+                    onClick={() => {
+                      setSelectedType('opensource');
+                      setShowCurrentOnly(false);
+                    }}
+                    aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
+                    className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
+                      selectedType === 'opensource' && !showCurrentOnly
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    Open Source ({dynamicTypeCounts.opensource})
                   </button>
                 </Tooltip>
               </div>
@@ -437,7 +416,7 @@ const ProjectsPage = () => {
             </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {filteredProjects.map(project => {
               const Icon = getProjectIcon(project);
               const theme = getProjectTheme(project);
@@ -446,7 +425,7 @@ const ProjectsPage = () => {
               return (
                 <div
                   key={project.id}
-                  className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                  className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                     project.current 
                       ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                       : ''
@@ -458,7 +437,7 @@ const ProjectsPage = () => {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2 flex-1">
                         <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                        <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
                           {project.name}
                         </h3>
                       </div>
@@ -545,17 +524,6 @@ const ProjectsPage = () => {
                         Live Deployment
                       </a>
                     )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
-                      >
-                        <Zap className="w-3 h-3" />
-                        Video Demo
-                      </a>
-                    )}
                     {project.github && (
                       <a
                         href={project.github.startsWith('http') ? project.github : `https://${project.github}`}
@@ -565,17 +533,6 @@ const ProjectsPage = () => {
                       >
                         <Github className="w-3 h-3" />
                         Source
-                      </a>
-                    )}
-                    {project.devOps && (
-                      <a
-                        href={project.devOps}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
-                      >
-                        <Zap className="w-3 h-3" />
-                        DevOps
                       </a>
                     )}
                     {project.caseStudy && (
@@ -616,13 +573,13 @@ const ProjectsPage = () => {
                         Open Source
                       </a>
                     )}
-                    {project.type === 'other' && project.caseStudy && (
+                    {project.type === 'leadership' && project.caseStudy && (
                       <Link
                         to={project.caseStudy}
                         className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 ml-auto"
                       >
                         <Code className="w-3 h-3" />
-                        Other
+                        Leadership
                       </Link>
                     )}
                   </div>

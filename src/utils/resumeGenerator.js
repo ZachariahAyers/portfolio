@@ -2,13 +2,6 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import DOMPurify from 'dompurify';
 
-const formatDate = (dateStr) => {
-  if (!dateStr) return '';
-  if (dateStr.includes('Present')) return dateStr;
-  
-  const parts = dateStr.split(' - ');
-  return parts.join(' - ');
-};
 
 const createResumeHTML = (profileData, tailored = false, jobDescription = '', analysis = '') => {
   const sanitizeText = (text) => {
@@ -264,8 +257,6 @@ export const generateStandardResume = async (profileData) => {
     pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
     const sanitizedName = DOMPurify.sanitize(profileData.personal.name).replace(/[^a-zA-Z0-9]/g, '_');
     pdf.save(`${sanitizedName}_Resume.pdf`);
-  } catch (error) {
-    throw error;
   } finally {
     document.body.removeChild(resumeContainer);
   }
@@ -305,8 +296,6 @@ export const generateTailoredResume = async (profileData, jobDescription, analys
     pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
     const sanitizedName = DOMPurify.sanitize(profileData.personal.name).replace(/[^a-zA-Z0-9]/g, '_');
     pdf.save(`${sanitizedName}_Tailored_Resume.pdf`);
-  } catch (error) {
-    throw error;
   } finally {
     document.body.removeChild(resumeContainer);
   }

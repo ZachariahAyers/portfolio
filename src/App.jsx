@@ -11,6 +11,7 @@ import ExperimentSelector from './components/ExperimentSelector';
 import DetailedView from './components/DetailedView';
 import ThemeToggle from './components/ThemeToggle';
 import LighthouseButton from './components/LighthouseButton';
+import MobileMenu from './components/MobileMenu';
 import { Tooltip } from './components/Tooltip';
 import { generateStandardResume, generateTailoredResume } from './utils/resumeGenerator';
 import profileData from './portfolio-data.json';
@@ -320,9 +321,6 @@ Remember: You are Zachariah Ayers sharing your genuine professional experience i
 const callGeminiAPI = async (chatHistory, mode) => {
     const systemPrompt = mode === 'interview' ? getInterviewSystemPrompt() : getChatSystemPrompt();
     
-    const initialModelResponse = mode === 'interview' 
-        ? "Great, let's do this. What would you like to know?"
-        : "Hey! Thanks for checking out my portfolio. What would you like to know about my experience?";
 
     // Limit conversation history to last 5 exchanges (10 messages) to save tokens
     const recentHistory = chatHistory.slice(-10);
@@ -357,7 +355,7 @@ const callGeminiAPI = async (chatHistory, mode) => {
         });
         
         if (!response.ok) {
-            const errorBody = await response.text();
+            await response.text();
             
             // Check for quota exceeded
             if (response.status === 429) {
@@ -375,7 +373,7 @@ const callGeminiAPI = async (chatHistory, mode) => {
         }
         
         return "I'm sorry, I couldn't generate a response. Please try again.";
-    } catch (error) {
+    } catch {
         return "I'm having trouble connecting right now. Please try again later or contact Zach directly.";
     }
 };
@@ -384,36 +382,36 @@ const callGeminiAPI = async (chatHistory, mode) => {
 
 const AnimatedMessage = ({ message, isAI }) => {
   const Icon = isAI ? Bot : User;
+  
+  const markdownComponents = {
+    p: ({...props}) => <p className="mb-2 last:mb-0" {...props} />,
+    a: ({...props}) => <a {...props} className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer" />,
+    strong: ({...props}) => <strong className="font-bold text-inherit" {...props} />,
+    em: ({...props}) => <em className="italic" {...props} />,
+    ul: ({...props}) => <ul className="list-disc list-inside pl-4 mb-2 space-y-2 marker:text-gray-600 dark:marker:text-gray-400" {...props} />,
+    ol: ({...props}) => <ol className="list-decimal list-inside pl-4 mb-2 space-y-2" {...props} />,
+    li: ({...props}) => <li className="mb-1 [&>p]:inline" {...props} />,
+    code: ({inline, ...props}) => 
+      inline ? 
+      <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-xs" {...props} /> :
+      <pre className="bg-gray-100 dark:bg-gray-900 p-3 rounded-md overflow-x-auto mb-3"><code {...props} /></pre>,
+    h1: ({...props}) => <h1 className="text-xl font-bold mb-2" {...props} />,
+    h2: ({...props}) => <h2 className="text-lg font-bold mb-2" {...props} />,
+    h3: ({...props}) => <h3 className="text-base font-bold mb-2" {...props} />,
+  };
 
   return (
     <div className={`flex items-start gap-3 my-4 animate-fade-in-up ${isAI ? '' : 'flex-row-reverse'}`}>
       <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isAI ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-600'} overflow-hidden`}>
         {isAI ? (
-          <img src={profileData.personal.aiAssistant.avatarPath} alt="Arlo" className="w-full h-full object-cover" />
+          <img src="/ai-profile.png" alt="Arlo" className="w-full h-full object-cover" />
         ) : (
           <Icon className="w-5 h-5 text-white" />
         )}
       </div>
       <div className={`p-4 rounded-lg max-w-lg ${isAI ? 'bg-gray-300 dark:bg-gray-800 rounded-bl-none' : 'bg-blue-600 dark:bg-blue-800 text-white rounded-br-none'}`}>
         <div className="text-sm leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
-          <ReactMarkdown 
-            components={{
-            p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-            a: ({node, ...props}) => <a {...props} className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer" />,
-            strong: ({node, ...props}) => <strong className="font-bold text-inherit" {...props} />,
-            em: ({node, ...props}) => <em className="italic" {...props} />,
-            ul: ({node, ...props}) => <ul className="list-disc list-inside pl-4 mb-2 space-y-2 marker:text-gray-600 dark:marker:text-gray-400" {...props} />,
-            ol: ({node, ...props}) => <ol className="list-decimal list-inside pl-4 mb-2 space-y-2" {...props} />,
-            li: ({node, ...props}) => <li className="mb-1 [&>p]:inline" {...props} />,
-            code: ({node, inline, ...props}) => 
-              inline ? 
-              <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-xs" {...props} /> :
-              <pre className="bg-gray-100 dark:bg-gray-900 p-3 rounded-md overflow-x-auto mb-3"><code {...props} /></pre>,
-            h1: ({node, ...props}) => <h1 className="text-xl font-bold mb-2" {...props} />,
-            h2: ({node, ...props}) => <h2 className="text-lg font-bold mb-2" {...props} />,
-            h3: ({node, ...props}) => <h3 className="text-base font-bold mb-2" {...props} />,
-          }}
-          >
+          <ReactMarkdown components={markdownComponents}>
             {message.text}
           </ReactMarkdown>
         </div>
@@ -423,7 +421,7 @@ const AnimatedMessage = ({ message, isAI }) => {
 };
 
 const ModalWrapper = ({ children, setView }) => (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 flex items-center justify-center p-4 z-50 animate-fade-in" onClick={() => setView('chat')}>
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 flex items-center justify-center p-4 z-[9999] animate-fade-in" onClick={() => setView('chat')}>
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg max-w-lg w-full animate-scale-in shadow-xl" onClick={e => e.stopPropagation()}>
             {children}
         </div>
@@ -498,8 +496,8 @@ const ContactForm = ({ setView }) => {
 
   if (status === 'success') {
     return (
-      <div className="p-8 text-center">
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Thank You!</h3>
+      <div className="p-8 max-sm:p-4 text-center">
+        <h3 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-4">Thank You!</h3>
         <p className="text-gray-800 dark:text-gray-300 mb-6">Your message has been sent. I'll get back to you shortly.</p>
         <Tooltip content="Return to chat">
           <button onClick={() => setView('chat')} aria-label="Return to chat" className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Back to Chat</button>
@@ -510,8 +508,8 @@ const ContactForm = ({ setView }) => {
 
   if (status === 'error') {
     return (
-      <div className="p-8 text-center">
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Oops!</h3>
+      <div className="p-8 max-sm:p-4 text-center">
+        <h3 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-4">Oops!</h3>
         <p className="text-gray-800 dark:text-gray-300 mb-6">Something went wrong. Please try again or email me directly at {profileData.contact.email}</p>
         <Tooltip content="Reset form and try again">
           <button onClick={() => { setStatus('idle'); setFormData({ name: '', email: '', message: '' }); }} aria-label="Reset form and try again" className="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all duration-200 active:scale-95">Try Again</button>
@@ -521,9 +519,9 @@ const ContactForm = ({ setView }) => {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-8 max-sm:p-4">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Contact Zachariah Ayers</h3>
+        <h3 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white">Contact Zachariah Ayers</h3>
         <Tooltip content="Close contact form">
           <button onClick={() => setView('chat')} aria-label="Close contact form" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"><X size={24} /></button>
         </Tooltip>
@@ -640,9 +638,9 @@ const GeminiFeatureModal = ({ feature, setView, handleGeminiFeature }) => {
     }
 
     return (
-        <div className="p-8">
+        <div className="p-8 max-sm:p-4">
             <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <h3 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                     {Icon && <Icon className={currentFeature.color}/>}
                     {currentFeature.title}
                 </h3>
@@ -711,7 +709,7 @@ export default function App() {
   const [showHireModal, setShowHireModal] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
-  const [showQuickButtons, setShowQuickButtons] = useState(true);
+  const [showQuickButtons, setShowQuickButtons] = useState(window.innerWidth >= 768);
   const [experimentActive, setExperimentActive] = useState(false);
   const [currentExperiment, setCurrentExperiment] = useState(null);
   const [showExperimentSelector, setShowExperimentSelector] = useState(false);
@@ -751,9 +749,67 @@ export default function App() {
   const exitInterviewMode = () => {
     setMode('chat');
     setInput('');
-    setMessages(prev => [...prev, 
-        { sender: 'ai', text: "Thanks for the interview practice! Back to regular portfolio mode. What else would you like to know about my experience?" }
-    ]);
+    const exitMessage = "Thanks for the interview practice! Back to regular portfolio mode. What else would you like to know about my experience?";
+    
+    // Add empty message first for streaming
+    setMessages(prev => [...prev, { sender: 'ai', text: '', isStreaming: true }]);
+    
+    // Stream the exit message with natural pacing
+    let currentText = '';
+    let charIndex = 0;
+    
+    const streamNextChunk = () => {
+        if (charIndex < exitMessage.length) {
+            const currentChar = exitMessage[charIndex];
+            const prevChar = exitMessage[charIndex - 1] || '';
+            
+            // Determine delay based on punctuation
+            let delay = 15; // Base delay (2x faster)
+            let charsToAdd = 1;
+            
+            // Add natural pauses
+            if (['.', '!', '?'].includes(prevChar)) {
+                delay = 200;
+            } else if ([',', ';', ':'].includes(prevChar)) {
+                delay = 100;
+            } else if (currentChar === ' ') {
+                delay = 10;
+                const remainingText = exitMessage.slice(charIndex);
+                const nextWord = remainingText.match(/^\s*\S{1,4}(?=\s|$)/);
+                if (nextWord) {
+                    charsToAdd = Math.min(nextWord[0].length, 3);
+                }
+            }
+            
+            // Update text
+            currentText = exitMessage.slice(0, charIndex + charsToAdd);
+            charIndex += charsToAdd;
+            
+            setMessages(prev => {
+                const newMessages = [...prev];
+                newMessages[newMessages.length - 1] = { 
+                    sender: 'ai', 
+                    text: currentText,
+                    isStreaming: true
+                };
+                return newMessages;
+            });
+            
+            setTimeout(streamNextChunk, delay);
+        } else {
+            setMessages(prev => {
+                const newMessages = [...prev];
+                newMessages[newMessages.length - 1] = { 
+                    sender: 'ai', 
+                    text: exitMessage,
+                    isStreaming: false
+                };
+                return newMessages;
+            });
+        }
+    };
+    
+    streamNextChunk();
   };
 
   const handleSend = async (cannedQuestion = null) => {
@@ -842,15 +898,82 @@ export default function App() {
     setUsageData(updatedUsage);
 
     const aiResponseText = await callGeminiAPI(newMessages, mode);
+    setIsTyping(false);
 
     if (aiResponseText.includes("[OPEN_CONTACT_FORM]")) {
         setMessages(prev => [...prev, { sender: 'ai', text: "Of course! I'll open the contact form so you can send a message to Zach directly." }]);
         setView('contact');
     } else {
-        setMessages(prev => [...prev, { sender: 'ai', text: aiResponseText }]);
-        setShowFollowUps(true);
+        // Add empty message first for streaming
+        setMessages(prev => [...prev, { sender: 'ai', text: '', isStreaming: true }]);
+        
+        // Stream the text with natural pacing
+        let currentText = '';
+        let charIndex = 0;
+        
+        const streamNextChunk = () => {
+            if (charIndex < aiResponseText.length) {
+                const currentChar = aiResponseText[charIndex];
+                const nextChar = aiResponseText[charIndex + 1] || '';
+                const prevChar = aiResponseText[charIndex - 1] || '';
+                
+                // Determine delay based on punctuation and context
+                let delay = 15; // Base delay (2x faster)
+                let charsToAdd = 1;
+                
+                // Add natural pauses after punctuation
+                if (['.', '!', '?'].includes(prevChar)) {
+                    delay = 200; // Longer pause after sentences (2x faster)
+                } else if ([',', ';', ':'].includes(prevChar)) {
+                    delay = 100; // Medium pause after commas (2x faster)
+                } else if (prevChar === '\n' || (prevChar === ' ' && nextChar === '\n')) {
+                    delay = 150; // Pause at line breaks (2x faster)
+                } else if (currentChar === ' ') {
+                    // Speed up through spaces but add multiple chars for words
+                    delay = 10;
+                    // Look ahead to add whole short words
+                    const remainingText = aiResponseText.slice(charIndex);
+                    const nextWord = remainingText.match(/^\s*\S{1,4}(?=\s|$)/);
+                    if (nextWord) {
+                        charsToAdd = Math.min(nextWord[0].length, 3);
+                    }
+                }
+                
+                // Update text
+                currentText = aiResponseText.slice(0, charIndex + charsToAdd);
+                charIndex += charsToAdd;
+                
+                // Update the message
+                setMessages(prev => {
+                    const newMessages = [...prev];
+                    newMessages[newMessages.length - 1] = { 
+                        sender: 'ai', 
+                        text: currentText,
+                        isStreaming: true
+                    };
+                    return newMessages;
+                });
+                
+                // Schedule next chunk with dynamic delay
+                setTimeout(streamNextChunk, delay);
+            } else {
+                // Streaming complete
+                setMessages(prev => {
+                    const newMessages = [...prev];
+                    newMessages[newMessages.length - 1] = { 
+                        sender: 'ai', 
+                        text: aiResponseText,
+                        isStreaming: false
+                    };
+                    return newMessages;
+                });
+                setShowFollowUps(true);
+            }
+        };
+        
+        // Start streaming
+        streamNextChunk();
     }
-    setIsTyping(false);
   };
 
   const handleGeminiFeature = async (feature, value) => {
@@ -1263,7 +1386,74 @@ Return this exact JSON structure:
     "What challenges did you face?"
   ];
 
-  const renderView = () => {
+  const renderChatContent = () => {
+      if (view === 'chat') {
+          return (
+              <div className="w-full max-w-3xl flex flex-col min-h-0">
+                  <div className="flex-1 overflow-y-auto p-4 md:p-6 max-sm:p-3 scrollbar-subtle">
+                          {messages.map((msg, index) => (
+                            <AnimatedMessage 
+                              key={index} 
+                              message={msg} 
+                              isAI={msg.sender === 'ai'} 
+                              isLastMessage={index === messages.length - 1}
+                              isStreaming={msg.isStreaming || false}
+                            />
+                          ))}
+                          {isTyping && (
+                              <div className="flex items-start gap-3 my-4">
+                                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                                      <img src="/ai-profile.png" alt="Arlo" className="w-full h-full object-cover" />
+                                  </div>
+                                  <div className="p-4 rounded-lg bg-gray-300 dark:bg-gray-800 rounded-bl-none">
+                                      <div className="flex items-center gap-2">
+                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce"></span>
+                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:75ms]"></span>
+                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
+                                      </div>
+                                  </div>
+                              </div>
+                          )}
+                          {showFollowUps && !isTyping && messages.length > 0 && (
+                              <div className="my-4 sm:my-4 max-sm:my-2 animate-fade-in-up">
+                                  <div className="max-sm:text-[10px] max-sm:text-gray-500 max-sm:dark:text-gray-400 max-sm:mb-1 max-sm:px-2">
+                                      <span className="sm:hidden">Suggested:</span>
+                                  </div>
+                                  <div className="flex flex-wrap sm:flex-wrap max-sm:flex-nowrap max-sm:overflow-x-auto max-sm:scrollbar-hide gap-1.5 max-sm:gap-1 px-2 max-sm:px-1">
+                                      {(() => {
+                                          const followUps = questionFlows[lastAskedQuestion] || genericFollowUps;
+                                          // On mobile, show only first 2 follow-ups plus back button
+                                          const displayFollowUps = isMobile ? followUps.slice(0, 2) : followUps;
+                                          return [...displayFollowUps, "↩ Back to topics"].map((q) => (
+                                              <button 
+                                                  key={q} 
+                                                  onClick={() => {
+                                                      if (q === "↩ Back to topics") {
+                                                          setMessages([]);
+                                                          setLastAskedQuestion(null);
+                                                          setShowFollowUps(false);
+                                                      } else {
+                                                          handleSend(q, true);
+                                                      }
+                                                  }}
+                                                  className="text-xs max-sm:text-[10px] px-3 py-1.5 max-sm:px-2 max-sm:py-1 rounded-full bg-gray-200 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700/40 hover:text-gray-900 dark:hover:text-gray-300 transition-all duration-200 active:scale-95 border border-gray-300 dark:border-gray-700/50 whitespace-nowrap flex-shrink-0"
+                                              >
+                                                  {q}
+                                              </button>
+                                          ));
+                                      })()}
+                                  </div>
+                              </div>
+                          )}
+                          <div ref={chatEndRef} />
+                      </div>
+                  </div>
+              );
+      }
+      return null;
+  };
+
+  const renderModal = () => {
       switch(view) {
           case 'summary':
               return <ModalWrapper setView={setView}><GeminiFeatureModal feature="summary" setView={setView} handleGeminiFeature={handleGeminiFeature} /></ModalWrapper>;
@@ -1305,66 +1495,18 @@ Return this exact JSON structure:
                     setView('contact');
                   }}
               />;
-          case 'chat':
           default:
-              return (
-                  <div className="w-full max-w-3xl flex flex-col min-h-0">
-                      <div className="flex-1 overflow-y-auto p-4 md:p-6 scrollbar-subtle">
-                          {messages.map((msg, index) => <AnimatedMessage key={index} message={msg} isAI={msg.sender === 'ai'} />)}
-                          {isTyping && (
-                              <div className="flex items-start gap-3 my-4">
-                                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
-                                      <img src={profileData.personal.aiAssistant.avatarPath} alt="Arlo" className="w-full h-full object-cover" />
-                                  </div>
-                                  <div className="p-4 rounded-lg bg-gray-300 dark:bg-gray-800 rounded-bl-none">
-                                      <div className="flex items-center gap-2">
-                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce"></span>
-                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:75ms]"></span>
-                                          <span className="w-2 h-2 bg-gray-400 dark:bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
-                                      </div>
-                                  </div>
-                              </div>
-                          )}
-                          {showFollowUps && !isTyping && messages.length > 0 && (
-                              <div className="my-4 animate-fade-in-up">
-                                  <div className="flex flex-wrap gap-1.5 px-2">
-                                      {(() => {
-                                          const followUps = questionFlows[lastAskedQuestion] || genericFollowUps;
-                                          return [...followUps, "↩ Back to topics"].map((q, i) => (
-                                              <button 
-                                                  key={q} 
-                                                  onClick={() => {
-                                                      if (q === "↩ Back to topics") {
-                                                          setMessages([]);
-                                                          setLastAskedQuestion(null);
-                                                          setShowFollowUps(false);
-                                                      } else {
-                                                          handleSend(q, true);
-                                                      }
-                                                  }}
-                                                  className="text-xs px-3 py-1.5 rounded-full bg-gray-200 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700/40 hover:text-gray-900 dark:hover:text-gray-300 transition-all duration-200 active:scale-95 border border-gray-300 dark:border-gray-700/50"
-                                              >
-                                                  {q}
-                                              </button>
-                                          ));
-                                      })()}
-                                  </div>
-                              </div>
-                          )}
-                          <div ref={chatEndRef} />
-                      </div>
-                  </div>
-              );
+              return null;
       }
   };
 
-  const ActionButton = ({ onClick, icon: Icon, text, colorClass, disabled = false, title, showPulse = false }) => (
+  const ActionButton = ({ onClick, icon: Icon, text, colorClass, disabled = false, title, showPulse = false, hideTextOnMobile = false }) => (
     <Tooltip content={title}>
       <button 
         onClick={onClick} 
         disabled={disabled}
         aria-label={title}
-        className="bg-gray-100 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 p-2 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs sm:text-sm flex items-center gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800/80"
+        className="bg-gray-100 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-700 p-2 max-sm:min-h-[44px] rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-xs flex items-center gap-1 md:gap-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800/80"
       >
         {showPulse && (
           <span className="relative flex h-2 w-2">
@@ -1372,7 +1514,8 @@ Return this exact JSON structure:
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
           </span>
         )}
-        {Icon && <Icon className={colorClass} size={16}/>} {text}
+        {Icon && <Icon className={colorClass} size={16}/>} 
+        {hideTextOnMobile ? <span className="hidden sm:inline">{text}</span> : text}
       </button>
     </Tooltip>
   );
@@ -1395,12 +1538,12 @@ Return this exact JSON structure:
         }
         .animate-bounce { animation: bounce 1s ease-in-out infinite; }
       `}</style>
-      <header className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-lg border-b border-gray-300 dark:border-white/10 p-3 md:p-4 sticky top-0 z-10">
+      <header className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-lg border-b border-gray-300 dark:border-white/10 p-3 md:p-4 sticky top-0 z-20">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <WelcomeModal />
-            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg hidden md:block">
-              <img src={profileData.personal.aiAssistant.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
+            <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+              <img src="/ai-profile.png" alt="Arlo" className="w-full h-full object-cover" />
             </div>
             <div className="hidden md:block">
               <h1 className="text-lg font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
@@ -1411,35 +1554,46 @@ Return this exact JSON structure:
             </div>
           </div>
           <div className="flex items-center gap-2 md:gap-4">
-              <Tooltip content="About me">
-                <button onClick={() => changeView('me')} aria-label="View about me" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
-              </Tooltip>
-              <Tooltip content="View my projects and case studies">
-                <button onClick={() => changeView('projects')} aria-label="View projects and case studies" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects/Case Studies</button>
-              </Tooltip>
-              <Tooltip content="View my skills">
-                <button onClick={() => changeView('skills')} aria-label="View skills" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
-              </Tooltip>
-              <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden sm:block" />
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex items-center gap-4">
+                <Tooltip content="About me">
+                  <button onClick={() => changeView('me')} aria-label="View about me" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Me</button>
+                </Tooltip>
+                <Tooltip content="View my projects and case studies">
+                  <button onClick={() => changeView('projects')} aria-label="View projects and case studies" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Projects/Case Studies</button>
+                </Tooltip>
+                <Tooltip content="View my skills">
+                  <button onClick={() => changeView('skills')} aria-label="View skills" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">Skills</button>
+                </Tooltip>
+              </div>
+              <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden md:block" />
               <div className="flex items-center gap-1 md:gap-2">
-                <Tooltip content="LinkedIn Profile">
-                  <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
-                </Tooltip>
-                <Tooltip content="GitHub Profile">
-                  <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
-                </Tooltip>
+                <div className="hidden md:flex items-center gap-1 md:gap-2">
+                  <Tooltip content="LinkedIn Profile">
+                    <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
+                  </Tooltip>
+                  <Tooltip content="GitHub Profile">
+                    <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                  </Tooltip>
+                </div>
                 <ThemeToggle />
                 <LighthouseButton />
+                {/* Mobile Menu */}
+                <MobileMenu profileData={profileData} onViewChange={changeView} />
               </div>
           </div>
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col min-h-0 relative">
+      <div className="flex-1 flex flex-col min-h-0 relative z-0">
         {messages.length === 0 && view === 'chat' ? (
-            <div className="text-center p-8 animate-fade-in flex-1 flex flex-col justify-center">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Welcome! I'm Zach 👋</h2>
-                <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">How can I help you today?</p>
+            <div className="text-center p-8 max-sm:p-4 animate-fade-in flex-1 flex flex-col justify-center">
+                <h2 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Welcome to my Portfolio! I'm Zach 👋</h2>
+
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto" style={{ animationDelay: '120ms', animationFillMode: 'forwards' }}>
+                Click the cards below or start typing in the chatbox to get started.
+              </p>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
                     {suggestedQuestions.map((q, i) => (
                         <Tooltip content="Click to ask this question" key={q}>
@@ -1456,7 +1610,7 @@ Return this exact JSON structure:
                 </div>
             </div>
         ) : (
-             <main className="flex-1 flex justify-center min-h-0">{renderView()}</main>
+             <main className="flex-1 flex justify-center min-h-0">{renderChatContent()}</main>
         )}
 
         {view === 'chat' && (
@@ -1474,27 +1628,27 @@ Return this exact JSON structure:
                 </div>
                 
                 {showQuickButtons && (
-                  <div className="hidden sm:block">
-                    <div className="grid grid-cols-2 md:grid-cols-2 gap-2 mb-2 md:mb-3">
+                  <div className="block">
+                    <div className="grid grid-cols-2 gap-2 mb-2 md:mb-3">
                         {mode === 'interview' ? (
                             <ActionButton onClick={exitInterviewMode} icon={LogOut} text="Exit Interview" colorClass="text-red-400" title="Return to the AI assistant mode" />
                         ) : (
-                            <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview Me via ARLO" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
+                            <ActionButton onClick={() => handleGeminiFeature('interview')} icon={BrainCircuit} text="Interview Me" colorClass="text-sky-400" title="Let's save both of us some time and get the boring parts out of the way" />
                         )}
-                        <ActionButton onClick={() => changeView('stack')} icon={Layers} text="Elevate Your Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
+                        <ActionButton onClick={() => changeView('stack')} icon={Layers} text="Tech Stack" colorClass="text-orange-400" disabled={mode === 'interview'} title="List your tech stack and I'll analyze my experience with each technology" />
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-2 md:mb-3">
-                        <ActionButton onClick={handleViewResume} icon={FileText} text="Get My Resume" colorClass="text-indigo-400" disabled={mode === 'interview'} title="View my standard resume with option to download PDF" />
-                        <ActionButton onClick={() => setShowResumeModal(true)} icon={Sparkles} text="Get Custom Resume" colorClass="text-rose-400" disabled={mode === 'interview'} title="Generate a custom resume tailored to your job description" />
+                    <div className="grid grid-cols-4 gap-2 mb-2 md:mb-3">
+                        <ActionButton onClick={handleViewResume} icon={FileText} text="Resume" colorClass="text-indigo-400" disabled={mode === 'interview'} title="View my standard resume with option to download PDF" />
+                        <ActionButton onClick={() => setShowResumeModal(true)} icon={Sparkles} text="Custom Resume" colorClass="text-rose-400" disabled={mode === 'interview'} title="Generate a custom resume tailored to your job description" />
                         <ActionButton 
                             onClick={handleExperimentToggle} 
                             icon={experimentActive ? X : Zap} 
-                            text={experimentActive ? "Stop Experiment" : "Start Experiment"} 
+                            text={experimentActive ? "Stop" : "Experiment"} 
                             colorClass="text-purple-400" 
                             disabled={mode === 'interview'} 
                             title={experimentActive ? "Return to normal view" : "Launch a random interactive browser experiment"} 
                         />
-                        <ActionButton onClick={() => setShowHireModal(true)} text="Hire Me Now" colorClass="text-teal-400" disabled={mode === 'interview'} title="Start the hiring process - contract or full-time" showPulse={true} />
+                        <ActionButton onClick={() => setShowHireModal(true)} text="Hire Me" colorClass="text-teal-400" disabled={mode === 'interview'} title="Start the hiring process - contract or full-time" showPulse={true} />
                     </div>
                   </div>
                 )}
@@ -1505,7 +1659,7 @@ Return this exact JSON structure:
                     onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                     placeholder={mode === 'interview' ? "Ask your question, or type 'exit interview'..." : "Ask a question about Zach's experience, skills, or projects..."}
                     aria-label={mode === 'interview' ? "Interview question input" : "Chat message input"}
-                    className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none resize-none px-2"
+                    className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none resize-none px-2 text-base max-sm:text-sm"
                     rows={1}
                 />
                 <Tooltip content="Send message">
@@ -1522,29 +1676,43 @@ Return this exact JSON structure:
                     </p>
                 </div>
                 
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400 space-y-2">
-                    <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
-                        <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
-                        <span className="hidden sm:inline">•</span>
-                        <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
-                        <span className="hidden sm:inline">•</span>
-                        <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
-                        <span className="hidden sm:inline">•</span>
-                        <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
+                <div className="mt-2 md:mt-4 pt-2 md:pt-4 border-t border-gray-200 dark:border-white/10 text-center text-xs text-gray-500 dark:text-gray-400">
+                    {/* Mobile: Single row */}
+                    <div className="md:hidden flex items-center justify-between px-2">
+                        <span>© {new Date().getFullYear()} Zachariah Ayers</span>
+                        <span className="text-gray-600 dark:text-gray-500">
+                            {usageData.count}/50 Messages Today
+                        </span>
                     </div>
                     
-                    <div className="text-gray-600 dark:text-gray-500">
-                        Messages Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
+                    {/* Desktop: Full footer */}
+                    <div className="hidden md:block space-y-2">
+                        <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
+                            <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
+                            <span>•</span>
+                            <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
+                            <span>•</span>
+                            <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
+                            <span>•</span>
+                            <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
+                        </div>
+                        
+                        <div className="text-gray-600 dark:text-gray-500">
+                            Messages Today: {usageData.count}/50 {usageData.count > 40 && <span className="text-yellow-600 dark:text-yellow-500">- Running low!</span>}
+                        </div>
+                        
+                        <div>© {new Date().getFullYear()} Zachariah Ayers</div>
                     </div>
-                    
-                    <div>© {new Date().getFullYear()} Zachariah Ayers</div>
                 </div>
             </div>
             </footer>
         )}
       </div>
       
-      {/* Modals */}
+      {/* Render modals at root level outside of header's stacking context */}
+      {renderModal()}
+      
+      {/* Other Modals */}
       <QuickOptionsFlyout 
         isOpen={showFlyout} 
         onClose={() => setShowFlyout(false)} 

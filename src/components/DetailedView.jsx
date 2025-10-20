@@ -3,10 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield } from 'lucide-react';
 import StreamingText from './StreamingText';
 import StreamingTextSimple from './StreamingTextSimple';
-import useGitHubStats from '../hooks/useGitHubStats';
 import { Tooltip } from './Tooltip';
 
-const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobDescription, onDownloadPDF, userInteractions, personalizedContent, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
+const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, onDownloadPDF, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
   const navigate = useNavigate();
   const [streamingContent, setStreamingContent] = React.useState(null);
   const [executiveSummary, setExecutiveSummary] = React.useState(null);
@@ -73,7 +72,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
   const renderMeView = () => (
     <div className="space-y-6 max-w-5xl mx-auto">
       {/* Hero Section: Image | Name/Title | Contact Info */}
-      <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center justify-center">
         {/* Image */}
         <div className="flex-shrink-0 flex items-center">
           <div className="w-24 h-24 rounded-full overflow-hidden shadow-xl">
@@ -83,14 +82,14 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
 
         {/* Name and Title */}
         <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300 whitespace-nowrap">{profileData.personal.title}</p>
+          <h1 className="text-2xl md:text-3xl max-sm:text-xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
+          <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 whitespace-normal md:whitespace-nowrap">{profileData.personal.title}</p>
           <p className="text-blue-400 italic text-sm mt-1">"{profileData.personal.tagline}"</p>
         </div>
 
         {/* Contact Info */}
-        <div className="flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 min-w-[280px]">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
+        <div className="w-full lg:w-auto lg:flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 max-sm:p-3 lg:min-w-[280px]">
+          <h2 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
           <div className="grid grid-cols-1 gap-2 text-sm">
             <Tooltip content="Send me an email">
               <a 
@@ -120,8 +119,8 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Executive Summary Section */}
-      <div className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Briefcase className="text-blue-400" /> Executive Summary
         </h2>
         {isGeneratingExecutive || !executiveSummary ? (
@@ -141,8 +140,8 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* What I Can Bring to Your Team Section */}
-      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
+        <h2 className="text-xl md:text-2xl max-sm:text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Zap className="text-purple-400" /> What I Can Bring to Your Team
         </h2>
         {isGenerating || !streamingContent ? (
@@ -170,15 +169,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     const [showAllTechs, setShowAllTechs] = React.useState(false);
     const [showCurrentOnly, setShowCurrentOnly] = React.useState(false);
     
-    // Get GitHub stats
-    const githubStats = useGitHubStats();
 
     // Flatten all projects into a single array
     const allProjects = React.useMemo(() => {
       const projects = [];
       
       // Process each category in order of importance
-      const categories = ['opensource', 'enterprise', 'freelance', 'other']; // opensource acts as featured
+      const categories = ['opensource', 'enterprise', 'freelance', 'leadership']; // opensource acts as featured
       
       categories.forEach(category => {
         if (profileData.projects?.[category]) {
@@ -239,7 +236,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
         opensource: 0,
         enterprise: 0,
         freelance: 0,
-        other: 0
+        leadership: 0
       };
       
       // Use projects filtered by technology for counting
@@ -303,7 +300,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       if (project.type === 'enterprise') return Building;
       if (project.type === 'opensource') return Package;
       if (project.type === 'freelance') return Briefcase;
-      if (project.type === 'other') return Code;
+      if (project.type === 'leadership') return Code;
       // Secondary icon based on technology
       if (project.technologies && project.technologies.some(t => t.includes('AI') || t.includes('ML'))) return Brain;
       if (project.technologies && project.technologies.some(t => t.includes('AWS') || t.includes('Azure'))) return Cloud;
@@ -316,7 +313,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       if (project.type === 'enterprise') return 'dark:from-purple-900/20 dark:to-pink-900/20 from-purple-50 to-pink-50 border-purple-500 dark:border-purple-500/30';
       if (project.type === 'opensource') return 'dark:from-blue-900/20 dark:to-cyan-900/20 from-blue-50 to-cyan-50 border-blue-500 dark:border-blue-500/30';
       if (project.type === 'freelance') return 'dark:from-amber-900/20 dark:to-orange-900/20 from-amber-50 to-orange-50 border-amber-500 dark:border-amber-500/30';
-      if (project.type === 'other') return 'dark:from-green-900/20 dark:to-emerald-900/20 from-green-50 to-emerald-50 border-green-500 dark:border-green-500/30';
+      if (project.type === 'leadership') return 'dark:from-green-900/20 dark:to-emerald-900/20 from-green-50 to-emerald-50 border-green-500 dark:border-green-500/30';
       return 'dark:from-gray-800/20 dark:to-gray-700/20 from-gray-100 to-gray-200 border-gray-500 dark:border-gray-600/30';
     };
 
@@ -333,36 +330,18 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
+        <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
           {/* GitHub Stats in top right corner */}
-          <div className="absolute top-4 right-4 text-sm">
-            <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1 flex items-center gap-2">
-              <Github className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-              <span className="text-gray-600 dark:text-gray-400">Stars: </span>
-              <span className="text-gray-900 dark:text-white font-bold inline-flex items-center gap-1">
-                {githubStats.loading ? (
-                  <span className="text-xs">Loading...</span>
-                ) : githubStats.error ? (
-                  <span className="text-xs">--</span>
-                ) : (
-                  <>
-                    <Star className="w-3 h-3 text-yellow-500" />
-                    {githubStats.totalStars}
-                  </>
-                )}
-              </span>
-            </div>
-          </div>
           
           <div className="text-center space-y-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+            <h1 className="text-3xl max-sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
               <Rocket className="text-blue-400" />
               Projects & Creations
             </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               From enterprise transformations to open-source contributions
             </p>
-            <div className="flex justify-center flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm">
+            <div className="flex justify-center flex-wrap gap-2 md:gap-4 text-xs md:text-sm">
               <div className="bg-gray-200 dark:bg-gray-800/50 rounded-lg px-2 sm:px-3 py-0.5 sm:py-1">
                 <span className="text-gray-600 dark:text-gray-400">Total: </span>
                 <span className="text-gray-900 dark:text-white font-bold">{allProjects.length}</span>
@@ -428,22 +407,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 Current Focus ({allProjects.filter(p => p.current).length})
               </button>
             </Tooltip>
-            <Tooltip content="Show open source contributions">
-              <button
-                onClick={() => {
-                  setSelectedType('opensource');
-                  setShowCurrentOnly(false);
-                }}
-                aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
-                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
-                  selectedType === 'opensource' && !showCurrentOnly
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
-                }`}
-              >
-                Featured/Open Source ({dynamicTypeCounts.opensource})
-              </button>
-            </Tooltip>
             <Tooltip content="Show large-scale corporate projects">
               <button
                 onClick={() => {
@@ -476,20 +439,36 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                 Freelance ({dynamicTypeCounts.freelance})
               </button>
             </Tooltip>
-            <Tooltip content="Show personal and experimental projects">
+            <Tooltip content="Show leadership and organizational impact projects">
               <button
                 onClick={() => {
-                  setSelectedType('other');
+                  setSelectedType('leadership');
                   setShowCurrentOnly(false);
                 }}
-                aria-label={`Filter by other projects, ${dynamicTypeCounts.other} projects`}
+                aria-label={`Filter by leadership projects, ${dynamicTypeCounts.leadership} projects`}
                 className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
-                  selectedType === 'other' && !showCurrentOnly
-                    ? 'bg-green-600 text-white' 
+                  selectedType === 'leadership' && !showCurrentOnly
+                    ? 'bg-green-600 text-white'
                     : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                 }`}
               >
-                Other ({dynamicTypeCounts.other})
+                Leadership ({dynamicTypeCounts.leadership})
+              </button>
+            </Tooltip>
+            <Tooltip content="Show open source contributions">
+              <button
+                onClick={() => {
+                  setSelectedType('opensource');
+                  setShowCurrentOnly(false);
+                }}
+                aria-label={`Filter by open source projects, ${dynamicTypeCounts.opensource} projects`}
+                className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium transition-all ${
+                  selectedType === 'opensource' && !showCurrentOnly
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                }`}
+              >
+                Open Source ({dynamicTypeCounts.opensource})
               </button>
             </Tooltip>
           </div>
@@ -562,7 +541,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
             return (
               <div
                 key={project.id}
-                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 max-sm:p-3 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                   project.current 
                     ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                     : ''
@@ -574,7 +553,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2 flex-1">
                       <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-base md:text-lg max-sm:text-sm font-bold text-gray-900 dark:text-white">
                         {project.name}
                       </h3>
                     </div>
@@ -740,14 +719,14 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
                       Open Source
                     </a>
                   )}
-                  {project.type === 'other' && project.caseStudy && (
+                  {project.type === 'leadership' && project.caseStudy && (
                     <Link
                       to={project.caseStudy}
                       aria-label="View project details"
                       className="flex items-center gap-1 text-xs text-green-400 hover:text-green-300 ml-auto"
                     >
                       <Code className="w-3 h-3" />
-                      Other
+                      Leadership
                     </Link>
                   )}
                 </div>
@@ -976,13 +955,13 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
+        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
           <div className="text-center space-y-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
+            <h1 className="text-3xl max-sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
               <Brain className="text-purple-400" />
               Technical Skills & Expertise
             </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               14+ years of building production systems across the full stack
             </p>
           </div>
@@ -1423,9 +1402,9 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
   const renderStandardResumeView = () => (
     <div className="space-y-8">
       {/* Resume Header */}
-      <div className="text-center space-y-4 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6">
+      <div className="text-center space-y-4 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
-        <p className="text-xl text-gray-700 dark:text-gray-300">{profileData.personal.title}</p>
+        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">{profileData.personal.title}</p>
         <div className="flex justify-center items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
           <span>{profileData.contact.email}</span>
           <span>{profileData.contact.location}</span>
@@ -1436,7 +1415,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Executive Summary */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-4">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Executive Summary</h2>
         {profileData.personal.executiveSummary.map((summary, idx) => (
           <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">{summary}</p>
@@ -1444,7 +1423,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Experience */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-6">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Experience</h2>
         
         <div className="space-y-4">
@@ -1472,7 +1451,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Technical Skills */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-4">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Technical Skills</h2>
         <div className="grid gap-3">
           <p className="text-gray-700 dark:text-gray-300">
@@ -1494,7 +1473,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
       </div>
 
       {/* Education & Certifications */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-6 space-y-4">
+      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Education & Certifications</h2>
         <div className="space-y-3">
           <div>
@@ -1650,7 +1629,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeType, resumeData, jobD
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fade-in">
       <div className="bg-white dark:bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-scale-in shadow-xl">
         <div className="sticky top-0 bg-gray-50 dark:bg-gray-800 p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white capitalize flex items-center gap-2">

@@ -1,3 +1,39 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Legacy["Legacy Monitoring"]
+        LOGS[Server Logs<br/>Text Files]
+        SCRIPTS[Custom Scripts<br/>Manual Checks]
+    end
+
+    subgraph Observability["Observability Stack"]
+        METRICS[Prometheus<br/>Time-Series Metrics]
+        TRACES[Jaeger<br/>Distributed Tracing]
+        LOGS_AGG[Elasticsearch<br/>Log Aggregation]
+    end
+
+    subgraph Visualization["Dashboards"]
+        GRAFANA[Grafana<br/>Metrics Visualization]
+        KIBANA[Kibana<br/>Log Exploration]
+        ALERTS[Alertmanager<br/>Alert Routing]
+    end
+
+    subgraph Cloud["AWS Services"]
+        CLOUDWATCH[CloudWatch<br/>Centralized Logs]
+        XRAY[X-Ray<br/>Service Maps]
+        SNS[SNS Topics<br/>Notifications]
+    end
+
+    LOGS --> SCRIPTS
+    SCRIPTS --> METRICS
+    METRICS --> TRACES
+    TRACES --> LOGS_AGG
+    LOGS_AGG --> GRAFANA
+    LOGS_AGG --> KIBANA
+    LOGS_AGG --> ALERTS
+    ALERTS --> CLOUDWATCH
+    ALERTS --> XRAY
+    ALERTS --> SNS
+
+    style Legacy fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style Observability fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Visualization fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Cloud fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

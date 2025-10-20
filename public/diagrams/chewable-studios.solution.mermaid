@@ -1,3 +1,45 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Engine["Unity Engine"]
+        UNITY[Unity 2021+<br/>C# Scripting]
+        EDITOR[Unity Editor<br/>Scene + Prefab Management]
+    end
+
+    subgraph Gameplay["Game Systems"]
+        PLAYER[Character Controller<br/>NavMesh Movement]
+        DIALOGUE[Dialogue Manager<br/>Inky Integration]
+        QUEST[Quest Manager<br/>Progress Tracking]
+        SAVE[Save System<br/>Binary Serialization]
+    end
+
+    subgraph Content["Content Pipeline"]
+        MODELS[3D Models<br/>Maya/Blender Import]
+        ANIMATOR[Animator Controller<br/>State Machines]
+        AUDIO[FMOD Audio<br/>Dynamic Music + SFX]
+    end
+
+    subgraph Build["Build Pipeline"]
+        ASSETS[Asset Bundling<br/>Compression]
+        COMPILER[IL2CPP Compiler<br/>Native Code]
+        PLATFORMS[Multi-Platform<br/>Win/Mac/Linux]
+    end
+
+    UNITY --> EDITOR
+    EDITOR --> PLAYER
+    EDITOR --> DIALOGUE
+    EDITOR --> QUEST
+    PLAYER --> SAVE
+    DIALOGUE --> SAVE
+    QUEST --> SAVE
+    EDITOR --> MODELS
+    MODELS --> ANIMATOR
+    MODELS --> AUDIO
+    SAVE --> ASSETS
+    ANIMATOR --> ASSETS
+    AUDIO --> ASSETS
+    ASSETS --> COMPILER
+    COMPILER --> PLATFORMS
+
+    style Engine fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Gameplay fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Content fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Build fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

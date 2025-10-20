@@ -1,3 +1,41 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Design["Design System"]
+        VARS[CSS Custom Properties<br/>Color Palette]
+        TYPOGRAPHY[Typography System<br/>Responsive Scales]
+        COMPONENTS[Reusable Components<br/>Modular HTML]
+    end
+
+    subgraph Layout["Responsive Layout"]
+        MOBILE[Mobile-First<br/>320px Base]
+        TABLET[Tablet<br/>768px Breakpoint]
+        DESKTOP[Desktop<br/>1024px+]
+    end
+
+    subgraph Assets["Asset Optimization"]
+        WEBP[WebP Images<br/>Fallback Support]
+        ICONS[Icon System<br/>SVG Sprites]
+        FONTS[Web Fonts<br/>Inter Family]
+    end
+
+    subgraph Hosting["Static Hosting"]
+        HTML[Semantic HTML5<br/>Component Structure]
+        CSS[Modern CSS<br/>Grid + Flexbox]
+        DEPLOY[GitHub Pages<br/>CDN Delivery]
+    end
+
+    VARS --> TYPOGRAPHY
+    TYPOGRAPHY --> COMPONENTS
+    COMPONENTS --> MOBILE
+    MOBILE --> TABLET
+    TABLET --> DESKTOP
+    DESKTOP --> WEBP
+    WEBP --> ICONS
+    ICONS --> FONTS
+    FONTS --> HTML
+    HTML --> CSS
+    CSS --> DEPLOY
+
+    style Design fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Layout fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Assets fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Hosting fill:#fff3e0,stroke:#f57c00,stroke-width:2px

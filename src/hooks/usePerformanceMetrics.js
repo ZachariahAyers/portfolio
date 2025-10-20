@@ -146,7 +146,7 @@ const usePerformanceMetrics = () => {
         
         try {
           lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-        } catch (e) {
+        } catch {
           console.log('LCP not supported');
         }
       }

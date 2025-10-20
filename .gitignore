@@ -33,3 +33,10 @@ dist-ssr
 # OS files
 .DS_Store
 Thumbs.db
+NUL
+.claude/
+CLAUDE.md
+
+# Sensitive credentials
+*.pem
+github-credentials.json

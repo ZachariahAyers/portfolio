@@ -1,38 +1,115 @@
 {
   "id": "howland",
   "category": "enterprise",
-  "featured": false,
+  "featured": true,
   "hero": {
-    "title": "howland",
-    "tagline": "",
-    "badge": "",
-    "coverImage": "/images/case-studies/howland-hero.png",
-    "metrics": []
+    "title": "Howland",
+    "tagline": "Custom-Trained LLM for Legacy Code Modernization",
+    "badge": "AI Model",
+    "metrics": [
+      { "value": "~13B", "label": "Parameters", "animate": "fade", "icon": "cpu" },
+      { "value": "95%+", "label": "Accuracy", "animate": "counter", "icon": "check-circle" },
+      { "value": "COBOL/VB6/RPG", "label": "Legacy Support", "animate": "fade", "icon": "code" }
+    ]
   },
   "timeline": {
-    "duration": "",
-    "role": "",
-    "year": ""
+    "duration": "2024 - Present",
+    "role": "Founder & ML Engineer",
+    "year": "2024-Present"
   },
-  "sections": [],
-  "techStackAnalyzer": {
-    "projectName": "howland",
-    "fileStructure": {
-      "frontend": [],
-      "backend": [],
-      "infrastructure": [],
-      "devops": []
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Generic LLMs",
+        "points": ["Don't understand COBOL/FORTRAN", "Lose business logic", "Poor at legacy idioms"],
+        "visual": "generic-llm"
+      },
+      "after": {
+        "label": "Specialized Model",
+        "points": ["Trained on legacy code", "Preserves semantics", "Understands patterns"],
+        "visual": "howland-llm"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "LLM Architecture",
+      "components": [
+        { "name": "Transformer Model", "framework": "PyTorch 13B params", "team": "Core Model" },
+        { "name": "Code Tokenizer", "framework": "Custom BPE", "team": "Tokenization" },
+        { "name": "Training Pipeline", "framework": "Distributed GPU", "team": "Training" },
+        { "name": "Inference API", "framework": "TorchServe", "team": "Deployment" }
+      ],
+      "features": ["Legacy Language Understanding", "Modern Code Generation", "Semantic Preservation", "Pattern Recognition"]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Model Performance",
+      "executive_summary": "Howland is a custom-built Large Language Model trained from scratch for legacy code modernization. With ~13B parameters, the model transforms COBOL, RPG, FORTRAN, and VB6 to modern .NET 8, Java, and Python with 95%+ accuracy, preserving business logic and design patterns through specialized training.",
+      "sections": [
+        {
+          "title": "Model Capabilities",
+          "highlights": [
+            "Custom LLM built and trained from scratch",
+            "13B parameter transformer architecture",
+            "Legacy languages: COBOL, RPG, FORTRAN, VB6",
+            "Modern targets: .NET 8, Java, Python"
+          ]
+        },
+        {
+          "title": "Technical Achievements",
+          "summary": "95%+ transformation accuracy, semantic preservation of business logic, production deployment at howland.meridianvega.com, distributed training on GPU clusters."
+        },
+        {
+          "title": "Innovation",
+          "metrics": [
+            { "metric": "Model Type", "before": "Generic LLM", "after": "Custom Code LLM", "change": "Specialized" },
+            { "metric": "Legacy Understanding", "before": "Poor", "after": "95%+ accurate", "change": "+90%" },
+            { "metric": "Training Approach", "before": "Fine-tuning", "after": "From scratch", "change": "Complete" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Technology Stack",
+      "categories": {
+        "model": ["PyTorch", "Transformer Architecture", "Custom Tokenizer"],
+        "training": ["Distributed Training", "GPU Clusters", "CUDA", "Mixed Precision"],
+        "deployment": ["TorchServe", "FastAPI", "Docker", "Kubernetes"],
+        "infrastructure": ["AWS", "GPU Instances", "Model Registry"]
+      },
+      "interactive": true
     }
-  },
+  ],
   "businessRequirements": {
-    "jiraPrefix": "",
-    "businessContext": "",
-    "problemStatement": "",
-    "businessValue": [],
-    "acceptanceCriteria": [],
+    "jiraPrefix": "HWL",
+    "businessContext": "Build custom Large Language Model trained from scratch for legacy system modernization - transforming COBOL, RPG, FORTRAN, VB6 to modern platforms",
+    "problemStatement": "Generic LLMs don't understand legacy languages like COBOL or FORTRAN, resulting in poor transformation accuracy and lost business logic",
+    "businessValue": [
+      "Custom LLM trained specifically for legacy code",
+      "95%+ transformation accuracy",
+      "Understands archaic language patterns",
+      "Preserves business logic and semantics",
+      "Complete model training, not fine-tuning"
+    ],
+    "acceptanceCriteria": [
+      "Build complete transformer model from scratch",
+      "Train on millions of legacy code examples",
+      "Achieve 95%+ transformation accuracy",
+      "Support COBOL, RPG, FORTRAN, VB6 inputs",
+      "Generate compilable .NET 8, Java, Python output"
+    ],
     "attachments": [],
     "risks": []
   },
-  "links": {},
-  "related": []
+  "links": {
+    "demo": "https://howland.meridianvega.com"
+  },
+  "related": ["meridian-vega", "aussie"]
 }

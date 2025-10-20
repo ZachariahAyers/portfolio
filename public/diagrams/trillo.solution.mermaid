@@ -1,3 +1,41 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Layout["Flexbox Layout"]
+        CONTAINER[Container<br/>Flex Parent]
+        SIDEBAR[Sidebar<br/>Navigation]
+        CONTENT[Content Area<br/>Main View]
+    end
+
+    subgraph Components["UI Components"]
+        HOTEL[Hotel Card<br/>Flex Item]
+        GALLERY[Photo Gallery<br/>Flex Grid]
+        REVIEWS[User Reviews<br/>Flex Layout]
+    end
+
+    subgraph Styling["SCSS Architecture"]
+        VARIABLES[SCSS Variables<br/>Design Tokens]
+        MIXINS[Flexbox Mixins<br/>Responsive]
+        BEM[BEM Naming<br/>Component Classes]
+    end
+
+    subgraph Assets["Asset Pipeline"]
+        IMAGES[Optimized Images<br/>WebP + Fallback]
+        ICONS[SVG Sprites<br/>Icon System]
+        FONTS[Web Fonts<br/>Google Fonts]
+    end
+
+    CONTAINER --> SIDEBAR
+    CONTAINER --> CONTENT
+    CONTENT --> HOTEL
+    CONTENT --> GALLERY
+    CONTENT --> REVIEWS
+    REVIEWS --> VARIABLES
+    VARIABLES --> MIXINS
+    MIXINS --> BEM
+    BEM --> IMAGES
+    IMAGES --> ICONS
+    ICONS --> FONTS
+
+    style Layout fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Components fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Styling fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Assets fill:#fff3e0,stroke:#f57c00,stroke-width:2px

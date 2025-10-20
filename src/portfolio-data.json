@@ -3,10 +3,6 @@
     "name": "Zachariah James Ayers",
     "title": "Staff Engineer & AI/ML Architect",
     "avatarPath": "/profile.jpeg",
-    "aiAssistant": {
-      "name": "Arlo",
-      "avatarPath": "/ai-profile.png"
-    },
     "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. Currently, I'm modernizing aerospace manufacturing at Northrop Grumman, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
     "tagline": "From React™ to Rocket Science, I architect the future.",
     "tenSecondPitch": {
@@ -180,25 +176,234 @@
       "github": "github.com/zjayers/assemblejs",
       "caseStudy": "/casestudies/assemblejs",
       "impact": "Open-source framework used by developers worldwide",
+      "image": "/images/projects/assemblejs.png",
       "current": true
       },
-      "rabacab": {
-      "name": "RabCab Automation",
-      "description": "Extended AutoCAD's C# ObjectARX SDK for custom 3D carpentry automation. Built G-code translators that reduced machinery operator errors by 90%.",
-      "impact": "Saved 10 hours/week of manual work, cut support calls by 30%",
-      "caseStudy": "/casestudies/rabcab-automation",
-      "details": [
-        "Built G-code translators reducing machinery operator errors by 90%",
-        "Implemented ELK stack for crash reporting, cutting support calls by 30%",
-        "Automated cut sheet processing, saving 10 hours/week of manual work",
-        "Extended AutoCAD's C# ObjectARX SDK for custom 3D carpentry automation"
-      ]
+      "grayscale": {
+        "name": "Grayscale",
+        "description": "High-performance client-side image processing using WebAssembly compiled from Rust. Demonstrates near-native performance for computationally intensive tasks entirely in the browser.",
+        "technologies": ["Rust", "WebAssembly", "wasm-bindgen", "Webpack", "Tailwind CSS", "HTML5 File API"],
+        "image": "/images/projects/grayscale.png",
+        "url": "https://grayscale.zachayers.io",
+        "github": "https://github.com/N73311/grayscale",
+        "caseStudy": "/casestudies/grayscale",
+        "impact": "Zero-latency image processing with < 50ms conversion time",
+        "highlights": [
+          "WebAssembly module compiled from Rust for native performance",
+          "100% client-side processing - no server dependencies",
+          "Memory-safe implementation prevents crashes",
+          "Base64 encoding for JavaScript/WASM communication",
+          "Modern UI with animated gradient backgrounds"
+        ]
       },
+      "natours": {
+        "name": "Natours",
+        "description": "Full-stack tour booking platform built with Node.js, Express, MongoDB, and Stripe. Features RESTful API, JWT authentication, server-side rendering, and real-time geospatial queries.",
+        "technologies": ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Stripe", "Pug", "Mapbox", "Nodemailer"],
+        "image": "/images/projects/natours.png",
+        "url": "https://natours.zachayers.io",
+        "github": "https://github.com/N73311/natours",
+        "caseStudy": "/casestudies/natours",
+        "impact": "Enterprise-grade booking system with < 200ms API response time",
+        "highlights": [
+          "RESTful API with advanced filtering and pagination",
+          "JWT-based authentication with role-based access control",
+          "Stripe payment integration with secure webhooks",
+          "Server-side rendering with Pug templates for SEO",
+          "Real-time geospatial queries with MongoDB"
+        ]
+      },
+      "moduleFederation": {
+        "name": "Module Federation",
+        "description": "Multi-Spa app utilizing Webpack Module Federation, seamlessly integrating multiple front-end applications into a single container for enhanced scalability.",
+        "technologies": ["Angular", "React", "Vue", "Docker", "TypeScript", "Material-UI", "Webpack Module Federation", "AWS CloudFront/S3"],
+        "image": "/images/projects/moduleFederation.png",
+        "url": "https://federation.zachayers.io",
+        "github": "https://github.com/zjayers/mfe.complete/tree/master/packages",
+        "caseStudy": "/casestudies/module-federation"
+      },
+      "galaxyMVC": {
+        "name": "GalaxyMVC",
+        "description": "Lightweight PHP MVC framework built from scratch demonstrating clean architecture patterns. Features custom routing, PDO database wrapper, autoloading, and zero dependencies - perfect for learning MVC concepts.",
+        "technologies": ["PHP 7.2+", "MySQL/MariaDB", "Apache", "PDO", "MVC Pattern", "PSR-4"],
+        "image": "/images/projects/galaxyMVC.png",
+        "url": "https://galaxymvc.zachayers.io",
+        "github": "https://github.com/N73311/GalaxyMVC",
+        "caseStudy": "/casestudies/galaxymvc",
+        "impact": "Under 1K lines of code with < 50ms response time",
+        "highlights": [
+          "Pure PHP implementation with zero dependencies",
+          "Clean MVC architecture in under 1000 lines",
+          "Custom routing with SEO-friendly URLs",
+          "PDO wrapper preventing SQL injection",
+          "PSR-4 compliant autoloading system"
+        ]
+      },
+      "remixIDE": {
+        "name": "RemixIDE Desktop",
+        "description": "Native desktop application wrapper for Remix IDE, providing Ethereum developers with a dedicated smart contract development environment. Cross-platform support with auto-updates and native OS integration.",
+        "technologies": ["Electron", "Node.js", "JavaScript", "Electron Forge", "Squirrel", "Ethereum", "Solidity"],
+        "image": "/images/projects/remixIDE.png",
+        "url": "https://github.com/N73311/remix.ide/releases",
+        "github": "https://github.com/N73311/remix.ide",
+        "caseStudy": "/casestudies/remixide",
+        "impact": "Native desktop experience with < 3s startup time and automatic updates",
+        "highlights": [
+          "Cross-platform desktop app for Windows, macOS, and Linux",
+          "Electron wrapper with native installers",
+          "Auto-update support via Squirrel framework",
+          "Custom high-resolution icons for each platform",
+          "Full feature parity with web-based Remix IDE"
+        ]
+      },
+      "lively": {
+        "name": "Lively",
+        "description": "Streamlines the process of sharing and joining events, allowing users to easily connect with like-minded individuals.",
+        "technologies": ["C#", "ASP.NET Core 5", "Entity Framework", "React", "Redux", "TypeScript", "SQL Server", "Redis", "Azure"],
+        "image": "/images/projects/lively.png",
+        "url": "https://reactivities-heroku.herokuapp.com",
+        "github": "https://github.com/zjayers/asp.net.core.react/tree/master/Core",
+        "caseStudy": "/casestudies/lively"
+      }
+    },
+    "freelance": {
       "vwConfigurator": {
-      "name": "VW ID.Buzz Configurator",
-      "description": "Built 3D vehicle wrap viewer for Wrapmate allowing real-time visualization of custom graphics integrated with e-commerce system.",
-      "url": "wraps.wrapmate.com/configurator",
-      "caseStudy": "/casestudies/vw-configurator"
+        "name": "VW ID.Buzz Configurator",
+        "description": "Built 3D vehicle wrap viewer for Wrapmate allowing real-time visualization of custom graphics integrated with e-commerce system.",
+        "url": "wraps.wrapmate.com/configurator",
+        "caseStudy": "/casestudies/vw-configurator",
+        "technologies": ["React", "Three.js", "TypeScript", "WebGL", "E-commerce Integration"],
+        "impact": "Real-time 3D vehicle wrap visualization for client orders",
+        "image": "/images/projects/vw-configurator.png"
+      },
+      "chalkboard": {
+        "name": "Chalkboard",
+        "description": "Real-time collaborative drawing app with Socket.IO and p5.js. Multiple users can draw together with instant synchronization, showcasing WebSocket architecture and scaling challenges.",
+        "technologies": ["React", "Socket.IO", "p5.js", "Express", "Material-UI", "Canvas API"],
+        "image": "/images/projects/chalkboard.png",
+        "github": "https://github.com/N73311/chalkboard",
+        "caseStudy": "/casestudies/chalkboard",
+        "impact": "< 50ms latency with 50+ concurrent users",
+        "highlights": [
+          "Real-time drawing synchronization with Socket.IO",
+          "p5.js canvas integration for smooth rendering",
+          "Multiple drawing tools and color picker",
+          "User presence tracking system",
+          "Learned WebSocket scaling challenges firsthand"
+        ]
+      },
+      "vocation": {
+        "name": "Vocation",
+        "description": "Powerful Chrome extension that streamlines job search with smart templates, application tracking, and 20+ job board integrations. Features Vue.js overlay interface and local storage for complete privacy.",
+        "technologies": ["Vue.js", "Vuex", "Chrome Extension API", "SCSS", "Webpack", "Content Scripts"],
+        "image": "/images/projects/vocation.png",
+        "url": "https://chrome.google.com/webstore/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
+        "github": "https://github.com/N73311/vocation-chrome",
+        "caseStudy": "/casestudies/vocation",
+        "impact": "60% reduction in job application time, 5K+ active users",
+        "highlights": [
+          "20+ job board integrations with auto-detection",
+          "50+ customizable message templates",
+          "One-click job saving with smart extraction",
+          "Real-time application metrics dashboard",
+          "Complete privacy with local-only storage"
+        ]
+      },
+      "doneWithIt": {
+        "name": "Done With It",
+        "description": "React Native marketplace app with Expo – my first mobile development experience",
+        "technologies": "React Native, Expo",
+        "image": "/images/projects/doneWithIt.jpeg",
+        "url": "https://zjayers.github.io/host.donewithit/",
+        "github": "https://github.com/zjayers/react.native.complete/tree/master/app",
+        "caseStudy": "/casestudies/done-with-it"
+      },
+      "sliceOfLife": {
+        "name": "Slice of Life",
+        "description": "Mobile app facilitating informed decisions on pizza dining experiences through detailed restaurant reviews and ratings.",
+        "technologies": ["React", "React Native", "Redux", "Node.js", "TypeScript", "iOS", "Android", "AWS Amplify"],
+        "image": "/images/projects/sliceOfLife.png",
+        "caseStudy": "/casestudies/slice-of-life"
+      },
+      "hostify": {
+        "name": "Hostify",
+        "description": "Modern cloud hosting landing page showcasing component-based architecture, responsive design, and performance optimization. Built with semantic HTML5, CSS Grid, and vanilla JavaScript.",
+        "technologies": ["HTML5", "CSS3", "JavaScript", "CSS Grid", "Flexbox", "BEM", "Parcel", "AOS"],
+        "image": "/images/projects/hostify.png",
+        "url": "https://hostify.zachayers.io",
+        "github": "https://github.com/N73311/hostify",
+        "caseStudy": "/casestudies/hostify",
+        "impact": "98/100 PageSpeed score with < 3s load time",
+        "highlights": [
+          "Component-based HTML architecture for reusability",
+          "CSS custom properties design system",
+          "Mobile-first responsive design",
+          "WebP images with fallbacks for optimization",
+          "15+ reusable components following BEM methodology"
+        ]
+      },
+      "nexter": {
+        "name": "Nexter",
+        "description": "Advanced CSS Grid real estate platform showcasing modern layout techniques. Features complex nested grids, responsive design patterns, and sophisticated SCSS architecture demonstrating mastery of CSS Grid and Flexbox.",
+        "technologies": ["HTML5", "CSS3 Grid", "SCSS/SASS", "PostCSS", "Autoprefixer", "NPM Scripts", "BEM Methodology"],
+        "image": "/images/projects/nexter.png",
+        "url": "https://nexter.zachayers.io",
+        "github": "https://github.com/N73311/nexter",
+        "caseStudy": "/casestudies/nexter",
+        "impact": "Demonstrates advanced CSS Grid layouts with 100% responsive design and < 1s load time"
+      },
+      "trillo": {
+        "name": "Trillo",
+        "description": "Modern hotel booking UI built with advanced CSS Flexbox techniques. Demonstrates complex layouts, animations, and responsive design patterns using pure CSS without JavaScript.",
+        "technologies": ["CSS3 Flexbox", "SCSS/SASS", "HTML5", "SVG Sprites", "CSS Variables", "PostCSS", "BEM Methodology"],
+        "image": "/images/projects/trillo.png",
+        "url": "https://trillo.zachayers.io",
+        "github": "https://github.com/N73311/trillo",
+        "caseStudy": "/casestudies/trillo",
+        "impact": "100% Flexbox responsive layout with < 1s load time",
+        "highlights": [
+          "Pure CSS implementation without JavaScript",
+          "Advanced Flexbox layouts for complex UI",
+          "SVG sprite system for scalable icons",
+          "CSS custom properties for dynamic theming",
+          "BEM methodology for maintainable architecture"
+        ]
+      },
+      "auroraGrove": {
+        "name": "Aurora Grove",
+        "description": "Modern camping website showcasing advanced Bootstrap 4 customization, SCSS architecture, and responsive design. Features parallax scrolling, custom animations, and interactive components for an immersive outdoor experience.",
+        "technologies": ["Bootstrap 4", "SCSS/SASS", "jQuery", "HTML5", "CSS Grid", "Font Awesome 5", "Google Fonts"],
+        "image": "/images/projects/auroraGrove.png",
+        "url": "https://aurora.zachayers.io",
+        "github": "https://github.com/N73311/auroragrove",
+        "caseStudy": "/casestudies/auroragrove",
+        "impact": "98/100 Lighthouse score, 100% mobile responsive, <2s load time",
+        "highlights": [
+          "Custom Bootstrap theme with SCSS variables and mixins",
+          "Parallax scrolling effects and smooth animations",
+          "Responsive image gallery with lightbox",
+          "Interactive booking modal and newsletter signup"
+        ]
+      },
+      "cidr": {
+        "name": "CIDR",
+        "description": "CIDR visualizer tool that simplifies network planning and administration, providing a user-friendly interface for mapping IP addresses and subnets.",
+        "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
+        "image": "/images/projects/cidr.png",
+        "url": "https://cidr.zachayers.io",
+        "caseStudy": "/casestudies/cidr"
+      }
+    },
+    "enterprise": {
+      "meridianVega": {
+        "name": "Meridian Vega",
+        "description": "My consulting S-Corp offering enterprise technology solutions, specializing in AI/ML integration, legacy modernization, and scalable architecture design.",
+        "url": "meridianvega.com",
+        "caseStudy": "/casestudies/meridian-vega",
+        "technologies": ["React", "Node.js", "AI/ML", "Cloud Architecture", "Enterprise Solutions"],
+        "impact": "Delivering high-impact consulting solutions for Fortune 500 companies",
+        "image": "/images/projects/meridianvega.png",
+        "current": true
       },
       "chewableStudios": {
         "name": "Chewable Studios",
@@ -207,169 +412,40 @@
         "caseStudy": "/casestudies/chewable-studios",
         "technologies": ["Unity", "C#", "React", "TypeScript", "Game Development"],
         "impact": "Making learning fun through interactive gameplay",
+        "image": "/images/projects/chewable.png",
         "current": true
-      }
-    },
-    "freelance": {
-      "vxApps": {
-        "name": "VX Apps",
-        "description": "Scaled a marketplace backend from 100 to 5000 RPS using PostgreSQL optimization and smart indexing",
-        "technologies": "Node.js, PostgreSQL, Express",
-        "caseStudy": "/casestudies/vx-apps"
       },
-      "wonderFund": {
-        "name": "WonderFund",
-        "description": "Built crowdfunding platform with microservices, Docker, and Skaffold in 2-week sprint",
-        "technologies": "React, Node.js, Docker, Kubernetes, Skaffold",
-        "caseStudy": "/casestudies/wonderfund"
+      "howland": {
+        "name": "Howland",
+        "description": "Custom-built and trained LLM (Large Language Model) specialized for legacy system modernization. Transforms COBOL, RPG, FORTRAN, VB6 to modern languages with full model training from scratch.",
+        "url": "howland.meridianvega.com",
+        "caseStudy": "/casestudies/howland",
+        "technologies": ["PyTorch", "Transformer Architecture", "Custom LLM", "Machine Learning", "Code Analysis", "AST Parsing"],
+        "impact": "Autonomous AI assistant for legacy-to-modern code transformation",
+        "image": "/images/projects/howland.png",
+        "current": true
       },
-      "chalkboard": {
-        "name": "Chalkboard",
-        "description": "Real-time collaborative drawing app with Socket.IO – learned the hard way about WebSocket scaling",
-        "technologies": "React, Socket.IO, Canvas API",
-        "caseStudy": "/casestudies/chalkboard"
-      },
-      "vocation": {
-        "name": "Vocation",
-        "description": "Chrome extension for job seekers using Vue.js and local storage (still on Chrome store!)",
-        "technologies": "Vue.js, Chrome Extension API",
-        "url": "https://chrome.google.com/webstore/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
-        "github": "https://github.com/zjayers/proto.vue.jobscan/tree/master/src",
-        "caseStudy": "/casestudies/vocation"
-      },
-      "doneWithIt": {
-        "name": "Done With It",
-        "description": "React Native marketplace app with Expo – my first mobile development experience",
-        "technologies": "React Native, Expo",
-        "url": "https://zjayers.github.io/host.donewithit/",
-        "github": "https://github.com/zjayers/react.native.complete/tree/master/app",
-        "caseStudy": "/casestudies/done-with-it"
-      }
-    },
-    "other": {
-      "sliceOfLife": {
-        "name": "Slice of Life",
-        "description": "Mobile app facilitating informed decisions on pizza dining experiences through detailed restaurant reviews and ratings.",
-        "technologies": ["React", "React Native", "Redux", "Node.js", "TypeScript", "iOS", "Android", "AWS Amplify"],
-        "demo": "https://youtu.be/uRbGMZ9oPjw",
-        "caseStudy": "/casestudies/slice-of-life"
-      },
-      "personAI": {
-        "name": "PersonAI",
-        "description": "AI-powered dashboard with an array of tools for efficient problem-solving and decision-making.",
-        "technologies": ["React", "Node.js", "OpenAI", "ChatGPT 3", "TypeScript", "Tailwind", "AWS S3/Route 53"],
-        "url": "https://ai.zachayers.io",
-        "demo": "https://www.youtube.com/watch?v=iEhKcDaNYrs",
-        "caseStudy": "/casestudies/personai"
-      },
-      "arlo": {
-        "name": "Arlo",
-        "description": "Personalized AI companion web app, built on the foundation of ChatGPT, aimed at enhancing users' productivity and making daily life simpler.",
-        "technologies": ["React", "Node.js", "OpenAI", "ChatGPT 3", "TypeScript", "AWS S3/Route 53"],
-        "url": "https://arlo.zachayers.io",
-        "demo": "https://www.youtube.com/watch?v=iEhKcDaNYrs",
-        "caseStudy": "/casestudies/arlo"
-      },
-      "lively": {
-        "name": "Lively",
-        "description": "Streamlines the process of sharing and joining events, allowing users to easily connect with like-minded individuals.",
-        "technologies": ["C#", "ASP.NET Core 5", "Entity Framework", "React", "Redux", "TypeScript", "SQL Server", "Redis", "Azure"],
-        "url": "https://reactivities-heroku.herokuapp.com",
-        "github": "https://github.com/zjayers/asp.net.core.react/tree/master/Core",
-        "devOps": "https://gist.github.com/zjayers/713de2b9d7e1f075812733427298743b",
-        "caseStudy": "/casestudies/lively"
-      },
-      "grayscale": {
-        "name": "Grayscale",
-        "description": "Combines the power of WebAssembly and Rust to process images using a user's local hardware, bypassing browser limitations and enabling faster performance.",
-        "technologies": ["React", "Node.js", "WebAssembly", "Rust", "TypeScript", "AWS CodeBuild/CodePipeline/CodeDeploy"],
-        "url": "https://grayscale.zachayers.io",
-        "caseStudy": "/casestudies/grayscale"
-      },
-      "natours": {
-        "name": "Natours",
-        "description": "Comprehensive nature trail application that enables users to book, purchase, and explore a multitude of user-created trails from around the world.",
-        "technologies": ["React", "Redux", "TypeScript", "Node.js", "Express", "MongoDB", "AWS CodeStar"],
-        "url": "https://natours.zachayers.io",
-        "github": "https://github.com/zjayers/natours",
-        "caseStudy": "/casestudies/natours"
-      },
-      "moduleFederation": {
-        "name": "Module Federation",
-        "description": "Multi-Spa app utilizing Webpack Module Federation, seamlessly integrating multiple front-end applications into a single container for enhanced scalability.",
-        "technologies": ["Angular", "React", "Vue", "Docker", "TypeScript", "Material-UI", "Webpack Module Federation", "AWS CloudFront/S3"],
-        "url": "https://federation.zachayers.io",
-        "github": "https://github.com/zjayers/mfe.complete/tree/master/packages",
-        "caseStudy": "/casestudies/module-federation"
-      },
-      "craterMVC": {
-        "name": "CraterMVC",
-        "description": "PHP 7.+ based Model-View-Controller framework, deployed on an EC2 instance with a LAMP stack for optimal web application development.",
-        "technologies": ["Apache", "PHP", "MySQL", "AWS EC2"],
-        "url": "https://cratersmvc.zachayers.io/shareposts/public/",
-        "github": "https://github.com/zjayers/php.mvc.framework",
-        "caseStudy": "/casestudies/cratermvc"
-      },
-      "hostify": {
-        "name": "Hostify",
-        "description": "Reliable and scalable server hosting service that ensures optimal performance and uptime for web applications.",
-        "technologies": ["JavaScript", "jQuery", "HTML", "CSS", "AWS EC2"],
-        "url": "https://hostify.zachayers.io",
-        "github": "https://github.com/zjayers/hostify",
-        "caseStudy": "/casestudies/hostify"
-      },
-      "remixIDE": {
-        "name": "RemixIDE",
-        "description": "High-performance MacOS port of the popular Remix IDE, offering a streamlined environment for developers to write, test, and deploy smart contracts.",
-        "technologies": ["Blockchain", "Electron", "Ethereum", "Solidity", "TypeScript", "MacOS", "Linux"],
-        "url": "https://github.com/zjayers/remix.ide/releases/tag/1.0",
-        "github": "https://github.com/zjayers/remix.ide",
-        "caseStudy": "/casestudies/remixide"
-      },
-      "nexter": {
-        "name": "Nexter",
-        "description": "Modern landing page for a real estate firm, designed to engage potential buyers and showcase properties with impactful visuals.",
-        "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
-        "url": "https://nexter.zachayers.io",
-        "github": "https://github.com/zjayers/design.nexter",
-        "caseStudy": "/casestudies/nexter"
-      },
-      "cidr": {
-        "name": "CIDR",
-        "description": "CIDR visualizer tool that simplifies network planning and administration, providing a user-friendly interface for mapping IP addresses and subnets.",
-        "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
-        "url": "https://cidr.zachayers.io",
-        "caseStudy": "/casestudies/cidr"
-      },
-      "trillo": {
-        "name": "Trillo",
-        "description": "Landing page for a hotel booking service, designed to captivate potential guests with stunning imagery and intuitive UI.",
-        "technologies": ["Bootstrap", "JavaScript", "jQuery", "HTML", "SCSS", "AWS S3/Route 53"],
-        "url": "https://trillo.zachayers.io",
-        "github": "https://github.com/zjayers/design.trillo",
-        "caseStudy": "/casestudies/trillo"
-      },
-      "auroraGrove": {
-        "name": "Aurora Grove",
-        "description": "Landing page for a campground booking service highlighting natural beauty and unique features of each site.",
-        "technologies": ["Bootstrap", "JavaScript", "jQuery", "HTML", "SCSS", "AWS S3/Route 53"],
-        "url": "https://aurora.zachayers.io",
-        "github": "https://github.com/zjayers/design.bootstrap",
-        "caseStudy": "/casestudies/aurora-grove"
-      }
-    },
-    "enterprise": {
       "rabcab": {
-        "name": "RabCab",
+        "name": "RabCab AutoCAD Suite",
         "description": "Transforms carpentry workflows with customized entities, routines, and 3D modeling tools built using ObjectARX, and automates the 3D CAD modeling to 2D CNC process, including annotation and plan printing, for optimal productivity and precision.",
-        "technologies": ["C#", "C++", "ASP.NET Core", "MongoDB", "AutoDesk AutoCAD/3DS Max/Inventor", "Acrobat", "Photoshop"],
+        "technologies": ["C#", "C++", "ASP.NET Core", "MongoDB", "AutoCAD", "3DS Max", "Inventor", "Acrobat", "Photoshop"],
+        "image": "/images/projects/rabcab.png",
+        "github": "https://github.com/N73311/RabCab",
         "caseStudy": "/casestudies/rabcab",
-        "impact": "90% reduction in machinery operator errors, 30% decrease in support calls"
+        "impact": "75% reduction in CAD task time, zero-error automated assembly management",
+        "highlights": [
+          "100+ custom AutoCAD commands across 7 specialized suites",
+          "Multi-version support for AutoCAD 2013-2020 (32/64-bit)",
+          "Intelligent processing agents for automated workflows",
+          "External integration with Excel, PDF, and 3D applications",
+          "Custom ribbon interface and tool palettes"
+        ]
       },
       "aussie": {
         "name": "Aussie",
         "description": "Revolutionizes the loan origination and underwriting process with an advanced AI engine, automating government, personal, and retail loan workflows and delivering lightning-fast loan processing times, reducing the closing flow from months to minutes.",
         "technologies": ["Java 8/11/14", "Spring Boot/Cloud", "GraphQL", "Azure Cloud", "SQL Server", "Kubernetes", "jQuery", "ColdFusion 9", "Mercurial"],
+        "image": "/images/projects/aussie.png",
         "url": "https://www.awms.com/s/aussie",
         "caseStudy": "/casestudies/aussie",
         "impact": "Reduced loan processing from 45 days to 21 days, generated $3M monthly loan volume"
@@ -378,35 +454,16 @@
         "name": "Octo",
         "description": "State-of-the-art, language-agnostic micro-frontend framework, featuring server-side rendering and an intuitive CLI for streamlined project generation and management.",
         "technologies": ["Webpack", "Vite", "Handlebars", "TypeScript", "HTML", "SCSS", "React", "Preact", "Vue", "Svelte", "Storybook", "RxJS", "Node.js"],
+        "image": "/images/projects/octo.png",
         "url": "https://sway.office.com/40BmKdebHWm8xVJF?ref=Link",
         "caseStudy": "/casestudies/octo",
         "impact": "Reduced development time by 85%, adopted by 15+ teams"
-      },
-      "leadership": {
-        "name": "Leadership",
-        "description": "Proven leadership in the tech world, honed through years of experience leading and empowering teams of dozens of developers to achieve their full potential.",
-        "technologies": ["Scrum", "Agile", "Project Management", "Team Leadership", "Architecture Review Board", "Jira", "Confluence", "Microsoft Office Suite"],
-        "caseStudy": "/casestudies/leadership",
-        "impact": "Trained 60+ developers, improved team velocity by 3x, reduced delivery time from months to weeks"
-      },
-      "technicalDocumentation": {
-        "name": "Technical Documentation",
-        "description": "Technical documentation is a critical component of any software project. I have extensive experience writing technical documentation for both internal and external audiences, including user guides, developer guides, and API documentation.",
-        "technologies": ["Markdown", "Adobe Premiere", "Confluence", "Microsoft Office/Stream/Sway", "LucidChart", "DrawIO", "FigJam"],
-        "caseStudy": "/casestudies/technical-documentation",
-        "impact": "Created 100+ technical documents, training videos, and architectural diagrams"
-      },
-      "training": {
-        "name": "Training",
-        "description": "Extensive experience training developers on new technologies and processes, including both in-person and remote training. I have also trained non-technical audiences on technical topics, including product managers, business analysts, and executives.",
-        "technologies": ["Adobe Creative Suite", "Confluence", "Microsoft Office/Stream/Sway"],
-        "caseStudy": "/casestudies/training",
-        "impact": "Delivered training to 60+ developers and non-technical stakeholders"
       },
       "amcui": {
         "name": "AMCUI",
         "description": "Proprietary UI kit, the visual cornerstone of the company's internal and external applications - offering consistent design and functionality across all platforms.",
         "technologies": ["Figma", "Zeplin", "Storybook", "TypeScript", "Preact", "HTML", "SCSS"],
+        "image": "/images/projects/amcui.png",
         "url": "https://assets.amerisave.com/interimui/storybook/?path=/docs/interim-ui-installation--page",
         "caseStudy": "/casestudies/amcui",
         "impact": "Standardized UI across 500+ microservices, improved designer-developer handoff by 30%"
@@ -415,13 +472,41 @@
         "name": "AMCLI",
         "description": "Proprietary CLI code generator, the tech cornerstone of the company's internal and external applications - offering consistent project / project member generation, linting, and testing.",
         "technologies": ["TypeScript", "Node.js", "Yeoman", "Microsoft", "Gulp", "Linux"],
+        "image": "/images/projects/amcli.jpeg",
         "caseStudy": "/casestudies/amcli",
         "impact": "Automated project scaffolding, reduced setup time from hours to minutes"
+      }
+    },
+    "leadership": {
+      "leadership": {
+        "name": "Leadership",
+        "description": "Proven leadership in the tech world, honed through years of experience leading and empowering teams of dozens of developers to achieve their full potential.",
+        "technologies": ["Scrum", "Agile", "Project Management", "Team Leadership", "Architecture Review Board", "Jira", "Confluence", "Microsoft Office Suite"],
+        "image": "/images/projects/leadership.png",
+        "caseStudy": "/casestudies/leadership",
+        "impact": "Trained 60+ developers, improved team velocity by 3x, reduced delivery time from months to weeks"
+      },
+      "technicalDocumentation": {
+        "name": "Technical Documentation",
+        "description": "Technical documentation is a critical component of any software project. I have extensive experience writing technical documentation for both internal and external audiences, including user guides, developer guides, and API documentation.",
+        "technologies": ["Markdown", "Adobe Premiere", "Confluence", "Microsoft Office/Stream/Sway", "LucidChart", "DrawIO", "FigJam"],
+        "image": "/images/projects/technicalDocumentation.png",
+        "caseStudy": "/casestudies/technical-documentation",
+        "impact": "Created 100+ technical documents, training videos, and architectural diagrams"
+      },
+      "training": {
+        "name": "Training",
+        "description": "Extensive experience training developers on new technologies and processes, including both in-person and remote training. I have also trained non-technical audiences on technical topics, including product managers, business analysts, and executives.",
+        "technologies": ["Adobe Creative Suite", "Confluence", "Microsoft Office/Stream/Sway"],
+        "image": "/images/projects/training.png",
+        "caseStudy": "/casestudies/training",
+        "impact": "Delivered training to 60+ developers and non-technical stakeholders"
       },
       "azureCloudMigration": {
         "name": "Azure Cloud Migration",
         "description": "Migration of on-premises monolithic servers to 500+ Azure Cloud Microservices and sharded databases, implementing best cloud practices for enhanced efficiency and performance.",
         "technologies": ["Azure Cloud", "RedHat OpenShift", "Kubernetes", "Redis"],
+        "image": "/images/projects/azureCloudMigration.png",
         "caseStudy": "/casestudies/azure-cloud-migration",
         "impact": "Achieved 99.9% uptime, reduced infrastructure costs by 56%"
       },
@@ -429,6 +514,7 @@
         "name": "GraphQL Cloud Migration",
         "description": "Migration of on-premises monolithic SQL Server Database with 3000+ tables & 2000+ routines to a distributed GQL Federation model, with full e2e testing, regression models, and documentation.",
         "technologies": ["GraphQL", "Apollo", "Node.js", "TypeScript", "SQL Server"],
+        "image": "/images/projects/gqlMigration.png",
         "url": "https://www.apollographql.com/docs/federation/",
         "caseStudy": "/casestudies/graphql-cloud-migration",
         "impact": "70% reduction in client-side API calls, 3x faster feature development"
@@ -437,6 +523,7 @@
         "name": "Jira Cloud Migration",
         "description": "Migration of Company Redmine repository to Jira Cloud, including customizations, integrations, and documentation.",
         "technologies": ["Jira", "Confluence", "Markdown"],
+        "image": "/images/projects/jiraCloudMigration.png",
         "caseStudy": "/casestudies/jira-cloud-migration",
         "impact": "Improved team collaboration, 30% increase in milestone completion"
       },
@@ -444,6 +531,7 @@
         "name": "oAuth Cloud Migration",
         "description": "Migration and implementation of oAuth and Auth0 for all internal and external applications, including documentation and training.",
         "technologies": ["oAuth", "Auth0", "Firebase", "Node.js", "TypeScript", "SQL Server"],
+        "image": "/images/projects/oauthMigration.png",
         "caseStudy": "/casestudies/oauth-cloud-migration",
         "impact": "Implemented company-wide SSO, improved security posture"
       },
@@ -451,26 +539,9 @@
         "name": "Observability Cloud Migration",
         "description": "Migration and implementation of Observability and Monitoring for a large majority of internal and external applications, including documentation, dashboards, and training.",
         "technologies": ["Sentry", "DataDog", "Azure Cloud", "Docker", "Kubernetes"],
+        "image": "/images/projects/observabilityMigration.png",
         "caseStudy": "/casestudies/observability-cloud-migration",
         "impact": "Reduced MTTR by 70%, proactive issue detection preventing critical outages"
-      },
-      "meridianVega": {
-        "name": "Meridian Vega",
-        "description": "My consulting S-Corp offering enterprise technology solutions, specializing in AI/ML integration, legacy modernization, and scalable architecture design.",
-        "url": "meridianvega.com",
-        "caseStudy": "/casestudies/meridian-vega",
-        "technologies": ["React", "Node.js", "AI/ML", "Cloud Architecture", "Enterprise Solutions"],
-        "impact": "Delivering high-impact consulting solutions for Fortune 500 companies",
-        "current": true
-      },
-      "howland": {
-        "name": "Howland",
-        "description": "AI-powered platform for intelligent automation and workflow optimization, built to streamline enterprise operations with cutting-edge ML capabilities.",
-        "url": "howland.meridianvega.com",
-        "caseStudy": "/casestudies/howland",
-        "technologies": ["Python", "LangChain", "React", "FastAPI", "Vector Databases", "RAG"],
-        "impact": "Revolutionizing enterprise automation with AI",
-        "current": true
       }
     }
   },

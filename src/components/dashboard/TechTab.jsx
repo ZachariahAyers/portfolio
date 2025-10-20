@@ -401,7 +401,7 @@ const highlightCode = (code, language) => {
   return highlighted;
 };
 
-const VSCodeInterface = ({ section, projectName, fileStructure }) => {
+const VSCodeInterface = ({ fileStructure }) => {
   const [openFolders, setOpenFolders] = useState(['frontend', 'backend', 'infrastructure', 'devops']);
   const [activeFile, setActiveFile] = useState(null);
   const [openTabs, setOpenTabs] = useState([]);

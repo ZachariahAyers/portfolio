@@ -1,3 +1,29 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Client["Browser Client"]
+        UI[Tailwind UI<br/>Gradient Background]
+        INPUT[File Input<br/>User Image Upload]
+    end
+
+    subgraph WASM["WebAssembly"]
+        RUST[Rust Module<br/>wasm-bindgen]
+        DECODE[Image Decode<br/>Base64 → Bytes]
+        PROCESS[Grayscale Algorithm<br/>Pixel Transformation]
+        ENCODE[Image Encode<br/>PNG Output]
+    end
+
+    subgraph Output["Client Output"]
+        DISPLAY[Image Display<br/>Base64 Data URL]
+        DOWNLOAD[Download Option<br/>No Server Required]
+    end
+
+    UI --> INPUT
+    INPUT --> RUST
+    RUST --> DECODE
+    DECODE --> PROCESS
+    PROCESS --> ENCODE
+    ENCODE --> DISPLAY
+    DISPLAY --> DOWNLOAD
+
+    style Client fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style WASM fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Output fill:#e8f5e9,stroke:#388e3c,stroke-width:2px

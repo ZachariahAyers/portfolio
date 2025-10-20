@@ -1,38 +1,116 @@
 {
   "id": "chewable-studios",
   "category": "enterprise",
-  "featured": false,
+  "featured": true,
   "hero": {
-    "title": "chewable-studios",
-    "tagline": "",
-    "badge": "",
-    "coverImage": "/images/case-studies/chewable-studios-hero.png",
-    "metrics": []
+    "title": "Chewable Studios",
+    "tagline": "Reimagining Educational Gaming for Children",
+    "badge": "EdTech Enterprise",
+    "metrics": [
+      { "value": "Games First", "label": "Philosophy", "animate": "fade", "icon": "gamepad-2" },
+      { "value": "Cross-Platform", "label": "Deployment", "animate": "fade", "icon": "layout" },
+      { "value": "AI-Driven", "label": "Difficulty", "animate": "fade", "icon": "brain" }
+    ]
   },
   "timeline": {
-    "duration": "",
-    "role": "",
-    "year": ""
+    "duration": "2023 - Present",
+    "role": "Founder & Lead Developer",
+    "year": "2023-Present"
   },
-  "sections": [],
-  "techStackAnalyzer": {
-    "projectName": "chewable-studios",
-    "fileStructure": {
-      "frontend": [],
-      "backend": [],
-      "infrastructure": [],
-      "devops": []
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Modern EdTech Games",
+        "points": ["Dressed-up worksheets", "Not genuinely fun", "Lost the magic"],
+        "visual": "boring-edtech"
+      },
+      "after": {
+        "label": "Chewable Approach",
+        "points": ["Games first, education second", "Math Blaster spirit", "Actually enjoyable"],
+        "visual": "fun-learning"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "Studio Architecture",
+      "components": [
+        { "name": "Unity Game Engine", "framework": "Unity + C#", "team": "Core Development" },
+        { "name": "Parent Portal", "framework": "React + TypeScript", "team": "Web Platform" },
+        { "name": "Adaptive Learning", "framework": "AI Difficulty", "team": "EdTech" },
+        { "name": "Progress Analytics", "framework": "MongoDB + Charts", "team": "Data" }
+      ],
+      "features": ["Adaptive Difficulty", "Progress Tracking", "Parent Dashboard", "Multiplayer Learning"]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Studio Progress",
+      "executive_summary": "Chewable Studios is actively developing multiple educational game prototypes with core technology systems established. The focus on genuinely fun gameplay combined with effective learning outcomes positions the studio to revive the golden age of educational gaming with modern technology.",
+      "sections": [
+        {
+          "title": "Development Status",
+          "highlights": [
+            "Multiple game prototypes in active development",
+            "Core systems and frameworks established",
+            "Technology foundation complete",
+            "Community building with educators and parents"
+          ]
+        },
+        {
+          "title": "Vision & Goals",
+          "summary": "Creating games that children genuinely choose to play, making learning enjoyable through entertainment-first design. Targeting platform expansion to mobile/tablet, curriculum integration partnerships with schools, and global reach through localization."
+        },
+        {
+          "title": "Technical Foundation",
+          "metrics": [
+            { "metric": "Game Philosophy", "before": "Education first", "after": "Entertainment first", "change": "100%" },
+            { "metric": "Platform Support", "before": "Desktop only", "after": "Windows/Mac/iOS/Android", "change": "4x" },
+            { "metric": "Learning Analytics", "before": "None", "after": "AI-driven dashboards", "change": "New" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Technology Stack",
+      "categories": {
+        "engine": ["Unity", "C#", "Photon Networking"],
+        "web": ["React", "TypeScript", "Node.js", "MongoDB"],
+        "analytics": ["Chart.js", "Custom Telemetry", "AWS"],
+        "tools": ["Unity Collaborate", "Git", "Blender"]
+      },
+      "interactive": true
     }
-  },
+  ],
   "businessRequirements": {
-    "jiraPrefix": "",
-    "businessContext": "",
-    "problemStatement": "",
-    "businessValue": [],
-    "acceptanceCriteria": [],
+    "jiraPrefix": "CHW",
+    "businessContext": "Founded educational game development studio creating interactive learning experiences for children in the spirit of Math Blaster and Zoombinis",
+    "problemStatement": "Modern educational games feel like dressed-up worksheets and have lost the magic that made classics like Math Blaster genuinely fun while teaching",
+    "businessValue": [
+      "Games first, education second philosophy",
+      "Making learning genuinely enjoyable for children",
+      "Cross-platform deployment (Windows, Mac, iOS, Android)",
+      "Adaptive AI-driven difficulty keeping players engaged",
+      "Parent dashboards for tracking progress"
+    ],
+    "acceptanceCriteria": [
+      "Create genuinely fun gameplay experiences",
+      "Learning happens naturally through play",
+      "Adaptive difficulty prevents frustration",
+      "Progress tracking for parents/teachers",
+      "Multiplayer support for collaborative learning"
+    ],
     "attachments": [],
     "risks": []
   },
-  "links": {},
-  "related": []
+  "links": {
+    "demo": "https://chewable.studio",
+    "linkedin": "https://www.linkedin.com/company/chewable-studios"
+  },
+  "related": ["meridian-vega", "unity"]
 }

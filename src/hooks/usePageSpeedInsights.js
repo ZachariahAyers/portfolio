@@ -167,7 +167,7 @@ const usePageSpeedInsights = (url) => {
           // Save to browser cache
           setBrowserCache(url, processedData);
         }
-      } catch (err) {
+      } catch {
         if (!cancelled) {
           // Ensure minimum delay even on error
           await new Promise(resolve => setTimeout(resolve, 1000));

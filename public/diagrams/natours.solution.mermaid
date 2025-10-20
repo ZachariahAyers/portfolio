@@ -1,3 +1,51 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Frontend["Server-Side Rendered"]
+        PUG[Pug Templates<br/>SSR Views]
+        PARCEL[Parcel Bundler<br/>Asset Pipeline]
+        MAPBOX[Mapbox GL<br/>Tour Maps]
+    end
+
+    subgraph API["REST API"]
+        EXPRESS[Express.js<br/>Node.js Server]
+        ROUTER[API Router<br/>Route Handlers]
+        MIDDLEWARE[Middleware<br/>Auth + Security]
+    end
+
+    subgraph Application["Application Layer"]
+        CONTROLLERS[Controllers<br/>Request Handlers]
+        SERVICES[Service Layer<br/>Business Logic]
+        VALIDATORS[Validators<br/>Input Validation]
+    end
+
+    subgraph Data["Data Layer"]
+        MONGOOSE[Mongoose ODM<br/>Data Models]
+        AGGREGATION[Aggregation Pipeline<br/>Tour Analytics]
+        MONGO[MongoDB<br/>Document Store]
+    end
+
+    subgraph External["External Integrations"]
+        PAYMENTS[Payment Service<br/>Stripe Integration]
+        EMAIL[Email Service<br/>SendGrid Integration]
+        STORAGE[Storage Service<br/>Cloudinary Integration]
+    end
+
+    PUG --> PARCEL
+    PARCEL --> MAPBOX
+    MAPBOX --> EXPRESS
+    EXPRESS --> ROUTER
+    ROUTER --> MIDDLEWARE
+    MIDDLEWARE --> CONTROLLERS
+    CONTROLLERS --> VALIDATORS
+    VALIDATORS --> SERVICES
+    SERVICES --> MONGOOSE
+    MONGOOSE --> AGGREGATION
+    AGGREGATION --> MONGO
+    SERVICES --> PAYMENTS
+    SERVICES --> EMAIL
+    SERVICES --> STORAGE
+
+    style Frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style API fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Application fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Data fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style External fill:#fce4ec,stroke:#ad1457,stroke-width:2px

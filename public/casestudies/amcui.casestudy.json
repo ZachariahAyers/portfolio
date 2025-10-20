@@ -1,38 +1,171 @@
 {
   "id": "amcui",
   "category": "enterprise",
-  "featured": false,
+  "featured": true,
   "hero": {
-    "title": "amcui",
-    "tagline": "",
-    "badge": "",
+    "title": "AMCUI",
+    "tagline": "Proprietary UI kit, the visual cornerstone of the company's applications",
+    "badge": "Design System",
     "coverImage": "/images/case-studies/amcui-hero.png",
-    "metrics": []
+    "metrics": [
+      { "value": "100+", "label": "Components", "animate": "counter", "icon": "box" },
+      { "value": "50+", "label": "Apps Using It", "animate": "counter", "icon": "globe" },
+      { "value": "99%", "label": "Consistency Score", "animate": "progress", "icon": "check-circle" }
+    ]
   },
   "timeline": {
-    "duration": "",
-    "role": "",
-    "year": ""
+    "duration": "2 years",
+    "role": "Design System Lead",
+    "year": "2020-2022"
   },
-  "sections": [],
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Fragmented UI",
+        "points": ["Inconsistent design", "Duplicated code", "Slow development"],
+        "visual": "fragmented-ui"
+      },
+      "after": {
+        "label": "Unified System",
+        "points": ["Consistent design", "Reusable components", "Rapid development"],
+        "visual": "unified-system"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "Design System Architecture",
+      "components": [
+        { "name": "Component Library", "framework": "Preact", "team": "Frontend" },
+        { "name": "Storybook", "framework": "Documentation", "team": "Developers" },
+        { "name": "Design Tokens", "framework": "SCSS", "team": "Designers" }
+      ],
+      "features": ["Accessibility", "Theming", "TypeScript", "Tree-Shakeable"]
+    },
+    {
+      "id": "code",
+      "type": "code-showcase",
+      "title": "Component Implementation",
+      "snippets": [
+        {
+          "title": "Button Component",
+          "code": "import { h } from 'preact';\nimport { ButtonProps } from './Button.types';\nimport styles from './Button.module.scss';\n\nexport const Button = ({\n  variant = 'primary',\n  size = 'medium',\n  disabled = false,\n  children,\n  onClick,\n  ...props\n}: ButtonProps) => {\n  const classNames = [\n    styles.button,\n    styles[`button--${variant}`],\n    styles[`button--${size}`],\n    disabled && styles['button--disabled']\n  ].filter(Boolean).join(' ');\n\n  return (\n    <button\n      className={classNames}\n      disabled={disabled}\n      onClick={onClick}\n      aria-label={props['aria-label']}\n      {...props}\n    >\n      {children}\n    </button>\n  );\n};",
+          "language": "typescript",
+          "animate": "typewriter"
+        },
+        {
+          "title": "Design Tokens",
+          "code": "$color-primary: #0066CC;\n$color-secondary: #6C757D;\n$color-success: #28A745;\n$color-danger: #DC3545;\n\n$spacing-xs: 4px;\n$spacing-sm: 8px;\n$spacing-md: 16px;\n$spacing-lg: 24px;\n$spacing-xl: 32px;\n\n$border-radius-sm: 4px;\n$border-radius-md: 8px;\n$border-radius-lg: 12px;\n\n$font-size-sm: 12px;\n$font-size-md: 14px;\n$font-size-lg: 16px;\n$font-size-xl: 18px;",
+          "language": "scss",
+          "animate": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "type": "metrics-dashboard",
+      "title": "Impact",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Development Speed",
+          "data": { "before": 100, "after": 250 },
+          "unit": "% faster"
+        },
+        {
+          "type": "line",
+          "title": "Design Consistency",
+          "data": [45, 60, 75, 88, 99],
+          "labels": ["Q1", "Q2", "Q3", "Q4", "Current"]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Built With",
+      "categories": {
+        "framework": ["Preact", "TypeScript", "HTML", "SCSS"],
+        "tools": ["Storybook", "Figma", "Zeplin"],
+        "testing": ["Jest", "Testing Library", "Chromatic"],
+        "build": ["Webpack", "Rollup", "npm"]
+      },
+      "interactive": true
+    }
+  ],
   "techStackAnalyzer": {
-    "projectName": "amcui",
+    "projectName": "AMCUI",
     "fileStructure": {
-      "frontend": [],
+      "frontend": [
+        {
+          "name": "Component Architecture",
+          "icon": "🧩",
+          "tech": "Preact Components",
+          "code": "// packages/button/src/Button.tsx\nimport { h, FunctionComponent } from 'preact';\nimport { useCallback } from 'preact/hooks';\nimport classNames from 'classnames';\nimport styles from './Button.module.scss';\n\nexport interface ButtonProps {\n  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger';\n  size?: 'small' | 'medium' | 'large';\n  fullWidth?: boolean;\n  disabled?: boolean;\n  loading?: boolean;\n  icon?: h.JSX.Element;\n  onClick?: (event: MouseEvent) => void;\n  children: h.JSX.Element | string;\n}\n\nexport const Button: FunctionComponent<ButtonProps> = ({\n  variant = 'primary',\n  size = 'medium',\n  fullWidth = false,\n  disabled = false,\n  loading = false,\n  icon,\n  onClick,\n  children,\n  ...rest\n}) => {\n  const handleClick = useCallback(\n    (event: MouseEvent) => {\n      if (!disabled && !loading && onClick) {\n        onClick(event);\n      }\n    },\n    [disabled, loading, onClick]\n  );\n\n  const buttonClasses = classNames(\n    styles.button,\n    styles[`button--${variant}`],\n    styles[`button--${size}`],\n    {\n      [styles['button--full-width']]: fullWidth,\n      [styles['button--disabled']]: disabled,\n      [styles['button--loading']]: loading,\n      [styles['button--with-icon']]: icon\n    }\n  );\n\n  return (\n    <button\n      className={buttonClasses}\n      onClick={handleClick}\n      disabled={disabled || loading}\n      {...rest}\n    >\n      {loading && <span className={styles.spinner} />}\n      {icon && <span className={styles.icon}>{icon}</span>}\n      <span className={styles.content}>{children}</span>\n    </button>\n  );\n};",
+          "docUrl": "https://assets.amerisave.com/interimui/storybook/?path=/docs/interim-ui-installation--page"
+        },
+        {
+          "name": "Theming System",
+          "icon": "🎨",
+          "tech": "SCSS Modules",
+          "code": "// packages/core/src/themes/_default.scss\n@use 'sass:map';\n\n$theme-default: (\n  'colors': (\n    'primary': #0066CC,\n    'primary-hover': #0052A3,\n    'primary-active': #003D7A,\n    'secondary': #6C757D,\n    'success': #28A745,\n    'danger': #DC3545,\n    'warning': #FFC107,\n    'info': #17A2B8,\n    'light': #F8F9FA,\n    'dark': #343A40\n  ),\n  'typography': (\n    'font-family': ('Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif),\n    'font-size-base': 16px,\n    'font-weight-normal': 400,\n    'font-weight-medium': 500,\n    'font-weight-bold': 700,\n    'line-height-base': 1.5\n  ),\n  'spacing': (\n    'xs': 4px,\n    'sm': 8px,\n    'md': 16px,\n    'lg': 24px,\n    'xl': 32px,\n    'xxl': 48px\n  ),\n  'border-radius': (\n    'sm': 4px,\n    'md': 8px,\n    'lg': 12px,\n    'full': 9999px\n  )\n);\n\n@function theme-get($keys...) {\n  $value: $theme-default;\n  @each $key in $keys {\n    $value: map.get($value, $key);\n  }\n  @return $value;\n}",
+          "docUrl": "https://sass-lang.com/"
+        }
+      ],
       "backend": [],
-      "infrastructure": [],
-      "devops": []
+      "infrastructure": [
+        {
+          "name": "Storybook Documentation",
+          "icon": "📚",
+          "tech": "Component Documentation",
+          "code": "// packages/button/src/Button.stories.tsx\nimport { h } from 'preact';\nimport { Meta, Story } from '@storybook/preact';\nimport { Button, ButtonProps } from './Button';\n\nexport default {\n  title: 'Components/Button',\n  component: Button,\n  argTypes: {\n    variant: {\n      control: { type: 'select' },\n      options: ['primary', 'secondary', 'tertiary', 'danger']\n    },\n    size: {\n      control: { type: 'select' },\n      options: ['small', 'medium', 'large']\n    },\n    fullWidth: { control: 'boolean' },\n    disabled: { control: 'boolean' },\n    loading: { control: 'boolean' }\n  }\n} as Meta;\n\nconst Template: Story<ButtonProps> = (args) => <Button {...args} />;\n\nexport const Primary = Template.bind({});\nPrimary.args = {\n  children: 'Primary Button',\n  variant: 'primary'\n};\n\nexport const Secondary = Template.bind({});\nSecondary.args = {\n  children: 'Secondary Button',\n  variant: 'secondary'\n};",
+          "docUrl": "https://storybook.js.org/"
+        }
+      ],
+      "devops": [
+        {
+          "name": "Component Distribution",
+          "icon": "📦",
+          "tech": "npm Package",
+          "code": "{\n  \"name\": \"@company/ui-components\",\n  \"version\": \"2.4.1\",\n  \"description\": \"Company UI Component Library\",\n  \"main\": \"dist/index.js\",\n  \"module\": \"dist/index.esm.js\",\n  \"types\": \"dist/index.d.ts\",\n  \"sideEffects\": [\n    \"*.scss\",\n    \"*.css\"\n  ],\n  \"peerDependencies\": {\n    \"preact\": \"^10.0.0\"\n  },\n  \"publishConfig\": {\n    \"registry\": \"https://registry.npmjs.org/\",\n    \"access\": \"public\"\n  }\n}",
+          "docUrl": "https://www.npmjs.com/"
+        }
+      ]
     }
   },
   "businessRequirements": {
-    "jiraPrefix": "",
-    "businessContext": "",
-    "problemStatement": "",
-    "businessValue": [],
-    "acceptanceCriteria": [],
-    "attachments": [],
-    "risks": []
+    "jiraPrefix": "AMCUI",
+    "businessContext": "Consistent user experience across all applications requires a unified design system that developers and designers can use efficiently",
+    "problemStatement": "Inconsistent UI components across applications led to poor user experience, duplicated development effort, and maintenance challenges",
+    "businessValue": [
+      "Created 100+ reusable components used across 50+ applications",
+      "Reduced UI development time by 250%",
+      "Achieved 99% design consistency score across all applications",
+      "Decreased accessibility issues by 85%",
+      "Enabled design-to-code handoff in hours instead of days"
+    ],
+    "acceptanceCriteria": [
+      "✓ Build comprehensive component library with 100+ components",
+      "✓ Full TypeScript support with type definitions",
+      "✓ WCAG 2.1 AA accessibility compliance",
+      "✓ Storybook documentation for all components",
+      "✓ Theming system supporting multiple brands",
+      "✓ Automated visual regression testing"
+    ],
+    "attachments": [
+      { "type": "documentation", "title": "Design System Guidelines" },
+      { "type": "figma", "title": "Figma Design Library" }
+    ],
+    "risks": [
+      { "risk": "Breaking changes impact multiple applications", "mitigation": "Semantic versioning and deprecation notices" },
+      { "risk": "Design and code drift over time", "mitigation": "Automated Figma-to-code sync with Zeplin" }
+    ]
   },
-  "links": {},
-  "related": []
+  "links": {
+    "live": "https://assets.amerisave.com/interimui/storybook/?path=/docs/interim-ui-installation--page"
+  },
+  "related": ["amcli", "leadership", "azure-cloud-migration"]
 }

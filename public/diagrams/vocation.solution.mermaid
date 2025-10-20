@@ -1,3 +1,39 @@
-graph TD
-    A[Solution Overview] --> B[Placeholder Diagram]
-    B --> C[To Be Designed]
+graph LR
+    subgraph Extension["Chrome Extension"]
+        MANIFEST[Manifest V3<br/>Configuration]
+        BACKGROUND[Service Worker<br/>Background Tasks]
+        CONTENT[Content Script<br/>Page Injection]
+    end
+
+    subgraph UI["User Interface"]
+        VUE[Vue.js 3<br/>Composition API]
+        POPUP[Extension Popup<br/>Quick Actions]
+        OPTIONS[Options Page<br/>Settings]
+    end
+
+    subgraph Features["Core Features"]
+        SCRAPE[Job Scraping<br/>DOM Parsing]
+        TRACK[Application Tracking<br/>Local Storage]
+        EXPORT[Data Export<br/>CSV/JSON]
+    end
+
+    subgraph Storage["Data Layer"]
+        CHROME_STORAGE[Chrome Storage<br/>Sync Across Devices]
+        INDEXED_DB[IndexedDB<br/>Large Data Sets]
+    end
+
+    MANIFEST --> BACKGROUND
+    BACKGROUND --> CONTENT
+    CONTENT --> VUE
+    VUE --> POPUP
+    VUE --> OPTIONS
+    OPTIONS --> SCRAPE
+    SCRAPE --> TRACK
+    TRACK --> EXPORT
+    EXPORT --> CHROME_STORAGE
+    CHROME_STORAGE --> INDEXED_DB
+
+    style Extension fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style UI fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Features fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Storage fill:#fff3e0,stroke:#f57c00,stroke-width:2px

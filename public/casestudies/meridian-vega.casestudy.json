@@ -1,38 +1,116 @@
 {
   "id": "meridian-vega",
   "category": "enterprise",
-  "featured": false,
+  "featured": true,
   "hero": {
-    "title": "meridian-vega",
-    "tagline": "",
-    "badge": "",
-    "coverImage": "/images/case-studies/meridian-vega-hero.png",
-    "metrics": []
+    "title": "Meridian Vega LLC",
+    "tagline": "Enterprise Technology Consulting & AI/ML Integration",
+    "badge": "Enterprise Consulting",
+    "metrics": [
+      { "value": "Fortune 500", "label": "Clients", "animate": "fade", "icon": "building" },
+      { "value": "2+ Years", "label": "Active", "animate": "counter", "icon": "calendar" },
+      { "value": "AI/ML + Legacy", "label": "Expertise", "animate": "fade", "icon": "brain" }
+    ]
   },
   "timeline": {
-    "duration": "",
-    "role": "",
-    "year": ""
+    "duration": "February 2023 - Present",
+    "role": "Founder & Principal Consultant",
+    "year": "2023-Present"
   },
-  "sections": [],
-  "techStackAnalyzer": {
-    "projectName": "meridian-vega",
-    "fileStructure": {
-      "frontend": [],
-      "backend": [],
-      "infrastructure": [],
-      "devops": []
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Enterprise Pain Points",
+        "points": ["20+ year legacy systems", "AI demos that don't scale", "Slow time-to-market"],
+        "visual": "enterprise-challenges"
+      },
+      "after": {
+        "label": "Production Solutions",
+        "points": ["Working modernization", "Production AI systems", "Rapid delivery"],
+        "visual": "consulting-solutions"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "Service Offerings",
+      "components": [
+        { "name": "E-Commerce Solutions", "framework": "Stripe/Shopify + React/NestJS", "team": "Full Stack" },
+        { "name": "Creative Tools", "framework": "Adobe/DaVinci Resolve Plugins", "team": "Desktop" },
+        { "name": "3D Visualization", "framework": "Three.js + WebGL", "team": "Graphics" },
+        { "name": "AI/ML Integration", "framework": "LangChain + RAG", "team": "AI/ML" }
+      ],
+      "features": ["Payment Integration", "Plugin Development", "3D Configurators", "Game Development Support"]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Business Impact",
+      "executive_summary": "Meridian Vega successfully delivers high-impact technology solutions for Fortune 500 companies, with projects consistently affecting client revenue streams. Notable achievements include doubling Timelapse+ plugin sales, building first-to-market VW ID.Buzz configurator, and deploying production AI systems.",
+      "sections": [
+        {
+          "title": "Client Success",
+          "highlights": [
+            "Multiple Fortune 500 client engagements",
+            "Direct revenue impact on all projects",
+            "Client retention with repeat business",
+            "Referral-driven new client acquisition"
+          ]
+        },
+        {
+          "title": "Notable Projects",
+          "summary": "Timelapse+ creative tools doubled plugin sales. VW ID.Buzz configurator first-to-market. E-commerce platforms with Stripe/Shopify integration deployed to production."
+        },
+        {
+          "title": "Technical Achievements",
+          "metrics": [
+            { "metric": "Legacy Modernization", "before": "20+ year VB6 systems", "after": ".NET 8 production", "change": "Success" },
+            { "metric": "AI Implementation", "before": "Demos only", "after": "Production RAG systems", "change": "Deployed" },
+            { "metric": "Client Satisfaction", "before": "N/A", "after": "Repeat engagements", "change": "+100%" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Technology Stack",
+      "categories": {
+        "frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Three.js"],
+        "backend": ["Node.js", "NestJS", "Python", "FastAPI", "C#"],
+        "aiml": ["LangChain", "OpenAI API", "TensorFlow", "RAG", "Vector DBs"],
+        "cloud": ["AWS", "Azure", "Docker", "Kubernetes"],
+        "specialized": ["Unity", "Unreal Engine", "Stripe", "Shopify"]
+      },
+      "interactive": true
     }
-  },
+  ],
   "businessRequirements": {
-    "jiraPrefix": "",
-    "businessContext": "",
-    "problemStatement": "",
-    "businessValue": [],
-    "acceptanceCriteria": [],
+    "jiraPrefix": "MV",
+    "businessContext": "Enterprise technology consulting company specializing in AI/ML integration, legacy modernization, and scalable architecture design for Fortune 500 companies",
+    "problemStatement": "Enterprises struggle with complex technology challenges: modernizing 20+ year legacy systems, implementing production-ready AI, and scaling architectures to support business growth",
+    "businessValue": [
+      "Ship production code, not just recommendations",
+      "Specialize in high-impact areas: AI/ML, legacy modernization, e-commerce",
+      "Direct revenue impact on client projects",
+      "Practical solutions over perfect solutions"
+    ],
+    "acceptanceCriteria": [
+      "Deliver working software to production",
+      "Achieve measurable business impact for clients",
+      "Build AI systems that work at scale",
+      "Successfully modernize legacy systems",
+      "Maintain Fortune 500 client relationships"
+    ],
     "attachments": [],
     "risks": []
   },
-  "links": {},
-  "related": []
+  "links": {
+    "demo": "https://www.meridianvega.com",
+    "linkedin": "https://www.linkedin.com/company/meridian-vega"
+  },
+  "related": ["howland", "chewable-studios", "vw-configurator"]
 }

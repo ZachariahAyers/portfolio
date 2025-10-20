@@ -1,0 +1,95 @@
+graph TB
+    subgraph "User Interface"
+        Browser[Web Browser]
+        Mobile[Mobile Device]
+        Tablet[Tablet]
+    end
+    
+    subgraph "Frontend Architecture"
+        HTML[HTML5 Structure]
+        Bootstrap[Bootstrap 4 Framework]
+        SCSS[Custom SCSS]
+        jQuery[jQuery Library]
+        FontAwesome[Font Awesome Icons]
+        
+        HTML --> Bootstrap
+        Bootstrap --> SCSS
+        HTML --> jQuery
+        HTML --> FontAwesome
+    end
+    
+    subgraph "Component Structure"
+        Navigation[Fixed Navigation Bar]
+        Hero[Hero Section with Parallax]
+        About[About Section with Icons]
+        Gallery[Image Gallery]
+        Booking[Booking Modal]
+        Newsletter[Newsletter Signup]
+        Footer[Footer with Links]
+        
+        Navigation --> Hero
+        Hero --> About
+        About --> Gallery
+        Gallery --> Newsletter
+        Newsletter --> Footer
+    end
+    
+    subgraph "Styling Architecture"
+        Variables[SCSS Variables]
+        Mixins[Reusable Mixins]
+        Components[Component Styles]
+        Utilities[Utility Classes]
+        Responsive[Responsive Breakpoints]
+        
+        Variables --> Mixins
+        Mixins --> Components
+        Components --> Utilities
+        Utilities --> Responsive
+    end
+    
+    subgraph "Asset Management"
+        Images[Optimized Images]
+        Icons[Icon Assets]
+        Fonts[Google Fonts]
+        
+        Images --> |"Lazy Load"| Gallery
+        Icons --> About
+        Fonts --> HTML
+    end
+    
+    subgraph "Build Process"
+        SASSCompiler[SASS Compiler]
+        Autoprefixer[Autoprefixer]
+        Minification[CSS Minification]
+        SourceMaps[Source Maps]
+        
+        SCSS --> SASSCompiler
+        SASSCompiler --> Autoprefixer
+        Autoprefixer --> Minification
+        SASSCompiler --> SourceMaps
+    end
+    
+    subgraph "Interactive Features"
+        SmoothScroll[Smooth Scrolling]
+        ModalSystem[Modal System]
+        Carousel[Image Carousel]
+        FormValidation[Form Validation]
+        
+        jQuery --> SmoothScroll
+        Bootstrap --> ModalSystem
+        Bootstrap --> Carousel
+        jQuery --> FormValidation
+    end
+    
+    Browser --> HTML
+    Mobile --> HTML
+    Tablet --> HTML
+    
+    Booking --> ModalSystem
+    Navigation --> SmoothScroll
+    
+    style HTML fill:#e8f5e9
+    style Bootstrap fill:#e3f2fd
+    style SCSS fill:#f3e5f5
+    style jQuery fill:#fff9c4
+    style Gallery fill:#ffebee

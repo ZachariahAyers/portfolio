@@ -56,7 +56,7 @@ const useGitHubStats = () => {
               // For simplicity, we'll just note this - full pagination would require more complex logic
               // Note: ${account} has more than 100 repos, showing first 100
             }
-          } catch (error) {
+          } catch {
             // Error fetching repos for ${account}
           }
         }
