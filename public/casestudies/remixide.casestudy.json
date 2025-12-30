@@ -21,8 +21,19 @@
   },
   "sections": [
     {
+      "id": "problem",
+      "type": "visual-comparison",
       "title": "The Challenge",
-      "content": "Solidity developers needed a dedicated desktop environment for smart contract development. While Remix IDE is powerful, running it in a browser tab alongside other work can be distracting and resource-intensive. The goal was to create a native application experience that provides focus and improved workflow."
+      "before": {
+        "label": "Browser-Based IDE",
+        "points": ["Lost among browser tabs", "Resource-intensive browser process", "No native OS integration"],
+        "visual": "browser-ide"
+      },
+      "after": {
+        "label": "Native Desktop App",
+        "points": ["Dedicated development window", "Optimized resource usage", "Full OS integration"],
+        "visual": "native-app"
+      }
     },
     {
       "title": "Technical Approach",
@@ -47,13 +58,24 @@
       }
     },
     {
+      "id": "results",
+      "type": "business-report",
       "title": "Results & Impact",
-      "content": "Delivered a professional desktop experience for Ethereum developers, eliminating browser-related distractions and providing a dedicated development environment. The application supports all major operating systems with native installers and automatic updates.",
-      "metrics": [
-        "Sub-3 second application startup time",
-        "Native installers for Windows, macOS, and Linux",
-        "Automatic updates via Squirrel framework",
-        "Full feature parity with web-based Remix IDE"
+      "executive_summary": "Remix IDE Desktop delivers professional Ethereum development experience with sub-3s startup, cross-platform native installers, and seamless auto-updates. Eliminates browser distractions while maintaining full feature parity with web-based Remix.",
+      "sections": [
+        {
+          "title": "Application Performance",
+          "highlights": [
+            "Sub-3 second application startup time",
+            "Native installers for Windows, macOS, and Linux",
+            "Automatic updates via Squirrel framework",
+            "Full feature parity with web-based Remix IDE"
+          ]
+        },
+        {
+          "title": "Developer Experience",
+          "summary": "Dedicated development window eliminates browser distractions, provides native OS integration with keyboard shortcuts and file associations, and enables offline development capability."
+        }
       ]
     }
   ],
@@ -61,27 +83,57 @@
     "projectName": "remixide",
     "fileStructure": {
       "frontend": [
-        "Remix IDE (loaded via web URL)",
-        "Electron renderer process",
-        "Chrome DevTools integration"
+        {
+          "name": "Main Window",
+          "icon": "🖥️",
+          "tech": "Electron BrowserWindow",
+          "code": "const { app, BrowserWindow } = require('electron');\nconst path = require('path');\n\nconst iconPath = path.join(__dirname, 'icons', process.platform === 'win32' ? 'icon.ico' : 'icon.png');\n\nconst createWindow = () => {\n  const mainWindow = new BrowserWindow({\n    width: 1200,\n    height: 800,\n    icon: iconPath,\n    webPreferences: {\n      nodeIntegration: false,\n      contextIsolation: true\n    }\n  });\n\n  mainWindow.loadURL('https://remix.ethereum.org/');\n  mainWindow.setMenuBarVisibility(false);\n};",
+          "docUrl": "https://www.electronjs.org/docs/latest/api/browser-window"
+        }
       ],
       "backend": [
-        "Electron main process",
-        "Node.js runtime",
-        "Platform-specific APIs"
+        {
+          "name": "App Lifecycle",
+          "icon": "⚡",
+          "tech": "Electron Main Process",
+          "code": "const { app } = require('electron');\n\napp.whenReady().then(() => {\n  createWindow();\n\n  app.on('activate', () => {\n    if (BrowserWindow.getAllWindows().length === 0) {\n      createWindow();\n    }\n  });\n});\n\napp.on('window-all-closed', () => {\n  if (process.platform !== 'darwin') {\n    app.quit();\n  }\n});",
+          "docUrl": "https://www.electronjs.org/docs/latest/api/app"
+        }
       ],
       "infrastructure": [
-        "Electron Forge build system",
-        "Multi-platform packaging",
-        "Code signing certificates"
+        {
+          "name": "Forge Config",
+          "icon": "🔨",
+          "tech": "Electron Forge",
+          "code": "// forge.config.js\nmodule.exports = {\n  packagerConfig: {\n    name: 'Remix IDE',\n    icon: './icons/icon',\n    asar: true\n  },\n  makers: [\n    {\n      name: '@electron-forge/maker-squirrel',\n      config: { name: 'remix-ide' }\n    },\n    {\n      name: '@electron-forge/maker-dmg',\n      config: { format: 'ULFO' }\n    },\n    {\n      name: '@electron-forge/maker-deb',\n      config: {}\n    }\n  ]\n};",
+          "docUrl": "https://www.electronforge.io/"
+        }
       ],
       "devops": [
-        "Automated installer generation",
-        "GitHub Releases integration",
-        "Squirrel auto-update framework"
+        {
+          "name": "Build Scripts",
+          "icon": "📦",
+          "tech": "npm scripts",
+          "code": "// package.json\n{\n  \"scripts\": {\n    \"start\": \"electron-forge start\",\n    \"package\": \"electron-forge package\",\n    \"make\": \"electron-forge make\",\n    \"publish\": \"electron-forge publish\"\n  },\n  \"devDependencies\": {\n    \"@electron-forge/cli\": \"^6.0.0\",\n    \"@electron-forge/maker-squirrel\": \"^6.0.0\",\n    \"@electron-forge/maker-dmg\": \"^6.0.0\",\n    \"@electron-forge/maker-deb\": \"^6.0.0\",\n    \"electron\": \"^24.0.0\"\n  }\n}",
+          "docUrl": "https://www.electronjs.org/docs/latest/tutorial/quick-start"
+        }
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Solidity Developer",
+      "avatar": "SD",
+      "time": "Usage",
+      "comment": "Having Remix as a dedicated desktop app removes browser distractions. The native window management makes contract development much more focused."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Electron wrapper",
+      "comment": "Created the Remix IDE desktop wrapper to provide Ethereum developers with a dedicated development environment. Cross-platform builds with auto-update support."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "RMXD",
     "businessContext": "Provide Ethereum developers with a dedicated desktop application for smart contract development, improving focus and productivity.",

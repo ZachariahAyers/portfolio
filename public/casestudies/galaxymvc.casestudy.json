@@ -33,8 +33,19 @@
   },
   "sections": [
     {
+      "id": "problem",
+      "type": "visual-comparison",
       "title": "The Challenge",
-      "content": "Many PHP developers struggle to understand MVC architecture when learning frameworks like Laravel or Symfony due to their complexity. The goal was to create a minimal MVC framework that clearly demonstrates the pattern without magic methods or hidden complexity, making it perfect for education and small projects."
+      "before": {
+        "label": "Complex Frameworks",
+        "points": ["Laravel/Symfony overwhelming for beginners", "Magic methods hide the logic", "Hard to understand MVC pattern"],
+        "visual": "complex-framework"
+      },
+      "after": {
+        "label": "GalaxyMVC Solution",
+        "points": ["Under 1000 lines of code", "No magic - clear, readable logic", "Perfect for learning MVC"],
+        "visual": "simple-framework"
+      }
     },
     {
       "title": "Technical Approach",
@@ -119,6 +130,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Junior Developer",
+      "avatar": "JD",
+      "time": "Learning",
+      "comment": "This framework finally made MVC click for me. Seeing the pattern without all the magic of larger frameworks helped me understand what's actually happening."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Framework creation",
+      "comment": "Created GalaxyMVC as a teaching tool. Minimal implementation showing routing, controllers, models, and views without the complexity of full frameworks."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "GMVC",
     "businessContext": "Create a minimal MVC framework for educational purposes and small project development.",

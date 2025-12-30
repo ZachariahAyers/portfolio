@@ -66,8 +66,9 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Impact",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "AMCUI transformed the company's UI development by establishing a unified design system used across 50+ applications. The component library achieved 99% design consistency and reduced UI development time by 250%, while ensuring WCAG 2.1 AA accessibility compliance.",
       "charts": [
         {
           "type": "bar",
@@ -80,6 +81,22 @@
           "title": "Design Consistency",
           "data": [45, 60, 75, 88, 99],
           "labels": ["Q1", "Q2", "Q3", "Q4", "Current"]
+        }
+      ],
+      "sections": [
+        {
+          "title": "Design System Success",
+          "highlights": [
+            "100+ reusable components built with Preact and TypeScript",
+            "50+ applications using the unified design system",
+            "250% faster UI development compared to custom implementation",
+            "99% design consistency score across all platforms",
+            "WCAG 2.1 AA accessibility compliance achieved"
+          ]
+        },
+        {
+          "title": "Business Results",
+          "summary": "AMCUI eliminated duplicated UI efforts across teams, enabling designers to hand off work to developers in hours instead of days. The Storybook documentation became the single source of truth, reducing design-dev miscommunication by 85%."
         }
       ]
     },
@@ -136,6 +153,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "UX Designer",
+      "avatar": "UX",
+      "time": "Design handoff",
+      "comment": "Finally! A component library that matches our Figma designs exactly. No more pixel-pushing after handoff - the devs can just use the components and they look right."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Adoption milestone",
+      "comment": "Component library now used across all 12 production applications. Achieved 100% design consistency and reduced UI development time by 60%."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "AMCUI",
     "businessContext": "Consistent user experience across all applications requires a unified design system that developers and designers can use efficiently",

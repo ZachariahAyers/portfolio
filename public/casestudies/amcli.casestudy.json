@@ -66,8 +66,9 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Impact",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "AMCLI revolutionized project initialization across the organization, generating 500+ projects with 100% code consistency. The CLI reduced setup time by 94% (from 4 hours to 15 minutes) while enforcing best practices and eliminating configuration errors that previously cost teams days of debugging.",
       "charts": [
         {
           "type": "bar",
@@ -80,6 +81,22 @@
           "title": "Projects Generated",
           "data": [50, 125, 250, 400, 500],
           "labels": ["Q1", "Q2", "Q3", "Q4", "Current"]
+        }
+      ],
+      "sections": [
+        {
+          "title": "CLI Success",
+          "highlights": [
+            "500+ projects generated with consistent structure and configuration",
+            "94% reduction in project setup time (4 hours → 15 minutes)",
+            "100% code consistency score across all generated projects",
+            "Zero configuration errors from copy-paste mistakes",
+            "Plugin architecture enabling team-specific customizations"
+          ]
+        },
+        {
+          "title": "Business Results",
+          "summary": "AMCLI transformed new developer onboarding from a multi-day process to hours. Teams no longer waste time on boilerplate configuration, allowing developers to focus on business logic from day one. The standardized project structure also simplified code reviews and cross-team collaboration."
         }
       ]
     },
@@ -137,6 +154,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Development Team Lead",
+      "avatar": "TL",
+      "time": "After rollout",
+      "comment": "New developers are productive within hours instead of days. The CLI handles all the boilerplate setup that used to take a full day of configuration."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "v2.0 release",
+      "comment": "Added template customization and plugin architecture. Teams can now extend the CLI with their own generators while maintaining consistency."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "AMCLI",
     "businessContext": "Rapid project initialization and consistent code generation are critical for developer productivity and maintaining code quality standards",

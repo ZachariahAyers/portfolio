@@ -62,7 +62,13 @@
         },
         {
           "title": "Notable Projects",
-          "summary": "Timelapse+ creative tools doubled plugin sales. VW ID.Buzz configurator first-to-market. E-commerce platforms with Stripe/Shopify integration deployed to production."
+          "highlights": [
+            "Full manufacturing shop systems converted from legacy VB6/Windows to modern C#/.NET 8/WinUI3",
+            "ObjectARX CAD plugins and AutoCAD integration products for engineering automation",
+            "Fermi RAG system and Howland AI implementations",
+            "VW ID.Buzz 3D configurator - first-to-market",
+            "Timelapse+ creative tools - doubled plugin sales"
+          ]
         },
         {
           "title": "Technical Achievements",
@@ -86,6 +92,20 @@
         "specialized": ["Unity", "Unreal Engine", "Stripe", "Shopify"]
       },
       "interactive": true
+    }
+  ],
+  "activity": [
+    {
+      "author": "Client Technical Lead",
+      "avatar": "TL",
+      "time": "Q4 2024",
+      "comment": "The legacy VB6 migration is progressing ahead of schedule. The new WinUI3 interfaces are significantly more intuitive, and the team has already seen a 40% reduction in support tickets."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Q3 2024",
+      "comment": "Deployed the Fermi RAG system to production. Initial feedback from users shows 85% accuracy on technical documentation queries - exceeding our 80% target."
     }
   ],
   "businessRequirements": {

@@ -19,8 +19,8 @@
       "AI/ML Capabilities: Building RAG systems, implementing predictive maintenance, optimizing inference costs – AI is another tool in my toolkit",
       "Scale & Reliability: Architected systems handling millions of transactions daily, whether traditional web apps or ML models",
       "Pragmatic Approach: I choose the right tool for the job – React for UI, Python for ML, boring tech for critical systems",
-      "Team Multiplier: Helped 60+ developers at AmeriSave adopt new patterns – I make everyone around me better",
-      "Business Impact: Reduced loan processing by 50%, cut deployment time by 90% – I measure success in business outcomes",
+      "Team Multiplier: Helped 60+ developers at AmeriSave Mortgage Corporation adopt new patterns – I make everyone around me better",
+      "Business Impact: At AmeriSave Mortgage Corporation, reduced loan processing by 50% and cut deployment time by 90% – I measure success in business outcomes",
       "Modern & Legacy: Equally comfortable with cutting-edge tech (LangChain, vector DBs) and legacy systems (VB6 migrations)"
     ]
   },
@@ -173,7 +173,7 @@
       "name": "AssembleJS",
       "description": "Created modern micro-frontend framework from scratch with islands architecture and server-side rendering support. Enables distributed, component-based UI development.",
       "url": "assemblejs.com",
-      "github": "github.com/zjayers/assemblejs",
+      "github": "github.com/N73311/assemblejs",
       "caseStudy": "/casestudies/assemblejs",
       "impact": "Open-source framework used by developers worldwide",
       "image": "/images/projects/assemblejs.png",
@@ -218,7 +218,7 @@
         "description": "Multi-Spa app utilizing Webpack Module Federation, seamlessly integrating multiple front-end applications into a single container for enhanced scalability.",
         "technologies": ["Angular", "React", "Vue", "Docker", "TypeScript", "Material-UI", "Webpack Module Federation", "AWS CloudFront/S3"],
         "image": "/images/projects/moduleFederation.png",
-        "url": "https://federation.zachayers.io",
+        "url": "https://modulefederation.zachayers.io",
         "github": "https://github.com/zjayers/mfe.complete/tree/master/packages",
         "caseStudy": "/casestudies/module-federation"
       },
@@ -261,7 +261,7 @@
         "description": "Streamlines the process of sharing and joining events, allowing users to easily connect with like-minded individuals.",
         "technologies": ["C#", "ASP.NET Core 5", "Entity Framework", "React", "Redux", "TypeScript", "SQL Server", "Redis", "Azure"],
         "image": "/images/projects/lively.png",
-        "url": "https://reactivities-heroku.herokuapp.com",
+        "url": "https://lively.zachayers.io",
         "github": "https://github.com/zjayers/asp.net.core.react/tree/master/Core",
         "caseStudy": "/casestudies/lively"
       }
@@ -275,22 +275,6 @@
         "technologies": ["React", "Three.js", "TypeScript", "WebGL", "E-commerce Integration"],
         "impact": "Real-time 3D vehicle wrap visualization for client orders",
         "image": "/images/projects/vw-configurator.png"
-      },
-      "chalkboard": {
-        "name": "Chalkboard",
-        "description": "Real-time collaborative drawing app with Socket.IO and p5.js. Multiple users can draw together with instant synchronization, showcasing WebSocket architecture and scaling challenges.",
-        "technologies": ["React", "Socket.IO", "p5.js", "Express", "Material-UI", "Canvas API"],
-        "image": "/images/projects/chalkboard.png",
-        "github": "https://github.com/N73311/chalkboard",
-        "caseStudy": "/casestudies/chalkboard",
-        "impact": "< 50ms latency with 50+ concurrent users",
-        "highlights": [
-          "Real-time drawing synchronization with Socket.IO",
-          "p5.js canvas integration for smooth rendering",
-          "Multiple drawing tools and color picker",
-          "User presence tracking system",
-          "Learned WebSocket scaling challenges firsthand"
-        ]
       },
       "vocation": {
         "name": "Vocation",
@@ -309,13 +293,29 @@
           "Complete privacy with local-only storage"
         ]
       },
+      "chalkboard": {
+        "name": "Chalkboard",
+        "description": "Real-time collaborative drawing app with Socket.IO and p5.js. Multiple users can draw together with instant synchronization, showcasing WebSocket architecture and scaling challenges.",
+        "technologies": ["React", "Socket.IO", "p5.js", "Express", "Material-UI", "Canvas API"],
+        "image": "/images/projects/chalkboard.png",
+        "url": "https://chalkboard.zachayers.io",
+        "github": "https://github.com/N73311/chalkboard",
+        "caseStudy": "/casestudies/chalkboard",
+        "impact": "< 50ms latency with 50+ concurrent users",
+        "highlights": [
+          "Real-time drawing synchronization with Socket.IO",
+          "p5.js canvas integration for smooth rendering",
+          "Multiple drawing tools and color picker",
+          "User presence tracking system",
+          "Learned WebSocket scaling challenges firsthand"
+        ]
+      },
       "doneWithIt": {
         "name": "Done With It",
         "description": "React Native marketplace app with Expo – my first mobile development experience",
         "technologies": "React Native, Expo",
         "image": "/images/projects/doneWithIt.jpeg",
-        "url": "https://zjayers.github.io/host.donewithit/",
-        "github": "https://github.com/zjayers/react.native.complete/tree/master/app",
+        "github": "https://github.com/N73311/done-with-it",
         "caseStudy": "/casestudies/done-with-it"
       },
       "sliceOfLife": {
@@ -374,7 +374,7 @@
         "description": "Modern camping website showcasing advanced Bootstrap 4 customization, SCSS architecture, and responsive design. Features parallax scrolling, custom animations, and interactive components for an immersive outdoor experience.",
         "technologies": ["Bootstrap 4", "SCSS/SASS", "jQuery", "HTML5", "CSS Grid", "Font Awesome 5", "Google Fonts"],
         "image": "/images/projects/auroraGrove.png",
-        "url": "https://aurora.zachayers.io",
+        "url": "https://auroragrove.zachayers.io",
         "github": "https://github.com/N73311/auroragrove",
         "caseStudy": "/casestudies/auroragrove",
         "impact": "98/100 Lighthouse score, 100% mobile responsive, <2s load time",
@@ -389,67 +389,10 @@
         "name": "CIDR",
         "description": "CIDR visualizer tool that simplifies network planning and administration, providing a user-friendly interface for mapping IP addresses and subnets.",
         "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
-        "image": "/images/projects/cidr.png",
-        "url": "https://cidr.zachayers.io",
-        "caseStudy": "/casestudies/cidr"
+        "image": "/images/projects/cidr.png"
       }
     },
     "enterprise": {
-      "meridianVega": {
-        "name": "Meridian Vega",
-        "description": "My consulting S-Corp offering enterprise technology solutions, specializing in AI/ML integration, legacy modernization, and scalable architecture design.",
-        "url": "meridianvega.com",
-        "caseStudy": "/casestudies/meridian-vega",
-        "technologies": ["React", "Node.js", "AI/ML", "Cloud Architecture", "Enterprise Solutions"],
-        "impact": "Delivering high-impact consulting solutions for Fortune 500 companies",
-        "image": "/images/projects/meridianvega.png",
-        "current": true
-      },
-      "chewableStudios": {
-        "name": "Chewable Studios",
-        "description": "Founded educational game development studio creating interactive learning experiences for children in the spirit of Math Blaster and Zoombinis.",
-        "url": "chewable.studio",
-        "caseStudy": "/casestudies/chewable-studios",
-        "technologies": ["Unity", "C#", "React", "TypeScript", "Game Development"],
-        "impact": "Making learning fun through interactive gameplay",
-        "image": "/images/projects/chewable.png",
-        "current": true
-      },
-      "howland": {
-        "name": "Howland",
-        "description": "Custom-built and trained LLM (Large Language Model) specialized for legacy system modernization. Transforms COBOL, RPG, FORTRAN, VB6 to modern languages with full model training from scratch.",
-        "url": "howland.meridianvega.com",
-        "caseStudy": "/casestudies/howland",
-        "technologies": ["PyTorch", "Transformer Architecture", "Custom LLM", "Machine Learning", "Code Analysis", "AST Parsing"],
-        "impact": "Autonomous AI assistant for legacy-to-modern code transformation",
-        "image": "/images/projects/howland.png",
-        "current": true
-      },
-      "rabcab": {
-        "name": "RabCab AutoCAD Suite",
-        "description": "Transforms carpentry workflows with customized entities, routines, and 3D modeling tools built using ObjectARX, and automates the 3D CAD modeling to 2D CNC process, including annotation and plan printing, for optimal productivity and precision.",
-        "technologies": ["C#", "C++", "ASP.NET Core", "MongoDB", "AutoCAD", "3DS Max", "Inventor", "Acrobat", "Photoshop"],
-        "image": "/images/projects/rabcab.png",
-        "github": "https://github.com/N73311/RabCab",
-        "caseStudy": "/casestudies/rabcab",
-        "impact": "75% reduction in CAD task time, zero-error automated assembly management",
-        "highlights": [
-          "100+ custom AutoCAD commands across 7 specialized suites",
-          "Multi-version support for AutoCAD 2013-2020 (32/64-bit)",
-          "Intelligent processing agents for automated workflows",
-          "External integration with Excel, PDF, and 3D applications",
-          "Custom ribbon interface and tool palettes"
-        ]
-      },
-      "aussie": {
-        "name": "Aussie",
-        "description": "Revolutionizes the loan origination and underwriting process with an advanced AI engine, automating government, personal, and retail loan workflows and delivering lightning-fast loan processing times, reducing the closing flow from months to minutes.",
-        "technologies": ["Java 8/11/14", "Spring Boot/Cloud", "GraphQL", "Azure Cloud", "SQL Server", "Kubernetes", "jQuery", "ColdFusion 9", "Mercurial"],
-        "image": "/images/projects/aussie.png",
-        "url": "https://www.awms.com/s/aussie",
-        "caseStudy": "/casestudies/aussie",
-        "impact": "Reduced loan processing from 45 days to 21 days, generated $3M monthly loan volume"
-      },
       "octo": {
         "name": "Octo",
         "description": "State-of-the-art, language-agnostic micro-frontend framework, featuring server-side rendering and an intuitive CLI for streamlined project generation and management.",
@@ -458,6 +401,14 @@
         "url": "https://sway.office.com/40BmKdebHWm8xVJF?ref=Link",
         "caseStudy": "/casestudies/octo",
         "impact": "Reduced development time by 85%, adopted by 15+ teams"
+      },
+      "aussie": {
+        "name": "Aussie",
+        "description": "Revolutionizes the loan origination and underwriting process with an advanced AI engine, automating government, personal, and retail loan workflows and delivering lightning-fast loan processing times, reducing the closing flow from months to minutes.",
+        "technologies": ["Java 8/11/14", "Spring Boot/Cloud", "GraphQL", "Azure Cloud", "SQL Server", "Kubernetes", "jQuery", "ColdFusion 9", "Mercurial"],
+        "image": "/images/projects/aussie.png",
+        "caseStudy": "/casestudies/aussie",
+        "impact": "Reduced loan processing from 45 days to 21 days, generated $3M monthly loan volume"
       },
       "amcui": {
         "name": "AMCUI",
@@ -475,6 +426,51 @@
         "image": "/images/projects/amcli.jpeg",
         "caseStudy": "/casestudies/amcli",
         "impact": "Automated project scaffolding, reduced setup time from hours to minutes"
+      },
+      "rabcab": {
+        "name": "RabCab AutoCAD Suite",
+        "description": "Transforms carpentry workflows with customized entities, routines, and 3D modeling tools built using ObjectARX, and automates the 3D CAD modeling to 2D CNC process, including annotation and plan printing, for optimal productivity and precision.",
+        "technologies": ["C#", "C++", "ASP.NET Core", "MongoDB", "AutoCAD", "3DS Max", "Inventor", "Acrobat", "Photoshop"],
+        "image": "/images/projects/rabcab.png",
+        "caseStudy": "/casestudies/rabcab",
+        "impact": "75% reduction in CAD task time, zero-error automated assembly management",
+        "highlights": [
+          "100+ custom AutoCAD commands across 7 specialized suites",
+          "Multi-version support for AutoCAD 2013-2020 (32/64-bit)",
+          "Intelligent processing agents for automated workflows",
+          "External integration with Excel, PDF, and 3D applications",
+          "Custom ribbon interface and tool palettes"
+        ]
+      },
+      "meridianVega": {
+        "name": "Meridian Vega",
+        "description": "My consulting S-Corp offering enterprise technology solutions, specializing in AI/ML integration, legacy modernization, and scalable architecture design.",
+        "url": "meridianvega.com",
+        "caseStudy": "/casestudies/meridian-vega",
+        "technologies": ["React", "Node.js", "AI/ML", "Cloud Architecture", "Enterprise Solutions"],
+        "impact": "Delivering high-impact consulting solutions for Fortune 500 companies",
+        "image": "/images/projects/meridianvega.png",
+        "current": true
+      },
+      "chewableStudios": {
+        "name": "Chewable Studios",
+        "description": "My full-service game studio and publisher developing for PC, console, and mobile platforms.",
+        "url": "chewable.studio",
+        "caseStudy": "/casestudies/chewable-studios",
+        "technologies": ["Unity", "C#", "React", "TypeScript", "Game Development"],
+        "impact": "End-to-end game development from concept to publishing",
+        "image": "/images/projects/chewable.png",
+        "current": true
+      },
+      "howland": {
+        "name": "Howland",
+        "description": "Custom-built and trained LLM (Large Language Model) specialized for legacy system modernization. Transforms COBOL, RPG, FORTRAN, VB6 to modern languages with full model training from scratch.",
+        "url": "howland.meridianvega.com/info",
+        "caseStudy": "/casestudies/howland",
+        "technologies": ["PyTorch", "Transformer Architecture", "Custom LLM", "Machine Learning", "Code Analysis", "AST Parsing"],
+        "impact": "Autonomous AI assistant for legacy-to-modern code transformation",
+        "image": "/images/projects/howland.png",
+        "current": true
       }
     },
     "leadership": {
@@ -803,7 +799,7 @@
     "openSource": [
       "GitHub Portfolio: github.com/N73311",
       "Organization profiles: github.com/MeridianVega, github.com/Chewable-Studio",
-      "AssembleJS Framework: github.com/zjayers/assemblejs",
+      "AssembleJS Framework: github.com/N73311/assemblejs",
       "Vocation Chrome Plugin"
     ],
     "currentProjects": [

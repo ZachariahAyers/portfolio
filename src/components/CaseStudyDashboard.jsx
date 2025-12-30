@@ -18,7 +18,12 @@ const CaseStudyDashboard = () => {
   const navigate = useNavigate();
   const [caseStudy, setCaseStudy] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState(() => {
+    // Check URL hash for initial tab
+    const hash = window.location.hash.slice(1);
+    const validTabs = ['overview', 'problem', 'solution', 'results', 'release', 'tech'];
+    return validTabs.includes(hash) ? hash : 'overview';
+  });
   const [showCodeModal, setShowCodeModal] = useState(null);
 
   // Floating particles effect

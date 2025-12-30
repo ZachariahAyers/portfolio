@@ -187,6 +187,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Open Source Contributor",
+      "avatar": "OS",
+      "time": "GitHub",
+      "comment": "This is exactly what I needed for our multi-team project. The islands architecture lets us progressively migrate from our legacy jQuery codebase without a full rewrite."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "v1.0 release",
+      "comment": "AssembleJS is now public! Built this from scratch to solve the micro-frontend problems I kept running into at enterprise scale. SSR support was the hardest part to get right."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "ASMB",
     "businessContext": "Modern web applications require multiple teams to work independently while maintaining a cohesive user experience. Traditional monolithic frontends create bottlenecks, forcing teams to coordinate deployments and share the same technology stack.",

@@ -146,9 +146,9 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                             </td>
                             <td className="py-3 px-4 text-sm text-right">
                               <span className={`font-mono px-2 py-1 rounded text-xs ${
-                                metric.change.startsWith('-') 
-                                  ? 'bg-green-500/20 text-green-400' 
-                                  : 'bg-red-500/20 text-red-400'
+                                metric.change.startsWith('-')
+                                  ? 'bg-red-500/20 text-red-400'
+                                  : 'bg-green-500/20 text-green-400'
                               }`}>
                                 {metric.change}
                               </span>

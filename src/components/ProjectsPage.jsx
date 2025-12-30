@@ -544,43 +544,29 @@ const ProjectsPage = () => {
                         Case Study
                       </Link>
                     )}
-                    {project.type === 'enterprise' && project.caseStudy && (
-                      <Link
-                        to={project.caseStudy}
-                        className="flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 ml-auto"
-                      >
+                    {project.type === 'enterprise' && (
+                      <span className="flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 ml-auto">
                         <Building className="w-3 h-3" />
                         Enterprise
-                      </Link>
+                      </span>
                     )}
-                    {project.type === 'freelance' && project.caseStudy && (
-                      <Link
-                        to={project.caseStudy}
-                        className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 ml-auto"
-                      >
+                    {project.type === 'freelance' && (
+                      <span className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 ml-auto">
                         <Briefcase className="w-3 h-3" />
                         Freelance
-                      </Link>
+                      </span>
                     )}
                     {project.type === 'opensource' && (
-                      <a
-                        href={project.github ? (project.github.startsWith('http') ? project.github : `https://${project.github}`) : '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 ml-auto"
-                      >
+                      <span className="flex items-center gap-1 text-xs text-blue-400 ml-auto">
                         <Package className="w-3 h-3" />
                         Open Source
-                      </a>
+                      </span>
                     )}
-                    {project.type === 'leadership' && project.caseStudy && (
-                      <Link
-                        to={project.caseStudy}
-                        className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 ml-auto"
-                      >
+                    {project.type === 'leadership' && (
+                      <span className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 ml-auto">
                         <Code className="w-3 h-3" />
                         Leadership
-                      </Link>
+                      </span>
                     )}
                   </div>
                 </div>
