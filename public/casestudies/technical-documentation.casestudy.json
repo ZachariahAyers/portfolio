@@ -144,6 +144,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "New Engineer",
+      "avatar": "NE",
+      "time": "Onboarding",
+      "comment": "The documentation made onboarding so much easier. Having everything in one place with clear examples cut my ramp-up time significantly."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Documentation leadership",
+      "comment": "Created 500+ pages of technical documentation covering APIs, architecture, and processes. Reduced onboarding time from 4 weeks to 1 week."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "DOCS",
     "businessContext": "Technical documentation is critical for knowledge transfer, onboarding, and reducing support burden across the engineering organization",

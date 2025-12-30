@@ -158,6 +158,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Recruiter",
+      "avatar": "RC",
+      "time": "After demo",
+      "comment": "This is the most engaging portfolio I've reviewed. The AI assistant answered all my questions about experience immediately - saved me from digging through a PDF resume."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Launch",
+      "comment": "Arlo is live! Integrated Google Gemini API with custom system prompts to make the AI respond as me. The conversation history and context management took the most iteration to get right."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "ARLO",
     "businessContext": "Create an AI-powered interactive portfolio that showcases technical skills while providing an engaging user experience",

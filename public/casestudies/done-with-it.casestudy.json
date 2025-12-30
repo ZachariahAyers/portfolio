@@ -78,8 +78,9 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Impact",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "Done With It demonstrates cross-platform mobile development expertise with React Native and Expo. The single codebase approach reduced development time by 50% compared to native iOS/Android development while delivering offline-first architecture, real-time messaging, and push notifications.",
       "charts": [
         {
           "type": "bar",
@@ -92,6 +93,22 @@
           "title": "User Adoption",
           "data": [0, 50, 150, 300, 500],
           "labels": ["Launch", "Week 2", "Week 4", "Week 8", "Week 12"]
+        }
+      ],
+      "sections": [
+        {
+          "title": "Mobile Success",
+          "highlights": [
+            "Single codebase serving iOS and Android platforms",
+            "50% reduction in development time vs native development",
+            "Offline-first architecture with queue-based sync",
+            "Real-time messaging between buyers and sellers",
+            "Push notifications with Expo Server SDK integration"
+          ]
+        },
+        {
+          "title": "Technical Excellence",
+          "summary": "Done With It showcases production-ready mobile patterns including image optimization with Sharp, location services, JWT authentication, and comprehensive form validation. The architecture enables rapid feature iteration while maintaining cross-platform consistency."
         }
       ]
     },
@@ -185,6 +202,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Mobile Developer",
+      "avatar": "MD",
+      "time": "Code Review",
+      "comment": "Excellent cross-platform architecture. The offline-first approach with queue-based sync and push notification integration shows production-ready mobile patterns."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "React Native deep-dive",
+      "comment": "Done With It was my comprehensive React Native project. Built full marketplace functionality with image uploads, real-time messaging, and offline support."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "DWI",
     "businessContext": "Build a cross-platform mobile marketplace application enabling users to buy and sell items locally with photo uploads, messaging, and location services",
@@ -217,10 +248,8 @@
     ]
   },
   "links": {
-    "github": "https://github.com/n73311/done-with-it",
-    "githubApi": "https://github.com/N73311/done-with-it-api",
-    "live": "https://api.donewithit.zachayers.io",
-    "documentation": "/projects/done-with-it/README.md"
+    "github": "https://github.com/N73311/done-with-it",
+    "githubApi": "https://github.com/N73311/done-with-it-api"
   },
   "related": ["lively", "chalkboard", "natours"]
 }

@@ -66,8 +66,9 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Impact",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "Observability Cloud Migration reduced mean time to resolution (MTTR) by 90%, from 4 hours to 15 minutes. The comprehensive monitoring stack covers 200+ services with proactive alerting that prevents 95% of potential outages before they impact users.",
       "charts": [
         {
           "type": "bar",
@@ -80,6 +81,22 @@
           "title": "Service Coverage",
           "data": [40, 80, 130, 170, 200],
           "labels": ["Month 2", "Month 4", "Month 6", "Month 8", "Month 10"]
+        }
+      ],
+      "sections": [
+        {
+          "title": "Observability Success",
+          "highlights": [
+            "200+ microservices monitored with full visibility",
+            "90% reduction in MTTR (4 hours → 15 minutes)",
+            "99.9% uptime SLA achieved across all services",
+            "95% of potential outages detected proactively",
+            "Distributed tracing enabling end-to-end request debugging"
+          ]
+        },
+        {
+          "title": "Business Results",
+          "summary": "The unified observability platform transformed incident response from reactive firefighting to proactive prevention. Custom dashboards provide real-time visibility while PagerDuty integration ensures the right teams are alerted with relevant context for rapid resolution."
         }
       ]
     },
@@ -137,6 +154,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "SRE Team Lead",
+      "avatar": "SR",
+      "time": "6 months post-launch",
+      "comment": "MTTR dropped from 4 hours to 15 minutes. We catch issues before customers report them now - the alerting and distributed tracing are fantastic."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Platform launch",
+      "comment": "Deployed full observability stack: Prometheus for metrics, Jaeger for tracing, ELK for logs. Unified dashboards give complete system visibility."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "OBS",
     "businessContext": "Comprehensive observability enables proactive issue detection, faster incident resolution, and improved system reliability",

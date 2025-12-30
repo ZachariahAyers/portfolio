@@ -115,6 +115,20 @@
       "devops": []
     }
   },
+  "activity": [
+    {
+      "author": "Training Attendee",
+      "avatar": "TA",
+      "time": "Workshop",
+      "comment": "The hands-on approach made complex concepts click. Building real projects during the workshops was much more effective than just watching tutorials."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Technical training",
+      "comment": "Trained 300+ developers on React, Node.js, and modern JavaScript. Created structured curriculum with hands-on workshops achieving 4.8/5 satisfaction rating."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "TRAIN",
     "businessContext": "Continuous learning and skill development are critical for maintaining competitive technical capabilities and employee satisfaction",

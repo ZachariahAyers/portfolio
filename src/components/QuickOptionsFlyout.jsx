@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Sparkles, Code, Users, Briefcase, DollarSign, FileText, Settings } from 'lucide-react';
+import { X, Sparkles, Code, Users, Briefcase, DollarSign, Settings } from 'lucide-react';
 import profileData from '../portfolio-data.json';
 
 const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) => {
@@ -38,13 +38,8 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
   ];
 
   const handleQuestionClick = (question) => {
-    if (question === 'Can I see your resume?' && onViewChange) {
-      onViewChange('resume-standard');
-      onClose();
-    } else {
-      onQuestionClick(question);
-      onClose();
-    }
+    onQuestionClick(question);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -75,17 +70,6 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
           
           {/* Scrollable content */}
           <div className="overflow-y-auto p-2">
-            {/* Special Resume Question */}
-            <button
-              onClick={() => handleQuestionClick('Can I see your resume?')}
-              className="w-full text-left p-3 rounded-lg mb-3 transition-all hover:translate-x-1 bg-gradient-to-r from-purple-200 to-blue-200 dark:from-purple-900/30 dark:to-blue-900/30 hover:from-purple-300 hover:to-blue-300 dark:hover:from-purple-900/40 dark:hover:to-blue-900/40 border border-purple-500 dark:border-purple-700/50"
-            >
-              <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span className="text-sm text-purple-700 dark:text-purple-300 font-medium">Can I see your resume?</span>
-              </div>
-            </button>
-
             {/* Grouped Questions */}
             {Object.entries(profileData.interviewQuestions).map(([category, questions]) => {
               const Icon = categoryIcons[category] || Code;

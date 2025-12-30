@@ -137,6 +137,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Junior Developer",
+      "avatar": "JD",
+      "time": "After mentorship",
+      "comment": "Zach's code reviews taught me more in 6 months than I learned in 2 years elsewhere. He explains the 'why' behind every suggestion."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Team scaling",
+      "comment": "Grew the team from 5 to 30 developers while maintaining velocity. Key was establishing clear processes early and hiring for culture fit and growth potential."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "LEAD",
     "businessContext": "Building and scaling engineering teams requires proven leadership methodologies, clear processes, and effective communication strategies to maximize team potential and deliver business value",

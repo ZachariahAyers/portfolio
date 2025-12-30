@@ -350,8 +350,7 @@
       "JavaScript"
     ],
     "links": {
-      "demo": "https://zjayers.github.io/host.donewithit/",
-      "github": "https://github.com/zjayers/react.native.complete/tree/master/app"
+      "github": "https://github.com/N73311/done-with-it"
     },
     "metrics": {}
   },
@@ -884,9 +883,7 @@
       "CSS",
       "AWS S3"
     ],
-    "links": {
-      "demo": "https://cidr.zachayers.io"
-    },
+    "links": {},
     "metrics": {}
   },
   "trillo": {
@@ -1053,9 +1050,7 @@
       "Docker",
       "ColdFusion 9"
     ],
-    "links": {
-      "demo": "https://www.awms.com/s/aussie"
-    },
+    "links": {},
     "metrics": {
       "processingTime": {
         "value": "50%",

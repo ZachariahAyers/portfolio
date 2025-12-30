@@ -89,8 +89,6 @@ const WelcomeModal = ({ trigger }) => {
                     </h3>
                     <ul className="text-gray-700 dark:text-gray-300 space-y-1 list-disc list-inside">
                       <li>Natural conversation about Zach's 14+ years of experience</li>
-                      <li>Generate custom resumes tailored to your job description</li>
-                      <li>Interactive mock interviews with real-time feedback</li>
                       <li>Deep dive into any project or technology stack</li>
                       <li>Direct contact with Zach when you're ready to move forward</li>
                     </ul>

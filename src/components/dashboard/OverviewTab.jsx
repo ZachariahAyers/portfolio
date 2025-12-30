@@ -14,16 +14,6 @@ const OverviewTab = ({ caseStudy }) => {
   // Generate Jira ticket data from case study
   const jiraPrefix = caseStudy.businessRequirements?.jiraPrefix || 'PROJ';
   const ticketId = `${jiraPrefix}-${Math.floor(Math.random() * 9000) + 1000}`;
-  const createdDate = new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000);
-  const dueDate = new Date(createdDate.getTime() + 14 * 24 * 60 * 60 * 1000);
-  
-  const formatDate = (date) => {
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
-    });
-  };
 
   return (
     <div className="h-full flex flex-col bg-gray-200 dark:bg-gray-900 p-4 md:p-8">
@@ -181,14 +171,22 @@ const OverviewTab = ({ caseStudy }) => {
                           'Automated deployment pipeline with rollback capabilities',
                           'Comprehensive monitoring and alerting system in place',
                           'All critical user journeys covered by automated tests'
-                        ]).slice(0, 5).map((criteria, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <div className="w-5 h-5 border-2 border-gray-400 dark:border-gray-600 rounded mt-0.5" />
-                            <div>
-                              <span className="text-gray-800 dark:text-gray-300 font-medium">{criteria}</span>
-                            </div>
-                          </li>
-                        ))}
+                        ]).slice(0, 5).map((criteria, idx) => {
+                          // Strip leading checkmark characters if present
+                          const cleanCriteria = criteria.replace(/^[✓✔☑]\s*/, '');
+                          return (
+                            <li key={idx} className="flex items-start gap-3">
+                              <div className="w-5 h-5 bg-green-500 rounded mt-0.5 flex items-center justify-center">
+                                <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                              </div>
+                              <div>
+                                <span className="text-gray-800 dark:text-gray-300 font-medium">{cleanCriteria}</span>
+                              </div>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   )}
@@ -231,38 +229,38 @@ const OverviewTab = ({ caseStudy }) => {
                 </motion.div>
 
                 {/* Comments */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="border-t border-gray-800 pt-6"
-                >
-                  <h3 className="flex items-center gap-2 text-lg font-medium text-gray-900 dark:text-white mb-4">
-                    <MessageSquare className="w-5 h-5" />
-                    Activity
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <div className="flex gap-3">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
-                        PM
-                      </div>
-                      <div className="flex-1">
-                        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-medium text-gray-900 dark:text-white">Product Manager</span>
-                            <span className="text-xs text-gray-500 dark:text-gray-500">2 hours ago</span>
+                {caseStudy.activity && caseStudy.activity.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="border-t border-gray-800 pt-6"
+                  >
+                    <h3 className="flex items-center gap-2 text-lg font-medium text-gray-900 dark:text-white mb-4">
+                      <MessageSquare className="w-5 h-5" />
+                      Activity
+                    </h3>
+
+                    <div className="space-y-4">
+                      {caseStudy.activity.map((item, index) => (
+                        <div key={index} className="flex gap-3">
+                          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                            {item.avatar || item.author?.split(' ').map(n => n[0]).join('').slice(0, 2) || 'ZA'}
                           </div>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            Just reviewed the requirements. The performance targets look aggressive but achievable. 
-                            Let's prioritize the core functionality first, then optimize.
-                          </p>
+                          <div className="flex-1">
+                            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="font-medium text-gray-900 dark:text-white">{item.author}</span>
+                                <span className="text-xs text-gray-500 dark:text-gray-500">{item.time}</span>
+                              </div>
+                              <p className="text-gray-700 dark:text-gray-300">{item.comment}</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
-                    
-                  </div>
-                </motion.div>
+                  </motion.div>
+                )}
               </div>
 
               {/* Right column - Metadata */}
@@ -302,20 +300,19 @@ const OverviewTab = ({ caseStudy }) => {
                       <span className="text-gray-900 dark:text-white">Sprint {Math.floor(Math.random() * 20) + 1}</span>
                     </div>
                     
-                    <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Reporter</p>
-                      <span className="text-gray-900 dark:text-white">Product Manager</span>
-                    </div>
-                    
-                    <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Created</p>
-                      <span className="text-gray-900 dark:text-white">{formatDate(createdDate)}</span>
-                    </div>
-                    
-                    <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Due Date</p>
-                      <span className="text-gray-900 dark:text-white">{formatDate(dueDate)}</span>
-                    </div>
+                    {caseStudy.timeline?.year && (
+                      <div>
+                        <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Year</p>
+                        <span className="text-gray-900 dark:text-white">{caseStudy.timeline.year}</span>
+                      </div>
+                    )}
+
+                    {caseStudy.timeline?.duration && (
+                      <div>
+                        <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Duration</p>
+                        <span className="text-gray-900 dark:text-white">{caseStudy.timeline.duration}</span>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
 
@@ -345,29 +342,6 @@ const OverviewTab = ({ caseStudy }) => {
                   </div>
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 space-y-4"
-                >
-                  <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase">Linked Issues</h3>
-                  
-                  <div className="space-y-2">
-                    <a href="#" className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
-                      <GitBranch className="w-4 h-4" />
-                      <span>PROJ-2341 - Setup CI/CD Pipeline</span>
-                    </a>
-                    <a href="#" className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
-                      <GitBranch className="w-4 h-4" />
-                      <span>PROJ-2342 - Database Optimization</span>
-                    </a>
-                    <a href="#" className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
-                      <GitBranch className="w-4 h-4" />
-                      <span>PROJ-2343 - API Documentation</span>
-                    </a>
-                  </div>
-                </motion.div>
               </div>
             </div>
           </motion.div>

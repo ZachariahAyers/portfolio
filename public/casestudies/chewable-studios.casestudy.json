@@ -87,6 +87,20 @@
       "interactive": true
     }
   ],
+  "activity": [
+    {
+      "author": "Game Designer",
+      "avatar": "GD",
+      "time": "Pre-production",
+      "comment": "The Unity-based pipeline is working great. We can prototype new game mechanics in days and iterate based on playtest feedback."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Studio launch",
+      "comment": "Chewable Studios is officially open for business. Full-service game development and publishing across PC, console, and mobile platforms."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "CHW",
     "businessContext": "Founded educational game development studio creating interactive learning experiences for children in the spirit of Math Blaster and Zoombinis",

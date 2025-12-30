@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, FileText, Download, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield } from 'lucide-react';
+import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield, FileText } from 'lucide-react';
 import StreamingText from './StreamingText';
 import StreamingTextSimple from './StreamingTextSimple';
 import { Tooltip } from './Tooltip';
 
-const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, onDownloadPDF, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
+const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerateExecutiveSummary, onContactClick }) => {
   const navigate = useNavigate();
   const [streamingContent, setStreamingContent] = React.useState(null);
   const [executiveSummary, setExecutiveSummary] = React.useState(null);
@@ -84,7 +84,7 @@ const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, 
         <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
           <h1 className="text-2xl md:text-3xl max-sm:text-xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
           <p className="text-base md:text-lg max-sm:text-sm text-gray-700 dark:text-gray-300 whitespace-normal md:whitespace-nowrap">{profileData.personal.title}</p>
-          <p className="text-blue-400 italic text-sm mt-1">"{profileData.personal.tagline}"</p>
+          <p className="text-blue-400 italic text-sm mt-1">{profileData.personal.tagline}</p>
         </div>
 
         {/* Contact Info */}
@@ -687,47 +687,29 @@ const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, 
                       Case Study
                     </Link>
                   )}
-                  {project.type === 'enterprise' && project.caseStudy && (
-                    <Link
-                      to={project.caseStudy}
-                      aria-label="View enterprise project details"
-                      className="flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 ml-auto"
-                    >
+                  {project.type === 'enterprise' && (
+                    <span className="flex items-center gap-1 text-xs text-purple-400 ml-auto">
                       <Building className="w-3 h-3" />
                       Enterprise
-                    </Link>
+                    </span>
                   )}
-                  {project.type === 'freelance' && project.caseStudy && (
-                    <Link
-                      to={project.caseStudy}
-                      aria-label="View freelance project details"
-                      className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 ml-auto"
-                    >
+                  {project.type === 'freelance' && (
+                    <span className="flex items-center gap-1 text-xs text-amber-400 ml-auto">
                       <Briefcase className="w-3 h-3" />
                       Freelance
-                    </Link>
+                    </span>
                   )}
                   {project.type === 'opensource' && (
-                    <a
-                      href={project.github ? (project.github.startsWith('http') ? project.github : `https://${project.github}`) : '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="View open source project on GitHub in new tab"
-                      className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 ml-auto"
-                    >
+                    <span className="flex items-center gap-1 text-xs text-blue-400 ml-auto">
                       <Package className="w-3 h-3" />
                       Open Source
-                    </a>
+                    </span>
                   )}
-                  {project.type === 'leadership' && project.caseStudy && (
-                    <Link
-                      to={project.caseStudy}
-                      aria-label="View project details"
-                      className="flex items-center gap-1 text-xs text-green-400 hover:text-green-300 ml-auto"
-                    >
+                  {project.type === 'leadership' && (
+                    <span className="flex items-center gap-1 text-xs text-green-400 ml-auto">
                       <Code className="w-3 h-3" />
                       Leadership
-                    </Link>
+                    </span>
                   )}
                 </div>
               </div>
@@ -1399,218 +1381,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, 
     );
   };
 
-  const renderStandardResumeView = () => (
-    <div className="space-y-8">
-      {/* Resume Header */}
-      <div className="text-center space-y-4 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">{profileData.personal.name}</h1>
-        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">{profileData.personal.title}</p>
-        <div className="flex justify-center items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
-          <span>{profileData.contact.email}</span>
-          <span>{profileData.contact.location}</span>
-          <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-            LinkedIn Profile
-          </a>
-        </div>
-      </div>
-
-      {/* Executive Summary */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Executive Summary</h2>
-        {profileData.personal.executiveSummary.map((summary, idx) => (
-          <p key={idx} className="text-gray-700 dark:text-gray-300 leading-relaxed">{summary}</p>
-        ))}
-      </div>
-
-      {/* Experience */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Experience</h2>
-        
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{profileData.experience.northrop.role}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{profileData.experience.northrop.period}</p>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{profileData.experience.northrop.description}</p>
-          <p className="text-gray-700 dark:text-gray-300"><strong className="text-green-400">Impact:</strong> {profileData.experience.northrop.impact}</p>
-        </div>
-
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{profileData.experience.meridianVega.role}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{profileData.experience.meridianVega.period}</p>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{profileData.experience.meridianVega.description}</p>
-        </div>
-
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Multiple Roles @ AmeriSave Mortgage Corporation</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{profileData.experience.amerisave.period}</p>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Progressed from Full Stack Developer to Software Architect to Development Manager. 
-            {profileData.experience.amerisave.architect.description}
-          </p>
-          <p className="text-gray-700 dark:text-gray-300"><strong className="text-green-400">Impact:</strong> {profileData.experience.amerisave.architect.impact}</p>
-        </div>
-      </div>
-
-      {/* Technical Skills */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Technical Skills</h2>
-        <div className="grid gap-3">
-          <p className="text-gray-700 dark:text-gray-300">
-            <strong className="text-blue-400">Languages:</strong> {profileData.skills.expert.languages.join(', ')}
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            <strong className="text-blue-400">Frontend:</strong> {profileData.skills.expert.frontend.join(', ')}
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            <strong className="text-blue-400">Backend:</strong> {profileData.skills.expert.backend.join(', ')}
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            <strong className="text-blue-400">Cloud & Infrastructure:</strong> {profileData.skills.expert.cloud.join(', ')}, {profileData.skills.expert.infrastructure.join(', ')}
-          </p>
-          <p className="text-gray-700 dark:text-gray-300">
-            <strong className="text-blue-400">AI/ML:</strong> {profileData.skills.expert.aiMl.join(', ')}
-          </p>
-        </div>
-      </div>
-
-      {/* Education & Certifications */}
-      <div className="bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 md:p-6 space-y-4">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-b-2 border-gray-300 dark:border-gray-600 pb-2">Education & Certifications</h2>
-        <div className="space-y-3">
-          <div>
-            <p className="text-gray-700 dark:text-gray-300">
-              <strong className="text-blue-400">{profileData.education.university.degree}</strong><br/>
-              {profileData.education.university.institution} | {profileData.education.university.period}
-            </p>
-          </div>
-          <div>
-            <p className="text-gray-700 dark:text-gray-300">
-              <strong className="text-blue-400">Certifications:</strong> {profileData.certifications.cloud[0]}, {profileData.certifications.engineering[0]}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderTailoredResumeView = () => {
-    const analysis = resumeData?.analysis || '';
-    const relevantSkills = analysis.match(/Skills:([^]*?)(?=Experience:|$)/)?.[1]?.trim() || '';
-    const relevantExperience = analysis.match(/Experience:([^]*?)(?=Projects:|$)/)?.[1]?.trim() || '';
-    
-    return (
-      <div className="space-y-8">
-        {/* Resume Header */}
-        <div className="text-center space-y-4 bg-gray-800/50 rounded-lg p-6">
-          <h1 className="text-4xl font-bold text-white">{profileData.personal.name}</h1>
-          <p className="text-xl text-gray-300">{profileData.personal.title} | AI/ML Implementation Specialist</p>
-          <div className="flex justify-center items-center gap-6 text-sm text-gray-400">
-            <span>{profileData.contact.location}</span>
-            <span>{profileData.contact.location}</span>
-            <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-              LinkedIn Profile
-            </a>
-          </div>
-        </div>
-
-        {/* Tailored Summary */}
-        <div className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 border border-blue-400 dark:border-blue-500/30">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-            <FileText className="text-blue-400" />
-            Tailored Summary for This Role
-          </h2>
-          <p className="text-gray-300 leading-relaxed">
-            {analysis.split('\n')[0] || profileData.personal.executiveSummary[0]}
-          </p>
-        </div>
-
-        {/* Relevant Experience */}
-        <div className="bg-gray-800/50 rounded-lg p-6 space-y-6">
-          <h2 className="text-2xl font-bold text-white border-b-2 border-gray-600 pb-2">Relevant Experience</h2>
-          
-          {(relevantExperience.includes('Northrop') || jobDescription.toLowerCase().includes('ai') || jobDescription.toLowerCase().includes('ml')) && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">{profileData.experience.northrop.role}</h3>
-              <p className="text-sm text-gray-400">{profileData.experience.northrop.period}</p>
-              <ul className="text-gray-300 space-y-2 pl-4">
-                <li>• Implementing ML-driven predictive maintenance with 85% accuracy</li>
-                <li>• Building RAG systems for technical documentation search</li>
-                <li>• Reducing deployment time from 2 weeks to 2 hours</li>
-                <li>• Prevented $300K+ in downtime through predictive analytics</li>
-              </ul>
-            </div>
-          )}
-
-          {(relevantExperience.includes('AmeriSave') || jobDescription.toLowerCase().includes('microservice') || jobDescription.toLowerCase().includes('scale')) && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">Software Architect @ AmeriSave Mortgage</h3>
-              <p className="text-sm text-gray-400">Mar 2021 - Feb 2023</p>
-              <ul className="text-gray-300 space-y-2 pl-4">
-                <li>• Orchestrated 500+ microservice ecosystem with GraphQL Federation</li>
-                <li>• Led database decomposition from 4000+ table monolith</li>
-                <li>• Reduced loan processing time by 50%</li>
-                <li>• Trained and mentored 60+ developers in modern practices</li>
-              </ul>
-            </div>
-          )}
-        </div>
-
-        {/* Key Technical Skills for This Role */}
-        <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-white border-b-2 border-gray-600 pb-2">Key Technical Skills for This Role</h2>
-          {relevantSkills ? (
-            <div className="text-gray-300" dangerouslySetInnerHTML={{ __html: relevantSkills }} />
-          ) : (
-            <div className="grid gap-3">
-              <p className="text-gray-300">
-                <strong className="text-blue-400">Primary:</strong> {profileData.skills.expert.languages.slice(0, 3).join(', ')}, {profileData.skills.expert.frontend.slice(0, 2).join(', ')}, {profileData.skills.expert.backend.slice(0, 2).join(', ')}
-              </p>
-              <p className="text-gray-300">
-                <strong className="text-blue-400">Cloud & Infrastructure:</strong> {profileData.skills.expert.cloud.join(', ')}
-              </p>
-              <p className="text-gray-300">
-                <strong className="text-blue-400">AI/ML:</strong> {profileData.skills.expert.aiMl.join(', ')}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Relevant Projects */}
-        <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-white border-b-2 border-gray-600 pb-2">Relevant Projects</h2>
-          <div className="space-y-3">
-            {(jobDescription.toLowerCase().includes('ai') || jobDescription.toLowerCase().includes('ml')) && (
-              <p className="text-gray-300">
-                <strong className="text-blue-400">Production RAG Systems:</strong> Architected enterprise-scale retrieval-augmented generation for technical documentation
-              </p>
-            )}
-            <p className="text-gray-300">
-              <strong className="text-blue-400">AssembleJS:</strong> Created modern micro-frontend framework with islands architecture
-            </p>
-            {jobDescription.toLowerCase().includes('scale') && (
-              <p className="text-gray-300">
-                <strong className="text-blue-400">500+ Microservices Migration:</strong> Led transformation handling millions of daily transactions
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Education & Certifications */}
-        <div className="bg-gray-800/50 rounded-lg p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-white border-b-2 border-gray-600 pb-2">Education & Certifications</h2>
-          <div className="space-y-3">
-            <p className="text-gray-300">
-              <strong className="text-blue-400">{profileData.education.university.degree}</strong><br/>
-              {profileData.education.university.institution}
-            </p>
-            <p className="text-gray-300">
-              <strong className="text-blue-400">Relevant Certifications:</strong> {profileData.certifications.cloud[0]}
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   const renderContent = () => {
     switch (mode) {
       case 'me':
@@ -1619,10 +1389,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, 
         return renderProjectsView();
       case 'skills':
         return renderSkillsView();
-      case 'resume-standard':
-        return renderStandardResumeView();
-      case 'resume-tailored':
-        return renderTailoredResumeView();
       default:
         return null;
     }
@@ -1633,18 +1399,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, 
       <div className="bg-white dark:bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-scale-in shadow-xl">
         <div className="sticky top-0 bg-gray-50 dark:bg-gray-800 p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white capitalize flex items-center gap-2">
-            {mode === 'resume-standard' && (
-              <>
-                <FileText className="h-6 w-6 text-blue-400" />
-                Standard Resume
-              </>
-            )}
-            {mode === 'resume-tailored' && (
-              <>
-                <FileText className="h-6 w-6 text-purple-400" />
-                Tailored Resume
-              </>
-            )}
             {mode === 'me' && 'Hello There, Welcome to My Portfolio'}
             {mode === 'projects' && 'Projects'}
             {mode === 'skills' && 'Skills'}
@@ -1675,18 +1429,6 @@ const DetailedView = ({ mode, onClose, profileData, resumeData, jobDescription, 
                 >
                   <ExternalLink size={16} />
                   See All Skills
-                </button>
-              </Tooltip>
-            )}
-            {(mode === 'resume-standard' || mode === 'resume-tailored') && onDownloadPDF && (
-              <Tooltip content="Download resume as PDF">
-                <button
-                  onClick={onDownloadPDF}
-                  aria-label="Download resume as PDF file"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 flex items-center gap-2"
-                >
-                  <Download size={16} />
-                  Download PDF
                 </button>
               </Tooltip>
             )}

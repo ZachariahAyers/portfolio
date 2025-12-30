@@ -154,7 +154,23 @@
           ]
         }
       ],
-      "executive_summary": "Aussie revolutionized AmeriSave loan processing, migrating from ColdFusion monolith to Spring Boot microservices. Reduced loan processing time from 45 to 21 days (50% faster), integrated Fannie Mae HomeReady generating $3M monthly revenue, and optimized database queries from 30s to sub-second with zero regression."
+      "executive_summary": "Aussie revolutionized AmeriSave loan processing, migrating from ColdFusion monolith to Spring Boot microservices. Reduced loan processing time from 45 to 21 days (50% faster), integrated Fannie Mae HomeReady generating $3M monthly revenue, and optimized database queries from 30s to sub-second with zero regression.",
+      "sections": [
+        {
+          "title": "Platform Success",
+          "highlights": [
+            "50% reduction in loan processing time (45 days → 21 days)",
+            "$3M monthly revenue from Fannie Mae HomeReady integration",
+            "Database query optimization from 30s to sub-second",
+            "Zero regression during ColdFusion to Spring Boot migration",
+            "AI-powered underwriting with 95%+ accuracy"
+          ]
+        },
+        {
+          "title": "Business Results",
+          "summary": "Aussie transformed loan origination from a months-long manual process to an automated AI-powered workflow. The microservices architecture enabled independent team scaling while the GraphQL layer provided a unified API for legacy ColdFusion UI integration during the phased migration."
+        }
+      ]
     },
     {
       "id": "tech",
@@ -263,6 +279,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "Loan Operations Manager",
+      "avatar": "LO",
+      "time": "Post-deployment",
+      "comment": "Processing times dropped from 45 days to 21 days. Loan officers are thrilled - they can close more deals without the administrative burden."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Migration complete",
+      "comment": "Successfully migrated from ColdFusion 9 to Spring Boot with zero regression. The Fannie Mae HomeReady integration is now generating $3M in monthly loan volume."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "AUSSIE",
     "businessContext": "Revolutionize the loan origination and underwriting process with an advanced AI engine, automating government, personal, and retail loan workflows and delivering lightning-fast loan processing times",
@@ -313,9 +343,7 @@
       }
     ]
   },
-  "links": {
-    "demo": "https://www.awms.com/s/aussie"
-  },
+  "links": {},
   "related": [
     "graphql-cloud-migration",
     "azure-cloud-migration",

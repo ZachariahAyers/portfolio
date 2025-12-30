@@ -62,7 +62,12 @@
         },
         {
           "title": "Technical Achievements",
-          "summary": "95%+ transformation accuracy, semantic preservation of business logic, production deployment at howland.meridianvega.com, distributed training on GPU clusters."
+          "highlights": [
+            "95%+ transformation accuracy",
+            "Semantic preservation of business logic",
+            "Production deployment at howland.meridianvega.com",
+            "Distributed training on GPU clusters"
+          ]
         },
         {
           "title": "Innovation",
@@ -87,6 +92,20 @@
       "interactive": true
     }
   ],
+  "activity": [
+    {
+      "author": "Legacy Systems Architect",
+      "avatar": "LA",
+      "time": "Beta testing",
+      "comment": "Howland correctly identified business logic in our COBOL codebase that we'd lost documentation for years ago. The transformation accuracy is remarkable."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Training milestone",
+      "comment": "Custom LLM now trained on 500K+ lines of legacy code. Early results show 85% accuracy on complex business logic transformation - far exceeding generic LLM attempts."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "HWL",
     "businessContext": "Build custom Large Language Model trained from scratch for legacy system modernization - transforming COBOL, RPG, FORTRAN, VB6 to modern platforms",
@@ -109,7 +128,7 @@
     "risks": []
   },
   "links": {
-    "demo": "https://howland.meridianvega.com"
+    "demo": "https://howland.meridianvega.com/info"
   },
   "related": ["meridian-vega", "aussie"]
 }

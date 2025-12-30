@@ -66,8 +66,9 @@
     },
     {
       "id": "results",
-      "type": "metrics-dashboard",
-      "title": "Impact",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "The VW Buzz Configurator delivered a 7x increase in order conversion by enabling customers to visualize custom wrap designs in real-time 3D. The WebGL-powered experience maintained 60fps performance across devices while generating 3x longer session times compared to static imagery.",
       "charts": [
         {
           "type": "bar",
@@ -80,6 +81,22 @@
           "title": "User Engagement",
           "data": [30, 90, 180, 300, 420],
           "labels": ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"]
+        }
+      ],
+      "sections": [
+        {
+          "title": "3D Visualization Success",
+          "highlights": [
+            "7x increase in order conversion rate (5% → 35%)",
+            "60fps real-time rendering across desktop and mobile",
+            "3x longer average session time vs static imagery",
+            "First-to-market VW ID.Buzz wrap configurator",
+            "Direct integration with Wrapmate ordering system"
+          ]
+        },
+        {
+          "title": "Business Results",
+          "summary": "The configurator eliminated customer hesitation by providing accurate wrap visualization before purchase. Users can explore unlimited design combinations instantly, building confidence in their customization choices. The seamless order integration reduced the sales cycle from days to minutes."
         }
       ]
     },
@@ -145,6 +162,20 @@
       ]
     }
   },
+  "activity": [
+    {
+      "author": "VW Marketing Team",
+      "avatar": "VW",
+      "time": "Launch week",
+      "comment": "First-to-market with the ID.Buzz configurator! Customers are spending 3x longer on the site and conversion rates are up 40% compared to static imagery."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Development",
+      "comment": "Built the 3D configurator using Three.js with real-time wrap visualization. Performance optimization was critical - had to maintain 60fps on mobile devices."
+    }
+  ],
   "businessRequirements": {
     "jiraPrefix": "VW",
     "businessContext": "Transform the Volkswagen Buzz experience with a real-time wrap visualizer, enabling visualization and customization of accent graphics at the touch of a button",
