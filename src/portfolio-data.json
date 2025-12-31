@@ -281,7 +281,7 @@
         "description": "Powerful Chrome extension that streamlines job search with smart templates, application tracking, and 20+ job board integrations. Features Vue.js overlay interface and local storage for complete privacy.",
         "technologies": ["Vue.js", "Vuex", "Chrome Extension API", "SCSS", "Webpack", "Content Scripts"],
         "image": "/images/projects/vocation.png",
-        "url": "https://chrome.google.com/webstore/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
+        "url": "https://chromewebstore.google.com/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
         "github": "https://github.com/N73311/vocation-chrome",
         "caseStudy": "/casestudies/vocation",
         "impact": "60% reduction in job application time, 5K+ active users",
@@ -398,7 +398,7 @@
         "description": "State-of-the-art, language-agnostic micro-frontend framework, featuring server-side rendering and an intuitive CLI for streamlined project generation and management.",
         "technologies": ["Webpack", "Vite", "Handlebars", "TypeScript", "HTML", "SCSS", "React", "Preact", "Vue", "Svelte", "Storybook", "RxJS", "Node.js"],
         "image": "/images/projects/octo.png",
-        "url": "https://sway.office.com/40BmKdebHWm8xVJF?ref=Link",
+        "url": "https://sway.cloud.microsoft/40BmKdebHWm8xVJF?ref=Link",
         "caseStudy": "/casestudies/octo",
         "impact": "Reduced development time by 85%, adopted by 15+ teams"
       },
@@ -622,22 +622,22 @@
     },
     "Redis RU101: Data Structures (Jul 2021)": {
       "credentialId": "23ba802dc3464464b0f5d1690bde2d90",
-      "verifyUrl": "https://university.redislabs.com/certificates/23ba802dc3464464b0f5d1690bde2d90",
+      "verifyUrl": null,
       "inProgress": false
     },
     "Redis RU202: Streams (Jul 2021)": {
       "credentialId": "8011d9160c5244759e9c730341dac321",
-      "verifyUrl": "https://university.redislabs.com/certificates/8011d9160c5244759e9c730341dac321",
+      "verifyUrl": null,
       "inProgress": false
     },
     "Redis RU203: Advanced Querying (Aug 2021)": {
       "credentialId": "1bc51831125741d6b3ec226e6494478f",
-      "verifyUrl": "https://university.redislabs.com/certificates/1bc51831125741d6b3ec226e6494478f",
+      "verifyUrl": null,
       "inProgress": false
     },
     "Redis RU303: Security (Aug 2020)": {
       "credentialId": "6e58139d3a504c47831ef64f7e8664df",
-      "verifyUrl": "https://university.redislabs.com/certificates/6e58139d3a504c47831ef64f7e8664df",
+      "verifyUrl": null,
       "inProgress": false
     },
     "ClickUp Expert Certificate (Jan 2023)": {
