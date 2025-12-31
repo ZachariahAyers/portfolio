@@ -127,6 +127,45 @@
     "attachments": [],
     "risks": []
   },
+  "techStackAnalyzer": {
+    "projectName": "Howland LLM",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "Transformer Model",
+          "icon": "🧠",
+          "tech": "PyTorch 13B Parameters",
+          "code": "# model.py - Custom Transformer Architecture\nimport torch\nimport torch.nn as nn\nfrom typing import Optional\n\nclass HowlandTransformer(nn.Module):\n    def __init__(self, vocab_size: int, d_model: int = 4096, \n                 n_heads: int = 32, n_layers: int = 40):\n        super().__init__()\n        self.embedding = nn.Embedding(vocab_size, d_model)\n        self.pos_encoding = RotaryPositionalEncoding(d_model)\n        \n        self.layers = nn.ModuleList([\n            TransformerBlock(d_model, n_heads, d_model * 4)\n            for _ in range(n_layers)\n        ])\n        \n        self.ln_final = nn.LayerNorm(d_model)\n        self.lm_head = nn.Linear(d_model, vocab_size, bias=False)\n    \n    def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None):\n        x = self.embedding(x)\n        x = self.pos_encoding(x)\n        \n        for layer in self.layers:\n            x = layer(x, mask)\n        \n        x = self.ln_final(x)\n        return self.lm_head(x)",
+          "docUrl": "https://pytorch.org/docs"
+        },
+        {
+          "name": "Code Tokenizer",
+          "icon": "📝",
+          "tech": "Custom BPE Tokenizer",
+          "code": "# tokenizer.py - Legacy Code Tokenizer\nfrom typing import List, Dict\nimport regex as re\n\nclass LegacyCodeTokenizer:\n    def __init__(self, vocab_path: str):\n        self.vocab = self._load_vocab(vocab_path)\n        self.legacy_patterns = {\n            'cobol': r'(PERFORM|MOVE|IF|END-IF|WORKING-STORAGE)',\n            'fortran': r'(SUBROUTINE|INTEGER|REAL|DO|CONTINUE)',\n            'vb6': r'(Dim|Sub|Function|End Sub|Private|Public)',\n            'rpg': r'(BEGSR|ENDSR|EXSR|CHAIN|READ)'\n        }\n    \n    def tokenize(self, code: str, language: str) -> List[int]:\n        # Apply language-specific preprocessing\n        tokens = self._preprocess(code, language)\n        \n        # BPE encoding with legacy keyword preservation\n        return self._bpe_encode(tokens)\n    \n    def _preprocess(self, code: str, lang: str) -> List[str]:\n        pattern = self.legacy_patterns.get(lang, r'\\w+')\n        return re.findall(pattern, code, re.IGNORECASE)",
+          "docUrl": "https://huggingface.co/docs/tokenizers"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Training Pipeline",
+          "icon": "⚡",
+          "tech": "Distributed GPU Training",
+          "code": "# train.py - Distributed Training Pipeline\nimport torch.distributed as dist\nfrom torch.nn.parallel import DistributedDataParallel as DDP\n\nclass HowlandTrainer:\n    def __init__(self, model, dataset, config):\n        self.model = DDP(model, device_ids=[config.local_rank])\n        self.optimizer = torch.optim.AdamW(\n            model.parameters(), lr=config.lr, weight_decay=0.1\n        )\n        self.scheduler = CosineAnnealingLR(self.optimizer, T_max=config.epochs)\n        \n    def train_step(self, batch):\n        legacy_code, modern_code = batch['input'], batch['target']\n        \n        with torch.cuda.amp.autocast():\n            logits = self.model(legacy_code)\n            loss = F.cross_entropy(\n                logits.view(-1, logits.size(-1)),\n                modern_code.view(-1)\n            )\n        \n        self.scaler.scale(loss).backward()\n        self.scaler.step(self.optimizer)\n        self.scaler.update()\n        \n        return loss.item()",
+          "docUrl": "https://pytorch.org/docs/stable/distributed.html"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Inference API",
+          "icon": "🚀",
+          "tech": "TorchServe + FastAPI",
+          "code": "# serve.py - Production Inference API\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\nimport torch\n\napp = FastAPI()\nmodel = load_checkpoint('howland-13b-final.pt')\n\nclass TransformRequest(BaseModel):\n    code: str\n    source_lang: str  # 'cobol', 'fortran', 'vb6', 'rpg'\n    target_lang: str  # 'dotnet8', 'java', 'python'\n\n@app.post('/transform')\nasync def transform_code(req: TransformRequest):\n    tokens = tokenizer.encode(req.code, req.source_lang)\n    \n    with torch.inference_mode():\n        output = model.generate(\n            tokens,\n            max_length=2048,\n            temperature=0.2,\n            top_p=0.95\n        )\n    \n    modern_code = tokenizer.decode(output, req.target_lang)\n    return {'transformed': modern_code, 'confidence': 0.95}",
+          "docUrl": "https://pytorch.org/serve"
+        }
+      ]
+    }
+  },
   "links": {
     "demo": "https://howland.meridianvega.com/info"
   },

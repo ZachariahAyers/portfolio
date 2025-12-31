@@ -122,6 +122,45 @@
     "attachments": [],
     "risks": []
   },
+  "techStackAnalyzer": {
+    "projectName": "Chewable Studios",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "Unity Game Core",
+          "icon": "🎮",
+          "tech": "Unity + C#",
+          "code": "// GameManager.cs - Core Game Loop\nusing UnityEngine;\nusing System.Collections;\n\npublic class GameManager : MonoBehaviour\n{\n    [SerializeField] private DifficultySystem _difficulty;\n    [SerializeField] private ProgressTracker _progress;\n    \n    public void StartLevel(int levelId)\n    {\n        var adaptedDifficulty = _difficulty.GetAdaptedDifficulty(levelId);\n        _progress.RecordLevelStart(levelId, adaptedDifficulty);\n        \n        // Load level with adapted difficulty\n        SceneManager.LoadSceneAsync($\"Level_{levelId}\");\n    }\n    \n    public void OnAnswerSubmitted(bool correct)\n    {\n        _difficulty.RecordAnswer(correct);\n        _progress.UpdateProgress(correct);\n    }\n}",
+          "docUrl": "https://docs.unity3d.com"
+        },
+        {
+          "name": "Parent Portal",
+          "icon": "👨‍👩‍👧",
+          "tech": "React + TypeScript",
+          "code": "// ParentDashboard.tsx - Progress Monitoring\nimport { useState, useEffect } from 'react';\nimport { ProgressChart, AchievementBadges } from './components';\n\ninterface ChildProgress {\n  skillLevel: number;\n  timeSpent: number;\n  achievements: string[];\n  recentActivity: Activity[];\n}\n\nexport const ParentDashboard = ({ childId }: { childId: string }) => {\n  const [progress, setProgress] = useState<ChildProgress | null>(null);\n\n  useEffect(() => {\n    fetch(`/api/progress/${childId}`)\n      .then(res => res.json())\n      .then(setProgress);\n  }, [childId]);\n\n  return (\n    <div className=\"dashboard\">\n      <ProgressChart data={progress?.recentActivity} />\n      <AchievementBadges badges={progress?.achievements} />\n    </div>\n  );\n};",
+          "docUrl": "https://react.dev"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Adaptive Difficulty",
+          "icon": "🧠",
+          "tech": "AI Difficulty System",
+          "code": "// DifficultySystem.cs - Adaptive Learning\nusing System.Collections.Generic;\n\npublic class DifficultySystem\n{\n    private Queue<bool> _recentAnswers = new Queue<bool>(10);\n    private float _successRate => CalculateSuccessRate();\n    \n    public float GetAdaptedDifficulty(int baseDifficulty)\n    {\n        // Target 70-80% success rate for optimal engagement\n        if (_successRate > 0.85f)\n            return baseDifficulty * 1.2f; // Increase difficulty\n        else if (_successRate < 0.6f)\n            return baseDifficulty * 0.8f; // Decrease difficulty\n        \n        return baseDifficulty;\n    }\n    \n    public void RecordAnswer(bool correct)\n    {\n        if (_recentAnswers.Count >= 10)\n            _recentAnswers.Dequeue();\n        _recentAnswers.Enqueue(correct);\n    }\n}",
+          "docUrl": "https://docs.unity3d.com"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Analytics API",
+          "icon": "📊",
+          "tech": "Node.js + MongoDB",
+          "code": "// analytics.ts - Progress Tracking API\nimport { MongoClient } from 'mongodb';\nimport express from 'express';\n\nconst app = express();\n\napp.get('/api/progress/:childId', async (req, res) => {\n  const { childId } = req.params;\n  \n  const progress = await db.collection('progress').findOne({ childId });\n  const achievements = await db.collection('achievements')\n    .find({ childId, unlocked: true }).toArray();\n  \n  res.json({\n    skillLevel: progress.currentLevel,\n    timeSpent: progress.totalMinutes,\n    achievements: achievements.map(a => a.badgeId),\n    recentActivity: progress.sessions.slice(-7)\n  });\n});\n\napp.post('/api/telemetry', async (req, res) => {\n  const { childId, event, data } = req.body;\n  await db.collection('events').insertOne({ childId, event, data, timestamp: new Date() });\n  res.json({ success: true });\n});",
+          "docUrl": "https://www.mongodb.com/docs/"
+        }
+      ]
+    }
+  },
   "links": {
     "demo": "https://chewable.studio",
     "linkedin": "https://www.linkedin.com/company/chewable-studios"

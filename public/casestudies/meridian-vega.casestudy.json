@@ -128,6 +128,45 @@
     "attachments": [],
     "risks": []
   },
+  "techStackAnalyzer": {
+    "projectName": "Meridian Vega",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "3D Configurator",
+          "icon": "🚗",
+          "tech": "Three.js + React",
+          "code": "// VehicleConfigurator.tsx - 3D Vehicle Customization\nimport { Canvas, useFrame } from '@react-three/fiber';\nimport { OrbitControls, useGLTF } from '@react-three/drei';\n\nconst VehicleModel = ({ wrap, color }: ConfigProps) => {\n  const { scene } = useGLTF('/models/vw-idbuzz.glb');\n  \n  useEffect(() => {\n    scene.traverse((child) => {\n      if (child.isMesh && child.name.includes('body')) {\n        child.material = new THREE.MeshStandardMaterial({\n          map: wrap ? loadTexture(wrap) : null,\n          color: color,\n          metalness: 0.6,\n          roughness: 0.4\n        });\n      }\n    });\n  }, [wrap, color]);\n  \n  return <primitive object={scene} />;\n};\n\nexport const Configurator = () => (\n  <Canvas camera={{ position: [5, 2, 5] }}>\n    <ambientLight intensity={0.5} />\n    <VehicleModel />\n    <OrbitControls />\n  </Canvas>\n);",
+          "docUrl": "https://threejs.org/docs"
+        },
+        {
+          "name": "E-Commerce Platform",
+          "icon": "🛒",
+          "tech": "Next.js + Stripe",
+          "code": "// checkout.ts - Stripe Payment Integration\nimport Stripe from 'stripe';\nimport { NextApiRequest, NextApiResponse } from 'next';\n\nconst stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);\n\nexport default async function handler(\n  req: NextApiRequest,\n  res: NextApiResponse\n) {\n  const { items, customer } = req.body;\n  \n  const session = await stripe.checkout.sessions.create({\n    payment_method_types: ['card'],\n    line_items: items.map((item: CartItem) => ({\n      price_data: {\n        currency: 'usd',\n        product_data: { name: item.name },\n        unit_amount: item.price * 100\n      },\n      quantity: item.quantity\n    })),\n    mode: 'payment',\n    success_url: `${process.env.DOMAIN}/success`,\n    cancel_url: `${process.env.DOMAIN}/cart`\n  });\n  \n  res.json({ sessionId: session.id });\n}",
+          "docUrl": "https://stripe.com/docs"
+        }
+      ],
+      "backend": [
+        {
+          "name": "RAG System",
+          "icon": "🤖",
+          "tech": "LangChain + Vector DB",
+          "code": "# fermi_rag.py - Document Q&A System\nfrom langchain.embeddings import OpenAIEmbeddings\nfrom langchain.vectorstores import Pinecone\nfrom langchain.chains import RetrievalQA\n\nclass FermiRAG:\n    def __init__(self):\n        self.embeddings = OpenAIEmbeddings()\n        self.vectorstore = Pinecone.from_existing_index(\n            'technical-docs', self.embeddings\n        )\n        self.retriever = self.vectorstore.as_retriever(\n            search_kwargs={'k': 5}\n        )\n        \n    async def query(self, question: str) -> dict:\n        qa_chain = RetrievalQA.from_chain_type(\n            llm=ChatOpenAI(model='gpt-4', temperature=0),\n            chain_type='stuff',\n            retriever=self.retriever,\n            return_source_documents=True\n        )\n        \n        result = await qa_chain.ainvoke({'query': question})\n        return {\n            'answer': result['result'],\n            'sources': [doc.metadata for doc in result['source_documents']]\n        }",
+          "docUrl": "https://python.langchain.com/docs"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Legacy Migration",
+          "icon": "🔄",
+          "tech": "VB6 to .NET 8",
+          "code": "// MigrationEngine.cs - VB6 to WinUI3 Transformation\nusing Microsoft.CodeAnalysis;\nusing Microsoft.CodeAnalysis.CSharp;\n\npublic class MigrationEngine\n{\n    public async Task<MigrationResult> MigrateProject(VB6Project source)\n    {\n        var result = new MigrationResult();\n        \n        foreach (var form in source.Forms)\n        {\n            // Transform VB6 form to WinUI3 XAML\n            var xaml = _formConverter.ConvertToXaml(form);\n            var viewModel = _vmGenerator.GenerateViewModel(form);\n            var codeBehind = _codeConverter.ConvertEventHandlers(form);\n            \n            result.AddFile($\"{form.Name}.xaml\", xaml);\n            result.AddFile($\"{form.Name}ViewModel.cs\", viewModel);\n            result.AddFile($\"{form.Name}.xaml.cs\", codeBehind);\n        }\n        \n        // Migrate business logic modules\n        foreach (var module in source.Modules)\n        {\n            var service = _moduleConverter.ConvertToService(module);\n            result.AddFile($\"Services/{module.Name}Service.cs\", service);\n        }\n        \n        return result;\n    }\n}",
+          "docUrl": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8"
+        }
+      ]
+    }
+  },
   "links": {
     "demo": "https://www.meridianvega.com",
     "linkedin": "https://www.linkedin.com/company/meridian-vega"
