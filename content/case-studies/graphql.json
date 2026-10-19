@@ -1,0 +1,32 @@
+{
+  "id": "graphql",
+  "kind": "employer",
+  "title": "Federated GraphQL layer",
+  "tagline": "Business users reach AmeriSave's data themselves",
+  "role": "Built the federated GraphQL layer",
+  "period": "2021 to 2023",
+  "organization": "AmeriSave Mortgage Corporation",
+  "context": "A GraphQL federation rewrite for database access, connected to Power BI.",
+  "delivered": [
+    "Replaced large, complex native queries with GraphQL resolvers and mutations",
+    "Connected to Power BI"
+  ],
+  "stack": ["GraphQL", "Power BI"],
+  "problem": {
+    "before": {
+      "label": "Native queries",
+      "points": ["Large, complex native queries", "Business users asked developers to run queries"]
+    },
+    "after": {
+      "label": "Federated GraphQL",
+      "points": [
+        "GraphQL resolvers and mutations",
+        "Business users reach the data themselves",
+        "Connected to Power BI"
+      ]
+    }
+  },
+  "results": [
+    "Business users reached the data themselves through Power BI instead of asking developers for SQL queries"
+  ]
+}

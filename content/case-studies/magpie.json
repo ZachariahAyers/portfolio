@@ -1,0 +1,19 @@
+{
+  "id": "magpie",
+  "kind": "product",
+  "title": "Magpie",
+  "tagline": "Your own movies and shows as live channels with a guide",
+  "role": "Built and directed",
+  "period": "Current",
+  "organization": "Ayers Software Repair",
+  "links": {
+    "live": "https://magpietv.com"
+  },
+  "context": "Magpie is a TV and media server that turns the movies and shows people own into live channels with a guide.",
+  "delivered": [
+    "A media server built on ASP.NET Core and SQLite",
+    "Apps for phones, TVs, game consoles, desktops and the web, built with Uno Platform",
+    "Built with hand-written code and AI coding agents working in parallel"
+  ],
+  "stack": ["ASP.NET Core", "SQLite", "Uno Platform"]
+}

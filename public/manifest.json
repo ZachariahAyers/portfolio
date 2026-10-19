@@ -1,24 +1,24 @@
 {
-  "name": "Zachariah Ayers Portfolio AI",
-  "short_name": "Zach AI",
-  "description": "AI-powered portfolio assistant for Zachariah Ayers",
-  "start_url": "/",
+  "name": "Zachariah Ayers - Portfolio",
+  "short_name": "Portfolio",
+  "description": "Zachariah Ayers, Principal Software Engineer: projects, case studies and skills.",
+  "start_url": "./",
   "display": "standalone",
   "theme_color": "#1a1a1a",
   "background_color": "#1a1a1a",
   "icons": [
     {
-      "src": "/favicon-16x16.png",
+      "src": "favicon-16x16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/favicon-32x32.png",
+      "src": "favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }

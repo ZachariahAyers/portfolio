@@ -1,0 +1,16 @@
+{
+  "id": "openshift",
+  "kind": "employer",
+  "title": "Azure Red Hat OpenShift",
+  "tagline": "Microservices deployed on every push",
+  "role": "Lead architect",
+  "period": "2021 to 2023",
+  "organization": "AmeriSave Mortgage Corporation",
+  "context": "He was lead architect, and led the training team, for AmeriSave's move to Azure Red Hat OpenShift.",
+  "delivered": [
+    "Microservices deployed automatically when developers pushed to git",
+    "Led the team that trained the engineers on it"
+  ],
+  "stack": ["Azure Red Hat OpenShift", "Microservices", "Git"],
+  "results": ["A new hire could push a first change and see it live on their first day"]
+}

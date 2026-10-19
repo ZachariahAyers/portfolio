@@ -1,200 +1,24 @@
 {
   "id": "rabcab",
-  "category": "enterprise",
-  "featured": true,
-  "hero": {
-    "title": "RabCab AutoCAD Plugin Suite",
-    "tagline": "Enterprise-grade CAD automation tools for architectural and manufacturing workflows",
-    "badge": "AutoCAD .NET",
-    "coverImage": "/images/case-studies/rabcab-hero.png",
-    "metrics": [
-      {
-        "label": "Custom Commands",
-        "value": "100+"
-      },
-      {
-        "label": "AutoCAD Versions",
-        "value": "2013-2020"
-      },
-      {
-        "label": "Time Savings",
-        "value": "75%"
-      },
-      {
-        "label": "Industries Served",
-        "value": "5+"
-      }
-    ]
-  },
-  "timeline": {
-    "duration": "2 years",
-    "role": "Lead Plugin Developer",
-    "year": "2018-2020"
-  },
-  "sections": [
-    {
-      "id": "problem",
-      "type": "visual-comparison",
-      "title": "The Challenge",
-      "before": {
-        "label": "Manual CAD Workflows",
-        "points": [
-          "Hours spent on repetitive tasks",
-          "Manual BOM generation errors",
-          "Inconsistent dimension standards"
-        ],
-        "visual": "manual-cad"
-      },
-      "after": {
-        "label": "RabCab Automation",
-        "points": ["75% time reduction", "Zero-error automated BOMs", "Standardized dimensions"],
-        "visual": "automated-cad"
-      }
-    },
-    {
-      "title": "Technical Approach",
-      "content": "Developed a modular AutoCAD plugin architecture using C# and the AutoCAD .NET API. The solution features over 100 custom commands organized into specialized suites, each targeting specific industry workflows. Implemented intelligent agents for automated processing and created custom UI components for enhanced user experience.",
-      "subsections": [
-        {
-          "title": "Plugin Architecture",
-          "content": "Built a command-based system where each operation is a self-contained module, allowing for easy maintenance and extension. Used dependency injection for shared services and implemented a robust error handling framework."
-        },
-        {
-          "title": "Multi-Version Support",
-          "content": "Engineered compatibility across AutoCAD 2013-2020 using conditional compilation and version-specific APIs, ensuring enterprise clients could use the plugin regardless of their AutoCAD version."
-        }
-      ]
-    },
-    {
-      "title": "Implementation Details",
-      "content": "The plugin suite includes specialized modules for annotation management, assembly processing, CNC toolpath generation, structural design, and carpentry operations. Each module integrates seamlessly with AutoCAD's native commands while providing enhanced functionality.",
-      "codeExample": {
-        "language": "csharp",
-        "code": "[CommandMethod(\"RCBOM\")]\npublic void GenerateBOM()\n{\n    Document doc = Application.DocumentManager.MdiActiveDocument;\n    Database db = doc.Database;\n    Editor ed = doc.Editor;\n    \n    using (Transaction tr = db.TransactionManager.StartTransaction())\n    {\n        // Select assembly components\n        var selection = ed.GetSelection();\n        var components = ProcessAssembly(selection, tr);\n        \n        // Generate BOM with intelligent grouping\n        var bom = new BillOfMaterials(components);\n        bom.GroupBySimilarity();\n        bom.CalculateQuantities();\n        \n        // Export to Excel\n        var exporter = new XlsAgent();\n        exporter.ExportBOM(bom, \"Assembly_BOM.xlsx\");\n        \n        tr.Commit();\n    }\n}"
-      }
-    },
-    {
-      "id": "results",
-      "type": "business-report",
-      "title": "Results & Impact",
-      "executive_summary": "RabCab transformed CAD workflows across multiple industries with 100+ custom commands, achieving 75% time reduction for complex assemblies. Zero-error automated assembly management and seamless integration with Excel, PDF, and 3D applications.",
-      "sections": [
-        {
-          "title": "Productivity Gains",
-          "highlights": [
-            "100+ custom commands covering all major CAD workflows",
-            "75% reduction in time for BOM generation and dimensioning",
-            "Zero-error automated assembly management",
-            "Seamless integration with Excel, PDF, and 3D applications"
-          ]
-        },
-        {
-          "title": "Industry Adoption",
-          "summary": "Used by architects, manufacturers, and construction firms. Multi-version support across AutoCAD 2013-2020 ensures enterprise compatibility."
-        }
-      ]
-    }
-  ],
-  "techStackAnalyzer": {
-    "projectName": "rabcab",
-    "fileStructure": {
-      "frontend": [
-        {
-          "name": "Ribbon Interface",
-          "tech": "AutoCAD CUI + WPF",
-          "code": "<!-- AutoCAD Ribbon Definition -->\n<RibbonRoot>\n  <RibbonTabSourceCollection>\n    <RibbonTabSource Text=\"RabCab\" Id=\"RABCAB_TAB\">\n      <RibbonPanelSourceReference PanelId=\"RABCAB_DIMENSION_PANEL\"/>\n      <RibbonPanelSourceReference PanelId=\"RABCAB_BOM_PANEL\"/>\n      <RibbonPanelSourceReference PanelId=\"RABCAB_EXPORT_PANEL\"/>\n    </RibbonTabSource>\n  </RibbonTabSourceCollection>\n  \n  <RibbonPanelSourceCollection>\n    <RibbonPanelSource Text=\"Dimensions\" Id=\"RABCAB_DIMENSION_PANEL\">\n      <RibbonRow>\n        <RibbonCommandButton Text=\"Auto Dim\" Id=\"RC_AUTODIM\"\n          LargeImage=\"autodim_32.png\" MacroID=\"RCAUTODIM\"/>\n      </RibbonRow>\n    </RibbonPanelSource>\n  </RibbonPanelSourceCollection>\n</RibbonRoot>",
-          "docUrl": "https://help.autodesk.com/view/OARX/2024/ENU/"
-        }
-      ],
-      "backend": [
-        {
-          "name": "AutoCAD Commands",
-          "tech": "C# + AutoCAD .NET API",
-          "code": "[CommandMethod(\"RCAUTODIM\")]\npublic void AutoDimension()\n{\n    Document doc = Application.DocumentManager.MdiActiveDocument;\n    Database db = doc.Database;\n    Editor ed = doc.Editor;\n    \n    using (Transaction tr = db.TransactionManager.StartTransaction())\n    {\n        // Get user selection\n        PromptSelectionResult psr = ed.GetSelection();\n        if (psr.Status != PromptStatus.OK) return;\n        \n        foreach (ObjectId id in psr.Value.GetObjectIds())\n        {\n            Entity ent = tr.GetObject(id, OpenMode.ForRead) as Entity;\n            if (ent is Polyline pline)\n            {\n                // Auto-generate dimensions for each segment\n                GenerateDimensionsForPolyline(pline, tr);\n            }\n        }\n        tr.Commit();\n    }\n}",
-          "docUrl": "https://help.autodesk.com/view/OARX/2024/ENU/"
-        },
-        {
-          "name": "Processing Agents",
-          "tech": "Multi-threaded C#",
-          "code": "public class XlsAgent : IProcessingAgent\n{\n    private readonly BackgroundWorker _worker;\n    \n    public void ExportBOM(BillOfMaterials bom, string path)\n    {\n        _worker.RunWorkerAsync(new ExportJob\n        {\n            BOM = bom,\n            OutputPath = path,\n            Format = ExportFormat.Excel\n        });\n    }\n    \n    private void DoWork(object sender, DoWorkEventArgs e)\n    {\n        var job = e.Argument as ExportJob;\n        using (var package = new ExcelPackage())\n        {\n            var ws = package.Workbook.Worksheets.Add(\"BOM\");\n            ws.Cells.LoadFromCollection(job.BOM.Items);\n            package.SaveAs(new FileInfo(job.OutputPath));\n        }\n    }\n}",
-          "docUrl": "https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.backgroundworker"
-        }
-      ],
-      "infrastructure": [
-        {
-          "name": "Multi-Version Support",
-          "tech": "MSBuild + Conditional Compilation",
-          "code": "<!-- RabCab.csproj -->\n<PropertyGroup Condition=\"'$(AutoCADVersion)'=='2020'\">\n  <DefineConstants>ACAD2020;ACAD64</DefineConstants>\n  <TargetFramework>net47</TargetFramework>\n  <ReferencePath>C:\\ObjectARX\\2020\\inc</ReferencePath>\n</PropertyGroup>\n\n<PropertyGroup Condition=\"'$(AutoCADVersion)'=='2013'\">\n  <DefineConstants>ACAD2013</DefineConstants>\n  <TargetFramework>net40</TargetFramework>\n</PropertyGroup>\n\n<ItemGroup>\n  <Reference Include=\"AcCoreMgd\">\n    <HintPath>$(ReferencePath)\\AcCoreMgd.dll</HintPath>\n  </Reference>\n  <Reference Include=\"AcDbMgd\">\n    <HintPath>$(ReferencePath)\\AcDbMgd.dll</HintPath>\n  </Reference>\n</ItemGroup>",
-          "docUrl": "https://docs.microsoft.com/en-us/visualstudio/msbuild/"
-        }
-      ],
-      "devops": [
-        {
-          "name": "Installer Generation",
-          "tech": "WiX Toolset",
-          "code": "<!-- RabCab.wxs -->\n<Product Id=\"*\" Name=\"RabCab AutoCAD Suite\" Version=\"$(var.Version)\">\n  <Package InstallerVersion=\"200\" Compressed=\"yes\"/>\n  \n  <Feature Id=\"MainFeature\" Title=\"RabCab\">\n    <ComponentGroupRef Id=\"ProductComponents\"/>\n  </Feature>\n  \n  <ComponentGroup Id=\"ProductComponents\">\n    <Component Directory=\"AutoCADPlugins\">\n      <File Source=\"$(var.BuildDir)\\RabCab.dll\"/>\n      <RegistryKey Root=\"HKCU\"\n        Key=\"Software\\Autodesk\\AutoCAD\\$(var.AcadVersion)\\Applications\\RabCab\">\n        <RegistryValue Name=\"LOADER\" Value=\"[INSTALLFOLDER]RabCab.dll\"/>\n        <RegistryValue Name=\"LOADCTRLS\" Value=\"14\" Type=\"integer\"/>\n      </RegistryKey>\n    </Component>\n  </ComponentGroup>\n</Product>",
-          "docUrl": "https://wixtoolset.org/documentation/"
-        }
-      ]
-    }
-  },
-  "activity": [
-    {
-      "author": "CAD Engineer",
-      "avatar": "CE",
-      "time": "After deployment",
-      "comment": "Tasks that used to take hours now complete in minutes. The automatic dimensioning alone saves me 2 hours per day on complex assemblies."
-    },
-    {
-      "author": "Zachariah Ayers",
-      "avatar": "ZA",
-      "time": "ObjectARX integration",
-      "comment": "RabCab plugin architecture complete. Deep integration with AutoCAD's ObjectARX API enables real-time geometry analysis and automated annotation placement."
-    }
-  ],
-  "businessRequirements": {
-    "jiraPrefix": "RCAB",
-    "businessContext": "Provide CAD professionals with enterprise-grade automation tools to eliminate repetitive tasks and reduce design errors.",
-    "problemStatement": "Manual CAD operations consume significant time and are error-prone, especially for complex assemblies, dimensioning, and data extraction tasks.",
-    "businessValue": [
-      "75% reduction in repetitive CAD tasks",
-      "Elimination of manual dimensioning errors",
-      "Automated BOM generation with Excel export",
-      "Standardized workflows across teams",
-      "ROI within 3 months of deployment"
-    ],
-    "acceptanceCriteria": [
-      "Support AutoCAD 2013-2020 (32/64-bit)",
-      "100+ functional commands across all suites",
-      "< 2 second response time for operations",
-      "Seamless integration with existing workflows",
-      "Comprehensive error handling and logging"
-    ],
-    "attachments": [
-      {
-        "title": "Command Reference Guide",
-        "type": "documentation",
-        "description": "Complete list of 100+ commands with syntax and examples"
-      },
-      {
-        "title": "Performance Benchmarks",
-        "type": "report",
-        "description": "Time savings analysis across different workflows"
-      }
-    ],
-    "risks": [
-      {
-        "description": "AutoCAD API changes between versions",
-        "mitigation": "Conditional compilation and version-specific testing"
-      },
-      {
-        "description": "Performance impact on large drawings",
-        "mitigation": "Implemented progress tracking and batch processing"
-      }
-    ]
-  },
+  "kind": "product",
+  "title": "RabCab",
+  "tagline": "AutoCAD automation, built 2019 to 2020",
+  "role": "Built and ran it at STAK Design",
+  "period": "2019 to 2020",
+  "organization": "STAK Design",
   "links": {
-    "github": "https://github.com/ZachariahAyers/RabCab"
+    "live": "https://getrabcab.com"
   },
-  "related": ["autocad", "cad-automation", "dotnet", "plugin-development"]
+  "context": "RabCab automated the engineering department's drafting and CAM work for everything that could be automated. Customers designed cabinetry, trade-show booths, mall kiosks and freestanding units in a web configurator.",
+  "delivered": [
+    "Once sales and estimating approved an order, RabCab carried it through engineering and onto the shop floor automatically",
+    "Two parts sharing one back end: the customer-facing site and a full ObjectARX add-in for AutoCAD",
+    "Both keep inventory and costs in sync",
+    "The add-in automated tedious carpentry operations AutoCAD had no tool for"
+  ],
+  "stack": ["C#", "AutoCAD ObjectARX", "CAM"],
+  "results": [
+    "Engineers were left free for complex custom projects",
+    "No manual drafting for approved orders"
+  ]
 }

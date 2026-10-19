@@ -1,0 +1,18 @@
+{
+  "id": "powerbuilding",
+  "kind": "client",
+  "title": "Powerbuilding",
+  "tagline": "A training, nutrition and health-tracking platform with a coach side",
+  "role": "Contract engineer",
+  "period": "2023 to 2024",
+  "organization": "Powerbuilding Holdings Corp, New York",
+  "context": "Powerbuilding is a training, nutrition and health-tracking app with a coach side. He was brought in to help on the whole app and took it over over time.",
+  "delivered": [
+    "Two Flutter apps",
+    "NestJS services",
+    "A Django back end",
+    "AWS",
+    "A service calling Azure OpenAI"
+  ],
+  "stack": ["Flutter", "NestJS", "Django", "AWS", "Azure OpenAI"]
+}

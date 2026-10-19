@@ -1,0 +1,25 @@
+{
+  "id": "gamut",
+  "kind": "client",
+  "title": "Gamut and Timelapse+",
+  "tagline": "Licensing for color grades, and a Lightroom to Resolve export",
+  "role": "Contract engineer",
+  "period": "2023",
+  "organization": "Gamut, LLC",
+  "context": "Gamut sells color-grading LUTs and bought Timelapse+. The work protected its color grades and connected Lightroom Classic to DaVinci Resolve.",
+  "delivered": [
+    "An encryptor that turns grade files into protected .gamut files",
+    "An Express licensing server",
+    "Host plugins for Adobe Premiere Pro, DaVinci Resolve and Final Cut Pro; the Final Cut Pro plugin was built and never shipped by Gamut",
+    "For Timelapse+: an export from Lightroom Classic straight into a DaVinci Resolve project, in Lua and Python"
+  ],
+  "stack": [
+    "Express",
+    "Premiere Pro",
+    "DaVinci Resolve",
+    "Final Cut Pro",
+    "Lightroom Classic",
+    "Lua",
+    "Python"
+  ]
+}

@@ -1,199 +1,31 @@
 {
   "id": "portfolio",
-  "category": "opensource",
-  "featured": false,
-  "hidden": true,
-  "hero": {
-    "title": "Portfolio Tech Stack",
-    "tagline": "The technology powering this interactive portfolio experience",
-    "badge": "Meta",
-    "metrics": [
-      {
-        "value": "React 19",
-        "label": "Framework",
-        "animate": "fade",
-        "icon": "code"
-      },
-      {
-        "value": "Vite 8",
-        "label": "Build Tool",
-        "animate": "fade",
-        "icon": "zap"
-      },
-      {
-        "value": "AI Powered",
-        "label": "Gemini API",
-        "animate": "fade",
-        "icon": "brain"
-      }
-    ]
-  },
-  "timeline": {
-    "duration": "2024 - Present",
-    "role": "Personal Project",
-    "year": "2024"
-  },
-  "sections": [
-    {
-      "id": "problem",
-      "type": "visual-comparison",
-      "title": "The Vision",
-      "before": {
-        "label": "Traditional Portfolios",
-        "points": ["Static content", "PDF resumes", "Limited interaction"],
-        "visual": "static-portfolio"
-      },
-      "after": {
-        "label": "AI-Powered Experience",
-        "points": [
-          "Interactive AI assistant",
-          "Dynamic resume generation",
-          "Immersive case studies"
-        ],
-        "visual": "ai-portfolio"
-      }
-    },
-    {
-      "id": "solution",
-      "type": "interactive-architecture",
-      "title": "Architecture",
-      "components": [
-        {
-          "name": "Frontend",
-          "framework": "React 19 + Vite 8",
-          "team": "UI"
-        },
-        {
-          "name": "Styling",
-          "framework": "Tailwind CSS + Motion",
-          "team": "Design"
-        },
-        {
-          "name": "AI Integration",
-          "framework": "Google Gemini API",
-          "team": "Backend"
-        },
-        {
-          "name": "Hosting",
-          "framework": "AWS Lambda + S3",
-          "team": "Infrastructure"
-        }
-      ],
-      "features": [
-        "Real-time AI chat",
-        "PDF generation",
-        "Interactive experiments",
-        "Win98 nostalgia mode"
-      ]
-    },
-    {
-      "id": "results",
-      "type": "business-report",
-      "title": "Features",
-      "executive_summary": "A modern, AI-powered portfolio that lets visitors interact naturally with an AI assistant (Arlo) to learn about my experience, generate custom resumes, and explore interactive case studies.",
-      "sections": [
-        {
-          "title": "Key Features",
-          "highlights": [
-            "AI assistant powered by Google Gemini",
-            "Custom resume generation from job descriptions",
-            "Interactive case study dashboards",
-            "Win98 nostalgia mode for tech stacks"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "tech",
-      "type": "tech-stack",
-      "title": "Technology Stack",
-      "categories": {
-        "frontend": ["React 19", "Vite 8", "Tailwind CSS", "Motion"],
-        "backend": ["AWS Lambda", "Google Gemini API", "Resend"],
-        "ui": ["Lucide React", "Radix UI", "React Markdown", "Mermaid"],
-        "tools": ["oxlint", "PostCSS", "Autoprefixer", "Terser"],
-        "utilities": ["DOMPurify", "jsPDF", "html2canvas", "React Router"]
-      },
-      "interactive": true
-    }
-  ],
-  "activity": [
-    {
-      "author": "Visitor",
-      "avatar": "VS",
-      "time": "Experience",
-      "comment": "The AI assistant actually understands the context and gives helpful answers. The resume generation feature is genuinely useful for recruiters."
-    },
-    {
-      "author": "Zachariah Ayers",
-      "avatar": "ZA",
-      "time": "Personal project",
-      "comment": "Built this portfolio to demonstrate modern frontend skills and AI integration. Arlo the AI assistant can answer questions about my experience and generate custom resumes."
-    }
-  ],
-  "businessRequirements": {
-    "jiraPrefix": "PORT",
-    "businessContext": "Personal portfolio website showcasing software engineering experience through an innovative AI-powered interface",
-    "problemStatement": "Traditional portfolios are static and don't engage visitors effectively",
-    "businessValue": [
-      "Immediate answers to recruiter questions",
-      "Custom resume generation saves time",
-      "Interactive demos showcase technical skills",
-      "Memorable experience differentiates from other candidates"
-    ],
-    "acceptanceCriteria": [
-      "AI assistant responds accurately about experience",
-      "Resume generation produces quality PDFs",
-      "Site loads quickly and works on mobile",
-      "Case studies provide detailed project information"
-    ],
-    "linkedIssues": []
-  },
-  "techStackAnalyzer": {
-    "projectName": "Portfolio",
-    "fileStructure": {
-      "frontend": [
-        {
-          "name": "Chat Interface",
-          "tech": "React 19",
-          "code": "// App.jsx - AI Chat Integration\nimport { useState, useRef, useEffect } from 'react';\nimport { motion, AnimatePresence } from 'framer-motion';\n\nconst App = () => {\n  const [messages, setMessages] = useState([]);\n  const [input, setInput] = useState('');\n  const [isLoading, setIsLoading] = useState(false);\n\n  const handleSend = async () => {\n    if (!input.trim() || isLoading) return;\n    \n    const userMessage = { role: 'user', content: input };\n    setMessages(prev => [...prev, userMessage]);\n    setInput('');\n    setIsLoading(true);\n\n    const response = await fetch(`${API_ENDPOINT}/chat`, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify({\n        message: input,\n        conversationHistory: messages\n      })\n    });\n\n    const data = await response.json();\n    setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);\n    setIsLoading(false);\n  };\n\n  return (\n    <motion.div className=\"flex flex-col h-screen\">\n      <ChatMessages messages={messages} />\n      <ChatInput value={input} onChange={setInput} onSend={handleSend} />\n    </motion.div>\n  );\n};",
-          "docUrl": "https://react.dev"
-        },
-        {
-          "name": "Case Study Dashboard",
-          "tech": "Interactive Dashboards",
-          "code": "// DetailedView.jsx - Case Study Renderer\nimport { useParams } from 'react-router-dom';\nimport { motion } from 'framer-motion';\n\nconst DetailedView = ({ caseStudy }) => {\n  const renderSection = (section) => {\n    switch (section.type) {\n      case 'visual-comparison':\n        return <BeforeAfterComparison data={section} />;\n      case 'interactive-architecture':\n        return <ArchitectureDiagram data={section} />;\n      case 'code-showcase':\n        return <CodeShowcase data={section} />;\n      case 'business-report':\n        return <BusinessReport data={section} />;\n      case 'tech-stack':\n        return <TechStackViewer data={section} />;\n      default:\n        return null;\n    }\n  };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0 }}\n      animate={{ opacity: 1 }}\n      className=\"min-h-screen bg-gray-50 dark:bg-gray-900\"\n    >\n      <HeroSection hero={caseStudy.hero} />\n      {caseStudy.sections.map(section => (\n        <Section key={section.id}>\n          {renderSection(section)}\n        </Section>\n      ))}\n    </motion.div>\n  );\n};",
-          "docUrl": "https://motion.dev"
-        }
-      ],
-      "backend": [
-        {
-          "name": "AI Chat Lambda",
-          "tech": "AWS Lambda + Gemini",
-          "code": "// lambda/chat.js - Gemini AI Integration\nimport { GoogleGenerativeAI } from '@google/generative-ai';\n\nconst genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);\n\nexport const handler = async (event) => {\n  const { message, conversationHistory } = JSON.parse(event.body);\n  \n  const model = genAI.getGenerativeModel({ model: 'gemini-pro' });\n  \n  const systemPrompt = `You are Arlo, an AI assistant for Zachariah Ayers' portfolio.\n    You have comprehensive knowledge of his experience, skills, and projects.\n    Be helpful, professional, and conversational.`;\n\n  const chat = model.startChat({\n    history: conversationHistory.map(msg => ({\n      role: msg.role === 'user' ? 'user' : 'model',\n      parts: [{ text: msg.content }]\n    })),\n    generationConfig: {\n      maxOutputTokens: 2048,\n      temperature: 0.7\n    }\n  });\n\n  const result = await chat.sendMessage(message);\n  const response = result.response.text();\n\n  return {\n    statusCode: 200,\n    headers: { 'Content-Type': 'application/json' },\n    body: JSON.stringify({ response })\n  };\n};",
-          "docUrl": "https://ai.google.dev/docs"
-        }
-      ],
-      "infrastructure": [
-        {
-          "name": "Vite Configuration",
-          "tech": "Vite 8 Build",
-          "code": "// vite.config.js - Optimized Build Configuration\nimport { defineConfig } from 'vite';\nimport react from '@vitejs/plugin-react';\n\nexport default defineConfig({\n  plugins: [react()],\n  build: {\n    target: 'esnext',\n    minify: 'terser',\n    rollupOptions: {\n      output: {\n        manualChunks: {\n          vendor: ['react', 'react-dom', 'react-router-dom'],\n          motion: ['framer-motion'],\n          markdown: ['react-markdown', 'remark-gfm'],\n          charts: ['recharts']\n        }\n      }\n    },\n    terserOptions: {\n      compress: {\n        drop_console: true,\n        drop_debugger: true\n      }\n    }\n  },\n  server: {\n    port: 5173,\n    open: true\n  }\n});",
-          "docUrl": "https://vite.dev"
-        }
-      ],
-      "devops": [
-        {
-          "name": "Error Boundary",
-          "tech": "Error Reporting",
-          "code": "// ErrorBoundary.jsx - Error Tracking & Reporting\nimport React from 'react';\n\nclass ErrorBoundary extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { hasError: false, error: null };\n  }\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true, error };\n  }\n\n  componentDidCatch(error, errorInfo) {\n    // Report error to Lambda endpoint\n    fetch(`${API_ENDPOINT}/report-error`, {\n      method: 'POST',\n      headers: { 'Content-Type': 'application/json' },\n      body: JSON.stringify({\n        message: error.toString(),\n        stack: error.stack,\n        componentStack: errorInfo.componentStack,\n        userAgent: navigator.userAgent,\n        timestamp: new Date().toISOString(),\n        url: window.location.href\n      })\n    });\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <ErrorFallback error={this.state.error} />;\n    }\n    return this.props.children;\n  }\n}",
-          "docUrl": "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
-        }
-      ]
-    }
-  },
+  "kind": "opensource",
+  "title": "This portfolio",
+  "tagline": "A static React site with a guide that answers from prepared notes",
+  "role": "Built",
+  "period": "Current",
+  "organization": "Zachariah Ayers",
   "links": {
-    "github": "https://github.com/ZachariahAyers/ai-portfolio"
+    "live": "https://ayers.repair/opensource/portfolio/",
+    "github": "https://github.com/ZachariahAyers/portfolio"
   },
-  "related": ["assemblejs", "octo", "amcui"]
+  "context": "The site you are on. ARLO, the guide on the home page, answers from a set of questions and answers written in advance from Zach's résumé and project notes, and matches a typed question to the closest one. The whole site is static files.",
+  "delivered": [
+    "React and TypeScript, built with Vite, with hash routing so any page survives a refresh from a plain static host",
+    "Content in JSON, checked against zod schemas in the browser and in the test suite",
+    "A keyword matcher that sends a typed question to the closest prepared answer, and offers the starter questions when nothing matches",
+    "A Windows 98 style desktop for browsing this repository's own source"
+  ],
+  "stack": ["React", "TypeScript", "Vite", "Tailwind CSS", "React Router", "Zod", "Vitest"],
+  "source": [
+    "src/features/chat/match.ts",
+    "src/features/chat/ChatPage.tsx",
+    "src/features/chat/answers.ts",
+    "src/content/schema.ts",
+    "src/content/caseStudies.ts",
+    "src/app/router.tsx",
+    "src/features/codeos/windowManager.ts",
+    "content/answers.json"
+  ]
 }

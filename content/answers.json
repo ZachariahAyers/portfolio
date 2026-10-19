@@ -1,0 +1,551 @@
+{
+  "answers": [
+    {
+      "id": "about-arlo",
+      "question": "Are you an AI?",
+      "topic": "About this site",
+      "keywords": [
+        "are you an ai",
+        "are you ai",
+        "are you real",
+        "bot",
+        "robot",
+        "chatbot",
+        "chatgpt",
+        "gpt",
+        "llm",
+        "language model",
+        "what model",
+        "human",
+        "real person",
+        "arlo",
+        "who are you",
+        "are you zach"
+      ],
+      "answer": "I'm ARLO, a guide to Zach's work. My answers are written in advance from his résumé and project notes, and I match your question to the closest one. Nothing here is generated on the fly.\n\nFor anything I can't answer, email Zach at support@ayers.repair.",
+      "followUps": ["overview", "contact", "this-site"]
+    },
+    {
+      "id": "contact",
+      "question": "How can I contact Zach?",
+      "topic": "Working together",
+      "keywords": [
+        "contact",
+        "email",
+        "reach",
+        "touch",
+        "hire",
+        "hiring",
+        "message",
+        "talk",
+        "call",
+        "linkedin",
+        "github"
+      ],
+      "answer": "- **Email:** [support@ayers.repair](mailto:support@ayers.repair)\n- **LinkedIn:** [linkedin.com/in/zachariahayers](https://www.linkedin.com/in/zachariahayers/)\n- **GitHub:** [github.com/ZachariahAyers](https://github.com/ZachariahAyers)\n- **Company:** [ayers.repair](https://ayers.repair)",
+      "followUps": ["availability", "location", "overview"]
+    },
+    {
+      "id": "availability",
+      "question": "What kind of work is Zach looking for?",
+      "topic": "Working together",
+      "keywords": [
+        "looking for",
+        "available",
+        "availability",
+        "open to",
+        "remote",
+        "relocate",
+        "role",
+        "job",
+        "position",
+        "opportunity",
+        "contract",
+        "full time",
+        "full-time"
+      ],
+      "answer": "Zach works as a Principal Software Engineer in C#, .NET, SQL Server and AI agents, through his company, Ayers Software Repair.\n\nHe is open to remote work, or work in Philadelphia or New York. For anything more, email him at support@ayers.repair.",
+      "followUps": ["location", "contact", "overview"]
+    },
+    {
+      "id": "location",
+      "question": "Where is Zach based?",
+      "topic": "Working together",
+      "keywords": [
+        "where",
+        "based",
+        "located",
+        "location",
+        "live",
+        "city",
+        "philadelphia",
+        "new jersey",
+        "nj",
+        "audubon",
+        "new york"
+      ],
+      "answer": "Audubon, NJ, in the Philadelphia area. He works remotely, and is open to remote work, or work in Philadelphia or New York.",
+      "followUps": ["availability", "contact"]
+    },
+    {
+      "id": "northrop",
+      "question": "What did Zach do for Northrop Grumman?",
+      "topic": "Clients",
+      "suggested": true,
+      "keywords": [
+        "northrop",
+        "grumman",
+        "vb6",
+        "visual basic",
+        "legacy",
+        "modernize",
+        "modernization",
+        "port",
+        "migration",
+        "pipeline",
+        "deploy",
+        "azure devops"
+      ],
+      "answer": "On contract with Northrop Grumman since August 2024, through Ayers Software Repair:\n\n- Designed the architecture, SQL Server data layer and integrations for 40+ VB6 applications moved to C# and .NET 8, with no regressions after cutover; about 200 people use them daily.\n- Built the release pipeline on Azure DevOps: deploys went from weeks to minutes, with checks on every branch, automated test suites and integration tests.\n- Built the AI engineering layer Northrop's developers adopted over several iterations: AI agents, MCP servers and a full harness of plugins, skills and rules that taught AI coding tools the team's stack, code and database.\n- Set up an on-premises AI inference server and built the team's own AI agent into its business-facing applications, so business users could ask questions securely.\n- Delivered the full port under estimate, with a documented handoff.",
+      "followUps": ["ai", "stack", "amerisave"]
+    },
+    {
+      "id": "magpie",
+      "question": "What is Magpie?",
+      "topic": "Products",
+      "keywords": [
+        "magpie",
+        "media server",
+        "live channels",
+        "tv",
+        "television",
+        "guide",
+        "uno platform"
+      ],
+      "answer": "Magpie is a TV and media server that turns the movies and shows people own into live channels with a guide, with apps for phones, TVs, game consoles, desktops and the web.\n\nBuilt on ASP.NET Core and SQLite, with apps built on Uno Platform. [magpietv.com](https://magpietv.com)",
+      "followUps": ["howland", "assemblejs", "products"]
+    },
+    {
+      "id": "howland",
+      "question": "What is Howland?",
+      "topic": "Products",
+      "keywords": [
+        "howland",
+        "offline",
+        "private ai",
+        "no internet",
+        "reference library",
+        "own computer"
+      ],
+      "answer": "Howland is private AI with a coding agent that runs on your own computer with no internet, beside an offline reference library, on Windows, Mac, Linux, iPhone and Android. Built in Go. [howland.si](https://howland.si)",
+      "followUps": ["magpie", "assemblejs", "ai"]
+    },
+    {
+      "id": "assemblejs",
+      "question": "What is AssembleJS?",
+      "topic": "Products",
+      "keywords": [
+        "assemblejs",
+        "assemble",
+        "micro-frontend",
+        "micro-frontends",
+        "micro frontend",
+        "micro-backend",
+        "micro-backends"
+      ],
+      "answer": "AssembleJS is an open-source framework for micro-frontends and micro-backends composed on the server, with any UI framework on one page and an MCP server so AI agents can build with it.\n\n[assemblejs.com](https://assemblejs.com) | [source](https://github.com/ayers-software-repair/assemblejs)",
+      "followUps": ["amcui", "magpie", "opensource"]
+    },
+    {
+      "id": "rabcab",
+      "question": "What is RabCab?",
+      "topic": "Products",
+      "keywords": [
+        "rabcab",
+        "stak",
+        "cabinetry",
+        "configurator",
+        "order-to-floor",
+        "shop floor",
+        "objectarx"
+      ],
+      "answer": "RabCab is order-to-floor automation Zach built at STAK Design: customers designed cabinetry, booths and kiosks in a web configurator, and approved orders flowed through engineering to the shop floor with no manual drafting, leaving engineers free for custom work.\n\nHe extended AutoCAD's ObjectARX SDK in C# with custom 3D entities, and kept inventory and costs in sync between the add-in and the website. [getrabcab.com](https://getrabcab.com)",
+      "followUps": ["cad", "products", "experience"]
+    },
+    {
+      "id": "wrapmate",
+      "question": "What did Zach build for Wrapmate?",
+      "topic": "Clients",
+      "keywords": ["wrapmate", "wrap", "vw", "id.buzz", "three.js", "webgl", "3d"],
+      "answer": "A real-time 3D wrap configurator for the VW ID.Buzz, tied into Wrapmate's store, so customers could see a custom wrap before ordering. Built with React, TypeScript, Three.js, WebGL and Node.\n\n[wraps.wrapmate.com/configurator](https://wraps.wrapmate.com/configurator)",
+      "followUps": ["gamut", "clients"]
+    },
+    {
+      "id": "gamut",
+      "question": "What did Zach build for Gamut and Timelapse+?",
+      "topic": "Clients",
+      "keywords": [
+        "gamut",
+        "timelapse",
+        "color grade",
+        "color grades",
+        "licensing",
+        "premiere",
+        "davinci",
+        "resolve",
+        "final cut",
+        "lightroom"
+      ],
+      "answer": "- **Gamut:** a licensing system to protect its color grades: file encryption, a licensing server, and plugins for Adobe Premiere Pro, DaVinci Resolve and Final Cut Pro.\n- **Timelapse+:** an export from Lightroom Classic straight into a DaVinci Resolve project (Lua, Python).",
+      "followUps": ["wrapmate", "powerbuilding", "clients"]
+    },
+    {
+      "id": "powerbuilding",
+      "question": "What did Zach do for Powerbuilding?",
+      "topic": "Clients",
+      "keywords": [
+        "powerbuilding",
+        "flutter",
+        "nestjs",
+        "django",
+        "nutrition",
+        "fitness",
+        "health",
+        "coach"
+      ],
+      "answer": "From 2023 to 2024 he took over the whole application for Powerbuilding Holdings Corp, New York: a training, nutrition and health-tracking platform with a coach side, with two Flutter apps, NestJS services, a Django back end, AWS, and Azure OpenAI features.",
+      "followUps": ["gamut", "clients"]
+    },
+    {
+      "id": "amcui",
+      "question": "What are AMCUI and AMCLI?",
+      "topic": "AmeriSave",
+      "keywords": [
+        "amcui",
+        "amcli",
+        "storybook",
+        "project generator",
+        "component library",
+        "typescript migration"
+      ],
+      "answer": "At AmeriSave Zach built AMCUI, the company's micro-frontend framework with Storybook component libraries, and AMCLI, its project generator; he also led AmeriSave's move to TypeScript.",
+      "followUps": ["aussie", "openshift", "graphql"]
+    },
+    {
+      "id": "aussie",
+      "question": "What was the Aussie rewrite?",
+      "topic": "AmeriSave",
+      "keywords": [
+        "aussie",
+        "aus",
+        "underwriting",
+        "coldfusion",
+        "spring boot",
+        "java",
+        "angular",
+        "rewrite"
+      ],
+      "answer": "Aussie is AmeriSave's automated underwriting system, or AUS: a rules-based engine with early AI integrations. Zach built much of its rewrite from ColdFusion 9 to Java Spring Boot and Angular, with zero regressions, then joined the core leadership team that drove it to completion.",
+      "followUps": ["amcui", "openshift", "leadership"]
+    },
+    {
+      "id": "openshift",
+      "question": "What did the move to Azure Red Hat OpenShift involve?",
+      "topic": "AmeriSave",
+      "keywords": ["openshift", "red hat", "kubernetes", "microservices", "azure red hat"],
+      "answer": "Zach was lead architect for AmeriSave's move to Azure Red Hat OpenShift: microservices deployed on every push, so new hires shipped a live change on their first day. He also led the team that trained the engineers on it.",
+      "followUps": ["graphql", "amcui", "aussie"]
+    },
+    {
+      "id": "graphql",
+      "question": "How did the federated GraphQL layer help business users?",
+      "topic": "AmeriSave",
+      "keywords": ["graphql", "federated", "power bi", "data layer", "business users"],
+      "answer": "Zach built a federated GraphQL layer over AmeriSave's data, so business users reached it themselves through Power BI instead of asking developers for SQL queries.",
+      "followUps": ["openshift", "aussie", "data"]
+    },
+    {
+      "id": "leadership",
+      "question": "Has Zach led teams?",
+      "topic": "Experience",
+      "keywords": [
+        "lead",
+        "led",
+        "leader",
+        "leadership",
+        "manage",
+        "manager",
+        "management",
+        "team",
+        "mentor",
+        "train",
+        "training",
+        "agile",
+        "jira"
+      ],
+      "answer": "- **AmeriSave:** led a team of 6 and reviewed pull requests on the large efforts, including the customer-facing AUS Portal; trained the whole 60-person engineering department (6 teams) in Agile and Jira. Also led the team that trained the engineers on Azure Red Hat OpenShift.\n- **STAK Design:** started as a combined mechanical and software engineer; later managed 2 developers.",
+      "followUps": ["amerisave", "experience"]
+    },
+    {
+      "id": "amerisave",
+      "question": "What did Zach build at AmeriSave?",
+      "topic": "AmeriSave",
+      "suggested": true,
+      "keywords": ["amerisave", "mortgage", "atlanta"],
+      "answer": "At AmeriSave Mortgage Corporation, from March 2021 to February 2023 (Full Stack Developer, then Software Architect and Software Development Manager):\n\n- Lead architect for the move to Azure Red Hat OpenShift: microservices deployed on every push, so new hires shipped a live change on their first day.\n- Built AMCUI, the company's micro-frontend framework with Storybook component libraries, and AMCLI, its project generator; led AmeriSave's move to TypeScript.\n- Built a federated GraphQL layer over the company's data, so business users reached it themselves through Power BI.\n- Built much of the rewrite of Aussie, the automated underwriting system, from ColdFusion 9 to Java Spring Boot and Angular, with zero regressions.\n- Led a team of 6, and trained the whole 60-person engineering department in Agile and Jira.",
+      "followUps": ["amcui", "aussie", "openshift", "graphql"]
+    },
+    {
+      "id": "ayers",
+      "question": "What is Ayers Software Repair?",
+      "topic": "Experience",
+      "keywords": [
+        "ayers software repair",
+        "company",
+        "business",
+        "ayers.repair",
+        "independent",
+        "own company"
+      ],
+      "answer": "Ayers Software Repair is Zach's independent software company: contract engineering for clients, and its own products. He has been its Principal Software Engineer since February 2023.",
+      "followUps": ["clients", "products", "contact"]
+    },
+    {
+      "id": "clients",
+      "question": "Which clients has Zach worked with?",
+      "topic": "Clients",
+      "keywords": ["clients", "client", "customers", "freelance", "consulting"],
+      "answer": "Through Ayers Software Repair:\n\n- **Northrop Grumman** (contract, August 2024 to present)\n- **Powerbuilding Holdings Corp**, New York (2023 to 2024)\n- **Gamut**, **Timelapse+** and **Wrapmate** (2023)",
+      "followUps": ["northrop", "wrapmate", "gamut"]
+    },
+    {
+      "id": "products",
+      "question": "What products has Zach built?",
+      "topic": "Products",
+      "suggested": true,
+      "keywords": ["products", "product", "built", "build", "side projects", "own"],
+      "answer": "- **[Magpie](https://magpietv.com):** a TV and media server that turns the movies and shows people own into live channels with a guide.\n- **[Howland](https://howland.si):** private AI with a coding agent that runs on your own computer with no internet.\n- **[AssembleJS](https://assemblejs.com):** an open-source framework for micro-frontends and micro-backends composed on the server.\n- **[RabCab](https://getrabcab.com):** AutoCAD automation, with a customer-facing configurator and an ObjectARX add-in sharing one back end.\n\nBuilt with hand-written code and AI coding agents working in parallel.",
+      "followUps": ["magpie", "howland", "assemblejs", "rabcab"]
+    },
+    {
+      "id": "opensource",
+      "question": "What open-source work has Zach done?",
+      "topic": "Products",
+      "keywords": [
+        "open source",
+        "open-source",
+        "contribution",
+        "contributions",
+        "pull request",
+        "ersatztv",
+        "resizetizer",
+        "tvos",
+        "apple tv"
+      ],
+      "answer": "- **Uno Platform:** built Apple TV (tvOS) support for single-project apps.\n- **Uno Platform:** fixed the unexplained WebAssembly splash-screen build failure; the build now names the missing file.\n- **ErsatzTV:** fixed CPU overload from stale ffmpeg encodes; now part of ErsatzTV.\n- **[AssembleJS](https://github.com/ayers-software-repair/assemblejs):** his own open-source framework.",
+      "followUps": ["assemblejs", "magpie", "stack"]
+    },
+    {
+      "id": "ai",
+      "question": "How does Zach work with AI agents?",
+      "topic": "Skills",
+      "suggested": true,
+      "keywords": [
+        "agents",
+        "agent",
+        "mcp",
+        "copilot",
+        "codex",
+        "claude code",
+        "inference",
+        "on-premises",
+        "on premises",
+        "azure openai",
+        "onnx",
+        "artificial intelligence",
+        "machine learning"
+      ],
+      "answer": "- At Northrop Grumman he built the AI engineering layer the developers adopted over several iterations: AI agents, MCP servers and a full harness of plugins, skills and rules that taught AI coding tools the team's stack, code and database.\n- He set up an on-premises AI inference server and built the team's own AI agent into its business-facing applications, so business users could ask questions securely.\n- He builds AI agents and MCP servers into his own products, which are built with hand-written code and AI coding agents working in parallel.\n\nTools: Claude Code, OpenAI Codex, GitHub Copilot, Azure OpenAI, on-premises models and ONNX.",
+      "followUps": ["northrop", "howland", "stack"]
+    },
+    {
+      "id": "cad",
+      "question": "What CAD work has Zach done?",
+      "topic": "Skills",
+      "keywords": [
+        "cad",
+        "autocad",
+        "drafting",
+        "draftsman",
+        "plug-in",
+        "plugin",
+        "add-in",
+        "g-code",
+        "walmart",
+        "cowell",
+        "pantheon",
+        "cma",
+        "steel"
+      ],
+      "answer": "- **Cowell Steel Structures** (2013 to 2015): built Pantheon, an AutoCAD add-in (VB.NET) that drew framing members straight from the structural engineers' numbers.\n- **CMA Architecture** (2015 to 2016): built AutoCAD plug-ins that sped up the Walmart remodel team's whole workflow, with GPS-tagged 3D photos inside the drawings and step-through 3D walkthroughs.\n- **STAK Design** (2016 to 2020): extended AutoCAD's ObjectARX SDK in C# with custom 3D entities for RabCab.\n\nAlso G-code.",
+      "followUps": ["rabcab", "experience"]
+    },
+    {
+      "id": "languages",
+      "question": "Which languages does Zach use most?",
+      "topic": "Skills",
+      "keywords": [
+        "language",
+        "languages",
+        "c#",
+        "csharp",
+        "vb.net",
+        "t-sql",
+        "typescript",
+        "javascript",
+        "python",
+        "golang",
+        "c++",
+        "lua",
+        "dart"
+      ],
+      "answer": "- **Primary:** C#, VB6 and VB.NET, T-SQL, TypeScript\n- **Also:** JavaScript, Java, Python, Go, C++, Lua, Dart",
+      "followUps": ["stack", "data", "cloud"]
+    },
+    {
+      "id": "data",
+      "question": "What does Zach use for data?",
+      "topic": "Skills",
+      "keywords": [
+        "data",
+        "database",
+        "databases",
+        "sql",
+        "sql server",
+        "sqlite",
+        "ssrs",
+        "crystal reports",
+        "reporting"
+      ],
+      "answer": "SQL Server, Azure SQL, SQLite, SSRS, Crystal Reports and Power BI. At Northrop Grumman he designed the SQL Server data layer for 40+ applications moved to C# and .NET 8.",
+      "followUps": ["graphql", "stack", "northrop"]
+    },
+    {
+      "id": "cloud",
+      "question": "What cloud and delivery tools does Zach use?",
+      "topic": "Skills",
+      "keywords": [
+        "cloud",
+        "aws",
+        "azure",
+        "devops",
+        "ci/cd",
+        "ci",
+        "docker",
+        "kubernetes",
+        "testing",
+        "sentry",
+        "datadog",
+        "elk"
+      ],
+      "answer": "Azure DevOps, Azure, Kubernetes, Red Hat OpenShift, AWS, Docker, microservices, CI/CD, unit and integration testing, Sentry, Datadog and the ELK Stack.",
+      "followUps": ["openshift", "northrop", "stack"]
+    },
+    {
+      "id": "stack",
+      "question": "What is Zach's tech stack?",
+      "topic": "Skills",
+      "suggested": true,
+      "keywords": [
+        "stack",
+        "technologies",
+        "technology",
+        "tools",
+        "skills",
+        "dotnet",
+        ".net",
+        "asp.net",
+        "react",
+        "frameworks"
+      ],
+      "answer": "- **Languages:** C#, VB6 and VB.NET, T-SQL and TypeScript first; also JavaScript, Java, Python, Go, C++, Lua and Dart.\n- **.NET and desktop:** .NET 10, .NET 8, .NET Framework, ASP.NET Core and Web API, Entity Framework, WinUI 3, WPF, WinForms, Uno Platform.\n- **Web:** Angular, React, Svelte, Node.js, NestJS, Express, GraphQL, Three.js and WebGL, Storybook.\n- **Data:** SQL Server, Azure SQL, SQLite, SSRS, Crystal Reports, Power BI.\n- **Cloud and delivery:** Azure DevOps, Azure, Kubernetes, Red Hat OpenShift, AWS, Docker, CI/CD.\n- **AI:** AI agents, MCP servers, Claude Code, OpenAI Codex, GitHub Copilot, Azure OpenAI, on-premises models, ONNX.",
+      "followUps": ["languages", "ai", "cad"]
+    },
+    {
+      "id": "education",
+      "question": "What is Zach's education?",
+      "topic": "Experience",
+      "keywords": [
+        "education",
+        "school",
+        "degree",
+        "college",
+        "university",
+        "bootcamp",
+        "hack reactor",
+        "arkansas",
+        "studied"
+      ],
+      "answer": "- **Hack Reactor:** software engineering immersive, March 2020 to August 2020; independent software projects to March 2021.\n- **Arkansas Tech University:** Computer Science, 2008 to 2012.",
+      "followUps": ["experience", "overview"]
+    },
+    {
+      "id": "this-site",
+      "question": "How was this site built?",
+      "topic": "About this site",
+      "keywords": [
+        "this site",
+        "website",
+        "portfolio",
+        "built this",
+        "codeos",
+        "windows 98",
+        "source code",
+        "repo",
+        "repository"
+      ],
+      "answer": "React and TypeScript, built with Vite, with a Windows 98 style code browser. The site is fully static: my answers are prepared from Zach's résumé and project notes.\n\nOpen the Code tab of [the portfolio case study](#/casestudies/portfolio?tab=code) to browse its source.",
+      "followUps": ["about-arlo", "stack", "contact"]
+    },
+    {
+      "id": "experience",
+      "question": "Walk me through Zach's experience",
+      "topic": "Experience",
+      "keywords": [
+        "experience",
+        "career",
+        "history",
+        "background",
+        "resume",
+        "résumé",
+        "years",
+        "worked",
+        "jobs"
+      ],
+      "answer": "- **Ayers Software Repair**, Principal Software Engineer (February 2023 to present): contract engineering for Northrop Grumman and other clients, and its own products.\n- **AmeriSave Mortgage Corporation** (March 2021 to February 2023): Full Stack Developer, then Software Architect and Software Development Manager.\n- **Hack Reactor** (2020): software engineering immersive.\n- **STAK Design** (July 2016 to March 2020): Lead Software Engineer and Engineering Manager; built RabCab.\n- **CMA Architecture** (January 2015 to April 2016): Project Engineer on the Walmart remodel team.\n- **Cowell Steel Structures** (January 2013 to January 2015): Draftsman, then Project Manager.",
+      "followUps": ["northrop", "amerisave", "cad"]
+    },
+    {
+      "id": "overview",
+      "question": "What does Zach do?",
+      "topic": "Experience",
+      "suggested": true,
+      "keywords": [
+        "what do you do",
+        "what does zach do",
+        "who is zach",
+        "about",
+        "summary",
+        "overview",
+        "introduce",
+        "tell me about yourself",
+        "zach",
+        "zachariah",
+        "why"
+      ],
+      "answer": "Zach is a Principal Software Engineer working in C#, .NET, SQL Server and AI agents. He modernizes the systems businesses depend on without breaking them, and designs the platforms engineers build with.\n\n- **Now:** on contract with Northrop Grumman: 40+ legacy applications moved to C# and .NET 8, and a release pipeline that cut deploys from weeks to minutes.\n- **Earlier:** architect at AmeriSave Mortgage: led the move to Azure Red Hat OpenShift, built the company's micro-frontend framework and project generator, led its move to TypeScript, and built a federated GraphQL data layer.\n- **Products:** builds AI agents and MCP servers into his own products.\n\nHe has shipped production software since 2013.",
+      "followUps": ["ayers", "clients", "availability", "contact"]
+    }
+  ],
+  "fallback": "I don't have a prepared answer for that one. Try one of these questions, or email Zach at support@ayers.repair."
+}

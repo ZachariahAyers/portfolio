@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { liveUrl } from '../../shared/content.ts';
-import { profile } from '../../shared/profile.ts';
 import { flattenProjects } from '../features/profile/projects.ts';
-import { caseStudyIds, diagramIds, loadCaseStudy, loadDiagram } from './caseStudies.ts';
+import { caseStudyIds, loadCaseStudy } from './caseStudies.ts';
+import { answerSet, profile } from './profile.ts';
+import { loadSource, sourcePaths } from './source.ts';
+
+const caseStudies = await Promise.all(caseStudyIds.map(loadCaseStudy));
 
 describe('authored content', () => {
   it('has case studies to show', () => {
@@ -10,16 +12,7 @@ describe('authored content', () => {
   });
 
   it.each(caseStudyIds)('case study %s matches the schema and its file name', async (id) => {
-    const caseStudy = await loadCaseStudy(id);
-    expect(caseStudy?.id).toBe(id);
-  });
-
-  it('every diagram belongs to a case study', () => {
-    expect(caseStudyIds).toEqual(expect.arrayContaining(diagramIds));
-  });
-
-  it.each(diagramIds)('diagram %s has Mermaid source', async (id) => {
-    expect((await loadDiagram(id))?.trim()).toBeTruthy();
+    expect((await loadCaseStudy(id))?.id).toBe(id);
   });
 
   it('every project case study link points at an existing case study', () => {
@@ -29,29 +22,43 @@ describe('authored content', () => {
     expect(caseStudyIds).toEqual(expect.arrayContaining(linked));
   });
 
-  it('a live URL is a deployment, never a source repository', async () => {
-    const urls: string[] = [];
-    for (const id of caseStudyIds) {
-      const caseStudy = await loadCaseStudy(id);
-      const url = caseStudy && liveUrl(caseStudy);
-      if (url) urls.push(url);
-    }
-    expect(urls.filter((url) => url.includes('github.com'))).toEqual([]);
+  it('a live URL is a deployment, never a source repository', () => {
+    const live = caseStudies.flatMap((c) => (c?.links.live ? [c.links.live] : []));
+    expect(live.filter((url) => url.includes('github.com'))).toEqual([]);
   });
 
-  it('carries no emoji', async () => {
-    // Characters that render as emoji. Symbols like ™ are allowed.
-    const emoji = /\p{Emoji_Presentation}|\uFE0F/u;
-    expect(JSON.stringify(profile)).not.toMatch(emoji);
-    for (const id of caseStudyIds) {
-      const caseStudy = await loadCaseStudy(id);
-      const { techStackAnalyzer: _code, ...prose } = caseStudy ?? {};
-      expect(JSON.stringify(prose)).not.toMatch(emoji);
+  it('every file a Code tab lists exists in the repository', () => {
+    for (const caseStudy of caseStudies) {
+      for (const path of caseStudy?.source ?? []) expect(sourcePaths).toContain(path);
     }
+  });
+
+  it('gives one contact address, and it is the support address', () => {
+    const text = JSON.stringify([profile, answerSet, caseStudies]);
+    expect(profile.contact.email).toBe('support@ayers.repair');
+    expect([...new Set(text.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g))]).toEqual([
+      'support@ayers.repair',
+    ]);
+  });
+
+  it('carries no emoji', () => {
+    // Characters that render as emoji. Symbols like ™ are allowed.
+    const emoji = /\p{Emoji_Presentation}|️/u;
+    expect(JSON.stringify([profile, answerSet, caseStudies])).not.toMatch(emoji);
+  });
+
+  it('no page claims a live AI model', async () => {
+    const pages = await loadSource(sourcePaths.filter((path) => path.endsWith('.tsx')));
+    const claims =
+      /AI[- ]powered|real[- ]time|Gemini|GPT|language model|Online &amp; Ready|Online & Ready/i;
+    const offending = Object.values(pages)
+      .flat()
+      .filter((file) => claims.test(file.code))
+      .map((file) => file.name);
+    expect(offending).toEqual([]);
   });
 
   it('unknown ids load as nothing', async () => {
     expect(await loadCaseStudy('no-such-study')).toBeUndefined();
-    expect(await loadDiagram('no-such-study')).toBeUndefined();
   });
 });

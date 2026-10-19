@@ -1,0 +1,20 @@
+{
+  "id": "wrapmate",
+  "kind": "client",
+  "title": "Wrapmate VW ID.Buzz configurator",
+  "tagline": "See a custom wrap on the vehicle before ordering",
+  "role": "Contract engineer",
+  "period": "2023",
+  "organization": "Wrapmate",
+  "links": {
+    "live": "https://wraps.wrapmate.com/configurator"
+  },
+  "context": "Wrapmate sells vehicle wraps. The configurator lets customers see a custom wrap on a VW ID.Buzz in real time before ordering.",
+  "delivered": [
+    "A real-time 3D configurator for the VW ID.Buzz",
+    "Tied into Wrapmate's online store",
+    "Built with React, TypeScript, Three.js and WebGL, with a Node and Express back end",
+    "Still live"
+  ],
+  "stack": ["React", "TypeScript", "Three.js", "WebGL", "Node", "Express"]
+}
