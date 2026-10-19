@@ -63,32 +63,14 @@ Time: ${sanitizedError.timestamp}
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
-          padding: '2rem',
-          textAlign: 'center',
-          backgroundColor: '#1a1a1a',
-          color: '#ffffff'
-        }}>
-          <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Something went wrong</h1>
-          <p style={{ marginBottom: '2rem', opacity: 0.8 }}>
+        <div className="flex flex-col items-center justify-center h-screen p-8 text-center bg-[#1a1a1a] text-white">
+          <h1 className="text-[2rem] mb-4">Something went wrong</h1>
+          <p className="mb-8 opacity-80">
             I've been notified and will look into this issue.
           </p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
-            style={{
-              padding: '0.75rem 2rem',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '1rem'
-            }}
+            className="px-8 py-3 bg-[#007bff] text-white rounded-sm cursor-pointer text-base"
           >
             Reload Page
           </button>

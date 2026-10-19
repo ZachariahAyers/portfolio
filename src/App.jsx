@@ -455,8 +455,7 @@ const ContactForm = ({ setView }) => {
         {/* Honeypot field for bot protection */}
         <input 
           type="text" 
-          name="honeypot" 
-          style={{ display: 'none' }}
+          name="honeypot" className="hidden"
           tabIndex="-1"
           autoComplete="off"
           value={formData.honeypot || ''}
@@ -1127,19 +1126,6 @@ Return this exact JSON structure:
 
   return (
     <div className="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-200 font-sans flex flex-col min-h-screen dark:bg-linear-to-br dark:from-gray-900 dark:to-slate-900">
-      <style>{`
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
-        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fade-in-up 0.5s ease-out forwards; }
-        @keyframes scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-25%); }
-        }
-        .animate-bounce { animation: bounce 1s ease-in-out infinite; }
-      `}</style>
       <header className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-lg border-b border-gray-300 dark:border-white/10 p-3 md:p-4 sticky top-0 z-20">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -1189,17 +1175,16 @@ Return this exact JSON structure:
       <div className="flex-1 flex flex-col min-h-0 relative z-0">
         {messages.length === 0 && view === 'chat' ? (
             <div className="text-center p-8 max-sm:p-4 animate-fade-in flex-1 flex flex-col justify-center">
-                <h2 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Welcome to my Portfolio! I'm Zach 👋</h2>
+                <h2 className="text-2xl max-sm:text-xl font-bold text-gray-900 dark:text-white mb-2">Welcome to my Portfolio! I'm Zach</h2>
 
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto" style={{ animationDelay: '120ms', animationFillMode: 'forwards' }}>
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
                 Click the cards below or start typing in the chatbox to get started.
               </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
-                    {suggestedQuestions.map((q, i) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto stagger-in">
+                    {suggestedQuestions.map((q) => (
                         <Tooltip content="Click to ask this question" key={q}>
                             <button 
-                                style={{animationDelay: `${i * 100}ms`, animationFillMode: 'forwards'}} 
                                 onClick={() => handleSend(q)} 
                                 aria-label={`Ask: ${q}`}
                                 className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-left hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 active:scale-95 text-sm animate-fade-in-up opacity-0"

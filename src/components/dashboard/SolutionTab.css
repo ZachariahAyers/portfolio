@@ -27,3 +27,8 @@
 .mermaid-scroll-container::-webkit-scrollbar-corner {
   background: transparent;
 }
+/* Mermaid writes a pixel max-width onto the svg; fit it to the container instead. */
+.mermaid-container svg {
+  max-width: 100% !important;
+  height: auto;
+}

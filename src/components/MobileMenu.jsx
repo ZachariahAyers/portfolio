@@ -18,14 +18,8 @@ const MobileMenu = ({ profileData, onViewChange }) => {
 
   // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.classList.toggle('scroll-locked', isOpen);
+    return () => document.body.classList.remove('scroll-locked');
   }, [isOpen]);
 
   const handleNavClick = (view) => {

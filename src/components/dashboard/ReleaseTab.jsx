@@ -72,7 +72,7 @@ const ScoreCircle = ({ score, label, size = "large", delay = 0 }) => {
   return (
     <div className="flex flex-col items-center">
       <div className="relative">
-        <svg height={radius * 2} width={radius * 2}>
+        <svg height={radius * 2} width={radius * 2} className="-rotate-90">
           <circle
             stroke="currentColor"
             className="text-gray-300 dark:text-gray-700"
@@ -90,7 +90,6 @@ const ScoreCircle = ({ score, label, size = "large", delay = 0 }) => {
             initial={{ strokeDashoffset: circumference }}
             animate={{ strokeDashoffset }}
             transition={{ duration: 1, ease: "easeOut" }}
-            style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
             r={normalizedRadius}
             cx={radius}
             cy={radius}

@@ -54,12 +54,6 @@ const SolutionTab = ({ caseStudyId }) => {
         const { svg } = await mermaid.render(id, diagramContent);
         diagramRef.current.innerHTML = svg;
 
-        // Style the SVG
-        const svgElement = diagramRef.current.querySelector('svg');
-        if (svgElement) {
-          svgElement.style.maxWidth = '100%';
-          svgElement.style.height = 'auto';
-        }
       } catch (error) {
         console.error('Mermaid render error:', error);
         diagramRef.current.innerHTML = '<p class="text-red-400">Error rendering diagram</p>';
@@ -102,7 +96,7 @@ const SolutionTab = ({ caseStudyId }) => {
         transition={{ delay: 0.2 }}
         className="flex-1 flex justify-center items-center"
       >
-        <div className="bg-[#fffae6] rounded-lg p-4 md:p-8 border border-gray-400 dark:border-gray-600 w-full max-w-7xl overflow-auto mermaid-scroll-container touch-pan-x touch-pan-y" style={{ height: '60vh' }}>
+        <div className="bg-[#fffae6] rounded-lg p-4 md:p-8 border border-gray-400 dark:border-gray-600 w-full max-w-7xl overflow-auto mermaid-scroll-container touch-pan-x touch-pan-y h-[60vh]">
           <div ref={diagramRef} className="mermaid-container" />
         </div>
       </motion.div>

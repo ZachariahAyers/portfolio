@@ -282,14 +282,10 @@ const Window98 = ({ title, children, onClose, onMinimize, defaultPosition = { x:
         {/* Resize Handle */}
         {!maximized && (
           <div
-            className={`absolute bottom-0 right-0 w-4 h-4 cursor-se-resize ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-300'}`}
+            className={`absolute bottom-0 right-0 w-4 h-4 cursor-se-resize border-2 ${isDark
+              ? 'hover:bg-gray-700 border-r-[#1f2937] border-b-[#1f2937] border-l-[#6b7280] border-t-[#6b7280]'
+              : 'hover:bg-gray-300 border-r-[#808080] border-b-[#808080] border-l-[#c0c0c0] border-t-[#c0c0c0]'}`}
             onMouseDown={handleResize}
-            style={{
-              borderRight: `2px solid ${isDark ? '#1f2937' : '#808080'}`,
-              borderBottom: `2px solid ${isDark ? '#1f2937' : '#808080'}`,
-              borderLeft: `2px solid ${isDark ? '#6b7280' : '#c0c0c0'}`,
-              borderTop: `2px solid ${isDark ? '#6b7280' : '#c0c0c0'}`
-            }}
           />
         )}
       </div>
@@ -1018,13 +1014,12 @@ const IframeLoader = ({ src, title }) => {
       )}
       <iframe
         src={src}
-        className="w-full h-full"
+        className={`w-full h-full ${loading ? 'invisible' : 'visible'}`}
         title={title}
         onLoad={() => {
           setProgress(100);
           setTimeout(() => setLoading(false), 200);
         }}
-        style={{ visibility: loading ? 'hidden' : 'visible' }}
       />
     </div>
   );
@@ -1235,7 +1230,7 @@ const TechTab = ({ section, caseStudy }) => {
           {/* Desktop */}
           <div className="absolute inset-0 bg-[#008080]">
             {/* Desktop Icons */}
-            <div className="absolute inset-0 p-2" style={{ fontFamily: 'MS Sans Serif, sans-serif' }}>
+            <div className="absolute inset-0 p-2 font-win98">
               <div className="grid grid-cols-2 gap-2 w-[160px]">
                 {desktopApps.map((app) => (
                   <button
@@ -1265,8 +1260,7 @@ const TechTab = ({ section, caseStudy }) => {
                         openDesktopApp(app);
                       }
                     }}
-                    className="group flex flex-col items-center p-1 w-[75px] h-[75px] hover:bg-blue-600/20 focus:bg-blue-600/30 rounded-xs outline-hidden"
-                    style={{ WebkitFontSmoothing: 'none', MozOsxFontSmoothing: 'grayscale' }}
+                    className="group flex flex-col items-center p-1 w-[75px] h-[75px] hover:bg-blue-600/20 focus:bg-blue-600/30 rounded-xs outline-hidden font-smoothing-none"
                   >
                     {/* Icon container with Windows 98 style */}
                     <div className="relative mb-1">
@@ -1289,12 +1283,9 @@ const TechTab = ({ section, caseStudy }) => {
                       text-[11px] leading-tight text-center px-1 py-0.5 rounded-xs
                       ${isDark ? 'text-white' : 'text-white'}
                       ${isDark ? 'group-hover:bg-blue-600 group-focus:bg-blue-600' : 'group-hover:bg-[#000080] group-focus:bg-[#000080]'}
-                      wrap-break-word w-full
-                    `}
-                    style={{ 
-                      textShadow: isDark ? '1px 1px 1px rgba(0,0,0,0.8)' : '1px 1px 1px rgba(0,0,0,1)',
-                      letterSpacing: '0.5px'
-                    }}>
+                      wrap-break-word w-full tracking-[0.5px]
+                      ${isDark ? '[text-shadow:1px_1px_1px_rgba(0,0,0,0.8)]' : '[text-shadow:1px_1px_1px_rgba(0,0,0,1)]'}
+                    `}>
                       {app.name}
                     </span>
                   </button>
@@ -1321,8 +1312,7 @@ const TechTab = ({ section, caseStudy }) => {
                       : (isDark ? 'border-t-gray-500 border-l-gray-500 border-r-gray-900 border-b-gray-900' : 
                          'border-t-white border-l-white border-r-black border-b-black')
                     }
-                  `}
-                  style={{ fontFamily: 'MS Sans Serif, sans-serif' }}
+                   font-win98`}
                 >
                   <div className="w-4 h-4 bg-linear-to-br from-red-500 via-yellow-500 to-blue-500 rounded-xs" />
                   Start
@@ -1337,8 +1327,7 @@ const TechTab = ({ section, caseStudy }) => {
                       border-2
                       ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
                       ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
-                    `}
-                    style={{ fontFamily: 'MS Sans Serif, sans-serif' }}
+                     font-win98`}
                   >
                     {/* Windows 98 banner */}
                     <div className={`
@@ -1455,7 +1444,7 @@ const TechTab = ({ section, caseStudy }) => {
                   title={currentTime.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                   >
                     <div>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
-                    <div style={{ fontSize: '10px' }}>{currentTime.toLocaleDateString([], { month: 'numeric', day: 'numeric', year: '2-digit' })}</div>
+                    <div className="text-[10px]">{currentTime.toLocaleDateString([], { month: 'numeric', day: 'numeric', year: '2-digit' })}</div>
                   </div>
                 </div>
               </div>
@@ -1475,7 +1464,7 @@ const TechTab = ({ section, caseStudy }) => {
               onFocus={() => focusWindow(window.id)}
               icon={window.icon}
             >
-              <React.Suspense fallback={<div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>}>
+              <React.Suspense fallback={<div className="p-5 text-center">Loading...</div>}>
                 <window.component 
                   section={section} 
                   projectName={projectName}
@@ -1496,8 +1485,7 @@ const TechTab = ({ section, caseStudy }) => {
                   border-2
                   ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
                   ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
-                `}
-                style={{ fontFamily: 'MS Sans Serif, sans-serif' }}
+                 font-win98`}
               >
                 {/* Title bar */}
                 <div className={`
@@ -1651,11 +1639,9 @@ const TechTab = ({ section, caseStudy }) => {
                       </div>
                       <span className={`
                         text-[10px] text-center px-0.5 leading-tight
-                        ${isDark ? 'text-white' : 'text-white'}
-                      `}
-                      style={{ 
-                        textShadow: isDark ? '1px 1px 1px rgba(0,0,0,0.8)' : '1px 1px 1px rgba(0,0,0,1)'
-                      }}>
+                        text-white
+                        ${isDark ? '[text-shadow:1px_1px_1px_rgba(0,0,0,0.8)]' : '[text-shadow:1px_1px_1px_rgba(0,0,0,1)]'}
+                      `}>
                         {app.name}
                       </span>
                     </button>
@@ -1698,8 +1684,7 @@ const TechTab = ({ section, caseStudy }) => {
                         border-2
                         ${isDark ? 'border-t-gray-600 border-l-gray-600' : 'border-t-white border-l-white'}
                         ${isDark ? 'border-r-black border-b-black' : 'border-r-gray-800 border-b-gray-800'}
-                      `}
-                      style={{ fontFamily: 'MS Sans Serif, sans-serif' }}
+                       font-win98`}
                     >
                       {/* Windows 98 banner */}
                       <div className={`

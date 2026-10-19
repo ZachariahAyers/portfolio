@@ -56,7 +56,6 @@ const ProblemTab = ({ section }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
           className="relative h-full max-w-6xl mx-auto rounded-lg md:rounded-2xl overflow-hidden border border-gray-300 dark:border-blue-500/20 select-none"
-          style={{ userSelect: 'none', WebkitUserSelect: 'none', MozUserSelect: 'none', msUserSelect: 'none' }}
           onMouseMove={handleMouseMove}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}

@@ -57,7 +57,7 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
                            px-4 py-3 max-sm:px-3 max-sm:py-2.5 shadow-none backdrop-blur-xs"
                 >
                   <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                    <Icon size={18} strokeWidth={2} style={{ color }} />
+                    <Icon size={18} strokeWidth={2} color={color} />
                     <span className="text-sm font-medium">{key}</span>
                   </div>
                 </button>
