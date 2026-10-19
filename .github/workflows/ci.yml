@@ -27,3 +27,38 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run build
+
+  demo:
+    needs: check
+    if: github.event_name == 'push'
+    concurrency:
+      group: demo
+      cancel-in-progress: false
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: arn:aws:iam::993011736775:role/gh-deploy-opensource-portfolio
+          aws-region: us-east-1
+
+      - name: Publish to ayers.repair/opensource/portfolio/
+        run: |
+          aws s3 sync dist/ s3://ayers-repair-site-993011736775/opensource/portfolio/ \
+            --delete --cache-control "public, max-age=300" --only-show-errors
+          aws cloudfront create-invalidation --distribution-id E1CZIGG4O8R7UI \
+            --paths "/opensource/portfolio/*" --query Invalidation.Id --output text
