@@ -1,12 +1,48 @@
-# React + Vite
+# AI Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![CI](https://github.com/ZachariahAyers/ai-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/ZachariahAyers/ai-portfolio/actions/workflows/ci.yml)
 
-Currently, two official plugins are available:
+Zachariah Ayers' portfolio: a chat assistant that answers questions about his work, with case studies and a skills map for hiring managers and clients.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Chat with ARLO, an assistant that answers from his authored profile
+- Project gallery filtered by type and technology
+- Skills map by level and category, with certifications
+- Case studies with requirements, before and after, architecture diagrams and results
+- A Windows 98 style desktop for browsing each project's code
+- Light and dark themes, keyboard friendly, respects reduced motion
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech stack
+
+React 19, TypeScript, Vite, Tailwind CSS, React Router, Motion, Mermaid, Zod, Google Gemini, AWS Lambda.
+
+## Getting started
+
+Requires Node.js 22.22 or newer.
+
+```bash
+npm install
+cp .env.example .env   # add GEMINI_API_KEY for the chat
+npm run dev
+```
+
+## Development
+
+```bash
+npm test
+npm run lint
+npm run typecheck
+npm run build
+npm run check   # all of the above, plus the format check
+```
+
+How it is put together: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## License
+
+All rights reserved. See [LICENSE](LICENSE).
+
+---
+
+Built by [Zachariah Ayers](https://ayers.repair).
