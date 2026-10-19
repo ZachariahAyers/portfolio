@@ -39,73 +39,6 @@ const setBrowserCache = (url, data) => {
   }
 };
 
-// Default good scores to show on error (realistic passing scores)
-const getDefaultGoodScores = () => ({
-  scores: {
-    performance: 92,
-    accessibility: 95,
-    bestPractices: 93,
-    seo: 98
-  },
-  coreWebVitals: {
-    lcp: {
-      value: 2100,
-      score: 0.92,
-      displayValue: '2.1 s'
-    },
-    fid: {
-      value: 85,
-      score: 0.95,
-      displayValue: '85 ms'
-    },
-    cls: {
-      value: 0.08,
-      score: 0.91,
-      displayValue: '0.08'
-    },
-    fcp: {
-      value: 1500,
-      score: 0.93,
-      displayValue: '1.5 s'
-    },
-    tti: {
-      value: 3200,
-      score: 0.90,
-      displayValue: '3.2 s'
-    },
-    si: {
-      value: 2800,
-      score: 0.91,
-      displayValue: '2.8 s'
-    },
-    tbt: {
-      value: 180,
-      score: 0.92,
-      displayValue: '180 ms'
-    }
-  },
-  fieldData: {
-    available: true,
-    origin: window.location.origin,
-    metrics: {
-      fcp: 1600,
-      lcp: 2200,
-      fid: 90,
-      cls: 8
-    }
-  },
-  opportunities: [],
-  diagnostics: [],
-  meta: {
-    finalUrl: window.location.href,
-    fetchTime: new Date().toISOString(),
-    lighthouseVersion: '11.0.0',
-    userAgent: navigator.userAgent,
-    emulatedFormFactor: 'desktop',
-    analyzedAt: new Date().toISOString()
-  }
-});
-
 const usePageSpeedInsights = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -167,21 +100,11 @@ const usePageSpeedInsights = (url) => {
           // Save to browser cache
           setBrowserCache(url, processedData);
         }
-      } catch {
+      } catch (err) {
         if (!cancelled) {
-          // Ensure minimum delay even on error
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          // On error, return good default scores instead of showing error
-          const fallbackData = getDefaultGoodScores();
-          setData(fallbackData);
-          setIsFromCache(true); // Pretend it's cached
-          setCacheAge(0); // Today
-          setBrowserCacheAge(null);
-          setError(null); // Don't expose error
+          setData(null);
+          setError(err.message);
           setLoading(false);
-          
-          // Cache the fallback data too
-          setBrowserCache(url, fallbackData);
         }
       }
     };

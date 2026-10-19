@@ -176,7 +176,7 @@ const AnimatedMetricBox = ({ label, value, unit = '', decimals = 0, delay = 0 })
 
 const ReleaseTab = ({ caseStudy }) => {
   const demoUrl = caseStudy.links?.demo || caseStudy.links?.github;
-  const { data, loading, isFromCache, cacheAge, browserCacheAge } = usePageSpeedInsights(demoUrl);
+  const { data, loading, error, isFromCache, cacheAge, browserCacheAge } = usePageSpeedInsights(demoUrl);
 
   return (
     <div className="h-full relative overflow-hidden bg-black">
@@ -218,7 +218,7 @@ const ReleaseTab = ({ caseStudy }) => {
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-600 dark:text-gray-400">Analysis Status</span>
                 <span className="text-xs text-gray-700 dark:text-gray-300">
-                  {loading ? 'Analyzing...' : 
+                  {loading ? 'Analyzing...' : error ? 'Unavailable' :
                    browserCacheAge !== null ? `Browser Cache (${browserCacheAge}m ago)` :
                    isFromCache ? `Lambda Cache (${cacheAge || 0}d ago)` : 
                    'Fresh Analysis'}
@@ -488,7 +488,7 @@ const ReleaseTab = ({ caseStudy }) => {
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-600 dark:text-gray-400">Analysis Status</span>
               <span className="text-xs text-gray-700 dark:text-gray-300">
-                {loading ? 'Analyzing...' : 
+                {loading ? 'Analyzing...' : error ? 'Unavailable' :
                  browserCacheAge !== null ? `Browser Cache (${browserCacheAge}m ago)` :
                  isFromCache ? `Lambda Cache (${cacheAge || 0}d ago)` : 
                  'Fresh Analysis'}
