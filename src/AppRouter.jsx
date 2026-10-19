@@ -1,21 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import App from './App';
-import ProjectsPage from './components/ProjectsPage';
-import SkillsPage from './components/SkillsPage';
-import CaseStudyDashboard from './components/CaseStudyDashboard';
+import StandalonePage from './components/StandalonePage';
+import profileData from './portfolio-data.json';
 
-const AppRouter = () => {
-  return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/casestudies/:caseStudyId" element={<CaseStudyDashboard />} />
-        </Routes>
-      </Router>
-  );
-};
+const ProjectsView = lazy(() => import('./components/ProjectsView'));
+const SkillsView = lazy(() => import('./components/SkillsView'));
+const CaseStudyDashboard = lazy(() => import('./components/CaseStudyDashboard'));
+
+const AppRouter = () => (
+  <BrowserRouter>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/projects" element={<StandalonePage title="All Projects"><ProjectsView profileData={profileData} /></StandalonePage>} />
+        <Route path="/skills" element={<StandalonePage title="All Skills"><SkillsView profileData={profileData} /></StandalonePage>} />
+        <Route path="/casestudies/:caseStudyId" element={<CaseStudyDashboard />} />
+      </Routes>
+    </Suspense>
+  </BrowserRouter>
+);
 
 export default AppRouter;
