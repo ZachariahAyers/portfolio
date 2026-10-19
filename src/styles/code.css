@@ -1,0 +1,80 @@
+/* Syntax colours for Prism tokens in CodeOS, light and dark. */
+
+.code-block {
+  color: var(--color-gray-800);
+}
+.dark .code-block {
+  color: var(--color-gray-300);
+}
+
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype {
+  color: #6a737d;
+  font-style: italic;
+}
+.code-block .token.keyword,
+.code-block .token.selector,
+.code-block .token.important,
+.code-block .token.atrule {
+  color: #a626a4;
+  font-weight: 600;
+}
+.code-block .token.string,
+.code-block .token.attr-value,
+.code-block .token.char,
+.code-block .token.regex {
+  color: #50a14f;
+}
+.code-block .token.number,
+.code-block .token.boolean,
+.code-block .token.constant {
+  color: #986801;
+}
+.code-block .token.function,
+.code-block .token.class-name {
+  color: #4078f2;
+}
+.code-block .token.tag,
+.code-block .token.property,
+.code-block .token.attr-name {
+  color: #e45649;
+}
+.code-block .token.operator,
+.code-block .token.punctuation {
+  color: #383a42;
+}
+
+.dark .code-block .token.keyword,
+.dark .code-block .token.selector,
+.dark .code-block .token.important,
+.dark .code-block .token.atrule {
+  color: #c678dd;
+}
+.dark .code-block .token.string,
+.dark .code-block .token.attr-value,
+.dark .code-block .token.char,
+.dark .code-block .token.regex {
+  color: #98c379;
+}
+.dark .code-block .token.number,
+.dark .code-block .token.boolean,
+.dark .code-block .token.constant {
+  color: #d19a66;
+}
+.dark .code-block .token.function,
+.dark .code-block .token.class-name {
+  color: #61afef;
+}
+.dark .code-block .token.tag,
+.dark .code-block .token.property,
+.dark .code-block .token.attr-name {
+  color: #e06c75;
+}
+.dark .code-block .token.comment {
+  color: #5c6370;
+}
+.dark .code-block .token.operator,
+.dark .code-block .token.punctuation {
+  color: #abb2bf;
+}

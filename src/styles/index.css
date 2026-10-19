@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+@import './scrollbars.css';
+@import './win98.css';
+@import './code.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-gray-850: #1a202e;
+  --color-gray-925: #0f1419;
+
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-win98: 'MS Sans Serif', sans-serif;
+
+  --animate-fade-in: fade-in 0.5s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.5s ease-out forwards;
+  --animate-scale-in: scale-in 0.3s ease-out forwards;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out forwards;
+  --animate-bounce: soft-bounce 1s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes soft-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25%);
+    }
+  }
+}
+
+/* Tailwind v4 defaults borders to currentColor; keep the v3 grey. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Staggered entrance for the suggested-question cards. */
+.stagger-in > :nth-child(2) {
+  animation-delay: 100ms;
+}
+.stagger-in > :nth-child(3) {
+  animation-delay: 200ms;
+}
+.stagger-in > :nth-child(4) {
+  animation-delay: 300ms;
+}
+.stagger-in > :nth-child(5) {
+  animation-delay: 400ms;
+}
+.stagger-in > :nth-child(6) {
+  animation-delay: 500ms;
+}
+
+/* Before/after comparison: --reveal is the divider position set from React. */
+.slider-reveal {
+  clip-path: inset(0 0 0 var(--reveal));
+}
+.slider-handle {
+  left: var(--reveal);
+}
+
+/* Mermaid writes a pixel max-width onto its svg; fit it to the container instead. */
+.mermaid-container svg {
+  max-width: 100% !important;
+  height: auto;
+}

@@ -1,0 +1,34 @@
+/* Scrollbar styles, one per surface. */
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-subtle {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175) transparent;
+}
+.dark .scrollbar-subtle {
+  scrollbar-color: rgb(75 85 99) transparent;
+}
+
+.dialog-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(59 130 246 / 0.5) rgb(243 244 246);
+}
+.dark .dialog-scrollbar {
+  scrollbar-color: rgb(59 130 246 / 0.5) rgb(30 41 59 / 0.3);
+}
+
+.dashboard-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(59 130 246 / 0.3) rgb(0 0 0 / 0.3);
+}
+
+.mermaid-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(0 0 0 / 0.2) transparent;
+}

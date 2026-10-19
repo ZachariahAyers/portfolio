@@ -1,0 +1,141 @@
+/* CodeOS 98: the Windows 98 look used by the Tech Stack tab. */
+
+.win98-desktop {
+  background: #008080;
+}
+
+.win98-face {
+  background: #c0c0c0;
+  color: #000;
+}
+.dark .win98-face {
+  background: var(--color-gray-800);
+  color: #fff;
+}
+
+/* Raised panel: light top-left edge, dark bottom-right edge. */
+.win98-raised {
+  border: 2px solid;
+  border-color: #fff var(--color-gray-800) var(--color-gray-800) #fff;
+}
+.dark .win98-raised {
+  border-color: var(--color-gray-600) #000 #000 var(--color-gray-600);
+}
+
+.win98-sunken {
+  border: 2px solid;
+  border-color: var(--color-gray-800) #fff #fff var(--color-gray-800);
+}
+.dark .win98-sunken {
+  border-color: #000 var(--color-gray-600) var(--color-gray-600) #000;
+}
+
+.win98-button {
+  border: 1px solid;
+  border-color: #fff #000 #000 #fff;
+}
+.win98-button:active,
+.win98-pressed {
+  border: 1px solid;
+  border-color: #000 #fff #fff #000;
+}
+.dark .win98-button {
+  border-color: var(--color-gray-500) var(--color-gray-900) var(--color-gray-900)
+    var(--color-gray-500);
+}
+.dark .win98-button:active,
+.dark .win98-pressed {
+  border-color: var(--color-gray-900) var(--color-gray-500) var(--color-gray-500)
+    var(--color-gray-900);
+}
+
+.win98-icon-frame {
+  border: 1px solid;
+  border-color: #fff var(--color-gray-600) var(--color-gray-600) #fff;
+}
+.dark .win98-icon-frame {
+  background: var(--color-gray-700);
+  border-color: var(--color-gray-500) var(--color-gray-900) var(--color-gray-900)
+    var(--color-gray-500);
+}
+
+.win98-icon-label {
+  text-shadow: 1px 1px 1px rgb(0 0 0);
+}
+.dark .win98-icon-label {
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 0.8);
+}
+
+.win98-titlebar {
+  background: linear-gradient(to right, #000080, #1084d0);
+}
+.dark .win98-titlebar {
+  background: linear-gradient(to right, var(--color-gray-700), var(--color-gray-600));
+}
+
+.win98-banner {
+  background: linear-gradient(to bottom, #000080, #1084d0);
+}
+.dark .win98-banner {
+  background: linear-gradient(to bottom, var(--color-gray-700), var(--color-gray-900));
+}
+
+.win98-menu-item[data-highlighted] {
+  background: #000080;
+  color: #fff;
+}
+.dark .win98-menu-item[data-highlighted] {
+  background: var(--color-blue-600);
+}
+
+.win98-separator {
+  background: var(--color-gray-400);
+}
+.dark .win98-separator {
+  background: var(--color-gray-600);
+}
+
+.win98-taskbar {
+  border-top: 2px solid #fff;
+}
+.dark .win98-taskbar {
+  border-top-color: var(--color-gray-600);
+}
+
+.win98-tray {
+  border-color: var(--color-gray-400);
+}
+.dark .win98-tray {
+  border-color: var(--color-gray-700);
+}
+
+/* Window geometry comes from CSS variables set while dragging and resizing. */
+.win98-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: var(--win-x);
+  top: var(--win-y);
+  width: var(--win-w);
+  height: var(--win-h);
+  z-index: var(--win-z);
+}
+.win98-window-maximized {
+  inset: 0;
+  width: auto;
+  height: auto;
+}
+
+.win98-resize-handle {
+  border: 2px solid;
+  border-color: #c0c0c0 #808080 #808080 #c0c0c0;
+}
+.dark .win98-resize-handle {
+  border-color: #6b7280 #1f2937 #1f2937 #6b7280;
+}
+
+/* Bitmap-style text for desktop icon labels. */
+.font-smoothing-none {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
