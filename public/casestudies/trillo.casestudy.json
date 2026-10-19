@@ -196,9 +196,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/trillo",
-    "live": "https://trillo.zachayers.io",
-    "documentation": "/projects/trillo/README.md"
+    "github": "https://github.com/ZachariahAyers/trillo"
   },
   "related": ["css", "flexbox", "sass", "responsive-design"]
 }

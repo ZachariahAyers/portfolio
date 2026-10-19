@@ -206,8 +206,7 @@
     ]
   },
   "links": {
-    "live": "https://buzz.wrapmate.com/",
-    "documentation": "/docs/vw-configurator"
+    "live": "https://buzz.wrapmate.com/"
   },
   "related": ["arlo"]
 }

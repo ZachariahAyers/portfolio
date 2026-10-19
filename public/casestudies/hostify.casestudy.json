@@ -216,9 +216,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/hostify",
-    "live": "https://hostify.zachayers.io",
-    "documentation": "/projects/hostify/README.md"
+    "github": "https://github.com/ZachariahAyers/hostify"
   },
   "related": ["nexter", "trillo", "grayscale"]
 }

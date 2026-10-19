@@ -191,8 +191,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/vocation-chrome",
-    "documentation": "/projects/vocation-chrome/README.md"
+    "github": "https://github.com/ZachariahAyers/vocation-chrome"
   },
   "related": ["chrome-extension", "vue", "job-search", "productivity-tools"]
 }

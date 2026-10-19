@@ -24,7 +24,7 @@ const useGitHubStats = () => {
           }
         }
 
-        const accounts = ['N73311', 'MeridianVega'];
+        const accounts = ['ZachariahAyers'];
         let totalStars = 0;
         let totalRepos = 0;
 

@@ -45,7 +45,7 @@ Time: ${sanitizedError.timestamp}
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: 'Error Reporter',
-          email: 'system@zachayers.io',
+          email: 'system@ayers.repair',
           message: errorDetails,
           formType: 'Error Report',
           subject: 'Portfolio AI - Production Error'

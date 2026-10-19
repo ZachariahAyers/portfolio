@@ -183,8 +183,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/RabCab",
-    "documentation": "/projects/RabCab/README.md"
+    "github": "https://github.com/ZachariahAyers/RabCab"
   },
   "related": ["autocad", "cad-automation", "dotnet", "plugin-development"]
 }

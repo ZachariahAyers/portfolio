@@ -218,9 +218,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/chalkboard",
-    "live": "https://chalkboard.zachayers.io",
-    "documentation": "/projects/chalkboard/README.md"
+    "github": "https://github.com/ZachariahAyers/chalkboard"
   },
   "related": ["done-with-it", "vocation", "personai"]
 }

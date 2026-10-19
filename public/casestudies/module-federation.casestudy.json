@@ -306,9 +306,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/modulefederation",
-    "live": "https://modulefederation.zachayers.io",
-    "documentation": "/projects/modulefederation/README.md"
+    "github": "https://github.com/ZachariahAyers/modulefederation"
   },
   "related": [
     "assemblejs",

@@ -187,9 +187,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/GalaxyMVC",
-    "documentation": "/projects/GalaxyMVC/README.md",
-    "demo": "https://galaxymvc.zachayers.io"
+    "github": "https://github.com/ZachariahAyers/GalaxyMVC"
   },
   "related": [
     "php",

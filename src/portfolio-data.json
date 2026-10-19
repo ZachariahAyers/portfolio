@@ -28,10 +28,9 @@
   "contact": {
     "email": "zach@meridianvega.com",
     "linkedin": "https://www.linkedin.com/in/zachariahayers",
-    "github": "https://github.com/N73311",
-    "portfolio": "https://www.zachayers.io",
-    "meridianvega": "https://www.meridianvega.com",
-    "chewableStudio": "https://www.chewable.studio",
+    "github": "https://github.com/ZachariahAyers",
+    "portfolio": "https://ayers.repair",
+    "assemblejs": "https://github.com/ayers-software-repair/assemblejs",
     "location": "Dallas, TX 75204",
     "targetLocations": ["Fort Collins, CO", "Santa Fe, NM", "Austin, TX", "Seattle, WA"]
   },
@@ -172,8 +171,7 @@
       "assemblejs": {
       "name": "AssembleJS",
       "description": "Created modern micro-frontend framework from scratch with islands architecture and server-side rendering support. Enables distributed, component-based UI development.",
-      "url": "assemblejs.com",
-      "github": "github.com/N73311/assemblejs",
+      "github": "github.com/ayers-software-repair/assemblejs",
       "caseStudy": "/casestudies/assemblejs",
       "impact": "Open-source framework used by developers worldwide",
       "image": "/images/projects/assemblejs.png",
@@ -184,8 +182,7 @@
         "description": "High-performance client-side image processing using WebAssembly compiled from Rust. Demonstrates near-native performance for computationally intensive tasks entirely in the browser.",
         "technologies": ["Rust", "WebAssembly", "wasm-bindgen", "Webpack", "Tailwind CSS", "HTML5 File API"],
         "image": "/images/projects/grayscale.png",
-        "url": "https://grayscale.zachayers.io",
-        "github": "https://github.com/N73311/grayscale",
+        "github": "https://github.com/ZachariahAyers/grayscale",
         "caseStudy": "/casestudies/grayscale",
         "impact": "Zero-latency image processing with < 50ms conversion time",
         "highlights": [
@@ -201,8 +198,7 @@
         "description": "Full-stack tour booking platform built with Node.js, Express, MongoDB, and Stripe. Features RESTful API, JWT authentication, server-side rendering, and real-time geospatial queries.",
         "technologies": ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Stripe", "Pug", "Mapbox", "Nodemailer"],
         "image": "/images/projects/natours.png",
-        "url": "https://natours.zachayers.io",
-        "github": "https://github.com/N73311/natours",
+        "github": "https://github.com/ZachariahAyers/natours",
         "caseStudy": "/casestudies/natours",
         "impact": "Enterprise-grade booking system with < 200ms API response time",
         "highlights": [
@@ -218,8 +214,7 @@
         "description": "Multi-Spa app utilizing Webpack Module Federation, seamlessly integrating multiple front-end applications into a single container for enhanced scalability.",
         "technologies": ["Angular", "React", "Vue", "Docker", "TypeScript", "Material-UI", "Webpack Module Federation", "AWS CloudFront/S3"],
         "image": "/images/projects/moduleFederation.png",
-        "url": "https://modulefederation.zachayers.io",
-        "github": "https://github.com/zjayers/mfe.complete/tree/master/packages",
+        "github": "https://github.com/ZachariahAyers/modulefederation",
         "caseStudy": "/casestudies/module-federation"
       },
       "galaxyMVC": {
@@ -227,8 +222,7 @@
         "description": "Lightweight PHP MVC framework built from scratch demonstrating clean architecture patterns. Features custom routing, PDO database wrapper, autoloading, and zero dependencies - perfect for learning MVC concepts.",
         "technologies": ["PHP 7.2+", "MySQL/MariaDB", "Apache", "PDO", "MVC Pattern", "PSR-4"],
         "image": "/images/projects/galaxyMVC.png",
-        "url": "https://galaxymvc.zachayers.io",
-        "github": "https://github.com/N73311/GalaxyMVC",
+        "github": "https://github.com/ZachariahAyers/GalaxyMVC",
         "caseStudy": "/casestudies/galaxymvc",
         "impact": "Under 1K lines of code with < 50ms response time",
         "highlights": [
@@ -244,8 +238,8 @@
         "description": "Native desktop application wrapper for Remix IDE, providing Ethereum developers with a dedicated smart contract development environment. Cross-platform support with auto-updates and native OS integration.",
         "technologies": ["Electron", "Node.js", "JavaScript", "Electron Forge", "Squirrel", "Ethereum", "Solidity"],
         "image": "/images/projects/remixIDE.png",
-        "url": "https://github.com/N73311/remix.ide/releases",
-        "github": "https://github.com/N73311/remix.ide",
+        "url": "https://github.com/ZachariahAyers/remix.ide/releases",
+        "github": "https://github.com/ZachariahAyers/remix.ide",
         "caseStudy": "/casestudies/remixide",
         "impact": "Native desktop experience with < 3s startup time and automatic updates",
         "highlights": [
@@ -261,8 +255,7 @@
         "description": "Streamlines the process of sharing and joining events, allowing users to easily connect with like-minded individuals.",
         "technologies": ["C#", "ASP.NET Core 5", "Entity Framework", "React", "Redux", "TypeScript", "SQL Server", "Redis", "Azure"],
         "image": "/images/projects/lively.png",
-        "url": "https://lively.zachayers.io",
-        "github": "https://github.com/zjayers/asp.net.core.react/tree/master/Core",
+        "github": "https://github.com/ZachariahAyers/lively",
         "caseStudy": "/casestudies/lively"
       }
     },
@@ -282,7 +275,7 @@
         "technologies": ["Vue.js", "Vuex", "Chrome Extension API", "SCSS", "Webpack", "Content Scripts"],
         "image": "/images/projects/vocation.png",
         "url": "https://chromewebstore.google.com/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
-        "github": "https://github.com/N73311/vocation-chrome",
+        "github": "https://github.com/ZachariahAyers/vocation-chrome",
         "caseStudy": "/casestudies/vocation",
         "impact": "60% reduction in job application time, 5K+ active users",
         "highlights": [
@@ -298,8 +291,7 @@
         "description": "Real-time collaborative drawing app with Socket.IO and p5.js. Multiple users can draw together with instant synchronization, showcasing WebSocket architecture and scaling challenges.",
         "technologies": ["React", "Socket.IO", "p5.js", "Express", "Material-UI", "Canvas API"],
         "image": "/images/projects/chalkboard.png",
-        "url": "https://chalkboard.zachayers.io",
-        "github": "https://github.com/N73311/chalkboard",
+        "github": "https://github.com/ZachariahAyers/chalkboard",
         "caseStudy": "/casestudies/chalkboard",
         "impact": "< 50ms latency with 50+ concurrent users",
         "highlights": [
@@ -315,7 +307,7 @@
         "description": "React Native marketplace app with Expo – my first mobile development experience",
         "technologies": "React Native, Expo",
         "image": "/images/projects/doneWithIt.jpeg",
-        "github": "https://github.com/N73311/done-with-it",
+        "github": "https://github.com/ZachariahAyers/done-with-it",
         "caseStudy": "/casestudies/done-with-it"
       },
       "sliceOfLife": {
@@ -330,8 +322,7 @@
         "description": "Modern cloud hosting landing page showcasing component-based architecture, responsive design, and performance optimization. Built with semantic HTML5, CSS Grid, and vanilla JavaScript.",
         "technologies": ["HTML5", "CSS3", "JavaScript", "CSS Grid", "Flexbox", "BEM", "Parcel", "AOS"],
         "image": "/images/projects/hostify.png",
-        "url": "https://hostify.zachayers.io",
-        "github": "https://github.com/N73311/hostify",
+        "github": "https://github.com/ZachariahAyers/hostify",
         "caseStudy": "/casestudies/hostify",
         "impact": "98/100 PageSpeed score with < 3s load time",
         "highlights": [
@@ -347,8 +338,7 @@
         "description": "Advanced CSS Grid real estate platform showcasing modern layout techniques. Features complex nested grids, responsive design patterns, and sophisticated SCSS architecture demonstrating mastery of CSS Grid and Flexbox.",
         "technologies": ["HTML5", "CSS3 Grid", "SCSS/SASS", "PostCSS", "Autoprefixer", "NPM Scripts", "BEM Methodology"],
         "image": "/images/projects/nexter.png",
-        "url": "https://nexter.zachayers.io",
-        "github": "https://github.com/N73311/nexter",
+        "github": "https://github.com/ZachariahAyers/nexter",
         "caseStudy": "/casestudies/nexter",
         "impact": "Demonstrates advanced CSS Grid layouts with 100% responsive design and < 1s load time"
       },
@@ -357,8 +347,7 @@
         "description": "Modern hotel booking UI built with advanced CSS Flexbox techniques. Demonstrates complex layouts, animations, and responsive design patterns using pure CSS without JavaScript.",
         "technologies": ["CSS3 Flexbox", "SCSS/SASS", "HTML5", "SVG Sprites", "CSS Variables", "PostCSS", "BEM Methodology"],
         "image": "/images/projects/trillo.png",
-        "url": "https://trillo.zachayers.io",
-        "github": "https://github.com/N73311/trillo",
+        "github": "https://github.com/ZachariahAyers/trillo",
         "caseStudy": "/casestudies/trillo",
         "impact": "100% Flexbox responsive layout with < 1s load time",
         "highlights": [
@@ -374,8 +363,7 @@
         "description": "Modern camping website showcasing advanced Bootstrap 4 customization, SCSS architecture, and responsive design. Features parallax scrolling, custom animations, and interactive components for an immersive outdoor experience.",
         "technologies": ["Bootstrap 4", "SCSS/SASS", "jQuery", "HTML5", "CSS Grid", "Font Awesome 5", "Google Fonts"],
         "image": "/images/projects/auroraGrove.png",
-        "url": "https://auroragrove.zachayers.io",
-        "github": "https://github.com/N73311/auroragrove",
+        "github": "https://github.com/ZachariahAyers/auroragrove",
         "caseStudy": "/casestudies/auroragrove",
         "impact": "98/100 Lighthouse score, 100% mobile responsive, <2s load time",
         "highlights": [
@@ -445,7 +433,6 @@
       "meridianVega": {
         "name": "Meridian Vega",
         "description": "My consulting S-Corp offering enterprise technology solutions, specializing in AI/ML integration, legacy modernization, and scalable architecture design.",
-        "url": "meridianvega.com",
         "caseStudy": "/casestudies/meridian-vega",
         "technologies": ["React", "Node.js", "AI/ML", "Cloud Architecture", "Enterprise Solutions"],
         "impact": "Delivering high-impact consulting solutions for Fortune 500 companies",
@@ -455,7 +442,6 @@
       "chewableStudios": {
         "name": "Chewable Studios",
         "description": "My full-service game studio and publisher developing for PC, console, and mobile platforms.",
-        "url": "chewable.studio",
         "caseStudy": "/casestudies/chewable-studios",
         "technologies": ["Unity", "C#", "React", "TypeScript", "Game Development"],
         "impact": "End-to-end game development from concept to publishing",
@@ -465,7 +451,6 @@
       "howland": {
         "name": "Howland",
         "description": "Custom-built and trained LLM (Large Language Model) specialized for legacy system modernization. Transforms COBOL, RPG, FORTRAN, VB6 to modern languages with full model training from scratch.",
-        "url": "howland.meridianvega.com/info",
         "caseStudy": "/casestudies/howland",
         "technologies": ["PyTorch", "Transformer Architecture", "Custom LLM", "Machine Learning", "Code Analysis", "AST Parsing"],
         "impact": "Autonomous AI assistant for legacy-to-modern code transformation",
@@ -797,9 +782,9 @@
       "AMC MicroFrontend Architecture Technical Handbook"
     ],
     "openSource": [
-      "GitHub Portfolio: github.com/N73311",
+      "GitHub Portfolio: github.com/ZachariahAyers",
       "Organization profiles: github.com/MeridianVega, github.com/Chewable-Studio",
-      "AssembleJS Framework: github.com/N73311/assemblejs",
+      "AssembleJS Framework: github.com/ayers-software-repair/assemblejs",
       "Vocation Chrome Plugin"
     ],
     "currentProjects": [

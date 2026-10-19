@@ -308,10 +308,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/n73311/lively",
-    "live": "https://lively.zachayers.io",
-    "documentation": "/projects/lively/README.md",
-    "demo": "https://lively.zachayers.io"
+    "github": "https://github.com/ZachariahAyers/lively"
   },
   "related": [
     "chalkboard",

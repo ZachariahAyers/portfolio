@@ -193,9 +193,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/nexter",
-    "live": "https://nexter.zachayers.io",
-    "documentation": "/projects/nexter/README.md"
+    "github": "https://github.com/ZachariahAyers/nexter"
   },
   "related": ["trillo", "natours", "module-federation"]
 }

@@ -175,8 +175,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/remix.ide",
-    "documentation": "/projects/remix.ide/README.md"
+    "github": "https://github.com/ZachariahAyers/remix.ide"
   },
   "related": ["electron", "ethereum", "solidity", "developer-tools"]
 }

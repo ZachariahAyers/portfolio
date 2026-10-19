@@ -210,9 +210,7 @@
     ]
   },
   "links": {
-    "github": "https://github.com/N73311/grayscale",
-    "documentation": "/projects/grayscale/README.md",
-    "demo": "https://grayscale.zachayers.io"
+    "github": "https://github.com/ZachariahAyers/grayscale"
   },
   "related": [
     "webassembly",

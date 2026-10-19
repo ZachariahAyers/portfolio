@@ -7,7 +7,6 @@ import QuickOptionsFlyout from './components/QuickOptionsFlyout';
 import WelcomeModal from './components/WelcomeModal';
 import DetailedView from './components/DetailedView';
 import ThemeToggle from './components/ThemeToggle';
-import LighthouseButton from './components/LighthouseButton';
 import MobileMenu from './components/MobileMenu';
 import { Tooltip } from './components/Tooltip';
 import profileData from './portfolio-data.json';
@@ -1185,7 +1184,6 @@ Return this exact JSON structure:
                   </Tooltip>
                 </div>
                 <ThemeToggle />
-                <LighthouseButton />
                 {/* Mobile Menu */}
                 <MobileMenu profileData={profileData} onViewChange={changeView} />
               </div>
@@ -1288,13 +1286,9 @@ Return this exact JSON structure:
                     {/* Desktop: Full footer */}
                     <div className="hidden md:block space-y-2">
                         <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
-                            <a href={profileData.contact.meridianvega} target="_blank" rel="noopener noreferrer" aria-label="Visit Meridian Vega website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Meridian Vega</a>
+                            <a href={profileData.contact.portfolio} target="_blank" rel="noopener noreferrer" aria-label="Visit ayers.repair" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">ayers.repair</a>
                             <span>•</span>
-                            <a href={profileData.contact.chewableStudio} target="_blank" rel="noopener noreferrer" aria-label="Visit Chewable Studios website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Chewable Studios</a>
-                            <span>•</span>
-                            <a href="https://assemblejs.com" target="_blank" rel="noopener noreferrer" aria-label="Visit AssembleJS website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
-                            <span>•</span>
-                            <a href="https://howland.meridianvega.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Howland AI website" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Howland AI</a>
+                            <a href={profileData.contact.assemblejs} target="_blank" rel="noopener noreferrer" aria-label="View AssembleJS on GitHub" className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">AssembleJS</a>
                         </div>
                         
                         <div className="text-gray-600 dark:text-gray-500">

@@ -42,8 +42,8 @@ const MobileMenu = ({ profileData, onViewChange }) => {
   ];
 
   const footerLinks = [
-    { label: 'Meridian Vega', href: profileData.contact.meridianvega },
-    { label: 'Chewable Studios', href: profileData.contact.chewableStudio },
+    { label: 'ayers.repair', href: profileData.contact.portfolio },
+    { label: 'AssembleJS', href: profileData.contact.assemblejs },
   ];
 
   return (
