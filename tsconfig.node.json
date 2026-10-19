@@ -17,5 +17,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "server/dev-plugin.ts"]
+  "include": ["vite.config.ts"]
 }

@@ -1,18 +1,11 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
-import { devApi } from './server/dev-plugin.ts';
 
-export default defineConfig(({ isSsrBuild }) => ({
-  plugins: [react(), tailwindcss(), devApi()],
-  build: {
-    // The Lambda bundle needs no static files.
-    copyPublicDir: isSsrBuild !== true,
-  },
-  ssr: {
-    // The Lambda bundle ships as one file with no node_modules beside it.
-    noExternal: true,
-  },
+export default defineConfig(({ command }) => ({
+  // The site is served from ayers.repair/opensource/portfolio/.
+  base: command === 'build' ? '/opensource/portfolio/' : '/',
+  plugins: [react(), tailwindcss()],
   test: {
     projects: [
       {
@@ -20,7 +13,7 @@ export default defineConfig(({ isSsrBuild }) => ({
         test: {
           name: 'node',
           environment: 'node',
-          include: ['{shared,server,src}/**/*.test.ts'],
+          include: ['src/**/*.test.ts'],
         },
       },
       {

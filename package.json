@@ -1,17 +1,21 @@
 {
-  "name": "ai-portfolio",
+  "name": "portfolio",
   "private": true,
   "version": "2.0.0",
-  "description": "Conversational portfolio for Zachariah Ayers: a chat assistant, project case studies and a skills map.",
+  "description": "Zachariah Ayers' portfolio: ARLO, a guide that answers from his records, with case studies, projects and skills.",
   "author": "Zachariah Ayers",
-  "homepage": "https://ayers.repair",
+  "homepage": "https://ayers.repair/opensource/portfolio/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZachariahAyers/portfolio.git"
+  },
   "type": "module",
   "engines": {
     "node": ">=22.22.0"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && vite build --ssr server/lambda.ts --outDir dist-server",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "lint": "oxlint --type-aware --max-warnings 0",
@@ -22,7 +26,6 @@
   },
   "dependencies": {
     "lucide-react": "^1.59.0",
-    "mermaid": "^12.2.0",
     "motion": "^14.4.0",
     "prism-react-renderer": "^2.4.1",
     "radix-ui": "^1.8.1",
@@ -38,7 +41,6 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
-    "@types/aws-lambda": "^8.10.164",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
