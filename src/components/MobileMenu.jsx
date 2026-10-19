@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, User, Briefcase, Layers, Globe, Mail } from 'lucide-react';
-import { Tooltip } from './Tooltip';
 
 const MobileMenu = ({ profileData, onViewChange }) => {
   const [isOpen, setIsOpen] = useState(false);

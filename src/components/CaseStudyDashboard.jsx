@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router';
-import { ArrowLeft, Beaker, Activity, Atom, CircuitBoard, Sparkles, Zap, Brain, 
-         FlaskConical, Binary, BarChart3, Cpu, Layers, X, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Beaker, Activity, Atom, FlaskConical, Binary, BarChart3, Cpu, Layers, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Tooltip } from './Tooltip';
 
@@ -13,6 +12,15 @@ import ResultsTab from './dashboard/ResultsTab';
 import TechTab from './dashboard/TechTab';
 import ReleaseTab from './dashboard/ReleaseTab';
 
+const TABS = [
+  { id: 'overview', label: 'Overview', icon: FlaskConical },
+  { id: 'problem', label: 'Problem', icon: Binary },
+  { id: 'solution', label: 'Solution', icon: Cpu },
+  { id: 'results', label: 'Results', icon: BarChart3 },
+  { id: 'release', label: 'Release', icon: Activity },
+  { id: 'tech', label: 'Tech Stack', icon: Layers }
+];
+
 const CaseStudyDashboard = () => {
   const { caseStudyId } = useParams();
   const navigate = useNavigate();
@@ -21,18 +29,17 @@ const CaseStudyDashboard = () => {
   const [activeTab, setActiveTab] = useState(() => {
     // Check URL hash for initial tab
     const hash = window.location.hash.slice(1);
-    const validTabs = ['overview', 'problem', 'solution', 'results', 'release', 'tech'];
-    return validTabs.includes(hash) ? hash : 'overview';
+    return TABS.some(tab => tab.id === hash) ? hash : 'overview';
   });
   const [showCodeModal, setShowCodeModal] = useState(null);
 
   // Floating particles effect
-  const particles = Array.from({ length: 30 }, (_, i) => ({
+  const [particles] = useState(() => Array.from({ length: 30 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
     duration: 15 + Math.random() * 20
-  }));
+  })));
 
   useEffect(() => {
     const loadCaseStudy = async () => {
@@ -54,15 +61,6 @@ const CaseStudyDashboard = () => {
     loadCaseStudy();
   }, [caseStudyId, navigate]);
 
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: FlaskConical },
-    { id: 'problem', label: 'Problem', icon: Binary },
-    { id: 'solution', label: 'Solution', icon: Cpu },
-    { id: 'results', label: 'Results', icon: BarChart3 },
-    { id: 'release', label: 'Release', icon: Activity },
-    { id: 'tech', label: 'Tech Stack', icon: Layers }
-  ];
-
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -70,8 +68,8 @@ const CaseStudyDashboard = () => {
         navigate('/');
       } else if (e.key >= '1' && e.key <= '6') {
         const tabIndex = parseInt(e.key) - 1;
-        if (tabs[tabIndex]) {
-          setActiveTab(tabs[tabIndex].id);
+        if (TABS[tabIndex]) {
+          setActiveTab(TABS[tabIndex].id);
         }
       }
     };
@@ -196,7 +194,7 @@ const CaseStudyDashboard = () => {
       {/* Tab Navigation - 60px to accommodate number indicators */}
       <nav className="h-[60px] border-b border-gray-300 dark:border-gray-700/50 backdrop-blur-xs bg-gray-50/80 dark:bg-gray-800/30 overflow-x-auto">
         <div className="h-full px-3 md:px-6 flex items-center gap-0.5 md:gap-1 pt-2 min-w-max">
-          {tabs.map((tab, index) => {
+          {TABS.map((tab, index) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
             

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { ArrowUp, User, Bot, Globe, Send, X, Mail, Briefcase, History, UserCheck, Users, Monitor } from 'lucide-react';
+import { ArrowUp, User, Bot, Send, X, Monitor } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import QuickCards from './components/QuickCards';
 import QuickOptionsFlyout from './components/QuickOptionsFlyout';
@@ -547,21 +547,21 @@ const updateUsage = () => {
   return usage;
 };
 
+const msSinceLastMessage = () => Date.now() - getUsageData().lastMessageTime;
+
 export default function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [view, setView] = useState('chat'); // 'chat', 'contact', 'me', 'projects', 'skills'
-  const [usageData, setUsageData] = useState(getUsageData());
+  const [usageData, setUsageData] = useState(getUsageData);
   const [lastAskedQuestion, setLastAskedQuestion] = useState(null);
   const [showFollowUps, setShowFollowUps] = useState(false);
-  const [lastMessageTime, setLastMessageTime] = useState(0);
   const [showFlyout, setShowFlyout] = useState(false);
   const [showQuickButtons, setShowQuickButtons] = useState(window.innerWidth >= 768);
 
   // User interaction tracking
   const [userInteractions, setUserInteractions] = useState([]);
-  const [personalizedContent, setPersonalizedContent] = useState(null);
   
   const chatEndRef = useRef(null);
   const navigate = useNavigate();
@@ -635,7 +635,7 @@ export default function App() {
     // Removed hourly limit - 50 messages per day is sufficient for free tier
 
     // Check cooldown (3 seconds)
-    const timeSinceLastMessage = Date.now() - lastMessageTime;
+    const timeSinceLastMessage = msSinceLastMessage();
     if (timeSinceLastMessage < 3000) {
         const waitTime = Math.ceil((3000 - timeSinceLastMessage) / 1000);
         setMessages(prev => [...prev, { 
@@ -657,7 +657,6 @@ export default function App() {
         setInput('');
     }
     setIsTyping(true);
-    setLastMessageTime(Date.now());
     
     // Track the question for follow-ups
     setLastAskedQuestion(truncatedText);
@@ -819,7 +818,7 @@ Return ONLY the executive summary text, no JSON, no formatting, just 2-3 sentenc
       
       const text = result.candidates[0].content.parts[0].text.trim();
       return text;
-    } catch (error) {
+    } catch {
       // Executive summary generation failed - fallback to default
       return profileData.personal.executiveSummary[0];
     }
@@ -929,21 +928,19 @@ Return this exact JSON structure:
         
         // Parse JSON response
         const parsed = JSON.parse(cleanText);
-        setPersonalizedContent(parsed);
         setIsTyping(false);
         return parsed;
-      } catch (parseError) {
+      } catch {
         
         // Fallback to static content - use the full whatIBring array
         const fallbackContent = { 
           executiveSummary: profileData.personal.executiveSummary[0],
           bulletPoints: profileData.personal.whatIBring
         };
-        setPersonalizedContent(fallbackContent);
         setIsTyping(false);
         return fallbackContent;
       }
-    } catch (error) {
+    } catch {
       // Error generating personalized content - fallback to static
       setIsTyping(false);
       // Fallback to static content
@@ -1113,17 +1110,15 @@ Return this exact JSON structure:
           case 'projects':
           case 'skills':
               return <DetailedView
+                key={view}
                 mode={view}
                 onClose={() => setView('chat')}
                 profileData={profileData}
-                userInteractions={userInteractions}
-                personalizedContent={personalizedContent}
                 onGenerateContent={generatePersonalizedContent}
                 onGenerateExecutiveSummary={generateExecutiveSummary}
                 onContactClick={() => {
                   setView('contact');
                 }}
-                isGenerating={isTyping}
               />;
           default:
               return null;
@@ -1311,7 +1306,6 @@ Return this exact JSON structure:
         isOpen={showFlyout}
         onClose={() => setShowFlyout(false)}
         onQuestionClick={handleFlyoutQuestionClick}
-        onViewChange={changeView}
       />
     </div>
   );

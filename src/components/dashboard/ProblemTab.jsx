@@ -5,10 +5,9 @@ import { AlertTriangle, CheckCircle2, Zap, X } from 'lucide-react';
 const ProblemTab = ({ section }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [selectedPoint, setSelectedPoint] = useState(null);
-  
-  if (!section) return null;
-
   const isDragging = React.useRef(false);
+
+  if (!section) return null;
   
   const handleMouseDown = (e) => {
     e.preventDefault(); // Prevent text selection

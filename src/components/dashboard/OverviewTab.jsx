@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { 
-  AlertCircle, CheckCircle2, Clock, User, Calendar, Hash, Link2, Paperclip,
-  MessageSquare, GitBranch, Tag, MoreHorizontal, ChevronDown, Zap, Bug, BookOpen
-} from 'lucide-react';
+import { useState } from 'react';
+import { AlertCircle, Clock, User, Calendar, Link2, Paperclip, MessageSquare, MoreHorizontal, ChevronDown, Zap, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import './dashboard.css';
 
@@ -13,7 +10,9 @@ const OverviewTab = ({ caseStudy }) => {
   
   // Generate Jira ticket data from case study
   const jiraPrefix = caseStudy.businessRequirements?.jiraPrefix || 'PROJ';
-  const ticketId = `${jiraPrefix}-${Math.floor(Math.random() * 9000) + 1000}`;
+  const [ticketNumber] = useState(() => Math.floor(Math.random() * 9000) + 1000);
+  const [sprint] = useState(() => Math.floor(Math.random() * 20) + 1);
+  const ticketId = `${jiraPrefix}-${ticketNumber}`;
 
   return (
     <div className="h-full flex flex-col bg-gray-200 dark:bg-gray-900 p-4 md:p-8">
@@ -88,7 +87,7 @@ const OverviewTab = ({ caseStudy }) => {
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-gray-500" />
                   <span className="text-gray-600 dark:text-gray-400">Sprint:</span>
-                  <span className="text-gray-900 dark:text-white">Sprint {Math.floor(Math.random() * 20) + 1}</span>
+                  <span className="text-gray-900 dark:text-white">Sprint {sprint}</span>
                 </div>
               </div>
             </div>
@@ -297,7 +296,7 @@ const OverviewTab = ({ caseStudy }) => {
                     
                     <div>
                       <p className="text-xs text-gray-500 dark:text-gray-500 mb-1">Sprint</p>
-                      <span className="text-gray-900 dark:text-white">Sprint {Math.floor(Math.random() * 20) + 1}</span>
+                      <span className="text-gray-900 dark:text-white">Sprint {sprint}</span>
                     </div>
                     
                     {caseStudy.timeline?.year && (

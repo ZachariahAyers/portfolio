@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const StreamingText = ({ 
   bulletPoints = [], 
   speed = 8, 
-  onComplete,
   className = ""
 }) => {
   const [displayedBullets, setDisplayedBullets] = useState([]);
@@ -11,10 +10,6 @@ const StreamingText = ({
   const intervalRef = useRef(null);
 
   useEffect(() => {
-    // Reset state
-    setDisplayedBullets([]);
-    setCurrentText('');
-    
     // Clear any existing interval
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -31,7 +26,6 @@ const StreamingText = ({
     intervalRef.current = setInterval(() => {
       if (bulletIdx >= bulletPoints.length) {
         clearInterval(intervalRef.current);
-        if (onComplete) onComplete();
         return;
       }
 
@@ -57,8 +51,7 @@ const StreamingText = ({
         if (bulletIdx >= bulletPoints.length) {
           setCurrentText('');
           clearInterval(intervalRef.current);
-          if (onComplete) onComplete();
-        } else {
+          } else {
           // Start showing the next bullet immediately
           setCurrentText('');
         }

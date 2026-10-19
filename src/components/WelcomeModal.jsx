@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Info, Bot, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { X, Info, Zap } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 
 const WelcomeModal = ({ trigger }) => {

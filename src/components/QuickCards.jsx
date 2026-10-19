@@ -1,4 +1,3 @@
-import React from 'react';
 import { User, Briefcase, Layers, Mail, CircleEllipsis, ChevronDown, ChevronUp } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 
@@ -10,7 +9,6 @@ const QuickCards = ({ onCardClick, onMoreClick, isVisible, onToggleVisibility, o
     { key: 'Skills', color: '#856ED9', icon: Layers, question: 'What are your skills? Give me a list of your soft and hard skills.', tooltip: 'View my skills' },
     { key: 'Contact', color: '#EAB308', icon: Mail, question: 'How can I contact you?', tooltip: 'Contact information' }
   ];
-
 
   return (
     <div className="w-full">

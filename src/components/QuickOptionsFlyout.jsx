@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { X, Sparkles, Code, Users, Briefcase, DollarSign, Settings } from 'lucide-react';
 import profileData from '../portfolio-data.json';
 
-const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) => {
+const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';

@@ -1,36 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 
-const ThemeToggle = () => {
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState('light');
+const initialTheme = () =>
+  localStorage.getItem('theme') ||
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-  // Initialize theme from localStorage or system preference
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState(initialTheme);
+
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const initialTheme = savedTheme || systemTheme;
-    
-    setTheme(initialTheme);
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-    setMounted(true);
-  }, []);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
   };
-
-  if (!mounted) {
-    return (
-      <button className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 transition-colors">
-        <div className="w-5 h-5" />
-      </button>
-    );
-  }
 
   return (
     <Tooltip content={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>

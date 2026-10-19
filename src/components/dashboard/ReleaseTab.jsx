@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Activity, TrendingUp, Clock, AlertCircle, CheckCircle, 
-  FileText, BarChart3, Search, Gauge, Info, AlertTriangle
-} from 'lucide-react';
+import { Activity, TrendingUp, CheckCircle, BarChart3, Search, Info, AlertTriangle } from 'lucide-react';
 import usePageSpeedInsights from '../../hooks/usePageSpeedInsights';
 import './dashboard.css';
 

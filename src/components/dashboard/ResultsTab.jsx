@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FileText, TrendingUp, DollarSign, Users, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import './dashboard.css';
 
 const ResultsTab = ({ section, caseStudyId = 'report' }) => {
   const [activeSection, setActiveSection] = useState(0); // Start with Business Impact expanded (now at index 0)
+  const [reportStamp] = useState(() => Date.now().toString(36).toUpperCase());
   
   if (!section) return null;
 
@@ -205,7 +206,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
         transition={{ delay: 0.8 }}
         className="mt-4 text-center text-xs text-gray-600 dark:text-gray-500"
       >
-        <p>Report ID: {caseStudyId}-{Date.now().toString(36).toUpperCase()}</p>
+        <p>Report ID: {caseStudyId}-{reportStamp}</p>
       </motion.div>
       </div>
     </div>

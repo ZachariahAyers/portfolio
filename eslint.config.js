@@ -19,9 +19,6 @@ export default defineConfig([
         ecmaFeatures: { jsx: true },
       },
     },
-    rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-    },
   },
   {
     files: ['**/*.test.js'],

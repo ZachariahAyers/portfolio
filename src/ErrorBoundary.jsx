@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 const LAMBDA_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 

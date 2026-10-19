@@ -1,14 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router';
-import { 
-  FileText, Folder, FolderOpen, X, Minus, Square,
-  Code2, Database, Cloud, GitBranch, Package, Globe,
-  Server, Terminal, Cpu, Settings, ExternalLink,
-  Palette, CircuitBoard, Regex, Activity, NotebookPen, Monitor,
-  Satellite, Sparkles, Atom, Zap, Binary, Radio, Power,
-  Gamepad2, Grid3x3, AlertTriangle
-} from 'lucide-react';
+import { FileText, Folder, FolderOpen, X, Minus, Square, Code2, Terminal, ExternalLink, Palette, CircuitBoard, Regex, NotebookPen, Satellite, Sparkles, Zap, Radio, Power, Grid3x3, AlertTriangle } from 'lucide-react';
 
 // Windows 98 Boot Screen
 const BootScreen = ({ onBootComplete, projectName }) => {
@@ -1229,7 +1222,6 @@ const TechTab = ({ section, caseStudy }) => {
               setShowBoot(true);
               setWindows([]);
               setStartMenuOpen(false);
-              setBsodTriggerCount(0);
               setTimeout(() => {
                 handleBootComplete();
               }, 100);

@@ -1,18 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const StreamingTextSimple = ({ 
   text = '', 
   speed = 8, 
-  onComplete,
   className = ""
 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const intervalRef = useRef(null);
 
   useEffect(() => {
-    // Reset state
-    setDisplayedText('');
-    
     // Clear any existing interval
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -29,7 +25,6 @@ const StreamingTextSimple = ({
         charIdx++;
       } else {
         clearInterval(intervalRef.current);
-        if (onComplete) onComplete();
       }
     }, speed);
 
@@ -38,7 +33,7 @@ const StreamingTextSimple = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [text, speed, onComplete]);
+  }, [text, speed]);
 
   return (
     <p className={`text-gray-800 dark:text-gray-300 leading-relaxed ${className}`}>
