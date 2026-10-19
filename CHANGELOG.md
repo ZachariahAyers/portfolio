@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Fixed: the touch icon's declared size now matches the 1024 by 1024 image.
+- Removed: the Event Loop Viewer app, whose host page no longer exists, and the `robots.txt` that a subpath never serves.
+
 ## 2.0.0
 
 A rebuild, renamed from ai-portfolio to portfolio.
