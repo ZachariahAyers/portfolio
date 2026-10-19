@@ -99,7 +99,7 @@
         {
           "title": "Notable Projects",
           "highlights": [
-            "Full manufacturing shop systems converted from legacy VB6/Windows to modern C#/.NET 8/WinUI3",
+            "40+ legacy VB6 applications moved to C# and .NET 8 for Northrop Grumman, with no regressions after cutover",
             "ObjectARX CAD plugins and AutoCAD integration products for engineering automation",
             "Fermi RAG system and Howland AI implementations",
             "VW ID.Buzz 3D configurator - first-to-market",
@@ -111,8 +111,8 @@
           "metrics": [
             {
               "metric": "Legacy Modernization",
-              "before": "20+ year VB6 systems",
-              "after": ".NET 8 production",
+              "before": "Legacy VB6 applications",
+              "after": "C# and .NET 8",
               "change": "Success"
             },
             {
@@ -146,12 +146,6 @@
     }
   ],
   "activity": [
-    {
-      "author": "Client Technical Lead",
-      "avatar": "TL",
-      "time": "Q4 2024",
-      "comment": "The legacy VB6 migration is progressing ahead of schedule. The new WinUI3 interfaces are significantly more intuitive, and the team has already seen a 40% reduction in support tickets."
-    },
     {
       "author": "Zachariah Ayers",
       "avatar": "ZA",
@@ -204,14 +198,7 @@
           "docUrl": "https://python.langchain.com/docs"
         }
       ],
-      "infrastructure": [
-        {
-          "name": "Legacy Migration",
-          "tech": "VB6 to .NET 8",
-          "code": "// MigrationEngine.cs - VB6 to WinUI3 Transformation\nusing Microsoft.CodeAnalysis;\nusing Microsoft.CodeAnalysis.CSharp;\n\npublic class MigrationEngine\n{\n    public async Task<MigrationResult> MigrateProject(VB6Project source)\n    {\n        var result = new MigrationResult();\n        \n        foreach (var form in source.Forms)\n        {\n            // Transform VB6 form to WinUI3 XAML\n            var xaml = _formConverter.ConvertToXaml(form);\n            var viewModel = _vmGenerator.GenerateViewModel(form);\n            var codeBehind = _codeConverter.ConvertEventHandlers(form);\n            \n            result.AddFile($\"{form.Name}.xaml\", xaml);\n            result.AddFile($\"{form.Name}ViewModel.cs\", viewModel);\n            result.AddFile($\"{form.Name}.xaml.cs\", codeBehind);\n        }\n        \n        // Migrate business logic modules\n        foreach (var module in source.Modules)\n        {\n            var service = _moduleConverter.ConvertToService(module);\n            result.AddFile($\"Services/{module.Name}Service.cs\", service);\n        }\n        \n        return result;\n    }\n}",
-          "docUrl": "https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8"
-        }
-      ]
+      "infrastructure": []
     }
   },
   "links": {

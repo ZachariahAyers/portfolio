@@ -3,20 +3,20 @@
     "name": "Zachariah James Ayers",
     "title": "Staff Engineer & AI/ML Architect",
     "avatarPath": "/profile.jpeg",
-    "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. Currently, I'm modernizing aerospace manufacturing at Northrop Grumman, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
+    "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. I'm currently on contract with Northrop Grumman: 40+ legacy applications moved to C# and .NET 8, and a release pipeline that cut deploys from weeks to minutes, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
     "tagline": "From React™ to Rocket Science, I architect the future.",
     "tenSecondPitch": {
-      "yearsAndScale": "14+ Years & Architect @ Scale: Shipped code for 14+ years, currently modernizing aerospace manufacturing at Northrop Grumman. Previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
-      "aiMlImplementer": "Pragmatic AI/ML Implementer: I don't just research AI, I ship it. Building RAG systems, computer vision automation, and predictive maintenance models in high-security production environments.",
+      "yearsAndScale": "14+ Years & Architect @ Scale: Shipped code for 14+ years, currently on contract with Northrop Grumman, where 40+ legacy applications moved to C# and .NET 8. Previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
+      "aiMlImplementer": "Pragmatic AI Implementer: I don't just research AI, I ship it. I build AI agents and MCP servers into my own products, and built the AI engineering layer and on-premises AI inference server a client's team adopted.",
       "teamMultiplier": "Proven Team Multiplier: I make teams better. Trained 60+ developers, created frameworks that cut development time by 85%, and championed processes that dramatically reduced bug rates."
     },
     "executiveSummary": [
-      "Staff Software Engineer & AI/ML Architect with 14+ years building enterprise-scale systems across web, cloud, and AI domains. Currently modernizing aerospace manufacturing at Northrop Grumman through ML automation and RAG implementations. Proven technical leader who transforms complex challenges into shipped solutions – from architecting 500+ microservices to optimizing legacy systems for 10x performance gains."
+      "Staff Software Engineer & AI/ML Architect with 14+ years building enterprise-scale systems across web, cloud, and AI domains. Currently on contract with Northrop Grumman: 40+ legacy applications moved to C# and .NET 8, and a release pipeline that cut deploys from weeks to minutes. Proven technical leader who transforms complex challenges into shipped solutions – from architecting 500+ microservices to optimizing legacy systems for 10x performance gains."
     ],
-    "valueProposition": "I'm a senior full stack engineer who ships production code that scales. After 14+ years building everything from React frontends to distributed microservices, I've deliberately moved into AI/ML implementation because that's where the highest-leverage problems are. Currently at Northrop Grumman, I'm not just theorizing about AI – I'm building RAG systems, implementing predictive maintenance, and automating critical aerospace manufacturing processes. My superpower is taking complex technical problems and delivering practical solutions that actually work in production. Whether it's architecting 500+ microservices at AmeriSave or migrating 20-year-old VB6 systems, I measure success by business impact, and my strength is applying 14 years of systems architecture experience to make AI/ML solutions work reliably in production.",
+    "valueProposition": "I'm a senior full stack engineer who ships production code that scales. After 14+ years building everything from React frontends to distributed microservices, I've deliberately moved into AI/ML implementation because that's where the highest-leverage problems are. Currently on contract with Northrop Grumman, I'm not just theorizing about AI – I built the AI engineering layer the team's developers adopted, and an on-premises AI inference server for its business applications. My superpower is taking complex technical problems and delivering practical solutions that actually work in production. Whether it's architecting 500+ microservices at AmeriSave or moving 40+ VB6 applications to C# and .NET 8, I measure success by business impact, and my strength is applying 14 years of systems architecture experience to make AI/ML solutions work reliably in production.",
     "whatIBring": [
       "Full Stack Expertise: 14+ years across React, Node.js, .NET, Java, Python – I can work anywhere in the stack",
-      "AI/ML Capabilities: Building RAG systems, implementing predictive maintenance, optimizing inference costs – AI is another tool in my toolkit",
+      "AI/ML Capabilities: Building AI agents and MCP servers, and running AI inference on-premises – AI is another tool in my toolkit",
       "Scale & Reliability: Architected systems handling millions of transactions daily, whether traditional web apps or ML models",
       "Pragmatic Approach: I choose the right tool for the job – React for UI, Python for ML, boring tech for critical systems",
       "Team Multiplier: Helped 60+ developers at AmeriSave Mortgage Corporation adopt new patterns – I make everyone around me better",
@@ -36,13 +36,15 @@
   },
   "experience": {
     "northrop": {
-      "role": "Senior Software Engineer @ Northrop Grumman",
-      "period": "Aug 2024 - Present | Remote",
-      "type": "Contract via Meridian Vega LLC",
-      "description": "Leading mission-critical manufacturing system modernization from VB6 to .NET 8. Implementing ML-driven predictive maintenance with 85% accuracy, building intelligent automation reducing manual data entry by 70%, and creating enterprise RAG system for searching technical documentation.",
-      "impact": "Reduced deployment time from 2 weeks to 2 hours, prevented $300K+ in downtime through predictive maintenance",
-      "keyChallenge": "Navigating a high-security, air-gapped environment that demands extreme self-sufficiency and robust, offline-first solutions while modernizing 20-year-old mission-critical systems",
-      "technologies": "C# .NET 8, WinUI3, Python, TensorFlow, SAP, Azure DevOps, Legacy VB6/VB.NET"
+      "role": "Principal Software Engineer, contract with Northrop Grumman (via Ayers Software Repair)",
+      "period": "August 2024 to present | Remote",
+      "highlights": [
+        "Designed the architecture, SQL Server data layer and integrations for 40+ VB6 applications moved to C# and .NET 8, with no regressions after cutover; about 200 people use them daily.",
+        "Built the release pipeline on Azure DevOps: deploys went from weeks to minutes, with checks on every branch, automated test suites and integration tests.",
+        "Built the AI engineering layer Northrop's developers adopted over several iterations: AI agents, MCP servers and a full harness of plugins, skills and rules that taught AI coding tools the team's stack, code and database.",
+        "Set up an on-premises AI inference server and built the team's own AI agent into its business-facing applications, so business users could ask questions securely.",
+        "Delivered the full port under estimate, with a documented handoff."
+      ]
     },
     "meridianVega": {
       "role": "Founder & Principal Consultant @ Meridian Vega LLC",
@@ -839,20 +841,6 @@
       "decision": "Apollo Federation over REST aggregation or service mesh",
       "results": "70% reduction in client-side API calls, 3x faster feature development",
       "technologies": ["GraphQL", "Apollo", "Node.js", "Kubernetes"]
-    },
-    "mlPipeline": {
-      "title": "ML Pipeline Architecture (Northrop Grumman)",
-      "context": "Predictive maintenance for critical manufacturing equipment",
-      "decision": "Edge inference with centralized training over cloud-only approach",
-      "results": "85% prediction accuracy, 200ms inference latency, works in air-gapped environments",
-      "technologies": ["TensorFlow", "Python", "Edge TPUs", "Kubernetes"]
-    },
-    "eventDriven": {
-      "title": "Event-Driven Architecture for Real-Time Processing",
-      "context": "Shop floor events needed immediate processing for quality control",
-      "decision": "Kafka + Flink over traditional batch processing",
-      "results": "50K events/second throughput, sub-second alerting for anomalies",
-      "technologies": ["Apache Kafka", "Apache Flink", "Java", "Prometheus"]
     }
   },
   "performanceOptimization": {
@@ -906,11 +894,9 @@
     }
   },
   "faqs": {
-    "leaving_role": "The Northrop contract is going well, but I want to work on more modern tech stacks and specifically transition into AI/ML engineering. Plus, I'd love to relocate to Fort Collins or one of my other target cities. Dallas is fine, but I miss the mountains.",
-    "ai_experience": "I've been implementing ML solutions in production for the past 2 years – predictive maintenance, computer vision, RAG systems, and LLM applications. I'm not an ML researcher, but I excel at taking ML models and making them work reliably at scale. My 14 years of systems experience means I know how to handle the infrastructure, monitoring, and edge cases that make ML actually useful in production.",
+    "ai_experience": "I've been implementing ML solutions in production for the past 2 years – AI agents, MCP servers, on-premises inference and LLM applications. I'm not an ML researcher, but I excel at taking ML models and making them work reliably at scale. My 14 years of systems experience means I know how to handle the infrastructure, monitoring, and edge cases that make ML actually useful in production.",
     "not_bored": "Not at all. I genuinely enjoy solving problems and shipping code. Some of my best work has been 'boring' – like optimizing database queries or refactoring legacy code. I find satisfaction in making things work better, regardless of how cutting-edge the technology is.",
-    "location_preferences": "Quality of life. Fort Collins has great outdoor access and a tech scene. Santa Fe is beautiful with a smaller but growing tech community. Austin has energy and opportunities. Seattle... well, it's a tech hub. I've done my time in Dallas traffic and I'm ready for a change.",
-    "leave_defense": "Yes. While the work is important and stable, I want to work on products that I can talk about at meetups, contribute to open source, and iterate quickly without multi-month approval processes. I miss the energy of commercial software development."
+    "location_preferences": "Quality of life. Fort Collins has great outdoor access and a tech scene. Santa Fe is beautiful with a smaller but growing tech community. Austin has energy and opportunities. Seattle... well, it's a tech hub. I've done my time in Dallas traffic and I'm ready for a change."
   },
   "additionalInfo": {
     "languages": ["English (Native)", "Spanish (Limited Working Proficiency)"],
@@ -935,7 +921,6 @@
     "currentProjects": [
       "Production RAG Systems: Architecting enterprise-scale retrieval-augmented generation",
       "Edge ML Optimization: Deploying models in resource-constrained environments",
-      "LLM Fine-tuning: Domain-specific model adaptation for aerospace applications",
       "AI Infrastructure: Building scalable ML pipelines and model serving architectures"
     ]
   },
@@ -1027,7 +1012,7 @@
     "disagreeAndCommit": "Successfully advocated for automated testing at Stak Design against initial skepticism. After presenting data on ROI, the team committed, leading to dramatic bug reduction",
     "biasForAction": "Proactively built CI/CD pipelines at Stak Design because manual deployments were bottlenecking the team, reducing deployment time by 80% without waiting for approval",
     "customerObsession": "At AmeriSave, I spent time with loan officers to understand their pain points, leading to the Octo/Tellaro framework that reduced their workflow time by 85%",
-    "learnAndBeCurious": "Self-taught AI/ML over 2 years while maintaining full-time role, now implementing production ML systems at Northrop Grumman"
+    "learnAndBeCurious": "Self-taught AI over 2 years while maintaining a full-time role, now building AI agents and MCP servers into production software"
   },
   "workStyle": {
     "communication": "Proactive communicator, daily standups, clear documentation",
@@ -1086,12 +1071,10 @@
       "Show me your most impactful enterprise transformations",
       "What projects are you most proud of?",
       "Tell me about the AmeriSave microservices migration",
-      "Explain your Northrop Grumman ML implementations",
       "What was RabCab Automation?",
       "Tell me about AssembleJS framework",
       "What's your experience with legacy migrations?",
       "How did you reduce loan processing time by 50%?",
-      "What's your approach to predictive maintenance?",
       "How do you build RAG systems?"
     ],
     "compensationAndLogistics": [
