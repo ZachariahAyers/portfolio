@@ -21,7 +21,9 @@ React 19, TypeScript, Vite, Tailwind CSS, React Router, Motion, Zod and Vitest. 
 Requires Node.js 22.22 or newer.
 
 ```bash
-npm install
+git clone https://github.com/ZachariahAyers/portfolio.git
+cd portfolio
+npm ci
 npm run dev
 ```
 
