@@ -15,7 +15,7 @@
         "icon": "code"
       },
       {
-        "value": "Vite 7",
+        "value": "Vite 8",
         "label": "Build Tool",
         "animate": "fade",
         "icon": "zap"
@@ -60,12 +60,12 @@
       "components": [
         {
           "name": "Frontend",
-          "framework": "React 19 + Vite 7",
+          "framework": "React 19 + Vite 8",
           "team": "UI"
         },
         {
           "name": "Styling",
-          "framework": "TailwindCSS + Framer Motion",
+          "framework": "Tailwind CSS + Motion",
           "team": "Design"
         },
         {
@@ -108,10 +108,10 @@
       "type": "tech-stack",
       "title": "Technology Stack",
       "categories": {
-        "frontend": ["React 19", "Vite 7", "TailwindCSS", "Framer Motion"],
+        "frontend": ["React 19", "Vite 8", "Tailwind CSS", "Motion"],
         "backend": ["AWS Lambda", "Google Gemini API", "Resend"],
         "ui": ["Lucide React", "Radix UI", "React Markdown", "Mermaid"],
-        "tools": ["ESLint", "PostCSS", "Autoprefixer", "Terser"],
+        "tools": ["oxlint", "PostCSS", "Autoprefixer", "Terser"],
         "utilities": ["DOMPurify", "jsPDF", "html2canvas", "React Router"]
       },
       "interactive": true
@@ -163,7 +163,7 @@
           "name": "Case Study Dashboard",
           "tech": "Interactive Dashboards",
           "code": "// DetailedView.jsx - Case Study Renderer\nimport { useParams } from 'react-router-dom';\nimport { motion } from 'framer-motion';\n\nconst DetailedView = ({ caseStudy }) => {\n  const renderSection = (section) => {\n    switch (section.type) {\n      case 'visual-comparison':\n        return <BeforeAfterComparison data={section} />;\n      case 'interactive-architecture':\n        return <ArchitectureDiagram data={section} />;\n      case 'code-showcase':\n        return <CodeShowcase data={section} />;\n      case 'business-report':\n        return <BusinessReport data={section} />;\n      case 'tech-stack':\n        return <TechStackViewer data={section} />;\n      default:\n        return null;\n    }\n  };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0 }}\n      animate={{ opacity: 1 }}\n      className=\"min-h-screen bg-gray-50 dark:bg-gray-900\"\n    >\n      <HeroSection hero={caseStudy.hero} />\n      {caseStudy.sections.map(section => (\n        <Section key={section.id}>\n          {renderSection(section)}\n        </Section>\n      ))}\n    </motion.div>\n  );\n};",
-          "docUrl": "https://framer.com/motion"
+          "docUrl": "https://motion.dev"
         }
       ],
       "backend": [
@@ -177,9 +177,9 @@
       "infrastructure": [
         {
           "name": "Vite Configuration",
-          "tech": "Vite 7 Build",
+          "tech": "Vite 8 Build",
           "code": "// vite.config.js - Optimized Build Configuration\nimport { defineConfig } from 'vite';\nimport react from '@vitejs/plugin-react';\n\nexport default defineConfig({\n  plugins: [react()],\n  build: {\n    target: 'esnext',\n    minify: 'terser',\n    rollupOptions: {\n      output: {\n        manualChunks: {\n          vendor: ['react', 'react-dom', 'react-router-dom'],\n          motion: ['framer-motion'],\n          markdown: ['react-markdown', 'remark-gfm'],\n          charts: ['recharts']\n        }\n      }\n    },\n    terserOptions: {\n      compress: {\n        drop_console: true,\n        drop_debugger: true\n      }\n    }\n  },\n  server: {\n    port: 5173,\n    open: true\n  }\n});",
-          "docUrl": "https://vitejs.dev"
+          "docUrl": "https://vite.dev"
         }
       ],
       "devops": [
