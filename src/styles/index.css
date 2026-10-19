@@ -6,9 +6,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-gray-850: #1a202e;
-  --color-gray-925: #0f1419;
-
   --font-sans:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -18,7 +15,6 @@
   --animate-fade-in-up: fade-in-up 0.5s ease-out forwards;
   --animate-scale-in: scale-in 0.3s ease-out forwards;
   --animate-slide-in-right: slide-in-right 0.3s ease-out forwards;
-  --animate-bounce: soft-bounce 1s ease-in-out infinite;
 
   @keyframes fade-in {
     from {
@@ -54,15 +50,6 @@
     }
     to {
       transform: translateX(0);
-    }
-  }
-  @keyframes soft-bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-25%);
     }
   }
 }
@@ -123,10 +110,4 @@
 }
 .slider-handle {
   left: var(--reveal);
-}
-
-/* Mermaid writes a pixel max-width onto its svg; fit it to the container instead. */
-.mermaid-container svg {
-  max-width: 100% !important;
-  height: auto;
 }

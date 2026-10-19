@@ -1,7 +1,7 @@
 import { AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { type CSSProperties, type PointerEvent, useRef, useState } from 'react';
-import type { CaseStudy } from '../../../shared/content.ts';
+import type { CaseStudy } from '../../content/schema.ts';
 import { Modal } from '../../components/Modal.tsx';
 import { cx } from '../../lib/cx.ts';
 import { TabHeading } from './TabHeading.tsx';
@@ -49,7 +49,7 @@ function Points({
 }
 
 /** Before and after, compared with a draggable divider. */
-export function ProblemTab({ section }: { section: CaseStudy['problem'] }) {
+export function ProblemTab({ problem }: { problem: NonNullable<CaseStudy['problem']> }) {
   const [position, setPosition] = useState(50);
   const [selected, setSelected] = useState<{ side: Side; text: string } | null>(null);
   const dragging = useRef(false);
@@ -64,8 +64,8 @@ export function ProblemTab({ section }: { section: CaseStudy['problem'] }) {
   return (
     <div className="flex h-full flex-col bg-gray-200 p-4 md:p-8 dark:bg-gray-900">
       <TabHeading
-        title={section.title}
-        subtitle="Drag the slider to see what I fixed - broken system on the left, my solution on the right"
+        title="Before and After"
+        subtitle="Drag the divider to compare: before on the left, after on the right"
       />
       <div className="relative flex-1">
         <motion.div
@@ -91,11 +91,11 @@ export function ProblemTab({ section }: { section: CaseStudy['problem'] }) {
               <div className="ml-[15%] max-w-xl">
                 <h3 className="mb-6 flex items-center gap-3 text-2xl font-light text-red-400">
                   <AlertTriangle className="h-8 w-8" aria-hidden />
-                  {section.before.label}
+                  {problem.before.label}
                 </h3>
                 <Points
                   side="before"
-                  points={section.before.points}
+                  points={problem.before.points}
                   onSelect={(text) => setSelected({ side: 'before', text })}
                 />
               </div>
@@ -109,11 +109,11 @@ export function ProblemTab({ section }: { section: CaseStudy['problem'] }) {
               <div className="mr-[15%] ml-auto max-w-xl">
                 <h3 className="mb-6 flex items-center gap-3 text-2xl font-light text-green-400">
                   <CheckCircle2 className="h-8 w-8" aria-hidden />
-                  {section.after.label}
+                  {problem.after.label}
                 </h3>
                 <Points
                   side="after"
-                  points={section.after.points}
+                  points={problem.after.points}
                   onSelect={(text) => setSelected({ side: 'after', text })}
                 />
               </div>

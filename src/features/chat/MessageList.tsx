@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { TypingDots } from '../../components/TypingDots.tsx';
 import { useIsMobile } from '../../lib/useMediaQuery.ts';
-import { AssistantAvatar, MessageBubble } from './MessageBubble.tsx';
-import { followUpsFor } from './questions.ts';
+import type { Answer } from '../../content/schema.ts';
+import { followUpsFor } from './answers.ts';
+import { MessageBubble } from './MessageBubble.tsx';
 import type { Message } from './types.ts';
 
 interface MessageListProps {
   messages: Message[];
-  waiting: boolean;
-  lastQuestion: string | null;
+  /** The answer just given, or null after the fallback. */
+  lastAnswer: Answer | null;
   showFollowUps: boolean;
   onTypingDone: () => void;
   onAsk: (question: string) => void;
@@ -17,8 +17,7 @@ interface MessageListProps {
 
 export function MessageList({
   messages,
-  waiting,
-  lastQuestion,
+  lastAnswer,
   showFollowUps,
   onTypingDone,
   onAsk,
@@ -27,7 +26,7 @@ export function MessageList({
   const isMobile = useIsMobile();
   const contentRef = useRef<HTMLDivElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
-  const followUps = followUpsFor(lastQuestion).slice(0, isMobile ? 2 : undefined);
+  const followUps = followUpsFor(lastAnswer).slice(0, isMobile ? 2 : undefined);
 
   // Follow the conversation as it grows, including while an answer is being typed.
   useEffect(() => {
@@ -57,17 +56,7 @@ export function MessageList({
               onTypingDone={index === messages.length - 1 ? onTypingDone : noop}
             />
           ))}
-          {waiting && (
-            <div className="my-4 flex items-start gap-3">
-              <div className="h-8 w-8 shrink-0 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-                <AssistantAvatar />
-              </div>
-              <div className="rounded-lg rounded-bl-none bg-gray-300 p-4 dark:bg-gray-800">
-                <TypingDots />
-              </div>
-            </div>
-          )}
-          {showFollowUps && !waiting && messages.length > 0 && (
+          {showFollowUps && messages.length > 0 && (
             <div className="my-4 animate-fade-in-up max-sm:my-2">
               <p className="mb-1 px-2 text-[10px] text-gray-500 sm:hidden dark:text-gray-400">
                 Suggested:

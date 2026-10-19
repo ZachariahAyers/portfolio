@@ -25,7 +25,7 @@ export interface DesktopApp {
 }
 
 export const APPS: readonly DesktopApp[] = [
-  { id: 'explorer', name: 'Tech Stack Analyzer', icon: Code2, kind: 'explorer' },
+  { id: 'explorer', name: 'Code Explorer', icon: Code2, kind: 'explorer' },
   { id: 'paint', name: 'Excalidraw', icon: Palette, kind: 'embed', url: 'https://excalidraw.com/' },
   {
     id: 'circuit',

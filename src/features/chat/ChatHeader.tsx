@@ -1,4 +1,4 @@
-import { profile } from '../../../shared/profile.ts';
+import { profile } from '../../content/profile.ts';
 import { ThemeToggle } from '../../components/ThemeToggle.tsx';
 import { Tooltip } from '../../components/Tooltip.tsx';
 import { AssistantAvatar } from './MessageBubble.tsx';
@@ -9,7 +9,12 @@ import { WelcomeDialog } from './WelcomeDialog.tsx';
 const navLink =
   'text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 md:text-base dark:text-gray-400 dark:hover:text-white';
 
-export function ChatHeader({ onOpen }: { onOpen: (view: NonNullable<ChatDialog>) => void }) {
+interface ChatHeaderProps {
+  onOpen: (view: NonNullable<ChatDialog>) => void;
+  onContact: () => void;
+}
+
+export function ChatHeader({ onOpen, onContact }: ChatHeaderProps) {
   return (
     <header className="sticky top-0 z-20 border-b border-gray-300 bg-gray-100 p-3 backdrop-blur-lg md:p-4 dark:border-white/10 dark:bg-gray-800/50">
       <div className="flex items-center justify-between">
@@ -22,10 +27,7 @@ export function ChatHeader({ onOpen }: { onOpen: (view: NonNullable<ChatDialog>)
             <h1 className="text-lg font-bold text-gray-900 dark:text-white">
               {profile.personal.name}
             </h1>
-            <p className="flex items-center gap-1.5 text-xs text-green-500 dark:text-green-400">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" aria-hidden />
-              Online &amp; Ready to Chat
-            </p>
+            <p className="text-xs text-gray-600 dark:text-gray-400">{profile.personal.title}</p>
           </div>
         </div>
         <div className="flex items-center gap-2 md:gap-4">
@@ -64,7 +66,7 @@ export function ChatHeader({ onOpen }: { onOpen: (view: NonNullable<ChatDialog>)
             </a>
           </nav>
           <ThemeToggle />
-          <MobileMenu onOpen={onOpen} />
+          <MobileMenu onOpen={onOpen} onContact={onContact} />
         </div>
       </div>
     </header>

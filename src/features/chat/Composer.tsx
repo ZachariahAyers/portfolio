@@ -7,10 +7,9 @@ interface ComposerProps {
   draft: string;
   onDraftChange: (draft: string) => void;
   onSubmit: () => void;
-  busy: boolean;
 }
 
-export function Composer({ draft, onDraftChange, onSubmit, busy }: ComposerProps) {
+export function Composer({ draft, onDraftChange, onSubmit }: ComposerProps) {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     onSubmit();
@@ -24,9 +23,9 @@ export function Composer({ draft, onDraftChange, onSubmit, busy }: ComposerProps
 
   return (
     <div className="flex items-center gap-2">
-      <Tooltip content="View portfolio tech stack in CodeOS 98">
+      <Tooltip content="Browse this site's code in CodeOS 98">
         <Link
-          to="/casestudies/portfolio#tech"
+          to="/casestudies/portfolio?tab=code"
           className="hidden items-center gap-1.5 rounded-lg border border-gray-300 bg-gray-200 px-3 py-2 text-xs font-bold whitespace-nowrap text-gray-800 transition-colors hover:bg-gray-300 sm:flex dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
         >
           <Monitor size={14} aria-hidden />
@@ -50,7 +49,7 @@ export function Composer({ draft, onDraftChange, onSubmit, busy }: ComposerProps
           <button
             type="submit"
             aria-label="Send message"
-            disabled={!draft.trim() || busy}
+            disabled={!draft.trim()}
             className="rounded-md bg-blue-600 p-2 text-white transition-all duration-200 hover:bg-blue-700 active:scale-95 disabled:bg-gray-400 dark:disabled:bg-gray-600"
           >
             <ArrowUp size={20} aria-hidden />

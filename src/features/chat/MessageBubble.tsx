@@ -1,5 +1,6 @@
 import { User } from 'lucide-react';
 import Markdown, { type Components } from 'react-markdown';
+import { asset } from '../../lib/asset.ts';
 import { cx } from '../../lib/cx.ts';
 import { conversationalPacing } from '../../lib/pacing.ts';
 import { useTypewriter } from '../../lib/useTypewriter.ts';
@@ -38,7 +39,7 @@ const markdown: Components = {
 export function AssistantAvatar({ className }: { className?: string }) {
   return (
     <img
-      src="/ai-profile.png"
+      src={asset('ai-profile.png')}
       alt="ARLO"
       className={cx('h-full w-full object-cover', className)}
       width={40}

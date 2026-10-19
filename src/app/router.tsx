@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
-import { profile } from '../../shared/profile.ts';
+import { HashRouter, Route, Routes } from 'react-router';
+import { profile } from '../content/profile.ts';
 import { StandalonePage } from '../components/StandalonePage.tsx';
 import ChatPage from '../features/chat/ChatPage.tsx';
 
@@ -12,9 +12,13 @@ const SkillsView = lazy(() =>
   import('../features/profile/SkillsView.tsx').then((m) => ({ default: m.SkillsView })),
 );
 
+/**
+ * Hash routing: the path lives after the #, so every page loads from the one
+ * index.html under any base path, and a refresh never asks the host for a page it lacks.
+ */
 export function AppRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<ChatPage />} />
@@ -45,6 +49,6 @@ export function AppRouter() {
           />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

@@ -28,7 +28,7 @@ export function BootScreen({ projectName, onDone }: { projectName: string; onDon
         className="sr-only"
         value={Math.round(progress)}
         max={100}
-        aria-label={`Opening tech stack for ${projectName}`}
+        aria-label={`Opening the code for ${projectName}`}
       />
       <div className="text-center text-white dark:text-green-400">
         <p className="mb-2 font-['Arial'] text-4xl font-bold">CodeOS 98</p>
@@ -44,7 +44,7 @@ export function BootScreen({ projectName, onDone }: { projectName: string; onDon
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
           />
         </div>
-        <p className="mt-4 text-xs">Opening Tech Stack for {projectName}...</p>
+        <p className="mt-4 text-xs">Opening the code for {projectName}...</p>
       </div>
     </motion.div>
   );

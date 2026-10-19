@@ -1,15 +1,13 @@
 import { ExternalLink, FileText, Folder, FolderOpen, X } from 'lucide-react';
 import { useState } from 'react';
-import type { CaseStudy } from '../../../shared/content.ts';
+import type { SourceFile } from '../../content/source.ts';
 import { cx } from '../../lib/cx.ts';
 import { useIsMobile } from '../../lib/useMediaQuery.ts';
 import { CodeBlock } from './CodeBlock.tsx';
 import { closeTab, type OpenFile } from './explorerTabs.ts';
 
-type Files = CaseStudy['techStackAnalyzer']['fileStructure'];
-
-/** An editor-style browser for a case study's code samples. */
-export function StackExplorer({ files }: { files: Files }) {
+/** An editor-style browser for source files, grouped by folder. */
+export function StackExplorer({ files }: { files: Record<string, SourceFile[]> }) {
   const isMobile = useIsMobile();
   const [openFolders, setOpenFolders] = useState<ReadonlySet<string>>(
     () => new Set(Object.keys(files)),
@@ -90,16 +88,6 @@ export function StackExplorer({ files }: { files: Files }) {
                 {expanded && (
                   <ul className="ml-4">
                     {samples.map((sample) => {
-                      if (typeof sample === 'string') {
-                        return (
-                          <li
-                            key={sample}
-                            className="px-2 py-1 text-sm text-gray-500 italic dark:text-gray-400"
-                          >
-                            {sample}
-                          </li>
-                        );
-                      }
                       const path = `${folder}/${sample.name}`;
                       return (
                         <li key={path}>

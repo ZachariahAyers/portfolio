@@ -27,8 +27,3 @@
   scrollbar-width: thin;
   scrollbar-color: rgb(59 130 246 / 0.3) rgb(0 0 0 / 0.3);
 }
-
-.mermaid-scroll-container {
-  scrollbar-width: thin;
-  scrollbar-color: rgb(0 0 0 / 0.2) transparent;
-}

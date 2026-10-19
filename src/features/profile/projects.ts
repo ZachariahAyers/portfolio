@@ -3,7 +3,7 @@ import {
   type Project,
   PROJECT_TYPES,
   type ProjectType,
-} from '../../../shared/content.ts';
+} from '../../content/schema.ts';
 
 export interface ProjectEntry extends Project {
   id: string;
@@ -19,7 +19,7 @@ export interface ProjectFilter {
 
 export const ALL_PROJECTS: ProjectFilter = { type: 'all', tech: null, currentOnly: false };
 
-/** Every project in display order: open source first, then enterprise, freelance, leadership. */
+/** Every project in display order: products, open source, clients, then employers. */
 export function flattenProjects(projects: Profile['projects']): ProjectEntry[] {
   return PROJECT_TYPES.flatMap((type) =>
     Object.entries(projects[type]).map(([key, project]) => ({
@@ -49,10 +49,10 @@ export function countByType(
   tech: string | null,
 ): Record<ProjectType, number> {
   const counts: Record<ProjectType, number> = {
+    products: 0,
     opensource: 0,
-    enterprise: 0,
-    freelance: 0,
-    leadership: 0,
+    clients: 0,
+    employers: 0,
   };
   for (const project of projects) if (usesTech(project, tech)) counts[project.type]++;
   return counts;

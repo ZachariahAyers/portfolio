@@ -13,7 +13,7 @@ import type { ChatDialog } from './types.ts';
 
 interface Action {
   label: string;
-  view: NonNullable<ChatDialog>;
+  view: NonNullable<ChatDialog> | 'contact';
   icon: LucideIcon;
   color?: string;
   tooltip: string;
@@ -48,9 +48,10 @@ interface QuickActionsProps {
   open: boolean;
   onToggle: () => void;
   onOpen: (view: NonNullable<ChatDialog>) => void;
+  onContact: () => void;
 }
 
-export function QuickActions({ open, onToggle, onOpen }: QuickActionsProps) {
+export function QuickActions({ open, onToggle, onOpen, onContact }: QuickActionsProps) {
   return (
     <div className="w-full">
       <div className="mb-2 flex justify-center">
@@ -70,7 +71,7 @@ export function QuickActions({ open, onToggle, onOpen }: QuickActionsProps) {
             <Tooltip content={tooltip} key={view}>
               <button
                 type="button"
-                onClick={() => onOpen(view)}
+                onClick={() => (view === 'contact' ? onContact() : onOpen(view))}
                 aria-label={tooltip}
                 className="min-w-[100px] shrink-0 cursor-pointer rounded-xl border border-gray-300 bg-gray-100 px-4 py-3 backdrop-blur-xs transition-all duration-200 hover:bg-gray-200 active:scale-95 max-sm:min-w-[80px] max-sm:px-3 max-sm:py-2.5 dark:border-gray-700 dark:bg-gray-800/80 dark:hover:bg-gray-700"
               >

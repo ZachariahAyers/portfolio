@@ -1,13 +1,13 @@
 import { Tooltip } from '../../components/Tooltip.tsx';
 import { useIsMobile } from '../../lib/useMediaQuery.ts';
-import { MOBILE_SUGGESTION_COUNT, SUGGESTED_QUESTIONS } from './questions.ts';
+import { MOBILE_SUGGESTION_COUNT, SUGGESTED } from './answers.ts';
 
 /** The empty-conversation screen: a greeting and starter questions. */
 export function SuggestedQuestions({ onAsk }: { onAsk: (question: string) => void }) {
   const isMobile = useIsMobile();
-  const questions = isMobile
-    ? SUGGESTED_QUESTIONS.slice(0, MOBILE_SUGGESTION_COUNT)
-    : SUGGESTED_QUESTIONS;
+  const questions = (isMobile ? SUGGESTED.slice(0, MOBILE_SUGGESTION_COUNT) : SUGGESTED).map(
+    (answer) => answer.question,
+  );
 
   return (
     <div className="flex flex-1 animate-fade-in flex-col justify-center p-8 text-center max-sm:p-4">
@@ -15,7 +15,7 @@ export function SuggestedQuestions({ onAsk }: { onAsk: (question: string) => voi
         Welcome to my Portfolio! I&apos;m Zach
       </h2>
       <p className="mx-auto mb-6 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-        Click the cards below or start typing in the chatbox to get started.
+        Pick a question below, or type your own.
       </p>
       <div className="stagger-in mx-auto grid max-w-4xl grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {questions.map((question) => (

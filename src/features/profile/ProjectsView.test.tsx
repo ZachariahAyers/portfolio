@@ -1,7 +1,7 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { profile } from '../../../shared/profile.ts';
+import { profile } from '../../content/profile.ts';
 import { renderPage } from '../../test/render.tsx';
 import { flattenProjects } from './projects.ts';
 import { ProjectsView } from './ProjectsView.tsx';
@@ -13,12 +13,12 @@ describe('ProjectsView', () => {
     const all = flattenProjects(profile.projects);
     expect(screen.getAllByRole('article')).toHaveLength(all.length);
 
-    await user.click(screen.getByRole('button', { name: /^Freelance/ }));
+    await user.click(screen.getByRole('button', { name: /^Clients/ }));
 
-    const freelance = all.filter((p) => p.type === 'freelance');
+    const clients = all.filter((p) => p.type === 'clients');
     const cards = screen.getAllByRole('article');
-    expect(cards).toHaveLength(freelance.length);
-    expect(within(cards[0]!).getAllByText('Freelance').length).toBeGreaterThan(0);
+    expect(cards).toHaveLength(clients.length);
+    expect(within(cards[0]!).getAllByText('Clients').length).toBeGreaterThan(0);
   });
 
   it('links each project to its case study', () => {

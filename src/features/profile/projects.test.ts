@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import type { Profile } from '../../../shared/content.ts';
 import {
   ALL_PROJECTS,
   countByType,
@@ -9,32 +8,27 @@ import {
   techOptions,
 } from './projects.ts';
 
-const project = (
-  name: string,
-  technologies: string[],
-  extra: Partial<Profile['projects']['opensource'][string]> = {},
-) => ({
+const project = (name: string, technologies: string[], extra = {}) => ({
   name,
   description: `${name} description`,
   technologies,
-  image: `/images/${name}.png`,
   ...extra,
 });
 
 const projects = flattenProjects({
-  opensource: { a: project('A', ['React', 'Node.js'], { github: 'https://github.com/x/a' }) },
-  enterprise: { b: project('B', ['React'], { current: true, caseStudy: '/casestudies/b' }) },
-  freelance: { c: project('C', ['Vue'], { url: 'https://c.example' }) },
-  leadership: { d: project('D', []) },
+  products: { a: project('A', ['React', 'Node.js'], { github: 'https://github.com/x/a' }) },
+  opensource: { b: project('B', ['React'], { current: true, caseStudy: '/casestudies/b' }) },
+  clients: { c: project('C', ['Vue'], { url: 'https://c.example' }) },
+  employers: { d: project('D', []) },
 });
 
 describe('projects', () => {
   it('flattens in display order with stable ids', () => {
     expect(projects.map((p) => p.id)).toEqual([
-      'opensource-a',
-      'enterprise-b',
-      'freelance-c',
-      'leadership-d',
+      'products-a',
+      'opensource-b',
+      'clients-c',
+      'employers-d',
     ]);
   });
 
@@ -45,13 +39,13 @@ describe('projects', () => {
 
   it('filters by type, technology and current focus', () => {
     expect(
-      filterProjects(projects, { ...ALL_PROJECTS, type: 'freelance' }).map((p) => p.name),
+      filterProjects(projects, { ...ALL_PROJECTS, type: 'clients' }).map((p) => p.name),
     ).toEqual(['C']);
     expect(filterProjects(projects, { ...ALL_PROJECTS, tech: 'React' }).map((p) => p.name)).toEqual(
       ['B', 'A'],
     );
     expect(
-      filterProjects(projects, { ...ALL_PROJECTS, type: 'freelance', currentOnly: true }).map(
+      filterProjects(projects, { ...ALL_PROJECTS, type: 'clients', currentOnly: true }).map(
         (p) => p.name,
       ),
     ).toEqual(['B']);
@@ -59,10 +53,10 @@ describe('projects', () => {
 
   it('counts types for the chosen technology', () => {
     expect(countByType(projects, 'React')).toEqual({
+      products: 1,
       opensource: 1,
-      enterprise: 1,
-      freelance: 0,
-      leadership: 0,
+      clients: 0,
+      employers: 0,
     });
   });
 
@@ -72,7 +66,7 @@ describe('projects', () => {
       { tech: 'Node.js', count: 1 },
       { tech: 'Vue', count: 1 },
     ]);
-    expect(techOptions(projects, 'freelance')).toEqual([{ tech: 'Vue', count: 1 }]);
+    expect(techOptions(projects, 'clients')).toEqual([{ tech: 'Vue', count: 1 }]);
   });
 
   it('summarises the portfolio', () => {

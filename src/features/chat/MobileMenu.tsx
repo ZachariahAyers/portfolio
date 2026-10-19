@@ -1,11 +1,11 @@
 import { Briefcase, Globe, Layers, type LucideIcon, Mail, Menu, User } from 'lucide-react';
 import { useState } from 'react';
-import { profile } from '../../../shared/profile.ts';
+import { profile } from '../../content/profile.ts';
 import { Modal } from '../../components/Modal.tsx';
 import { AssistantAvatar } from './MessageBubble.tsx';
-import type { ChatDialog } from './types.ts';
+import type { ChatDialog, ProfileSection } from './types.ts';
 
-const NAV: readonly { icon: LucideIcon; label: string; view: NonNullable<ChatDialog> }[] = [
+const NAV: readonly { icon: LucideIcon; label: string; view: ProfileSection | 'contact' }[] = [
   { icon: User, label: 'About Me', view: 'me' },
   { icon: Briefcase, label: 'Projects/Case Studies', view: 'projects' },
   { icon: Layers, label: 'Skills', view: 'skills' },
@@ -13,11 +13,17 @@ const NAV: readonly { icon: LucideIcon; label: string; view: NonNullable<ChatDia
 ];
 
 const LINKS = [
-  { label: 'ayers.repair', href: profile.contact.portfolio },
-  { label: 'AssembleJS', href: profile.contact.assemblejs },
+  { label: 'ayers.repair', href: profile.contact.site },
+  { label: 'LinkedIn', href: profile.contact.linkedin },
+  { label: 'GitHub', href: profile.contact.github },
 ];
 
-export function MobileMenu({ onOpen }: { onOpen: (view: NonNullable<ChatDialog>) => void }) {
+interface MobileMenuProps {
+  onOpen: (view: NonNullable<ChatDialog>) => void;
+  onContact: () => void;
+}
+
+export function MobileMenu({ onOpen, onContact }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -50,7 +56,8 @@ export function MobileMenu({ onOpen }: { onOpen: (view: NonNullable<ChatDialog>)
                   type="button"
                   onClick={() => {
                     setOpen(false);
-                    onOpen(view);
+                    if (view === 'contact') onContact();
+                    else onOpen(view);
                   }}
                   className="group flex w-full items-center gap-3 px-6 py-4 text-left transition-colors hover:bg-gray-50 dark:hover:bg-gray-800"
                 >

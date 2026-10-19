@@ -1,8 +1,8 @@
 import { FileText, X } from 'lucide-react';
 import { AnimatePresence } from 'motion/react';
-import { useCallback, useReducer, useState } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router';
-import type { CaseStudy } from '../../../shared/content.ts';
+import { loadSource, type SourceFile } from '../../content/source.ts';
 import { cx } from '../../lib/cx.ts';
 import { useIsMobile } from '../../lib/useMediaQuery.ts';
 import { APPS, appById, type DesktopApp } from './apps.ts';
@@ -22,16 +22,32 @@ type Phase = 'booting' | 'running' | 'crashed';
 
 const EXPLORER_POSITION = { x: 100, y: 50 };
 
-/** The Tech Stack tab: a Windows 98 style desktop whose main app browses the case study's code. */
-export function CodeOS({ caseStudy }: { caseStudy: CaseStudy }) {
+interface CodeOSProps {
+  title: string;
+  /** Files from this repository, as paths from its root. */
+  source: readonly string[];
+}
+
+/** The Code tab: a Windows 98 style desktop whose main app browses real source files. */
+export function CodeOS({ title, source }: CodeOSProps) {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const [phase, setPhase] = useState<Phase>('booting');
   const [desktop, dispatch] = useReducer(desktopReducer<string>, EMPTY_DESKTOP);
   const [mobileApp, setMobileApp] = useState<DesktopApp | null>(null);
   const [shutdownOpen, setShutdownOpen] = useState(false);
-  const projectName = caseStudy.hero.title;
+  const [files, setFiles] = useState<Record<string, SourceFile[]>>({});
   const focused = focusedWindow(desktop);
+
+  useEffect(() => {
+    let active = true;
+    loadSource(source)
+      .then((loaded) => active && setFiles(loaded))
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, [source]);
 
   const booted = useCallback(() => {
     setPhase('running');
@@ -51,11 +67,10 @@ export function CodeOS({ caseStudy }: { caseStudy: CaseStudy }) {
   };
 
   const titleOf = (app: DesktopApp) =>
-    app.kind === 'explorer' ? `${projectName} - Tech Stack Analyzer` : app.name;
+    app.kind === 'explorer' ? `${title} - ${app.name}` : app.name;
 
   const contentOf = (app: DesktopApp) => {
-    if (app.kind === 'explorer')
-      return <StackExplorer files={caseStudy.techStackAnalyzer.fileStructure} />;
+    if (app.kind === 'explorer') return <StackExplorer files={files} />;
     if (app.kind === 'notepad') return <Notepad />;
     if (app.url) return <EmbeddedApp url={app.url} title={app.name} />;
     return null;
@@ -68,7 +83,7 @@ export function CodeOS({ caseStudy }: { caseStudy: CaseStudy }) {
   return (
     <div className="win98-desktop relative h-full overflow-hidden">
       <AnimatePresence>
-        {phase === 'booting' && <BootScreen projectName={projectName} onDone={booted} />}
+        {phase === 'booting' && <BootScreen projectName={title} onDone={booted} />}
       </AnimatePresence>
       {phase === 'crashed' && <BlueScreen onRestart={restart} />}
 

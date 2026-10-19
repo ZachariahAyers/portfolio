@@ -1,45 +1,44 @@
 import {
-  Activity,
   ArrowLeft,
   Atom,
   BarChart3,
   Beaker,
   Binary,
   ChevronRight,
-  Cpu,
   FlaskConical,
   Layers,
   type LucideIcon,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router';
-import { type CaseStudy, liveUrl } from '../../../shared/content.ts';
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { Tooltip } from '../../components/Tooltip.tsx';
 import { loadCaseStudy } from '../../content/caseStudies.ts';
+import type { CaseStudy } from '../../content/schema.ts';
 import { cx } from '../../lib/cx.ts';
 import { CodeOS } from '../codeos/CodeOS.tsx';
-import { contractCode, experimentNumber } from './identifiers.ts';
 import { OverviewTab } from './OverviewTab.tsx';
 import { ProblemTab } from './ProblemTab.tsx';
-import { ReleaseTab } from './ReleaseTab.tsx';
 import { ResultsTab } from './ResultsTab.tsx';
-import { SolutionTab } from './SolutionTab.tsx';
 
-type TabId = 'overview' | 'problem' | 'solution' | 'results' | 'release' | 'tech';
+type TabId = 'overview' | 'problem' | 'results' | 'code';
 
 const TABS: { id: TabId; label: string; icon: LucideIcon }[] = [
   { id: 'overview', label: 'Overview', icon: FlaskConical },
-  { id: 'problem', label: 'Problem', icon: Binary },
-  { id: 'solution', label: 'Solution', icon: Cpu },
+  { id: 'problem', label: 'Before and After', icon: Binary },
   { id: 'results', label: 'Results', icon: BarChart3 },
-  { id: 'release', label: 'Release', icon: Activity },
-  { id: 'tech', label: 'Tech Stack', icon: Layers },
+  { id: 'code', label: 'Code', icon: Layers },
 ];
 
-/** The Release tab needs a deployed site to show. */
+/** Overview always; every other tab only when the case study has its content. */
 const tabsFor = (caseStudy: CaseStudy) =>
-  TABS.filter((tab) => tab.id !== 'release' || liveUrl(caseStudy));
+  TABS.filter(
+    (tab) =>
+      tab.id === 'overview' ||
+      (tab.id === 'problem' && caseStudy.problem) ||
+      (tab.id === 'results' && caseStudy.results) ||
+      (tab.id === 'code' && caseStudy.source),
+  );
 
 const isTyping = (target: EventTarget | null) =>
   target instanceof HTMLElement &&
@@ -101,11 +100,10 @@ function CaseStudyLoader({ id }: { id: string }) {
 
 function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
   const navigate = useNavigate();
-  const location = useLocation();
+  const [search, setSearch] = useSearchParams();
   const tabs = useMemo(() => tabsFor(caseStudy), [caseStudy]);
-  const site = liveUrl(caseStudy);
-  const fromHash = tabs.find((tab) => `#${tab.id}` === location.hash)?.id;
-  const [active, setActive] = useState<TabId>(fromHash ?? 'overview');
+  const site = caseStudy.links.live;
+  const active = tabs.find((tab) => tab.id === search.get('tab'))?.id ?? 'overview';
   const [particles] = useState(() =>
     Array.from({ length: 30 }, (_, i) => ({
       id: i,
@@ -116,13 +114,10 @@ function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
   );
 
   useEffect(() => {
-    document.title = `${caseStudy.hero.title} | Research Lab`;
-  }, [caseStudy.hero.title]);
+    document.title = `${caseStudy.title} | Zachariah Ayers`;
+  }, [caseStudy.title]);
 
-  const select = (id: TabId) => {
-    setActive(id);
-    void navigate({ hash: id }, { replace: true });
-  };
+  const select = useCallback((id: TabId) => setSearch({ tab: id }, { replace: true }), [setSearch]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -132,14 +127,11 @@ function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
         return;
       }
       const tab = tabs[Number(event.key) - 1];
-      if (tab) {
-        setActive(tab.id);
-        void navigate({ hash: tab.id }, { replace: true });
-      }
+      if (tab) select(tab.id);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [navigate, tabs]);
+  }, [navigate, select, tabs]);
 
   const siteLink = (className: string, children: ReactNode) =>
     site && (
@@ -169,38 +161,14 @@ function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
             <div className="flex items-center gap-3">
               <Beaker className="h-5 w-5 text-blue-600 dark:text-blue-400" aria-hidden />
               <div>
-                <p className="flex items-center gap-2 font-mono text-xs">
-                  <span className="text-blue-600 dark:text-blue-400">
-                    EXPERIMENT #{experimentNumber(caseStudy.id)}
-                  </span>
-                  <span className="text-gray-600 dark:text-gray-500" aria-hidden>
-                    |
-                  </span>
-                  <span className="text-green-600 dark:text-green-400">
-                    CONTRACT #{contractCode(caseStudy.id)}
-                  </span>
+                <p className="font-mono text-xs text-blue-600 dark:text-blue-400">
+                  {caseStudy.organization}
                 </p>
-                <h1 className="text-sm font-bold">{caseStudy.hero.title}</h1>
+                <h1 className="text-sm font-bold">{caseStudy.title}</h1>
               </div>
             </div>
-            {site && (
-              <span
-                className="hidden h-6 w-px bg-linear-to-b from-transparent via-blue-500/30 to-transparent sm:block"
-                aria-hidden
-              />
-            )}
-            {siteLink(
-              'hidden items-center gap-4 transition-opacity hover:opacity-80 sm:flex',
-              <>
-                <Activity
-                  className="h-5 w-5 animate-pulse text-blue-600 dark:text-blue-400"
-                  aria-hidden
-                />
-                <span className="font-mono text-xs text-gray-600 dark:text-gray-500">LIVE</span>
-              </>,
-            )}
           </div>
-          <Tooltip content="Exit Lab (ESC)">
+          <Tooltip content="Back to the portfolio (Esc)">
             <Link
               to="/"
               className="group flex items-center gap-2 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
@@ -210,7 +178,7 @@ function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
                 className="transition-transform group-hover:-translate-x-1"
                 aria-hidden
               />
-              <span className="text-sm font-light">Exit Lab</span>
+              <span className="text-sm font-light">Back</span>
             </Link>
           </Tooltip>
         </div>
@@ -277,13 +245,15 @@ function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
             className="h-full"
           >
             {active === 'overview' && <OverviewTab caseStudy={caseStudy} />}
-            {active === 'problem' && <ProblemTab section={caseStudy.problem} />}
-            {active === 'solution' && <SolutionTab caseStudyId={caseStudy.id} />}
-            {active === 'results' && <ResultsTab caseStudy={caseStudy} />}
-            {active === 'release' && site && (
-              <ReleaseTab key={site} url={site} title={caseStudy.hero.title} />
+            {active === 'problem' && caseStudy.problem && (
+              <ProblemTab problem={caseStudy.problem} />
             )}
-            {active === 'tech' && <CodeOS caseStudy={caseStudy} />}
+            {active === 'results' && caseStudy.results && (
+              <ResultsTab title={caseStudy.title} results={caseStudy.results} />
+            )}
+            {active === 'code' && caseStudy.source && (
+              <CodeOS title={caseStudy.title} source={caseStudy.source} />
+            )}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -291,25 +261,20 @@ function CaseStudyPage({ caseStudy }: { caseStudy: CaseStudy }) {
       <footer className="flex min-h-[30px] flex-col border-t border-gray-300 bg-gray-100/80 px-3 py-2 font-mono text-xs text-gray-600 md:h-[30px] md:flex-row md:items-center md:justify-between md:px-6 md:py-0 dark:border-gray-700/50 dark:bg-gray-800/50 dark:text-gray-500">
         <p className="flex flex-wrap items-center justify-center gap-2 md:justify-start md:gap-4">
           <span className="whitespace-nowrap">
-            <span className="hidden sm:inline">Duration: </span>
-            <span className="font-semibold">{caseStudy.timeline.duration}</span>
-          </span>
-          <span aria-hidden>•</span>
-          <span className="whitespace-nowrap">
             <span className="hidden sm:inline">Role: </span>
-            <span className="font-semibold">{caseStudy.timeline.role}</span>
+            <span className="font-semibold">{caseStudy.role}</span>
           </span>
           <span aria-hidden>•</span>
           <span className="whitespace-nowrap">
-            <span className="hidden sm:inline">Year: </span>
-            <span className="font-semibold">{caseStudy.timeline.year}</span>
+            <span className="hidden sm:inline">When: </span>
+            <span className="font-semibold">{caseStudy.period}</span>
           </span>
         </p>
         {siteLink(
           'mt-2 flex items-center justify-center gap-2 transition-colors hover:text-blue-600 md:mt-0 dark:hover:text-blue-400',
           <>
             <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" aria-hidden />
-            <span>Go To Full Site</span>
+            <span>Visit the site</span>
             <ChevronRight className="h-3 w-3" aria-hidden />
           </>,
         )}

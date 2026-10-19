@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import type { Profile, ProjectType } from '../../../shared/content.ts';
+import { type Profile, PROJECT_TYPES, type ProjectType } from '../../content/schema.ts';
 import { type ChipColor, FilterChip } from '../../components/FilterChip.tsx';
 import { Tooltip } from '../../components/Tooltip.tsx';
 import { cx } from '../../lib/cx.ts';
@@ -42,37 +42,37 @@ const TYPES: Record<
     badge: string;
   }
 > = {
-  enterprise: {
-    label: 'Enterprise',
-    tooltip: 'Show large-scale corporate projects',
-    icon: Building,
-    color: 'purple',
-    card: 'from-purple-50 to-pink-50 border-purple-500 dark:from-purple-900/20 dark:to-pink-900/20 dark:border-purple-500/30',
-    badge: 'text-purple-400',
-  },
-  freelance: {
-    label: 'Freelance',
-    tooltip: 'Show freelance client projects',
-    icon: Briefcase,
-    color: 'amber',
-    card: 'from-amber-50 to-orange-50 border-amber-500 dark:from-amber-900/20 dark:to-orange-900/20 dark:border-amber-500/30',
-    badge: 'text-amber-400',
-  },
-  leadership: {
-    label: 'Leadership',
-    tooltip: 'Show leadership and organizational impact projects',
-    icon: Code,
+  products: {
+    label: 'Products',
+    tooltip: 'Show products Zach builds and runs',
+    icon: Rocket,
     color: 'green',
     card: 'from-green-50 to-emerald-50 border-green-500 dark:from-green-900/20 dark:to-emerald-900/20 dark:border-green-500/30',
     badge: 'text-green-400',
   },
   opensource: {
     label: 'Open Source',
-    tooltip: 'Show open source contributions',
+    tooltip: 'Show open-source contributions',
     icon: Package,
     color: 'blue',
     card: 'from-blue-50 to-cyan-50 border-blue-500 dark:from-blue-900/20 dark:to-cyan-900/20 dark:border-blue-500/30',
     badge: 'text-blue-400',
+  },
+  clients: {
+    label: 'Clients',
+    tooltip: 'Show client engagements',
+    icon: Briefcase,
+    color: 'amber',
+    card: 'from-amber-50 to-orange-50 border-amber-500 dark:from-amber-900/20 dark:to-orange-900/20 dark:border-amber-500/30',
+    badge: 'text-amber-400',
+  },
+  employers: {
+    label: 'Employers',
+    tooltip: 'Show work for employers',
+    icon: Building,
+    color: 'purple',
+    card: 'from-purple-50 to-pink-50 border-purple-500 dark:from-purple-900/20 dark:to-pink-900/20 dark:border-purple-500/30',
+    badge: 'text-purple-400',
   },
 };
 
@@ -105,13 +105,13 @@ export function ProjectsView({ profile }: { profile: Profile }) {
             Projects & Creations
           </h2>
           <p className="mx-auto max-w-2xl text-base text-gray-700 max-sm:text-sm md:text-lg dark:text-gray-300">
-            From enterprise transformations to open-source contributions
+            Products, open-source work, client engagements and employer projects
           </p>
           <dl className="flex flex-wrap justify-center gap-2 text-xs md:gap-4 md:text-sm">
             {[
               ['Total', stats.total],
               ['With Source', stats.withSource],
-              ['Live Deployments', stats.live],
+              ['Live Sites', stats.live],
               ['Case Studies', stats.caseStudies],
             ].map(([label, value]) => (
               <div
@@ -141,7 +141,7 @@ export function ProjectsView({ profile }: { profile: Profile }) {
             <Zap className="h-3 w-3" aria-hidden />
             Current Focus ({stats.current})
           </FilterChip>
-          {(['enterprise', 'freelance', 'leadership', 'opensource'] as const).map((type) => (
+          {PROJECT_TYPES.map((type) => (
             <FilterChip
               key={type}
               active={filter.type === type && !filter.currentOnly}
@@ -153,6 +153,11 @@ export function ProjectsView({ profile }: { profile: Profile }) {
             </FilterChip>
           ))}
         </div>
+        {filter.type === 'products' && (
+          <p className="mt-3 text-center text-sm text-gray-600 dark:text-gray-400">
+            {profile.productsNote}
+          </p>
+        )}
       </section>
 
       <section className="rounded-lg bg-gray-200 p-4 dark:bg-gray-800/30">
@@ -241,9 +246,6 @@ function ProjectCard({ project }: { project: ProjectEntry }) {
             </span>
           )}
         </div>
-        <div className="mb-3 h-40 w-full overflow-hidden rounded-md bg-gray-800">
-          <img src={project.image} alt="" loading="lazy" className="h-full w-full object-cover" />
-        </div>
         <p
           className={cx(
             'mb-3 text-sm text-gray-700 dark:text-gray-300',
@@ -261,11 +263,6 @@ function ProjectCard({ project }: { project: ProjectEntry }) {
           >
             {expanded ? 'Show less' : 'Show more'}
           </button>
-        )}
-        {project.impact && (
-          <p className="mb-3 rounded-md bg-green-100 px-3 py-1 text-xs text-green-700 dark:bg-green-900/30 dark:text-green-300">
-            <span className="font-semibold">Impact:</span> {project.impact}
-          </p>
         )}
         {project.technologies.length > 0 && (
           <ul className="mb-3 flex flex-wrap gap-1">
@@ -289,7 +286,7 @@ function ProjectCard({ project }: { project: ProjectEntry }) {
         {project.url && (
           <a href={project.url} target="_blank" rel="noopener noreferrer" className={link}>
             <Globe className="h-3 w-3" aria-hidden />
-            Live Deployment
+            Live Site
           </a>
         )}
         {project.github && (

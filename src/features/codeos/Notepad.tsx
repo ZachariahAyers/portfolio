@@ -1,18 +1,8 @@
 import { useState } from 'react';
 
-const STARTER = `// Welcome to Notepad 98!
-// This is where you can take notes about the tech stack
+const STARTER = `Notepad 98
 
-Tech Stack Summary:
-==================
-Frontend: React, Vue, Tailwind CSS
-Backend: Node.js, Python, PostgreSQL
-DevOps: Docker, Kubernetes, GitHub Actions
-
-Notes:
-- All services running smoothly
-- Latest deployment successful
-- Performance metrics looking good`;
+Type anything here. Nothing is saved.`;
 
 export function Notepad() {
   const [text, setText] = useState(STARTER);

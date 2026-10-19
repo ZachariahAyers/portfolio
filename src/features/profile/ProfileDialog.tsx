@@ -1,5 +1,5 @@
 import { ExternalLink } from 'lucide-react';
-import { profile } from '../../../shared/profile.ts';
+import { profile } from '../../content/profile.ts';
 import { Modal } from '../../components/Modal.tsx';
 import { Tooltip } from '../../components/Tooltip.tsx';
 import { cx } from '../../lib/cx.ts';
@@ -9,7 +9,7 @@ import { ProjectsView } from './ProjectsView.tsx';
 import { SkillsView } from './SkillsView.tsx';
 
 const TITLES: Record<ProfileSection, string> = {
-  me: 'Hello There, Welcome to My Portfolio',
+  me: 'About Zach',
   projects: 'Projects',
   skills: 'Skills',
 };
@@ -21,12 +21,10 @@ const FULL_PAGE: Partial<Record<ProfileSection, { path: string; label: string; t
 
 interface ProfileDialogProps {
   section: ProfileSection;
-  interests: string[];
   onClose: () => void;
-  onContact: () => void;
 }
 
-export function ProfileDialog({ section, interests, onClose, onContact }: ProfileDialogProps) {
+export function ProfileDialog({ section, onClose }: ProfileDialogProps) {
   const fullPage = FULL_PAGE[section];
   return (
     <Modal
@@ -38,7 +36,7 @@ export function ProfileDialog({ section, interests, onClose, onContact }: Profil
         fullPage && (
           <Tooltip content="Open in a new tab">
             <a
-              href={fullPage.path}
+              href={`#${fullPage.path}`}
               target="_blank"
               rel="noopener noreferrer"
               className={cx(
@@ -54,9 +52,7 @@ export function ProfileDialog({ section, interests, onClose, onContact }: Profil
       }
     >
       <div className="bg-white p-6 dark:bg-gray-900">
-        {section === 'me' && (
-          <AboutView profile={profile} interests={interests} onContact={onContact} />
-        )}
+        {section === 'me' && <AboutView profile={profile} />}
         {section === 'projects' && <ProjectsView profile={profile} />}
         {section === 'skills' && <SkillsView profile={profile} />}
       </div>
