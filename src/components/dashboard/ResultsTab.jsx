@@ -43,7 +43,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-850 border border-gray-300 dark:border-gray-700 rounded-t-lg p-6"
+          className="bg-linear-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-850 border border-gray-300 dark:border-gray-700 rounded-t-lg p-6"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -174,7 +174,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                         variants={rowVariants}
                         className="flex items-start gap-3 p-3 bg-gray-100 dark:bg-gray-900/50 rounded-lg"
                       >
-                        <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0" />
                         <span className="text-sm text-gray-700 dark:text-gray-300">{highlight}</span>
                       </motion.div>
                     ))}
@@ -187,7 +187,7 @@ const ResultsTab = ({ section, caseStudyId = 'report' }) => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="mt-4 p-4 bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/10 rounded-lg border border-blue-300 dark:border-blue-500/30"
+                    className="mt-4 p-4 bg-linear-to-r from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/10 rounded-lg border border-blue-300 dark:border-blue-500/30"
                   >
                     <p className="text-lg text-blue-700 dark:text-blue-300 font-medium">{reportSection.summary}</p>
                   </motion.div>

@@ -31,7 +31,7 @@ const WelcomeModal = ({ trigger }) => {
         <div className="fixed inset-0 z-50 flex items-start justify-center p-4 animate-fade-in min-h-screen overflow-y-auto">
           {/* Overlay */}
           <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-xs"
             onClick={() => setIsOpen(false)}
           />
           

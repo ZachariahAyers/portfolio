@@ -48,7 +48,7 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
     <>
       {/* Overlay */}
       <div 
-        className="fixed inset-0 z-50 bg-black/60 dark:bg-black/70 backdrop-blur-sm animate-fade-in"
+        className="fixed inset-0 z-50 bg-black/60 dark:bg-black/70 backdrop-blur-xs animate-fade-in"
         onClick={onClose}
       />
       
@@ -62,7 +62,7 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Quick Questions</h3>
             <button
               onClick={onClose}
-              className="p-1 rounded hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+              className="p-1 rounded-sm hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
             >
               <X size={20} className="text-gray-600 dark:text-gray-400" />
             </button>
@@ -94,7 +94,7 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
                         }`}
                       >
                         <div className="flex items-center gap-2">
-                          {isSpecial && <Sparkles className="h-4 w-4 text-blue-400 flex-shrink-0" />}
+                          {isSpecial && <Sparkles className="h-4 w-4 text-blue-400 shrink-0" />}
                           <span className={`text-sm ${isSpecial ? 'text-blue-600 dark:text-blue-300 font-medium' : 'text-gray-700 dark:text-gray-300'}`}>
                             {question}
                           </span>

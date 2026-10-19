@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Home, ArrowLeft } from 'lucide-react';
 import profileData from '../portfolio-data.json';
 import useGitHubStats from '../hooks/useGitHubStats';
@@ -8,7 +8,7 @@ import { Tooltip } from './Tooltip';
 // Import the projects view logic from DetailedView
 import { 
   Briefcase, Code, Building, Package, Brain, Cloud, 
-  Rocket, Globe, Github, Filter, Zap, ExternalLink, FileText, Star 
+  Rocket, Globe, Filter, Zap, ExternalLink, FileText, Star 
 } from 'lucide-react';
 
 const ProjectsPage = () => {
@@ -207,7 +207,7 @@ const ProjectsPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-6 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
+          <div className="relative bg-linear-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
             <div className="text-center space-y-4">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
                 <Rocket className="text-blue-400" />
@@ -425,18 +425,18 @@ const ProjectsPage = () => {
               return (
                 <div
                   key={project.id}
-                  className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                  className={`bg-transparent dark:bg-linear-to-br ${theme} rounded-lg p-4 md:p-5 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                     project.current 
                       ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                       : ''
                   }`}
                 >
                   {/* Main Content - Flex Grow */}
-                  <div className="flex-grow relative z-10">
+                  <div className="grow relative z-10">
                     {/* Project Header */}
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2 flex-1">
-                        <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                        <Icon className="w-5 h-5 text-blue-400 shrink-0" />
                         <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
                           {project.name}
                         </h3>
@@ -458,7 +458,7 @@ const ProjectsPage = () => {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800">
+                        <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-linear-to-br dark:from-gray-700 dark:to-gray-800">
                           <Icon className="w-12 h-12 text-gray-600" />
                         </div>
                       )}
@@ -531,7 +531,7 @@ const ProjectsPage = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                       >
-                        <Github className="w-3 h-3" />
+                        <Code className="w-3 h-3" />
                         Source
                       </a>
                     )}

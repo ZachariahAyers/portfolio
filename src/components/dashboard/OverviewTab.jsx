@@ -50,7 +50,7 @@ const OverviewTab = ({ caseStudy }) => {
             <div className="flex items-start justify-between mb-6">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="flex items-center gap-2 px-3 py-1 bg-purple-500/20 text-purple-400 rounded text-sm font-medium">
+                  <div className="flex items-center gap-2 px-3 py-1 bg-purple-500/20 text-purple-400 rounded-sm text-sm font-medium">
                     <BookOpen className="w-4 h-4" />
                     <span>Story</span>
                   </div>
@@ -62,7 +62,7 @@ const OverviewTab = ({ caseStudy }) => {
               </div>
               
               <div className="flex items-center gap-2">
-                <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors">
+                <button className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-sm transition-colors">
                   <MoreHorizontal className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                 </button>
               </div>
@@ -70,7 +70,7 @@ const OverviewTab = ({ caseStudy }) => {
 
             {/* Status bar */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-6 border-b border-gray-300 dark:border-gray-700">
-              <button className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded hover:bg-yellow-500/30 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded-sm hover:bg-yellow-500/30 transition-colors">
                 <Clock className="w-4 h-4" />
                 <span>To Do</span>
                 <ChevronDown className="w-4 h-4 ml-1" />
@@ -80,7 +80,7 @@ const OverviewTab = ({ caseStudy }) => {
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4 text-gray-500" />
                   <span className="text-gray-600 dark:text-gray-400">Assignee:</span>
-                  <button className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded text-sm font-medium text-gray-900 dark:text-white transition-colors">
+                  <button className="px-2 py-0.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-sm text-sm font-medium text-gray-900 dark:text-white transition-colors">
                     Zachariah Ayers
                   </button>
                 </div>
@@ -176,7 +176,7 @@ const OverviewTab = ({ caseStudy }) => {
                           const cleanCriteria = criteria.replace(/^[✓✔☑]\s*/, '');
                           return (
                             <li key={idx} className="flex items-start gap-3">
-                              <div className="w-5 h-5 bg-green-500 rounded mt-0.5 flex items-center justify-center">
+                              <div className="w-5 h-5 bg-green-500 rounded-sm mt-0.5 flex items-center justify-center">
                                 <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                 </svg>
@@ -215,7 +215,7 @@ const OverviewTab = ({ caseStudy }) => {
                           { name: 'api-spec.yaml', type: 'YAML', size: '89 KB' },
                           { name: 'test-results.xlsx', type: 'Excel', size: '234 KB' }
                         ]).slice(0, 4).map((attachment, idx) => (
-                          <div key={idx} className="flex items-center gap-3 p-3 bg-gray-900 rounded hover:bg-gray-800 transition-colors cursor-pointer">
+                          <div key={idx} className="flex items-center gap-3 p-3 bg-gray-900 rounded-sm hover:bg-gray-800 transition-colors cursor-pointer">
                             <Paperclip className="w-5 h-5 text-gray-400" />
                             <div className="flex-1">
                               <p className="text-sm text-white">{attachment.name}</p>

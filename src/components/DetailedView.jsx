@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Github, Globe, Users, Zap, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield, FileText } from 'lucide-react';
+import { useNavigate, Link } from 'react-router';
+import { X, Briefcase, Code, Award, Calendar, MapPin, ExternalLink, Globe, Users, Zap, Rocket, Building, GraduationCap, Package, Brain, Cloud, Database, Filter, ChevronDown, Star, Layers, Shield, FileText } from 'lucide-react';
 import StreamingText from './StreamingText';
 import StreamingTextSimple from './StreamingTextSimple';
 import { Tooltip } from './Tooltip';
@@ -74,7 +74,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
       {/* Hero Section: Image | Name/Title | Contact Info */}
       <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center justify-center">
         {/* Image */}
-        <div className="flex-shrink-0 flex items-center">
+        <div className="shrink-0 flex items-center">
           <div className="w-24 h-24 rounded-full overflow-hidden shadow-xl">
             <img src={profileData.personal.avatarPath} alt={profileData.personal.name} className="w-full h-full object-cover" />
           </div>
@@ -88,7 +88,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
         </div>
 
         {/* Contact Info */}
-        <div className="w-full lg:w-auto lg:flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 max-sm:p-3 lg:min-w-[280px]">
+        <div className="w-full lg:w-auto lg:shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-lg p-4 max-sm:p-3 lg:min-w-[280px]">
           <h2 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-3">Connect With Me</h2>
           <div className="grid grid-cols-1 gap-2 text-sm">
             <Tooltip content="Send me an email">
@@ -111,7 +111,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
             </Tooltip>
             <Tooltip content="Explore my GitHub repositories">
               <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub portfolio in new tab" className="flex items-center gap-2 text-blue-400 hover:text-blue-300">
-                <Github size={14} /> GitHub Portfolio
+                <Code size={14} /> GitHub Portfolio
               </a>
             </Tooltip>
           </div>
@@ -119,7 +119,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
       </div>
 
       {/* Executive Summary Section */}
-      <div className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
+      <div className="bg-linear-to-r from-blue-100 to-green-100 dark:from-blue-900/20 dark:to-green-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
         <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Briefcase className="text-blue-400" /> Executive Summary
         </h2>
@@ -140,7 +140,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
       </div>
 
       {/* What I Can Bring to Your Team Section */}
-      <div className="bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
+      <div className="bg-linear-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
         <h2 className="text-xl md:text-2xl max-sm:text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
           <Zap className="text-purple-400" /> What I Can Bring to Your Team
         </h2>
@@ -330,7 +330,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
+        <div className="relative bg-linear-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 md:p-6 border border-blue-400 dark:border-blue-500/30">
           {/* GitHub Stats in top right corner */}
           
           <div className="text-center space-y-4">
@@ -541,18 +541,18 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
             return (
               <div
                 key={project.id}
-                className={`bg-transparent dark:bg-gradient-to-br ${theme} rounded-lg p-4 md:p-5 max-sm:p-3 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
+                className={`bg-transparent dark:bg-linear-to-br ${theme} rounded-lg p-4 md:p-5 max-sm:p-3 border transition-all duration-200 hover:scale-[1.01] hover:shadow-lg flex flex-col ${
                   project.current 
                     ? 'ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                     : ''
                 }`}
               >
                 {/* Main Content - Flex Grow */}
-                <div className="flex-grow relative z-10">
+                <div className="grow relative z-10">
                   {/* Project Header */}
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2 flex-1">
-                      <Icon className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                      <Icon className="w-5 h-5 text-blue-400 shrink-0" />
                       <h3 className="text-base md:text-lg max-sm:text-sm font-bold text-gray-900 dark:text-white">
                         {project.name}
                       </h3>
@@ -574,7 +574,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800">
+                      <div className="w-full h-full flex items-center justify-center bg-gray-300 dark:bg-linear-to-br dark:from-gray-700 dark:to-gray-800">
                         <Icon className="w-12 h-12 text-gray-600 dark:text-gray-400" />
                       </div>
                     )}
@@ -661,7 +661,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
                       aria-label={`View source code for ${project.name} on GitHub in new tab`}
                       className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300"
                     >
-                      <Github className="w-3 h-3" />
+                      <Code className="w-3 h-3" />
                       Source
                     </a>
                   )}
@@ -937,7 +937,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
+        <div className="relative bg-linear-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 max-sm:p-3 border border-purple-400 dark:border-purple-500/30">
           <div className="text-center space-y-4">
             <h1 className="text-3xl max-sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
               <Brain className="text-purple-400" />
@@ -1044,7 +1044,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
           <Tooltip content="The coding languages I use to build software applications">
             <div className="block hover:scale-[1.02] transition-transform">
-              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Code className="w-4 h-4 text-blue-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Languages</h3>
@@ -1057,7 +1057,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           
           <Tooltip content="Cloud platforms and artificial intelligence tools I work with">
             <div className="block hover:scale-[1.02] transition-transform">
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-purple-400 dark:border-purple-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-purple-400 dark:border-purple-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Cloud className="w-4 h-4 text-purple-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Cloud & AI</h3>
@@ -1070,7 +1070,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           
           <Tooltip content="Technologies for creating user interfaces and web experiences">
             <div className="block hover:scale-[1.02] transition-transform">
-              <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-3 border border-green-400 dark:border-green-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-3 border border-green-400 dark:border-green-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Globe className="w-4 h-4 text-green-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Frontend</h3>
@@ -1083,7 +1083,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           
           <Tooltip content="Server-side technologies that power applications behind the scenes">
             <div className="block hover:scale-[1.02] transition-transform">
-              <div className="bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-3 border border-orange-400 dark:border-orange-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-3 border border-orange-400 dark:border-orange-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Database className="w-4 h-4 text-orange-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Backend</h3>
@@ -1096,7 +1096,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           
           <Tooltip content="Tools and practices for automating software deployment and operations">
             <div className="block hover:scale-[1.02] transition-transform">
-              <div className="bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-lg p-3 border border-indigo-400 dark:border-indigo-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-indigo-100 to-blue-100 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-lg p-3 border border-indigo-400 dark:border-indigo-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">DevOps</h3>
@@ -1109,7 +1109,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           
           <Tooltip content="Security operations and compliance tools to protect systems and data">
             <div className="block hover:scale-[1.02] transition-transform">
-              <div className="bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-red-400 dark:border-red-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-red-100 to-pink-100 dark:from-red-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-red-400 dark:border-red-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4 text-red-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">SpecOps</h3>
@@ -1133,7 +1133,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search skills by name"
-              className="w-full px-4 py-2 pl-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white"
+              className="w-full px-4 py-2 pl-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-purple-500 dark:text-white"
             />
             <Filter className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" aria-hidden="true" />
           </div>
@@ -1199,7 +1199,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
           }
           
           return (
-            <div key={level} className={`bg-gradient-to-br ${theme} rounded-lg border transition-all duration-200`}>
+            <div key={level} className={`bg-linear-to-br ${theme} rounded-lg border transition-all duration-200`}>
               <button
                 onClick={() => toggleCategory(level)}
                 aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${level} level skills section`}
@@ -1236,9 +1236,9 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
                       return (
                         <Tooltip key={`${skill.name}-${idx}`} content={`${skill.name} - ${skill.category}`}>
                           <div className="block">
-                            <div className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg overflow-hidden">
+                            <div className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-xs rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg overflow-hidden">
                               {/* Gradient overlay on hover */}
-                              <div className={`absolute inset-0 bg-gradient-to-br ${
+                              <div className={`absolute inset-0 bg-linear-to-br ${
                                 level === 'expert' ? 'from-blue-600/0 to-cyan-600/0 group-hover:from-blue-600/10 group-hover:to-cyan-600/10' :
                                 level === 'proficient' ? 'from-green-600/0 to-emerald-600/0 group-hover:from-green-600/10 group-hover:to-emerald-600/10' :
                                 'from-orange-600/0 to-amber-600/0 group-hover:from-orange-600/10 group-hover:to-amber-600/10'
@@ -1259,9 +1259,9 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
                                   <div className="mt-2 h-1 bg-gray-700/30 rounded-full overflow-hidden">
                                     <div 
                                       className={`h-full transition-all duration-500 ${
-                                        level === 'expert' ? 'w-full bg-gradient-to-r from-blue-500 to-cyan-500' :
-                                        level === 'proficient' ? 'w-3/4 bg-gradient-to-r from-green-500 to-emerald-500' :
-                                        'w-1/2 bg-gradient-to-r from-orange-500 to-amber-500'
+                                        level === 'expert' ? 'w-full bg-linear-to-r from-blue-500 to-cyan-500' :
+                                        level === 'proficient' ? 'w-3/4 bg-linear-to-r from-green-500 to-emerald-500' :
+                                        'w-1/2 bg-linear-to-r from-orange-500 to-amber-500'
                                       }`}
                                     />
                                   </div>
@@ -1281,7 +1281,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
 
         {/* Certifications Section */}
         {showCertifications && (
-          <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
+          <div className="bg-linear-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-6 border border-purple-400 dark:border-purple-500/30">
           <div className="flex items-center gap-3 mb-6">
             <Award className="text-purple-400 w-6 h-6" />
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -1308,7 +1308,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
                     return (
                       <div 
                         key={idx} 
-                        className={`relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-3 border transition-all duration-200 hover:scale-[1.01] ${
+                        className={`relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-xs rounded-lg p-3 border transition-all duration-200 hover:scale-[1.01] ${
                           isInProgress 
                             ? 'border-green-500/40 ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                             : 'border-gray-300 dark:border-gray-700/50 hover:border-purple-400 dark:hover:border-purple-500/50'
@@ -1318,7 +1318,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
                           <div className="flex items-start justify-between gap-2">
                             <p className="text-gray-700 dark:text-gray-300 text-sm flex items-start gap-2 flex-1">
                               {isInProgress ? (
-                                <Zap className="w-3 h-3 text-green-400 mt-0.5 flex-shrink-0" />
+                                <Zap className="w-3 h-3 text-green-400 mt-0.5 shrink-0" />
                               ) : (
                                 <span className="text-purple-400 mt-0.5">•</span>
                               )}
@@ -1395,7 +1395,7 @@ const DetailedView = ({ mode, onClose, profileData, onGenerateContent, onGenerat
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fade-in">
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 backdrop-blur-xs z-9999 flex items-center justify-center p-4 animate-fade-in">
       <div className="bg-white dark:bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-scale-in shadow-xl">
         <div className="sticky top-0 bg-gray-50 dark:bg-gray-800 p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white capitalize flex items-center gap-2">

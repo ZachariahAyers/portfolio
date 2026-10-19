@@ -13,7 +13,9 @@ const SolutionTab = ({ caseStudyId }) => {
   useEffect(() => {
     mermaid.initialize({
       startOnLoad: false,
-      theme: 'default'
+      theme: 'default',
+      layout: 'dagre',
+      look: 'classic'
     });
   }, []);
 

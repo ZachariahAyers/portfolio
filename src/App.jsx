@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowUp, User, Bot, Linkedin, Github, Globe, Send, X, Mail, Briefcase, History, UserCheck, Users, Monitor } from 'lucide-react';
+import { useNavigate } from 'react-router';
+import { ArrowUp, User, Bot, Globe, Send, X, Mail, Briefcase, History, UserCheck, Users, Monitor } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import QuickCards from './components/QuickCards';
 import QuickOptionsFlyout from './components/QuickOptionsFlyout';
@@ -315,7 +315,7 @@ const AnimatedMessage = ({ message, isAI }) => {
     li: ({...props}) => <li className="mb-1 [&>p]:inline" {...props} />,
     code: ({inline, ...props}) => 
       inline ? 
-      <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-xs" {...props} /> :
+      <code className="bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded-sm text-xs" {...props} /> :
       <pre className="bg-gray-100 dark:bg-gray-900 p-3 rounded-md overflow-x-auto mb-3"><code {...props} /></pre>,
     h1: ({...props}) => <h1 className="text-xl font-bold mb-2" {...props} />,
     h2: ({...props}) => <h2 className="text-lg font-bold mb-2" {...props} />,
@@ -324,7 +324,7 @@ const AnimatedMessage = ({ message, isAI }) => {
 
   return (
     <div className={`flex items-start gap-3 my-4 animate-fade-in-up ${isAI ? '' : 'flex-row-reverse'}`}>
-      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isAI ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-600'} overflow-hidden`}>
+      <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${isAI ? 'bg-gray-200 dark:bg-gray-700' : 'bg-blue-600'} overflow-hidden`}>
         {isAI ? (
           <img src="/ai-profile.png" alt="Arlo" className="w-full h-full object-cover" />
         ) : (
@@ -343,7 +343,7 @@ const AnimatedMessage = ({ message, isAI }) => {
 };
 
 const ModalWrapper = ({ children, setView }) => (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 flex items-center justify-center p-4 z-[9999] animate-fade-in" onClick={() => setView('chat')}>
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/70 flex items-center justify-center p-4 z-9999 animate-fade-in" onClick={() => setView('chat')}>
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg max-w-lg w-full animate-scale-in shadow-xl" onClick={e => e.stopPropagation()}>
             {children}
         </div>
@@ -472,7 +472,7 @@ const ContactForm = ({ setView }) => {
             value={formData.name} 
             onChange={handleChange} 
             disabled={status === 'sending'}
-            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required
             maxLength={100}
             pattern="^[a-zA-Z\s'-]+$"
@@ -488,7 +488,7 @@ const ContactForm = ({ setView }) => {
             value={formData.email} 
             onChange={handleChange} 
             disabled={status === 'sending'}
-            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required
             maxLength={254}
           />
@@ -502,7 +502,7 @@ const ContactForm = ({ setView }) => {
             value={formData.message} 
             onChange={handleChange} 
             disabled={status === 'sending'}
-            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+            className="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg py-2 px-3 text-gray-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed" 
             required
             maxLength={5000}
           ></textarea>
@@ -1054,7 +1054,7 @@ Return this exact JSON structure:
                           ))}
                           {isTyping && (
                               <div className="flex items-start gap-3 my-4">
-                                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                                  <div className="shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                                       <img src="/ai-profile.png" alt="Arlo" className="w-full h-full object-cover" />
                                   </div>
                                   <div className="p-4 rounded-lg bg-gray-300 dark:bg-gray-800 rounded-bl-none">
@@ -1088,7 +1088,7 @@ Return this exact JSON structure:
                                                           handleSend(q, true);
                                                       }
                                                   }}
-                                                  className="text-xs max-sm:text-[10px] px-3 py-1.5 max-sm:px-2 max-sm:py-1 rounded-full bg-gray-200 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700/40 hover:text-gray-900 dark:hover:text-gray-300 transition-all duration-200 active:scale-95 border border-gray-300 dark:border-gray-700/50 whitespace-nowrap flex-shrink-0"
+                                                  className="text-xs max-sm:text-[10px] px-3 py-1.5 max-sm:px-2 max-sm:py-1 rounded-full bg-gray-200 dark:bg-gray-800/30 text-gray-700 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700/40 hover:text-gray-900 dark:hover:text-gray-300 transition-all duration-200 active:scale-95 border border-gray-300 dark:border-gray-700/50 whitespace-nowrap shrink-0"
                                               >
                                                   {q}
                                               </button>
@@ -1131,7 +1131,7 @@ Return this exact JSON structure:
   };
 
   return (
-    <div className="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-200 font-sans flex flex-col min-h-screen dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-900">
+    <div className="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-200 font-sans flex flex-col min-h-screen dark:bg-linear-to-br dark:from-gray-900 dark:to-slate-900">
       <style>{`
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
@@ -1175,12 +1175,12 @@ Return this exact JSON structure:
               </div>
               <div className="h-4 w-px bg-gray-300 dark:bg-gray-600 hidden md:block" />
               <div className="flex items-center gap-1 md:gap-2">
-                <div className="hidden md:flex items-center gap-1 md:gap-2">
+                <div className="hidden md:flex items-center gap-4">
                   <Tooltip content="LinkedIn Profile">
-                    <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Linkedin className="w-5 h-5 md:w-6 md:h-6"/></a>
+                    <a href={profileData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View LinkedIn profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">LinkedIn</a>
                   </Tooltip>
                   <Tooltip content="GitHub Profile">
-                    <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-1 md:p-2"><Github className="w-5 h-5 md:w-6 md:h-6"/></a>
+                    <a href={profileData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors font-medium text-sm md:text-base">GitHub</a>
                   </Tooltip>
                 </div>
                 <ThemeToggle />
@@ -1220,7 +1220,7 @@ Return this exact JSON structure:
         )}
 
         {view === 'chat' && (
-            <footer className="p-2 sm:p-3 md:p-4 md:px-6 md:pb-6 bg-gray-100/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-300 dark:border-gray-700 md:bg-transparent md:border-0 sticky bottom-0">
+            <footer className="p-2 sm:p-3 md:p-4 md:px-6 md:pb-6 bg-gray-100/95 dark:bg-gray-900/95 backdrop-blur-xs border-t border-gray-300 dark:border-gray-700 md:bg-transparent md:border-0 sticky bottom-0">
             <div className="max-w-3xl mx-auto">
                 {/* QuickCards section */}
                 <div className="mb-2 md:mb-3">
@@ -1256,7 +1256,7 @@ Return this exact JSON structure:
                         onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
                         placeholder="Ask a question about Zach's experience, skills, or projects..."
                         aria-label="Chat message input"
-                        className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none resize-none px-2 text-base max-sm:text-sm"
+                        className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-hidden resize-none px-2 text-base max-sm:text-sm"
                         rows={1}
                     />
                     <Tooltip content="Send message">

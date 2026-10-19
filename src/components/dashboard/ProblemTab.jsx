@@ -67,7 +67,7 @@ const ProblemTab = ({ section }) => {
           onTouchMove={handleTouchMove}
         >
           {/* Before State */}
-          <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-red-600/20 z-10">
+          <div className="absolute inset-0 bg-linear-to-br from-red-900/20 to-red-600/20 z-10">
             <div className="h-full p-12 flex flex-col justify-center">
               <div className="max-w-xl ml-[15%]">
                 <div className="flex items-center gap-3 mb-6">
@@ -101,8 +101,8 @@ const ProblemTab = ({ section }) => {
             style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
           >
             {/* Gradient overlay for opacity effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/95 to-transparent dark:from-black dark:via-gray-950/95 dark:to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-br from-green-600/50 to-green-900/50" />
+            <div className="absolute inset-0 bg-linear-to-r from-gray-900 via-gray-900/95 to-transparent dark:from-black dark:via-gray-950/95 dark:to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-br from-green-600/50 to-green-900/50" />
             <div className="h-full p-12 flex flex-col justify-center relative">
               <div className="max-w-xl mr-[15%] ml-auto">
                 <div className="flex items-center gap-3 mb-6">
@@ -194,7 +194,7 @@ const ProblemTab = ({ section }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-8"
+            className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-8"
             onClick={() => setSelectedPoint(null)}
           >
             <motion.div

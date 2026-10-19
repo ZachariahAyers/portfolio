@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { 
   FileText, Folder, FolderOpen, X, Minus, Square,
   Code2, Database, Cloud, GitBranch, Package, Globe,
@@ -54,7 +54,7 @@ const BootScreen = ({ onBootComplete, projectName }) => {
         
         <div className="w-80 h-6 bg-gray-800 dark:bg-gray-900 border-2 border-gray-400 dark:border-gray-700">
           <motion.div
-            className="h-full bg-gradient-to-r from-blue-600 to-blue-400 dark:from-green-600 dark:to-green-400"
+            className="h-full bg-linear-to-r from-blue-600 to-blue-400 dark:from-green-600 dark:to-green-400"
             initial={{ width: 0 }}
             animate={{ width: `${Math.min(progress, 100)}%` }}
             transition={{ type: "tween", ease: "easeOut", duration: 0.2 }}
@@ -80,7 +80,7 @@ const BlueScreenOfDeath = ({ onRestart }) => {
   }, []);
   
   return (
-    <div className="fixed inset-0 bg-[#0000AA] text-white font-['Courier_New'] z-[10000] flex items-center justify-center p-4 md:p-8">
+    <div className="fixed inset-0 bg-[#0000AA] text-white font-['Courier_New'] z-10000 flex items-center justify-center p-4 md:p-8">
       <div className="max-w-5xl w-full text-center">
         <div className="bg-[#A8A8A8] text-[#0000AA] inline-block px-3 md:px-6 py-1 md:py-2 mb-4 md:mb-8 text-sm md:text-xl font-bold">
           &nbsp;Windows&nbsp;
@@ -211,7 +211,7 @@ const Window98 = ({ title, children, onClose, onMinimize, defaultPosition = { x:
         <div 
           className={`
             h-8 px-1 flex items-center justify-between cursor-move select-none
-            ${isDark ? 'bg-gradient-to-r from-gray-700 to-gray-600' : 'bg-gradient-to-r from-[#000080] to-[#1084d0]'}
+            ${isDark ? 'bg-linear-to-r from-gray-700 to-gray-600' : 'bg-linear-to-r from-[#000080] to-[#1084d0]'}
           `}
           onMouseDown={handleMouseDown}
           onDoubleClick={() => {
@@ -461,7 +461,7 @@ const increment = () => {
   .btn-primary {
     @apply px-4 py-2 bg-blue-500 text-white rounded-lg
            hover:bg-blue-600 transition-colors duration-200
-           focus:outline-none focus:ring-2 focus:ring-blue-500;
+           focus:outline-hidden focus:ring-2 focus:ring-blue-500;
   }
   
   .card {
@@ -756,7 +756,7 @@ spec:
         <>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`absolute top-2 left-2 z-50 p-2 rounded ${isDark ? 'bg-gray-700 text-white' : 'bg-gray-200 text-black'}`}
+            className={`absolute top-2 left-2 z-50 p-2 rounded-sm ${isDark ? 'bg-gray-700 text-white' : 'bg-gray-200 text-black'}`}
           >
             <Folder className="w-5 h-5" />
           </button>
@@ -843,7 +843,7 @@ spec:
               <span className="text-sm">{tab.name}</span>
               <button
                 onClick={(e) => closeTab(tab.id, e)}
-                className={`ml-2 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-300'} rounded`}
+                className={`ml-2 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-300'} rounded-sm`}
               >
                 <X className="w-3 h-3" />
               </button>
@@ -943,7 +943,7 @@ Notes:
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className={`flex-1 p-4 font-mono text-sm resize-none outline-none ${
+        className={`flex-1 p-4 font-mono text-sm resize-none outline-hidden ${
           isDark ? 'bg-gray-900 text-gray-300' : 'bg-white text-gray-800'
         }`}
         spellCheck={false}
@@ -1273,7 +1273,7 @@ const TechTab = ({ section, caseStudy }) => {
                         openDesktopApp(app);
                       }
                     }}
-                    className="group flex flex-col items-center p-1 w-[75px] h-[75px] hover:bg-blue-600/20 focus:bg-blue-600/30 rounded-sm outline-none"
+                    className="group flex flex-col items-center p-1 w-[75px] h-[75px] hover:bg-blue-600/20 focus:bg-blue-600/30 rounded-xs outline-hidden"
                     style={{ WebkitFontSmoothing: 'none', MozOsxFontSmoothing: 'grayscale' }}
                   >
                     {/* Icon container with Windows 98 style */}
@@ -1294,10 +1294,10 @@ const TechTab = ({ section, caseStudy }) => {
                     </div>
                     {/* Icon label */}
                     <span className={`
-                      text-[11px] leading-tight text-center px-1 py-0.5 rounded-sm
+                      text-[11px] leading-tight text-center px-1 py-0.5 rounded-xs
                       ${isDark ? 'text-white' : 'text-white'}
                       ${isDark ? 'group-hover:bg-blue-600 group-focus:bg-blue-600' : 'group-hover:bg-[#000080] group-focus:bg-[#000080]'}
-                      break-words w-full
+                      wrap-break-word w-full
                     `}
                     style={{ 
                       textShadow: isDark ? '1px 1px 1px rgba(0,0,0,0.8)' : '1px 1px 1px rgba(0,0,0,1)',
@@ -1332,7 +1332,7 @@ const TechTab = ({ section, caseStudy }) => {
                   `}
                   style={{ fontFamily: 'MS Sans Serif, sans-serif' }}
                 >
-                  <div className="w-4 h-4 bg-gradient-to-br from-red-500 via-yellow-500 to-blue-500 rounded-sm" />
+                  <div className="w-4 h-4 bg-linear-to-br from-red-500 via-yellow-500 to-blue-500 rounded-xs" />
                   Start
                 </button>
                 
@@ -1350,7 +1350,7 @@ const TechTab = ({ section, caseStudy }) => {
                   >
                     {/* Windows 98 banner */}
                     <div className={`
-                      h-[60px] bg-gradient-to-b 
+                      h-[60px] bg-linear-to-b 
                       ${isDark ? 'from-gray-700 to-gray-900' : 'from-[#000080] to-[#1084d0]'}
                       flex items-center pl-1
                     `}>
@@ -1495,7 +1495,7 @@ const TechTab = ({ section, caseStudy }) => {
           
           {/* Shutdown Dialog */}
           {showShutdownDialog && (
-            <div className="fixed inset-0 flex items-center justify-center z-[9999]">
+            <div className="fixed inset-0 flex items-center justify-center z-9999">
               <div className="absolute inset-0 bg-black/50" onClick={() => setShowShutdownDialog(false)} />
               <div 
                 className={`
@@ -1510,7 +1510,7 @@ const TechTab = ({ section, caseStudy }) => {
                 {/* Title bar */}
                 <div className={`
                   h-[24px] px-1 flex items-center justify-between
-                  ${isDark ? 'bg-gradient-to-r from-gray-700 to-gray-900' : 'bg-gradient-to-r from-[#000080] to-[#1084d0]'}
+                  ${isDark ? 'bg-linear-to-r from-gray-700 to-gray-900' : 'bg-linear-to-r from-[#000080] to-[#1084d0]'}
                 `}>
                   <span className="text-white text-sm font-bold">Shut Down CodeOS</span>
                   <button
@@ -1531,7 +1531,7 @@ const TechTab = ({ section, caseStudy }) => {
                 {/* Content */}
                 <div className={`p-4 ${isDark ? 'text-white' : 'text-black'}`}>
                   <div className="flex items-start gap-3 mb-4">
-                    <Power className="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                    <Power className="w-8 h-8 text-yellow-600 shrink-0 mt-1" />
                     <div>
                       <p className="text-sm">Return to main site?</p>
                       <p className="text-xs mt-1 opacity-75">This will close the CodeOS 98 environment.</p>
@@ -1585,7 +1585,7 @@ const TechTab = ({ section, caseStudy }) => {
               {/* Mobile Title Bar */}
               <div className={`
                 h-12 px-3 flex items-center justify-between
-                ${isDark ? 'bg-gradient-to-r from-gray-700 to-gray-600' : 'bg-gradient-to-r from-[#000080] to-[#1084d0]'}
+                ${isDark ? 'bg-linear-to-r from-gray-700 to-gray-600' : 'bg-linear-to-r from-[#000080] to-[#1084d0]'}
               `}>
                 <div className="flex items-center gap-2">
                   {(() => {
@@ -1693,7 +1693,7 @@ const TechTab = ({ section, caseStudy }) => {
                       }
                     `}
                   >
-                    <div className="w-4 h-4 bg-gradient-to-br from-red-500 via-yellow-500 to-blue-500 rounded-sm" />
+                    <div className="w-4 h-4 bg-linear-to-br from-red-500 via-yellow-500 to-blue-500 rounded-xs" />
                     Start
                   </button>
                   
@@ -1711,7 +1711,7 @@ const TechTab = ({ section, caseStudy }) => {
                     >
                       {/* Windows 98 banner */}
                       <div className={`
-                        h-[60px] bg-gradient-to-b 
+                        h-[60px] bg-linear-to-b 
                         ${isDark ? 'from-gray-700 to-gray-900' : 'from-[#000080] to-[#1084d0]'}
                         flex items-center pl-1
                       `}>
@@ -1781,7 +1781,7 @@ const TechTab = ({ section, caseStudy }) => {
           
           {/* Mobile Shutdown Dialog */}
           {showShutdownDialog && (
-            <div className="fixed inset-0 flex items-center justify-center z-[9999] p-4">
+            <div className="fixed inset-0 flex items-center justify-center z-9999 p-4">
               <div className="absolute inset-0 bg-black/50" onClick={() => setShowShutdownDialog(false)} />
               <div 
                 className={`
@@ -1794,7 +1794,7 @@ const TechTab = ({ section, caseStudy }) => {
               >
                 <div className={`
                   h-8 px-2 flex items-center justify-between
-                  ${isDark ? 'bg-gradient-to-r from-gray-700 to-gray-900' : 'bg-gradient-to-r from-[#000080] to-[#1084d0]'}
+                  ${isDark ? 'bg-linear-to-r from-gray-700 to-gray-900' : 'bg-linear-to-r from-[#000080] to-[#1084d0]'}
                 `}>
                   <span className="text-white text-sm font-bold">Shut Down CodeOS</span>
                   <button
@@ -1813,7 +1813,7 @@ const TechTab = ({ section, caseStudy }) => {
                 
                 <div className={`p-4 ${isDark ? 'text-white' : 'text-black'}`}>
                   <div className="flex items-start gap-3 mb-4">
-                    <Power className="w-8 h-8 text-yellow-600 flex-shrink-0" />
+                    <Power className="w-8 h-8 text-yellow-600 shrink-0" />
                     <div>
                       <p className="text-sm">Return to main site?</p>
                       <p className="text-xs mt-1 opacity-75">This will close the CodeOS 98 environment.</p>

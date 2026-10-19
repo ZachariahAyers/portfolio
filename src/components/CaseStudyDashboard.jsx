@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router';
 import { ArrowLeft, Beaker, Activity, Atom, CircuitBoard, Sparkles, Zap, Brain, 
          FlaskConical, Binary, BarChart3, Cpu, Layers, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -131,7 +131,7 @@ const CaseStudyDashboard = () => {
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-size-[50px_50px]" />
         
         {/* Floating particles */}
         {particles.map(particle => (
@@ -168,7 +168,7 @@ const CaseStudyDashboard = () => {
               </div>
             </div>
             
-            <div className="h-6 w-px bg-gradient-to-b from-transparent via-blue-500/30 to-transparent hidden sm:block" />
+            <div className="h-6 w-px bg-linear-to-b from-transparent via-blue-500/30 to-transparent hidden sm:block" />
             
             <a
               href={caseStudy.links?.demo || caseStudy.links?.github || '#'}
@@ -194,7 +194,7 @@ const CaseStudyDashboard = () => {
       </header>
 
       {/* Tab Navigation - 60px to accommodate number indicators */}
-      <nav className="h-[60px] border-b border-gray-300 dark:border-gray-700/50 backdrop-blur-sm bg-gray-50/80 dark:bg-gray-800/30 overflow-x-auto">
+      <nav className="h-[60px] border-b border-gray-300 dark:border-gray-700/50 backdrop-blur-xs bg-gray-50/80 dark:bg-gray-800/30 overflow-x-auto">
         <div className="h-full px-3 md:px-6 flex items-center gap-0.5 md:gap-1 pt-2 min-w-max">
           {tabs.map((tab, index) => {
             const Icon = tab.icon;
@@ -223,7 +223,7 @@ const CaseStudyDashboard = () => {
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-500"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-blue-600 to-blue-500"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
@@ -261,7 +261,7 @@ const CaseStudyDashboard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-gray-900/80 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8"
+            className="fixed inset-0 bg-gray-900/80 dark:bg-black/80 backdrop-blur-xs z-50 flex items-center justify-center p-8"
             onClick={() => setShowCodeModal(null)}
           >
             <motion.div

@@ -161,7 +161,7 @@ const AnimatedMetricBox = ({ label, value, unit = '', decimals = 0, delay = 0 })
   
   return (
     <motion.div 
-      className="bg-gray-100/50 dark:bg-gray-800/50 p-2 rounded"
+      className="bg-gray-100/50 dark:bg-gray-800/50 p-2 rounded-sm"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: delay / 1000, duration: 0.3 }}
@@ -458,8 +458,8 @@ const ReleaseTab = ({ caseStudy }) => {
         </div>
         
         {/* Subtle overlay effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/05 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-blue-400/05 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.02)_1px,transparent_1px)] bg-size-[40px_40px] pointer-events-none" />
 
         {/* Left Sidebar - 3 equal sections */}
         <div className="absolute left-0 top-0 bottom-0 w-[320px] border-r border-gray-300 dark:border-blue-500/20 overflow-hidden z-30 flex flex-col">

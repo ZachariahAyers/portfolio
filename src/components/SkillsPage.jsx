@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Home, ArrowLeft, Code, Brain, Server, Database, Cloud, Layers, Award, Filter, Star, Book, Zap, Briefcase, Building, Globe, Shield, Package, ChevronDown } from 'lucide-react';
 import profileData from '../portfolio-data.json';
 import { Tooltip } from './Tooltip';
@@ -263,7 +263,7 @@ const SkillsPage = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-6 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="relative bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
+          <div className="relative bg-linear-to-r from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
             <div className="text-center space-y-4">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white flex items-center justify-center gap-3">
                 <Brain className="text-purple-400" />
@@ -369,7 +369,7 @@ const SkillsPage = () => {
           {!showCertifications && (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
             <Tooltip content="The coding languages I use to build software applications">
-              <div className="bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-blue-100 to-cyan-100 dark:from-blue-600/20 dark:to-cyan-600/20 rounded-lg p-3 border border-blue-400 dark:border-blue-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Code className="w-4 h-4 text-blue-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Languages</h3>
@@ -380,7 +380,7 @@ const SkillsPage = () => {
             </Tooltip>
             
             <Tooltip content="Cloud platforms and artificial intelligence tools I work with">
-              <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-purple-400 dark:border-purple-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-purple-100 to-pink-100 dark:from-purple-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-purple-400 dark:border-purple-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Cloud className="w-4 h-4 text-purple-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Cloud & AI</h3>
@@ -391,7 +391,7 @@ const SkillsPage = () => {
             </Tooltip>
             
             <Tooltip content="Technologies for creating user interfaces and web experiences">
-              <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-3 border border-green-400 dark:border-green-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-green-100 to-emerald-100 dark:from-green-600/20 dark:to-emerald-600/20 rounded-lg p-3 border border-green-400 dark:border-green-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Globe className="w-4 h-4 text-green-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Frontend</h3>
@@ -402,7 +402,7 @@ const SkillsPage = () => {
             </Tooltip>
             
             <Tooltip content="Server-side technologies that power applications behind the scenes">
-              <div className="bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-3 border border-orange-400 dark:border-orange-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-orange-100 to-amber-100 dark:from-orange-600/20 dark:to-amber-600/20 rounded-lg p-3 border border-orange-400 dark:border-orange-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Database className="w-4 h-4 text-orange-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Backend</h3>
@@ -413,7 +413,7 @@ const SkillsPage = () => {
             </Tooltip>
             
             <Tooltip content="Tools and practices for automating software deployment and operations">
-              <div className="bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-lg p-3 border border-indigo-400 dark:border-indigo-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-indigo-100 to-blue-100 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-lg p-3 border border-indigo-400 dark:border-indigo-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">DevOps</h3>
@@ -424,7 +424,7 @@ const SkillsPage = () => {
             </Tooltip>
             
             <Tooltip content="Security operations and compliance tools to protect systems and data">
-              <div className="bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-red-400 dark:border-red-500/30 h-full flex flex-col">
+              <div className="bg-linear-to-br from-red-100 to-pink-100 dark:from-red-600/20 dark:to-pink-600/20 rounded-lg p-3 border border-red-400 dark:border-red-500/30 h-full flex flex-col">
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4 text-red-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-white text-sm">SpecOps</h3>
@@ -446,7 +446,7 @@ const SkillsPage = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   aria-label="Search skills by name"
-                  className="w-full px-4 py-2 pl-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-white"
+                  className="w-full px-4 py-2 pl-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-purple-500 dark:text-white"
                 />
                 <Filter className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" aria-hidden="true" />
               </div>
@@ -523,7 +523,7 @@ const SkillsPage = () => {
                 }
                 
                 return (
-                  <div key={level} className={`bg-gradient-to-br ${theme} rounded-lg border transition-all duration-200`}>
+                  <div key={level} className={`bg-linear-to-br ${theme} rounded-lg border transition-all duration-200`}>
                     <button
                       onClick={() => toggleCategory(level)}
                       aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${level} level skills section, ${levelSkills.length} skills`}
@@ -557,9 +557,9 @@ const SkillsPage = () => {
                           {levelSkills.map((skill, idx) => {
                             const CategoryIcon = getCategoryIcon(skill.category);
                             return (
-                              <div key={`${skill.name}-${idx}`} className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:shadow-lg overflow-hidden">
+                              <div key={`${skill.name}-${idx}`} className="group relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-xs rounded-lg p-4 border border-gray-300 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-600/50 transition-all duration-200 hover:shadow-lg overflow-hidden">
                                     {/* Gradient overlay on hover */}
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${
+                                    <div className={`absolute inset-0 bg-linear-to-br ${
                                       level === 'expert' ? 'from-blue-600/0 to-cyan-600/0 group-hover:from-blue-600/10 group-hover:to-cyan-600/10' :
                                       level === 'proficient' ? 'from-green-600/0 to-emerald-600/0 group-hover:from-green-600/10 group-hover:to-emerald-600/10' :
                                       'from-orange-600/0 to-amber-600/0 group-hover:from-orange-600/10 group-hover:to-amber-600/10'
@@ -580,9 +580,9 @@ const SkillsPage = () => {
                                         <div className="mt-2 h-1 bg-gray-700/30 rounded-full overflow-hidden">
                                           <div 
                                             className={`h-full transition-all duration-500 ${
-                                              level === 'expert' ? 'w-full bg-gradient-to-r from-blue-500 to-cyan-500' :
-                                              level === 'proficient' ? 'w-3/4 bg-gradient-to-r from-green-500 to-emerald-500' :
-                                              'w-1/2 bg-gradient-to-r from-orange-500 to-amber-500'
+                                              level === 'expert' ? 'w-full bg-linear-to-r from-blue-500 to-cyan-500' :
+                                              level === 'proficient' ? 'w-3/4 bg-linear-to-r from-green-500 to-emerald-500' :
+                                              'w-1/2 bg-linear-to-r from-orange-500 to-amber-500'
                                             }`}
                                           />
                                         </div>
@@ -649,7 +649,7 @@ const SkillsPage = () => {
             </>
           ) : (
             /* Certifications View */
-            <div className="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
+            <div className="bg-linear-to-br from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-4 md:p-6 border border-purple-400 dark:border-purple-500/30">
               <div className="flex items-center gap-3 mb-6">
                 <Award className="text-purple-400 w-6 h-6" />
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -676,7 +676,7 @@ const SkillsPage = () => {
                         return (
                           <div 
                             key={idx} 
-                            className={`relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg p-3 border transition-all duration-200 hover:scale-[1.01] ${
+                            className={`relative bg-gray-100 dark:bg-gray-900/20 backdrop-blur-xs rounded-lg p-3 border transition-all duration-200 hover:scale-[1.01] ${
                               isInProgress 
                                 ? 'border-green-500/40 ring-2 ring-green-400/60 shadow-lg shadow-green-400/10' 
                                 : 'border-gray-300 dark:border-gray-700/50 hover:border-purple-400 dark:hover:border-purple-500/50'
@@ -686,7 +686,7 @@ const SkillsPage = () => {
                               <div className="flex items-start justify-between gap-2">
                                 <p className="text-gray-700 dark:text-gray-300 text-sm flex items-start gap-2 flex-1">
                                   {isInProgress ? (
-                                    <Zap className="w-3 h-3 text-green-400 mt-0.5 flex-shrink-0" />
+                                    <Zap className="w-3 h-3 text-green-400 mt-0.5 shrink-0" />
                                   ) : (
                                     <span className="text-purple-400 mt-0.5">•</span>
                                   )}
