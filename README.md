@@ -1,21 +1,20 @@
-# AI Portfolio
+# Portfolio
 
-[![CI](https://github.com/ZachariahAyers/ai-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/ZachariahAyers/ai-portfolio/actions/workflows/ci.yml)
+[![CI](https://github.com/ZachariahAyers/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/ZachariahAyers/portfolio/actions/workflows/ci.yml)
 
-Zachariah Ayers' portfolio: a chat assistant that answers questions about his work, with case studies and a skills map for hiring managers and clients.
+Zachariah Ayers' portfolio, live at [ayers.repair/opensource/portfolio](https://ayers.repair/opensource/portfolio/).
 
 ## Features
 
-- Chat with ARLO, an assistant that answers from his authored profile
-- Project gallery filtered by type and technology
-- Skills map by level and category, with certifications
-- Case studies with requirements, before and after, architecture diagrams and results
-- A Windows 98 style desktop for browsing each project's code
-- Light and dark themes, keyboard friendly, respects reduced motion
+- ARLO, a guide that answers questions about Zach's work from answers prepared in advance from his résumé and project notes
+- Projects filtered by type and technology
+- Skills by category, with search
+- Case studies with before and after, and results
+- A Windows 98 style desktop for browsing this repository's source
 
 ## Tech stack
 
-React 19, TypeScript, Vite, Tailwind CSS, React Router, Motion, Mermaid, Zod, Google Gemini, AWS Lambda.
+React 19, TypeScript, Vite, Tailwind CSS, React Router, Motion, Zod and Vitest. The site is static files with no server.
 
 ## Getting started
 
@@ -23,7 +22,6 @@ Requires Node.js 22.22 or newer.
 
 ```bash
 npm install
-cp .env.example .env   # add GEMINI_API_KEY for the chat
 npm run dev
 ```
 
