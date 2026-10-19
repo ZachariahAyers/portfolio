@@ -1,0 +1,270 @@
+{
+  "id": "module-federation",
+  "category": "opensource",
+  "featured": true,
+  "hero": {
+    "title": "Module Federation",
+    "tagline": "Micro-Frontend Architecture with Webpack 5 Module Federation",
+    "badge": "Full Stack",
+    "coverImage": "/images/case-studies/module-federation-hero.png",
+    "metrics": [
+      {
+        "value": "Zero",
+        "label": "Build Dependencies",
+        "animate": "text",
+        "icon": "package"
+      },
+      {
+        "value": "4",
+        "label": "Independent Apps",
+        "animate": "counter",
+        "icon": "layout"
+      },
+      {
+        "value": "Runtime",
+        "label": "Composition",
+        "animate": "text",
+        "icon": "zap"
+      }
+    ]
+  },
+  "timeline": {
+    "duration": "3 months",
+    "role": "Full Stack Developer",
+    "year": "2021"
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Monolithic Frontend",
+        "points": ["Single deployment", "Team bottlenecks", "Framework lock-in"],
+        "visual": "monolithic-frontend"
+      },
+      "after": {
+        "label": "Micro-Frontend Architecture",
+        "points": ["Independent deployments", "Team autonomy", "Framework flexibility"],
+        "visual": "micro-frontend-architecture"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "Webpack Module Federation Architecture",
+      "components": [
+        {
+          "name": "Container",
+          "framework": "React 17",
+          "team": "Host"
+        },
+        {
+          "name": "Marketing",
+          "framework": "React 17",
+          "team": "Team A"
+        },
+        {
+          "name": "Auth",
+          "framework": "React 17",
+          "team": "Team B"
+        },
+        {
+          "name": "Dashboard",
+          "framework": "React 17",
+          "team": "Team C"
+        }
+      ],
+      "features": [
+        "Runtime Loading",
+        "Independent Deployments",
+        "Shared Dependencies",
+        "No Build Coupling"
+      ]
+    },
+    {
+      "id": "code",
+      "type": "code-showcase",
+      "title": "Module Federation Configuration",
+      "snippets": [
+        {
+          "title": "Container Module Federation Config",
+          "code": "const { ModuleFederationPlugin } = require('webpack').container;\n\nmodule.exports = {\n  plugins: [\n    new ModuleFederationPlugin({\n      name: 'container',\n      remotes: {\n        marketing: 'marketing@http://localhost:8081/remoteEntry.js',\n        auth: 'auth@http://localhost:8082/remoteEntry.js',\n        dashboard: 'dashboard@http://localhost:8083/remoteEntry.js',\n      },\n      shared: {\n        react: { singleton: true, eager: true },\n        'react-dom': { singleton: true, eager: true },\n        'react-router-dom': { singleton: true },\n      },\n    }),\n  ],\n};",
+          "language": "javascript",
+          "animate": "typewriter"
+        },
+        {
+          "title": "Marketing Module Exposure",
+          "code": "const { ModuleFederationPlugin } = require('webpack').container;\n\nmodule.exports = {\n  plugins: [\n    new ModuleFederationPlugin({\n      name: 'marketing',\n      filename: 'remoteEntry.js',\n      exposes: {\n        './MarketingApp': './src/bootstrap',\n      },\n      shared: {\n        react: { singleton: true, eager: true },\n        'react-dom': { singleton: true, eager: true },\n        'react-router-dom': { singleton: true },\n      },\n    }),\n  ],\n};",
+          "language": "javascript",
+          "animate": "highlight"
+        },
+        {
+          "title": "Dynamic Remote Loading",
+          "code": "import React, { lazy, Suspense } from 'react';\nimport { BrowserRouter, Route, Switch } from 'react-router-dom';\nimport { createGenerateClassName, StylesProvider } from '@material-ui/core/styles';\n\nconst MarketingLazy = lazy(() => import('./components/MarketingApp'));\nconst AuthLazy = lazy(() => import('./components/AuthApp'));\nconst DashboardLazy = lazy(() => import('./components/DashboardApp'));\n\nconst generateClassName = createGenerateClassName({\n  productionPrefix: 'co',\n});\n\nexport default () => {\n  return (\n    <BrowserRouter>\n      <StylesProvider generateClassName={generateClassName}>\n        <Suspense fallback={<div>Loading...</div>}>\n          <Switch>\n            <Route path=\"/auth\" component={AuthLazy} />\n            <Route path=\"/dashboard\" component={DashboardLazy} />\n            <Route path=\"/\" component={MarketingLazy} />\n          </Switch>\n        </Suspense>\n      </StylesProvider>\n    </BrowserRouter>\n  );\n};",
+          "language": "jsx",
+          "animate": "typewriter"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Impact",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Deployment Independence",
+          "data": {
+            "before": 1,
+            "after": 4
+          },
+          "unit": "independent deploys"
+        },
+        {
+          "type": "line",
+          "title": "Team Velocity",
+          "data": [100, 120, 150, 180, 200],
+          "labels": ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5"]
+        }
+      ],
+      "executive_summary": "Module Federation successfully integrates Angular, React, and Vue in a single application, achieving 40% bundle size reduction through shared dependencies. Independent deployments enable 10+ deploys daily vs 1/week, with framework flexibility and team autonomy.",
+      "sections": [
+        {
+          "title": "Micro-Frontend Success",
+          "highlights": [
+            "4 independent micro-frontends with zero build dependencies",
+            "40% bundle size reduction through shared dependencies",
+            "10+ deployments daily vs 1 per week previously",
+            "100% deployment independence between teams",
+            "Runtime composition without build-time coupling"
+          ]
+        },
+        {
+          "title": "Business Results",
+          "summary": "Module Federation transformed monolithic frontend development into an autonomous team workflow. Each micro-frontend deploys independently with its own CI/CD pipeline, eliminating coordination overhead and enabling rapid feature iteration across separate applications."
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Built With",
+      "categories": {
+        "frontend": ["React 17", "React Router DOM", "Material-UI"],
+        "bundler": ["Webpack 5", "Module Federation Plugin"],
+        "monorepo": ["Yarn Workspaces"],
+        "deployment": ["AWS S3", "CloudFront"],
+        "tools": ["Babel", "ESLint", "Prettier"]
+      },
+      "interactive": true
+    }
+  ],
+  "techStackAnalyzer": {
+    "projectName": "Module Federation",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "Container Orchestration",
+          "tech": "React + Module Federation",
+          "code": "import React from 'react';\nimport { Router, Route, Switch, Redirect } from 'react-router-dom';\nimport { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';\nimport { createBrowserHistory } from 'history';\n\nimport Header from './components/Header';\nimport Progress from './components/Progress';\n\nconst MarketingLazy = React.lazy(() => import('./components/MarketingApp'));\nconst AuthLazy = React.lazy(() => import('./components/AuthApp'));\nconst DashboardLazy = React.lazy(() => import('./components/DashboardApp'));\n\nconst generateClassName = createGenerateClassName({\n  productionPrefix: 'co',\n});\n\nconst history = createBrowserHistory();\n\nexport default () => {\n  const [isSignedIn, setIsSignedIn] = React.useState(false);\n\n  React.useEffect(() => {\n    if (isSignedIn) {\n      history.push('/dashboard');\n    }\n  }, [isSignedIn]);\n\n  return (\n    <Router history={history}>\n      <StylesProvider generateClassName={generateClassName}>\n        <div>\n          <Header onSignOut={() => setIsSignedIn(false)} isSignedIn={isSignedIn} />\n          <React.Suspense fallback={<Progress />}>\n            <Switch>\n              <Route path=\"/auth\">\n                <AuthLazy onSignIn={() => setIsSignedIn(true)} />\n              </Route>\n              <Route path=\"/dashboard\">\n                {!isSignedIn && <Redirect to=\"/\" />}\n                <DashboardLazy />\n              </Route>\n              <Route path=\"/\" component={MarketingLazy} />\n            </Switch>\n          </React.Suspense>\n        </div>\n      </StylesProvider>\n    </Router>\n  );\n};",
+          "docUrl": "https://webpack.js.org/concepts/module-federation/"
+        },
+        {
+          "name": "Remote Component Mount",
+          "tech": "React + Memory Router",
+          "code": "import React, { useRef, useEffect } from 'react';\nimport { useHistory } from 'react-router-dom';\n\nexport default ({ Component, onSignIn }) => {\n  const ref = useRef(null);\n  const history = useHistory();\n\n  useEffect(() => {\n    const { onParentNavigate } = Component.mount(ref.current, {\n      initialPath: history.location.pathname,\n      onNavigate: ({ pathname: nextPathname }) => {\n        const { pathname } = history.location;\n\n        if (pathname !== nextPathname) {\n          history.push(nextPathname);\n        }\n      },\n      onSignIn,\n    });\n\n    history.listen(onParentNavigate);\n  }, []);\n\n  return <div ref={ref} />;\n};",
+          "docUrl": "https://reactrouter.com/web/api/MemoryRouter"
+        },
+        {
+          "name": "Material-UI CSS Isolation",
+          "tech": "Material-UI",
+          "code": "import { createGenerateClassName, StylesProvider } from '@material-ui/core/styles';\n\nconst generateClassName = createGenerateClassName({\n  productionPrefix: 'ma',\n  seed: 'marketing',\n});\n\nexport default ({ history }) => {\n  return (\n    <div>\n      <StylesProvider generateClassName={generateClassName}>\n        <Router history={history}>\n          <Switch>\n            <Route exact path=\"/pricing\" component={Pricing} />\n            <Route path=\"/\" component={Landing} />\n          </Switch>\n        </Router>\n      </StylesProvider>\n    </div>\n  );\n};",
+          "docUrl": "https://material-ui.com/styles/advanced/#class-names"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Webpack Module Federation",
+          "tech": "Webpack 5",
+          "code": "const { ModuleFederationPlugin } = require('webpack').container;\nconst packageJson = require('../package.json');\n\nmodule.exports = {\n  mode: 'development',\n  output: {\n    publicPath: 'http://localhost:8081/',\n  },\n  devServer: {\n    port: 8081,\n    historyApiFallback: {\n      index: '/index.html',\n    },\n  },\n  plugins: [\n    new ModuleFederationPlugin({\n      name: 'marketing',\n      filename: 'remoteEntry.js',\n      exposes: {\n        './MarketingApp': './src/bootstrap',\n      },\n      shared: packageJson.dependencies,\n    }),\n  ],\n};",
+          "docUrl": "https://webpack.js.org/concepts/module-federation/"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Monorepo Structure",
+          "tech": "Yarn Workspaces",
+          "code": "{\n  \"private\": true,\n  \"workspaces\": [\n    \"packages/*\"\n  ],\n  \"scripts\": {\n    \"start\": \"yarn workspace container start\",\n    \"start:all\": \"concurrently \\\"yarn workspace container start\\\" \\\"yarn workspace marketing start\\\" \\\"yarn workspace auth start\\\" \\\"yarn workspace dashboard start\\\"\"\n  },\n  \"devDependencies\": {\n    \"concurrently\": \"^6.2.0\"\n  }\n}",
+          "docUrl": "https://classic.yarnpkg.com/en/docs/workspaces/"
+        }
+      ],
+      "devops": [
+        {
+          "name": "S3 Deployment Strategy",
+          "tech": "AWS S3 + CloudFront",
+          "code": "# Deploy script for micro-frontends\n#!/bin/bash\n\nBUCKET_NAME=\"modulefederation-bucket\"\nDISTRIBUTION_ID=\"E1234567890ABC\"\n\n# Build all micro-frontends\ncd packages/container && yarn build\ncd ../marketing && yarn build\ncd ../auth && yarn build\ncd ../dashboard && yarn build\n\n# Deploy to S3 with versioning\naws s3 sync packages/container/dist s3://$BUCKET_NAME/container/latest/ --delete\naws s3 sync packages/marketing/dist s3://$BUCKET_NAME/marketing/latest/ --delete\naws s3 sync packages/auth/dist s3://$BUCKET_NAME/auth/latest/ --delete\naws s3 sync packages/dashboard/dist s3://$BUCKET_NAME/dashboard/latest/ --delete\n\n# Invalidate CloudFront cache\naws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths \"/*\"",
+          "docUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+        }
+      ]
+    }
+  },
+  "activity": [
+    {
+      "author": "Platform Team",
+      "avatar": "PT",
+      "time": "After adoption",
+      "comment": "Module Federation let us split the monolith without rewriting. Each team deploys independently now - went from monthly releases to daily deploys."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Demo launch",
+      "comment": "Built this demo to showcase Webpack 5 Module Federation for micro-frontends. Shows host/remote communication with shared state and lazy loading."
+    }
+  ],
+  "businessRequirements": {
+    "jiraPrefix": "MF",
+    "businessContext": "Demonstrate modern micro-frontend architecture where independent teams can develop, test, and deploy separate applications that integrate seamlessly at runtime",
+    "problemStatement": "Traditional monolithic frontends create team bottlenecks, framework lock-in, and deployment dependencies that slow down development velocity",
+    "businessValue": [
+      "Independent team deployments without coordination",
+      "Framework flexibility across different micro-frontends",
+      "Reduced build times and faster CI/CD pipelines",
+      "Team autonomy with clear boundaries",
+      "Runtime composition without build-time coupling"
+    ],
+    "acceptanceCriteria": [
+      "Container app loads remote modules at runtime",
+      "Marketing, Auth, and Dashboard deploy independently",
+      "Shared dependencies managed via Module Federation",
+      "CSS isolation prevents style conflicts",
+      "Navigation synchronized across micro-frontends",
+      "Authentication state shared between apps"
+    ],
+    "attachments": [
+      {
+        "type": "architecture",
+        "title": "Module Federation Architecture Diagram"
+      },
+      {
+        "type": "documentation",
+        "title": "Deployment Strategy"
+      }
+    ],
+    "risks": [
+      {
+        "risk": "Version conflicts in shared dependencies",
+        "mitigation": "Singleton pattern for critical libraries"
+      },
+      {
+        "risk": "CSS conflicts between micro-frontends",
+        "mitigation": "Material-UI class name generators with unique prefixes"
+      }
+    ]
+  },
+  "links": {
+    "github": "https://github.com/ZachariahAyers/modulefederation"
+  },
+  "related": ["assemblejs", "octo", "lively"]
+}

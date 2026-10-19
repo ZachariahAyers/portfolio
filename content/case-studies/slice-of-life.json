@@ -1,0 +1,256 @@
+{
+  "id": "slice-of-life",
+  "category": "game",
+  "featured": false,
+  "hero": {
+    "title": "Slice of Life",
+    "tagline": "Narrative-Driven Unity Adventure",
+    "badge": "Game Development",
+    "coverImage": "/images/case-studies/slice-of-life-hero.png",
+    "metrics": [
+      {
+        "value": "Unity",
+        "label": "Game Engine",
+        "animate": "text",
+        "icon": "gamepad-2"
+      },
+      {
+        "value": "15+",
+        "label": "Branching Paths",
+        "animate": "counter",
+        "icon": "git-branch"
+      },
+      {
+        "value": "60fps",
+        "label": "Performance",
+        "animate": "counter",
+        "icon": "activity"
+      }
+    ]
+  },
+  "timeline": {
+    "duration": "8 months",
+    "role": "Game Developer",
+    "year": "2021-2022"
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Generic Adventure Games",
+        "points": ["Shallow stories", "Repetitive mechanics", "No player impact"],
+        "visual": "generic-game"
+      },
+      "after": {
+        "label": "Dynamic Narrative Experience",
+        "points": ["Deep storytelling", "Choice-driven", "Meaningful consequences"],
+        "visual": "narrative-game"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "Game Architecture",
+      "components": [
+        {
+          "name": "Gameplay Layer",
+          "framework": "Unity C#",
+          "team": "Mechanics"
+        },
+        {
+          "name": "Narrative System",
+          "framework": "Inky",
+          "team": "Story"
+        },
+        {
+          "name": "UI System",
+          "framework": "UI Toolkit",
+          "team": "Interface"
+        }
+      ],
+      "features": ["Branching Dialogue", "Character Progression", "Dynamic Quests", "Save System"]
+    },
+    {
+      "id": "code",
+      "type": "code-showcase",
+      "title": "Core Systems",
+      "snippets": [
+        {
+          "title": "Dialogue System Integration",
+          "code": "public class DialogueController : MonoBehaviour\n{\n    [SerializeField] private TextAsset inkJSONAsset;\n    private Story _story;\n    private UIDocument _uiDocument;\n    private Label _dialogueLabel;\n    private VisualElement _choicesContainer;\n\n    void Start()\n    {\n        _story = new Story(inkJSONAsset.text);\n        _uiDocument = GetComponent<UIDocument>();\n        SetupUI();\n        ContinueStory();\n    }\n\n    void SetupUI()\n    {\n        var root = _uiDocument.rootVisualElement;\n        _dialogueLabel = root.Q<Label>(\"dialogue-text\");\n        _choicesContainer = root.Q<VisualElement>(\"choices-container\");\n    }\n\n    void ContinueStory()\n    {\n        if (_story.canContinue)\n        {\n            string text = _story.Continue();\n            _dialogueLabel.text = text;\n            DisplayChoices();\n        }\n        else\n        {\n            EndDialogue();\n        }\n    }\n\n    void DisplayChoices()\n    {\n        _choicesContainer.Clear();\n\n        foreach (var choice in _story.currentChoices)\n        {\n            var button = new Button(() => MakeChoice(choice.index))\n            {\n                text = choice.text\n            };\n            button.AddToClassList(\"choice-button\");\n            _choicesContainer.Add(button);\n        }\n    }\n\n    void MakeChoice(int choiceIndex)\n    {\n        _story.ChooseChoiceIndex(choiceIndex);\n        ContinueStory();\n    }\n}",
+          "language": "csharp",
+          "animate": "typewriter"
+        },
+        {
+          "title": "Advanced Character Movement",
+          "code": "public class PlayerController : MonoBehaviour\n{\n    [Header(\"Movement\")]\n    [SerializeField] private float moveSpeed = 5f;\n    [SerializeField] private float sprintMultiplier = 1.5f;\n\n    [Header(\"Components\")]\n    [SerializeField] private Animator animator;\n    [SerializeField] private SpriteRenderer spriteRenderer;\n\n    private NavMeshAgent _agent;\n    private Vector2 _input;\n    private bool _isSprinting;\n\n    private static readonly int AnimSpeed = Animator.StringToHash(\"Speed\");\n    private static readonly int AnimHorizontal = Animator.StringToHash(\"Horizontal\");\n    private static readonly int AnimVertical = Animator.StringToHash(\"Vertical\");\n\n    void Awake()\n    {\n        _agent = GetComponent<NavMeshAgent>();\n        _agent.updateRotation = false;\n        _agent.updateUpAxis = false;\n    }\n\n    void Update()\n    {\n        HandleInput();\n        UpdateAnimation();\n    }\n\n    void FixedUpdate()\n    {\n        Move();\n    }\n\n    void HandleInput()\n    {\n        _input.x = Input.GetAxisRaw(\"Horizontal\");\n        _input.y = Input.GetAxisRaw(\"Vertical\");\n        _isSprinting = Input.GetKey(KeyCode.LeftShift);\n    }\n\n    void Move()\n    {\n        float currentSpeed = _isSprinting ? \n            moveSpeed * sprintMultiplier : moveSpeed;\n\n        Vector3 movement = new Vector3(_input.x, _input.y, 0).normalized;\n        _agent.velocity = movement * currentSpeed;\n    }\n\n    void UpdateAnimation()\n    {\n        animator.SetFloat(AnimHorizontal, _input.x);\n        animator.SetFloat(AnimVertical, _input.y);\n        animator.SetFloat(AnimSpeed, _input.sqrMagnitude);\n\n        if (_input.x != 0)\n        {\n            spriteRenderer.flipX = _input.x < 0;\n        }\n    }\n}",
+          "language": "csharp",
+          "animate": "highlight"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "Slice of Life delivers an immersive narrative-driven adventure with 15+ branching story paths. The Unity-based architecture achieves 60fps gameplay with smooth NavMesh character movement, Inky dialogue integration, and a comprehensive quest system supporting meaningful player choices.",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Player Retention",
+          "data": {
+            "before": 20,
+            "after": 65
+          },
+          "unit": "%"
+        },
+        {
+          "type": "line",
+          "title": "Story Completion Rate",
+          "data": [10, 25, 45, 60, 75],
+          "labels": ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"]
+        }
+      ],
+      "sections": [
+        {
+          "title": "Game Development Success",
+          "highlights": [
+            "15+ unique branching narrative paths with meaningful choices",
+            "60fps gameplay performance with optimized NavMesh pathfinding",
+            "Inky dialogue system enabling dynamic story progression",
+            "225% increase in player retention (20% → 65%)",
+            "Comprehensive save/load system with multiple slots"
+          ]
+        },
+        {
+          "title": "Technical Excellence",
+          "summary": "Slice of Life showcases advanced Unity development including ScriptableObject-based quest management, blend tree animations for smooth character movement, and UI Toolkit integration. The modular architecture enables rapid content iteration and story expansion."
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Built With",
+      "categories": {
+        "engine": ["Unity 2021.3", "C#", "Navigation Mesh"],
+        "systems": ["Input System", "Action Maps", "Animator", "Blend Trees"],
+        "ui": ["UI Toolkit", "UXML", "USS", "nGUI"],
+        "narrative": ["Inky", "Ink Language"],
+        "tools": ["Maya", "Visual Studio", "Git"]
+      },
+      "interactive": true
+    }
+  ],
+  "techStackAnalyzer": {
+    "projectName": "Slice of Life",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "Input System Implementation",
+          "tech": "Unity Input System",
+          "code": "public class InputManager : MonoBehaviour\n{\n    private PlayerInput _playerInput;\n    private InputAction _moveAction;\n    private InputAction _interactAction;\n    private InputAction _sprintAction;\n\n    void Awake()\n    {\n        _playerInput = GetComponent<PlayerInput>();\n        _moveAction = _playerInput.actions[\"Move\"];\n        _interactAction = _playerInput.actions[\"Interact\"];\n        _sprintAction = _playerInput.actions[\"Sprint\"];\n\n        _interactAction.performed += OnInteract;\n    }\n\n    void OnDestroy()\n    {\n        _interactAction.performed -= OnInteract;\n    }\n\n    public Vector2 GetMoveInput()\n    {\n        return _moveAction.ReadValue<Vector2>();\n    }\n\n    public bool IsSprinting()\n    {\n        return _sprintAction.IsPressed();\n    }\n\n    void OnInteract(InputAction.CallbackContext context)\n    {\n        InteractionSystem.Instance.TryInteract();\n    }\n}",
+          "docUrl": "https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html"
+        },
+        {
+          "name": "Blend Tree Animation",
+          "tech": "Unity Animator",
+          "code": "public class CharacterAnimator : MonoBehaviour\n{\n    private Animator _animator;\n    private static readonly int MoveX = Animator.StringToHash(\"MoveX\");\n    private static readonly int MoveY = Animator.StringToHash(\"MoveY\");\n    private static readonly int Speed = Animator.StringToHash(\"Speed\");\n    private static readonly int IsInteracting = Animator.StringToHash(\"IsInteracting\");\n\n    void Awake()\n    {\n        _animator = GetComponent<Animator>();\n    }\n\n    public void SetMovement(Vector2 movement)\n    {\n        _animator.SetFloat(MoveX, movement.x);\n        _animator.SetFloat(MoveY, movement.y);\n        _animator.SetFloat(Speed, movement.magnitude);\n    }\n\n    public void TriggerInteraction(string interactionName)\n    {\n        _animator.SetTrigger(IsInteracting);\n        _animator.SetLayerWeight(1, 1f);\n    }\n\n    public void OnInteractionComplete()\n    {\n        _animator.SetLayerWeight(1, 0f);\n    }\n}",
+          "docUrl": "https://docs.unity3d.com/Manual/class-BlendTree.html"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Quest Management System",
+          "tech": "C# + ScriptableObjects",
+          "code": "[CreateAssetMenu(fileName = \"New Quest\", menuName = \"Game/Quest\")]\npublic class Quest : ScriptableObject\n{\n    public string questId;\n    public string questName;\n    public string description;\n    public QuestObjective[] objectives;\n    public Quest[] prerequisites;\n    public Reward[] rewards;\n}\n\npublic class QuestManager : MonoBehaviour\n{\n    private Dictionary<string, QuestState> _activeQuests = \n        new Dictionary<string, QuestState>();\n\n    public void StartQuest(Quest quest)\n    {\n        if (!CanStartQuest(quest)) return;\n\n        var state = new QuestState\n        {\n            quest = quest,\n            status = QuestStatus.Active,\n            completedObjectives = new HashSet<int>()\n        };\n\n        _activeQuests[quest.questId] = state;\n        GameEvents.OnQuestStarted?.Invoke(quest);\n    }\n\n    public void UpdateObjective(string questId, int objectiveIndex)\n    {\n        if (!_activeQuests.TryGetValue(questId, out var state))\n            return;\n\n        state.completedObjectives.Add(objectiveIndex);\n\n        if (state.completedObjectives.Count == state.quest.objectives.Length)\n        {\n            CompleteQuest(questId);\n        }\n    }\n\n    private void CompleteQuest(string questId)\n    {\n        var state = _activeQuests[questId];\n        state.status = QuestStatus.Completed;\n        GrantRewards(state.quest.rewards);\n        GameEvents.OnQuestCompleted?.Invoke(state.quest);\n    }\n\n    private bool CanStartQuest(Quest quest)\n    {\n        foreach (var prereq in quest.prerequisites)\n        {\n            if (!_activeQuests.ContainsKey(prereq.questId) ||\n                _activeQuests[prereq.questId].status != QuestStatus.Completed)\n            {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+          "docUrl": "https://docs.unity3d.com/Manual/class-ScriptableObject.html"
+        },
+        {
+          "name": "Navigation System",
+          "tech": "NavMesh + A*",
+          "code": "public class AINavigationController : MonoBehaviour\n{\n    [SerializeField] private float wanderRadius = 10f;\n    [SerializeField] private float wanderTimer = 5f;\n\n    private NavMeshAgent _agent;\n    private float _timer;\n\n    void Awake()\n    {\n        _agent = GetComponent<NavMeshAgent>();\n        _agent.updateRotation = false;\n        _agent.updateUpAxis = false;\n    }\n\n    void Update()\n    {\n        _timer += Time.deltaTime;\n\n        if (_timer >= wanderTimer)\n        {\n            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius);\n            _agent.SetDestination(newPos);\n            _timer = 0;\n        }\n    }\n\n    public void MoveTo(Vector3 destination)\n    {\n        _agent.SetDestination(destination);\n    }\n\n    public void Stop()\n    {\n        _agent.isStopped = true;\n    }\n\n    Vector3 RandomNavSphere(Vector3 origin, float distance)\n    {\n        Vector3 randomDirection = Random.insideUnitSphere * distance;\n        randomDirection += origin;\n\n        NavMeshHit navHit;\n        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);\n\n        return navHit.position;\n    }\n}",
+          "docUrl": "https://docs.unity3d.com/Manual/nav-NavigationSystem.html"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Persistent Data System",
+          "tech": "JSON Serialization",
+          "code": "[System.Serializable]\npublic class GameSaveData\n{\n    public Vector3 playerPosition;\n    public List<string> completedQuests;\n    public Dictionary<string, int> inventory;\n    public Dictionary<string, bool> worldState;\n    public float playTime;\n}\n\npublic class SaveLoadSystem : MonoBehaviour\n{\n    private const string SaveKey = \"GameSave_\";\n\n    public void SaveGame(int slotIndex)\n    {\n        var saveData = new GameSaveData\n        {\n            playerPosition = PlayerController.Instance.transform.position,\n            completedQuests = QuestManager.Instance.GetCompletedQuestIds(),\n            inventory = InventoryManager.Instance.GetInventoryData(),\n            worldState = WorldStateManager.Instance.GetStateData(),\n            playTime = Time.time\n        };\n\n        string json = JsonUtility.ToJson(saveData, true);\n        PlayerPrefs.SetString(SaveKey + slotIndex, json);\n        PlayerPrefs.Save();\n    }\n\n    public GameSaveData LoadGame(int slotIndex)\n    {\n        string key = SaveKey + slotIndex;\n        if (!PlayerPrefs.HasKey(key))\n            return null;\n\n        string json = PlayerPrefs.GetString(key);\n        return JsonUtility.FromJson<GameSaveData>(json);\n    }\n\n    public void ApplySaveData(GameSaveData data)\n    {\n        PlayerController.Instance.transform.position = data.playerPosition;\n        QuestManager.Instance.LoadCompletedQuests(data.completedQuests);\n        InventoryManager.Instance.LoadInventory(data.inventory);\n        WorldStateManager.Instance.LoadState(data.worldState);\n    }\n}",
+          "docUrl": "https://docs.unity3d.com/ScriptReference/JsonUtility.html"
+        }
+      ],
+      "devops": [
+        {
+          "name": "Scene Management",
+          "tech": "Unity Scene System",
+          "code": "public class SceneTransitionManager : MonoBehaviour\n{\n    [SerializeField] private CanvasGroup fadeCanvasGroup;\n    [SerializeField] private float fadeDuration = 1f;\n\n    public async Task LoadSceneAsync(string sceneName)\n    {\n        await FadeOut();\n\n        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);\n        asyncLoad.allowSceneActivation = false;\n\n        while (asyncLoad.progress < 0.9f)\n        {\n            await Task.Yield();\n        }\n\n        asyncLoad.allowSceneActivation = true;\n\n        await FadeIn();\n    }\n\n    async Task FadeOut()\n    {\n        float elapsedTime = 0f;\n        while (elapsedTime < fadeDuration)\n        {\n            elapsedTime += Time.deltaTime;\n            fadeCanvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / fadeDuration);\n            await Task.Yield();\n        }\n    }\n\n    async Task FadeIn()\n    {\n        float elapsedTime = 0f;\n        while (elapsedTime < fadeDuration)\n        {\n            elapsedTime += Time.deltaTime;\n            fadeCanvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime / fadeDuration);\n            await Task.Yield();\n        }\n    }\n}",
+          "docUrl": "https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.html"
+        }
+      ]
+    }
+  },
+  "activity": [
+    {
+      "author": "Game Designer",
+      "avatar": "GD",
+      "time": "Playtest",
+      "comment": "The branching narrative system creates genuine replayability. Player choices feel meaningful with 15+ unique story paths to discover."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Unity development",
+      "comment": "Slice of Life was my deep-dive into Unity game development. Integrated Inky for narrative, built quest systems, and created smooth NavMesh-based character movement."
+    }
+  ],
+  "businessRequirements": {
+    "jiraPrefix": "SOL",
+    "businessContext": "Create an immersive narrative-driven adventure game where player choices significantly impact the story outcome",
+    "problemStatement": "Traditional adventure games often feature linear stories with minimal player agency, reducing replay value and emotional investment",
+    "businessValue": [
+      "Demonstrates advanced Unity development skills",
+      "Showcases narrative design capabilities",
+      "Highlights complex system integration",
+      "Provides reusable game architecture",
+      "Creates engaging player experiences"
+    ],
+    "acceptanceCriteria": [
+      "Branching dialogue system with 15+ unique paths",
+      "Smooth character movement with NavMesh",
+      "Quest system with objective tracking",
+      "Save/load functionality with multiple slots",
+      "Animated character sprites with blend trees",
+      "Performance optimization for 60fps gameplay"
+    ],
+    "attachments": [
+      {
+        "type": "design",
+        "title": "Narrative Flow Diagram"
+      },
+      {
+        "type": "documentation",
+        "title": "Game Systems Documentation"
+      }
+    ],
+    "risks": [
+      {
+        "risk": "Narrative complexity",
+        "mitigation": "Comprehensive testing of all story branches"
+      },
+      {
+        "risk": "Performance with NavMesh",
+        "mitigation": "Optimized pathfinding with agent pooling"
+      },
+      {
+        "risk": "Save data corruption",
+        "mitigation": "Backup system and data validation"
+      }
+    ]
+  },
+  "links": {},
+  "related": ["chewable-studios"]
+}

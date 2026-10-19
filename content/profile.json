@@ -1,0 +1,1109 @@
+{
+  "personal": {
+    "name": "Zachariah James Ayers",
+    "title": "Staff Engineer & AI/ML Architect",
+    "avatarPath": "/profile.jpeg",
+    "pitch": "I'm Zachariah Ayers, a Senior Full Stack Engineer with over 14 years of experience. I specialize in architecting scalable systems and implementing practical AI/ML solutions. Currently, I'm modernizing aerospace manufacturing at Northrop Grumman, and I previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
+    "tagline": "From React™ to Rocket Science, I architect the future.",
+    "tenSecondPitch": {
+      "yearsAndScale": "14+ Years & Architect @ Scale: Shipped code for 14+ years, currently modernizing aerospace manufacturing at Northrop Grumman. Previously architected a 500+ microservice ecosystem at AmeriSave that cut loan processing time in half.",
+      "aiMlImplementer": "Pragmatic AI/ML Implementer: I don't just research AI, I ship it. Building RAG systems, computer vision automation, and predictive maintenance models in high-security production environments.",
+      "teamMultiplier": "Proven Team Multiplier: I make teams better. Trained 60+ developers, created frameworks that cut development time by 85%, and championed processes that dramatically reduced bug rates."
+    },
+    "executiveSummary": [
+      "Staff Software Engineer & AI/ML Architect with 14+ years building enterprise-scale systems across web, cloud, and AI domains. Currently modernizing aerospace manufacturing at Northrop Grumman through ML automation and RAG implementations. Proven technical leader who transforms complex challenges into shipped solutions – from architecting 500+ microservices to optimizing legacy systems for 10x performance gains."
+    ],
+    "valueProposition": "I'm a senior full stack engineer who ships production code that scales. After 14+ years building everything from React frontends to distributed microservices, I've deliberately moved into AI/ML implementation because that's where the highest-leverage problems are. Currently at Northrop Grumman, I'm not just theorizing about AI – I'm building RAG systems, implementing predictive maintenance, and automating critical aerospace manufacturing processes. My superpower is taking complex technical problems and delivering practical solutions that actually work in production. Whether it's architecting 500+ microservices at AmeriSave or migrating 20-year-old VB6 systems, I measure success by business impact, and my strength is applying 14 years of systems architecture experience to make AI/ML solutions work reliably in production.",
+    "whatIBring": [
+      "Full Stack Expertise: 14+ years across React, Node.js, .NET, Java, Python – I can work anywhere in the stack",
+      "AI/ML Capabilities: Building RAG systems, implementing predictive maintenance, optimizing inference costs – AI is another tool in my toolkit",
+      "Scale & Reliability: Architected systems handling millions of transactions daily, whether traditional web apps or ML models",
+      "Pragmatic Approach: I choose the right tool for the job – React for UI, Python for ML, boring tech for critical systems",
+      "Team Multiplier: Helped 60+ developers at AmeriSave Mortgage Corporation adopt new patterns – I make everyone around me better",
+      "Business Impact: At AmeriSave Mortgage Corporation, reduced loan processing by 50% and cut deployment time by 90% – I measure success in business outcomes",
+      "Modern & Legacy: Equally comfortable with cutting-edge tech (LangChain, vector DBs) and legacy systems (VB6 migrations)"
+    ]
+  },
+  "welcomeMessage": "Hi there! Welcome to my portfolio - I'm Zach, a Staff Software Engineer & AI/ML Architect with 14+ years of experience building enterprise-scale systems and implementing production AI solutions. Rather than making you dig through static content, I've created something much better: meet Arlo, my AI Assistant who knows absolutely everything about my experience, skills, and projects. Arlo can answer your questions instantly, generate custom resumes tailored to your specific needs, and even conduct mock interviews! Let's save time and get straight to what matters - just start chatting with Arlo below. Ask anything!",
+  "contact": {
+    "email": "zach@meridianvega.com",
+    "linkedin": "https://www.linkedin.com/in/zachariahayers",
+    "github": "https://github.com/ZachariahAyers",
+    "portfolio": "https://ayers.repair",
+    "assemblejs": "https://github.com/ayers-software-repair/assemblejs",
+    "location": "Dallas, TX",
+    "targetLocations": ["Fort Collins, CO", "Santa Fe, NM", "Austin, TX", "Seattle, WA"]
+  },
+  "experience": {
+    "northrop": {
+      "role": "Senior Software Engineer @ Northrop Grumman",
+      "period": "Aug 2024 - Present | Remote",
+      "type": "Contract via Meridian Vega LLC",
+      "description": "Leading mission-critical manufacturing system modernization from VB6 to .NET 8. Implementing ML-driven predictive maintenance with 85% accuracy, building intelligent automation reducing manual data entry by 70%, and creating enterprise RAG system for searching technical documentation.",
+      "impact": "Reduced deployment time from 2 weeks to 2 hours, prevented $300K+ in downtime through predictive maintenance",
+      "keyChallenge": "Navigating a high-security, air-gapped environment that demands extreme self-sufficiency and robust, offline-first solutions while modernizing 20-year-old mission-critical systems",
+      "technologies": "C# .NET 8, WinUI3, Python, TensorFlow, SAP, Azure DevOps, Legacy VB6/VB.NET"
+    },
+    "meridianVega": {
+      "role": "Founder & Principal Consultant @ Meridian Vega LLC",
+      "period": "Feb 2023 - Present | Remote",
+      "description": "Enterprise technology consulting including e-commerce integrations, creative tools development, 3D configurators, game development support. Built Stripe/Shopify systems, Adobe/DaVinci Resolve plugins, VW ID.Buzz wrap configurator, and Unity/Unreal Engine solutions.",
+      "impact": "Consistently delivered solutions that directly impacted client revenue streams, doubled Timelapse+ plugin sales",
+      "technologies": "TypeScript, React, NestJS, Unity, C#, Unreal Engine, Python, AWS",
+      "clientProjects": {
+        "ecommerce": "Built Stripe/Shopify payment system for AWS-hosted React SPA using NestJS/TypeScript",
+        "creativeTools": [
+          "Developed Adobe Premiere Pro and DaVinci Resolve plugins for Timelapse+ (timelapseplus.com)",
+          "Implemented Gamut color grading plugin for professional video workflows",
+          "Designed LUA/Python bridge for Adobe products, doubling Timelapse+ plugin sales"
+        ],
+        "vwConfigurator": {
+          "name": "VW ID.Buzz Configurator",
+          "description": "Built 3D vehicle wrap viewer for Wrapmate (wraps.wrapmate.com/configurator)",
+          "features": [
+            "Real-time 3D visualization of custom vehicle graphics",
+            "Integration with e-commerce ordering system"
+          ]
+        },
+        "gameDevelopment": "Maintained Unity C# multiplayer systems using Photon framework",
+        "mobileGaming": "Led Unreal Engine code reviews and iOS game development support"
+      }
+    },
+    "amerisave": {
+      "role": "Multiple Roles @ AmeriSave Mortgage Corporation",
+      "period": "Mar 2021 - Feb 2023 | Remote",
+      "manager": {
+        "role": "Software Development Manager",
+        "description": "Trained 60-person department in Agile workflows, mentored 30+ junior developers, served on Architecture Review Board, led daily incident response",
+        "impact": "Reduced delivery from months to weeks, increased milestone completion by 30%"
+      },
+      "architect": {
+        "role": "Software Architect",
+        "description": "Orchestrated 500+ microservice ecosystem with GraphQL Federation, led database decomposition from 4000+ table monolith, created company-wide SSO, developed Octo/Tellaro micro-frontend framework",
+        "impact": "Reduced development time by 85%, maintained low RTO/RPO for critical systems"
+      },
+      "developer": {
+        "role": "Full Stack Developer",
+        "description": "Migrated ColdFusion 9 monolith to Spring Boot/Angular microservices, optimized TSQL queries from 30s to sub-second, integrated Fannie Mae HomeReady program",
+        "impact": "Generated $3M monthly loan volume, achieved zero regression during migration"
+      },
+      "keyChallenge": "Overcoming organizational inertia to adopt new technologies while migrating a business-critical monolithic system with zero downtime – all while processing millions in daily loan volume",
+      "technologies": "Java, Spring Boot, Angular, React, Node.js, GraphQL, Azure, Docker, Kubernetes"
+    },
+    "hackReactor": {
+      "role": "Software Engineering Bootcamp @ Hack Reactor",
+      "period": "Mar 2020 - Aug 2020 | Remote",
+      "description": "Intensive 1000+ hour program. Built 5 full-stack applications including VX Apps (scaled backend from 100 to 5000 RPS), WonderFund (microservices platform), Chalkboard (real-time collaborative drawing), Vocation (Chrome extension), Done With It (React Native marketplace).",
+      "why": "After years of enterprise development, I wanted to level up my JavaScript and modern web skills",
+      "learned": "Modern JavaScript ecosystem, microservices at scale, and that bootcamp students can really code under pressure"
+    },
+    "stak": {
+      "role": "Senior Software Engineer / Engineering Manager @ Stak Design",
+      "period": "Jun 2016 - Mar 2020 | Carrollton, TX",
+      "description": "Led team of 8 developers building custom applications. Built CI/CD pipelines reducing deploy time by 80%, designed multi-tenant architecture, increased company leads by 170% through website redesign. Developed RabCab Automation extending AutoCAD's SDK for 3D carpentry automation.",
+      "biggestWin": "Convinced the team to adopt code reviews and automated testing. It was painful at first but reduced our bug rate dramatically.",
+      "biggestChallenge": "Balancing client demands with technical debt. Sometimes you have to ship the quick fix today and refactor tomorrow (spoiler: tomorrow rarely comes).",
+      "technologies": "Angular, .NET Core, Azure, SQL Server, C#, C++, AutoCAD SDK"
+    },
+    "coreStates": {
+      "role": "Project Coordinator / Walmart Remodel Team @ Core States Group",
+      "period": "Jan 2015 - Apr 2016 | Dallas-Fort Worth, TX",
+      "description": "Produced architectural CAD drawings and specifications for retail remodels across Texas. Built automation tools that reduced drawing production time by 40%. Created 3D renderings using 3DS Max with VRay for client presentations.",
+      "responsibilities": [
+        "Produced architectural CAD drawings and specifications for retail remodels",
+        "Built automation tools reducing drawing production time by 40%",
+        "Created 3D renderings using 3DS Max with VRay",
+        "Traveled to sites for scope trips and construction observations"
+      ],
+      "technologies": "AutoCAD, 3DS Max, VRay, C#"
+    },
+    "cmaArchitecture": {
+      "role": "Software Engineer / Project Engineer @ CMA Architecture",
+      "period": "Jan 2015 - Apr 2016 | Fort Worth, TX",
+      "note": "Overlapped with Core States Group - consulting arrangement",
+      "description": "Developed custom CAD automation tools improving productivity by 40%. Built project management system integrating with Revit and AutoCAD.",
+      "technologies": "C#, WPF, SQL Server, AutoCAD API"
+    },
+    "cowellSteel": {
+      "role": "Software Engineer / Project Manager @ Cowell Steel Structures",
+      "period": "Jan 2013 - Jan 2015 | Russellville, AR",
+      "description": "Created engineering calculation software reducing design time by 60%. Managed software development projects from inception to deployment.",
+      "technologies": "C#, Windows Forms, SQL Server"
+    },
+    "tricanWell": {
+      "role": "Software Engineer / Data Manager @ Trican Well Service",
+      "period": "Nov 2009 - Jul 2010 | Searcy, AR",
+      "description": "Developed data analysis tools for oil field operations. Automated reporting processes saving 20+ hours weekly.",
+      "technologies": "VB.NET, SQL Server, Crystal Reports"
+    }
+  },
+  "skills": {
+    "expert": {
+      "description": "Technologies I use daily and can architect complex solutions with",
+      "languages": ["TypeScript", "Python", "C#", "JavaScript", "SQL"],
+      "frontend": ["React", "Next.js", "Redux", "Tailwind CSS"],
+      "backend": ["Node.js (Express/NestJS)", ".NET Core/8", "RESTful APIs"],
+      "cloud": ["AWS (EC2, Lambda, S3, DynamoDB)", "Azure (App Services, DevOps)"],
+      "infrastructure": ["Docker", "Kubernetes", "CI/CD (GitHub Actions, Azure DevOps)"],
+      "aiMl": ["LangChain", "OpenAI API", "RAG architectures", "TensorFlow"],
+      "databases": ["PostgreSQL", "MongoDB", "Redis"],
+      "architecture": ["Microservices", "System Design", "Event-Driven Architecture"]
+    },
+    "proficient": {
+      "description": "Technologies I've shipped to production and can work with effectively",
+      "languages": ["Java", "Go", "VB.NET"],
+      "frontend": ["Angular", "Vue.js", "Material-UI", "Webpack"],
+      "backend": ["Spring Boot", "GraphQL", "gRPC"],
+      "cloud": ["AWS (SageMaker, Bedrock)", "Azure ML"],
+      "infrastructure": ["Terraform", "Ansible", "Helm"],
+      "aiMl": ["PyTorch", "Scikit-learn", "Vector DBs (Pinecone, ChromaDB)"],
+      "databases": ["MySQL", "DynamoDB", "Elasticsearch"],
+      "testing": ["Jest", "Cypress", "Selenium"]
+    },
+    "familiar": {
+      "description": "Technologies I can work with given documentation or ramp-up time",
+      "languages": ["Rust", "Lua", "C++"],
+      "frameworks": ["Spring Cloud", "Fastify", "Svelte"],
+      "tools": ["Apache Kafka", "Spark", "MLflow"],
+      "databases": ["Cassandra", "SAP HANA"],
+      "others": ["Unity", "Unreal Engine", "AutoCAD APIs"]
+    }
+  },
+  "projects": {
+    "opensource": {
+      "assemblejs": {
+        "name": "AssembleJS",
+        "description": "Created modern micro-frontend framework from scratch with islands architecture and server-side rendering support. Enables distributed, component-based UI development.",
+        "github": "https://github.com/ayers-software-repair/assemblejs",
+        "caseStudy": "/casestudies/assemblejs",
+        "impact": "Open-source framework used by developers worldwide",
+        "image": "/images/projects/assemblejs.png",
+        "current": true
+      },
+      "grayscale": {
+        "name": "Grayscale",
+        "description": "High-performance client-side image processing using WebAssembly compiled from Rust. Demonstrates near-native performance for computationally intensive tasks entirely in the browser.",
+        "technologies": [
+          "Rust",
+          "WebAssembly",
+          "wasm-bindgen",
+          "Webpack",
+          "Tailwind CSS",
+          "HTML5 File API"
+        ],
+        "image": "/images/projects/grayscale.png",
+        "github": "https://github.com/ZachariahAyers/grayscale",
+        "caseStudy": "/casestudies/grayscale",
+        "impact": "Zero-latency image processing with < 50ms conversion time",
+        "highlights": [
+          "WebAssembly module compiled from Rust for native performance",
+          "100% client-side processing - no server dependencies",
+          "Memory-safe implementation prevents crashes",
+          "Base64 encoding for JavaScript/WASM communication",
+          "Modern UI with animated gradient backgrounds"
+        ]
+      },
+      "natours": {
+        "name": "Natours",
+        "description": "Full-stack tour booking platform built with Node.js, Express, MongoDB, and Stripe. Features RESTful API, JWT authentication, server-side rendering, and real-time geospatial queries.",
+        "technologies": [
+          "Node.js",
+          "Express.js",
+          "MongoDB",
+          "Mongoose",
+          "JWT",
+          "Stripe",
+          "Pug",
+          "Mapbox",
+          "Nodemailer"
+        ],
+        "image": "/images/projects/natours.png",
+        "github": "https://github.com/ZachariahAyers/natours",
+        "caseStudy": "/casestudies/natours",
+        "impact": "Enterprise-grade booking system with < 200ms API response time",
+        "highlights": [
+          "RESTful API with advanced filtering and pagination",
+          "JWT-based authentication with role-based access control",
+          "Stripe payment integration with secure webhooks",
+          "Server-side rendering with Pug templates for SEO",
+          "Real-time geospatial queries with MongoDB"
+        ]
+      },
+      "moduleFederation": {
+        "name": "Module Federation",
+        "description": "Multi-Spa app utilizing Webpack Module Federation, seamlessly integrating multiple front-end applications into a single container for enhanced scalability.",
+        "technologies": [
+          "Angular",
+          "React",
+          "Vue",
+          "Docker",
+          "TypeScript",
+          "Material-UI",
+          "Webpack Module Federation",
+          "AWS CloudFront/S3"
+        ],
+        "image": "/images/projects/moduleFederation.png",
+        "github": "https://github.com/ZachariahAyers/modulefederation",
+        "caseStudy": "/casestudies/module-federation"
+      },
+      "galaxyMVC": {
+        "name": "GalaxyMVC",
+        "description": "Lightweight PHP MVC framework built from scratch demonstrating clean architecture patterns. Features custom routing, PDO database wrapper, autoloading, and zero dependencies - perfect for learning MVC concepts.",
+        "technologies": ["PHP 7.2+", "MySQL/MariaDB", "Apache", "PDO", "MVC Pattern", "PSR-4"],
+        "image": "/images/projects/galaxyMVC.png",
+        "github": "https://github.com/ZachariahAyers/GalaxyMVC",
+        "caseStudy": "/casestudies/galaxymvc",
+        "impact": "Under 1K lines of code with < 50ms response time",
+        "highlights": [
+          "Pure PHP implementation with zero dependencies",
+          "Clean MVC architecture in under 1000 lines",
+          "Custom routing with SEO-friendly URLs",
+          "PDO wrapper preventing SQL injection",
+          "PSR-4 compliant autoloading system"
+        ]
+      },
+      "remixIDE": {
+        "name": "RemixIDE Desktop",
+        "description": "Native desktop application wrapper for Remix IDE, providing Ethereum developers with a dedicated smart contract development environment. Cross-platform support with auto-updates and native OS integration.",
+        "technologies": [
+          "Electron",
+          "Node.js",
+          "JavaScript",
+          "Electron Forge",
+          "Squirrel",
+          "Ethereum",
+          "Solidity"
+        ],
+        "image": "/images/projects/remixIDE.png",
+        "url": "https://github.com/ZachariahAyers/remix.ide/releases",
+        "github": "https://github.com/ZachariahAyers/remix.ide",
+        "caseStudy": "/casestudies/remixide",
+        "impact": "Native desktop experience with < 3s startup time and automatic updates",
+        "highlights": [
+          "Cross-platform desktop app for Windows, macOS, and Linux",
+          "Electron wrapper with native installers",
+          "Auto-update support via Squirrel framework",
+          "Custom high-resolution icons for each platform",
+          "Full feature parity with web-based Remix IDE"
+        ]
+      },
+      "lively": {
+        "name": "Lively",
+        "description": "Streamlines the process of sharing and joining events, allowing users to easily connect with like-minded individuals.",
+        "technologies": [
+          "C#",
+          "ASP.NET Core 5",
+          "Entity Framework",
+          "React",
+          "Redux",
+          "TypeScript",
+          "SQL Server",
+          "Redis",
+          "Azure"
+        ],
+        "image": "/images/projects/lively.png",
+        "github": "https://github.com/ZachariahAyers/lively",
+        "caseStudy": "/casestudies/lively"
+      }
+    },
+    "freelance": {
+      "vwConfigurator": {
+        "name": "VW ID.Buzz Configurator",
+        "description": "Built 3D vehicle wrap viewer for Wrapmate allowing real-time visualization of custom graphics integrated with e-commerce system.",
+        "url": "https://wraps.wrapmate.com/configurator",
+        "caseStudy": "/casestudies/vw-configurator",
+        "technologies": ["React", "Three.js", "TypeScript", "WebGL", "E-commerce Integration"],
+        "impact": "Real-time 3D vehicle wrap visualization for client orders",
+        "image": "/images/projects/vw-configurator.png"
+      },
+      "vocation": {
+        "name": "Vocation",
+        "description": "Powerful Chrome extension that streamlines job search with smart templates, application tracking, and 20+ job board integrations. Features Vue.js overlay interface and local storage for complete privacy.",
+        "technologies": [
+          "Vue.js",
+          "Vuex",
+          "Chrome Extension API",
+          "SCSS",
+          "Webpack",
+          "Content Scripts"
+        ],
+        "image": "/images/projects/vocation.png",
+        "url": "https://chromewebstore.google.com/detail/vocation/icppkimiacdjokmejcmlhhdphlanokbo?hl=en",
+        "github": "https://github.com/ZachariahAyers/vocation-chrome",
+        "caseStudy": "/casestudies/vocation",
+        "impact": "60% reduction in job application time, 5K+ active users",
+        "highlights": [
+          "20+ job board integrations with auto-detection",
+          "50+ customizable message templates",
+          "One-click job saving with smart extraction",
+          "Real-time application metrics dashboard",
+          "Complete privacy with local-only storage"
+        ]
+      },
+      "chalkboard": {
+        "name": "Chalkboard",
+        "description": "Real-time collaborative drawing app with Socket.IO and p5.js. Multiple users can draw together with instant synchronization, showcasing WebSocket architecture and scaling challenges.",
+        "technologies": ["React", "Socket.IO", "p5.js", "Express", "Material-UI", "Canvas API"],
+        "image": "/images/projects/chalkboard.png",
+        "github": "https://github.com/ZachariahAyers/chalkboard",
+        "caseStudy": "/casestudies/chalkboard",
+        "impact": "< 50ms latency with 50+ concurrent users",
+        "highlights": [
+          "Real-time drawing synchronization with Socket.IO",
+          "p5.js canvas integration for smooth rendering",
+          "Multiple drawing tools and color picker",
+          "User presence tracking system",
+          "Learned WebSocket scaling challenges firsthand"
+        ]
+      },
+      "doneWithIt": {
+        "name": "Done With It",
+        "description": "React Native marketplace app with Expo – my first mobile development experience",
+        "technologies": ["React Native", "Expo"],
+        "image": "/images/projects/doneWithIt.jpeg",
+        "github": "https://github.com/ZachariahAyers/done-with-it",
+        "caseStudy": "/casestudies/done-with-it"
+      },
+      "sliceOfLife": {
+        "name": "Slice of Life",
+        "description": "Mobile app facilitating informed decisions on pizza dining experiences through detailed restaurant reviews and ratings.",
+        "technologies": [
+          "React",
+          "React Native",
+          "Redux",
+          "Node.js",
+          "TypeScript",
+          "iOS",
+          "Android",
+          "AWS Amplify"
+        ],
+        "image": "/images/projects/sliceOfLife.png",
+        "caseStudy": "/casestudies/slice-of-life"
+      },
+      "hostify": {
+        "name": "Hostify",
+        "description": "Modern cloud hosting landing page showcasing component-based architecture, responsive design, and performance optimization. Built with semantic HTML5, CSS Grid, and vanilla JavaScript.",
+        "technologies": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "CSS Grid",
+          "Flexbox",
+          "BEM",
+          "Parcel",
+          "AOS"
+        ],
+        "image": "/images/projects/hostify.png",
+        "github": "https://github.com/ZachariahAyers/hostify",
+        "caseStudy": "/casestudies/hostify",
+        "impact": "98/100 PageSpeed score with < 3s load time",
+        "highlights": [
+          "Component-based HTML architecture for reusability",
+          "CSS custom properties design system",
+          "Mobile-first responsive design",
+          "WebP images with fallbacks for optimization",
+          "15+ reusable components following BEM methodology"
+        ]
+      },
+      "nexter": {
+        "name": "Nexter",
+        "description": "Advanced CSS Grid real estate platform showcasing modern layout techniques. Features complex nested grids, responsive design patterns, and sophisticated SCSS architecture demonstrating mastery of CSS Grid and Flexbox.",
+        "technologies": [
+          "HTML5",
+          "CSS3 Grid",
+          "SCSS/SASS",
+          "PostCSS",
+          "Autoprefixer",
+          "NPM Scripts",
+          "BEM Methodology"
+        ],
+        "image": "/images/projects/nexter.png",
+        "github": "https://github.com/ZachariahAyers/nexter",
+        "caseStudy": "/casestudies/nexter",
+        "impact": "Demonstrates advanced CSS Grid layouts with 100% responsive design and < 1s load time"
+      },
+      "trillo": {
+        "name": "Trillo",
+        "description": "Modern hotel booking UI built with advanced CSS Flexbox techniques. Demonstrates complex layouts, animations, and responsive design patterns using pure CSS without JavaScript.",
+        "technologies": [
+          "CSS3 Flexbox",
+          "SCSS/SASS",
+          "HTML5",
+          "SVG Sprites",
+          "CSS Variables",
+          "PostCSS",
+          "BEM Methodology"
+        ],
+        "image": "/images/projects/trillo.png",
+        "github": "https://github.com/ZachariahAyers/trillo",
+        "caseStudy": "/casestudies/trillo",
+        "impact": "100% Flexbox responsive layout with < 1s load time",
+        "highlights": [
+          "Pure CSS implementation without JavaScript",
+          "Advanced Flexbox layouts for complex UI",
+          "SVG sprite system for scalable icons",
+          "CSS custom properties for dynamic theming",
+          "BEM methodology for maintainable architecture"
+        ]
+      },
+      "auroraGrove": {
+        "name": "Aurora Grove",
+        "description": "Modern camping website showcasing advanced Bootstrap 4 customization, SCSS architecture, and responsive design. Features parallax scrolling, custom animations, and interactive components for an immersive outdoor experience.",
+        "technologies": [
+          "Bootstrap 4",
+          "SCSS/SASS",
+          "jQuery",
+          "HTML5",
+          "CSS Grid",
+          "Font Awesome 5",
+          "Google Fonts"
+        ],
+        "image": "/images/projects/auroraGrove.png",
+        "github": "https://github.com/ZachariahAyers/auroragrove",
+        "caseStudy": "/casestudies/auroragrove",
+        "impact": "98/100 Lighthouse score, 100% mobile responsive, <2s load time",
+        "highlights": [
+          "Custom Bootstrap theme with SCSS variables and mixins",
+          "Parallax scrolling effects and smooth animations",
+          "Responsive image gallery with lightbox",
+          "Interactive booking modal and newsletter signup"
+        ]
+      },
+      "cidr": {
+        "name": "CIDR",
+        "description": "CIDR visualizer tool that simplifies network planning and administration, providing a user-friendly interface for mapping IP addresses and subnets.",
+        "technologies": ["JavaScript", "HTML", "CSS", "AWS S3/Route 53"],
+        "image": "/images/projects/cidr.png"
+      }
+    },
+    "enterprise": {
+      "octo": {
+        "name": "Octo",
+        "description": "State-of-the-art, language-agnostic micro-frontend framework, featuring server-side rendering and an intuitive CLI for streamlined project generation and management.",
+        "technologies": [
+          "Webpack",
+          "Vite",
+          "Handlebars",
+          "TypeScript",
+          "HTML",
+          "SCSS",
+          "React",
+          "Preact",
+          "Vue",
+          "Svelte",
+          "Storybook",
+          "RxJS",
+          "Node.js"
+        ],
+        "image": "/images/projects/octo.png",
+        "url": "https://sway.cloud.microsoft/40BmKdebHWm8xVJF?ref=Link",
+        "caseStudy": "/casestudies/octo",
+        "impact": "Reduced development time by 85%, adopted by 15+ teams"
+      },
+      "aussie": {
+        "name": "Aussie",
+        "description": "Revolutionizes the loan origination and underwriting process with an advanced AI engine, automating government, personal, and retail loan workflows and delivering lightning-fast loan processing times, reducing the closing flow from months to minutes.",
+        "technologies": [
+          "Java 8/11/14",
+          "Spring Boot/Cloud",
+          "GraphQL",
+          "Azure Cloud",
+          "SQL Server",
+          "Kubernetes",
+          "jQuery",
+          "ColdFusion 9",
+          "Mercurial"
+        ],
+        "image": "/images/projects/aussie.png",
+        "caseStudy": "/casestudies/aussie",
+        "impact": "Reduced loan processing from 45 days to 21 days, generated $3M monthly loan volume"
+      },
+      "amcui": {
+        "name": "AMCUI",
+        "description": "Proprietary UI kit, the visual cornerstone of the company's internal and external applications - offering consistent design and functionality across all platforms.",
+        "technologies": ["Figma", "Zeplin", "Storybook", "TypeScript", "Preact", "HTML", "SCSS"],
+        "image": "/images/projects/amcui.png",
+        "url": "https://assets.amerisave.com/interimui/storybook/?path=/docs/interim-ui-installation--page",
+        "caseStudy": "/casestudies/amcui",
+        "impact": "Standardized UI across 500+ microservices, improved designer-developer handoff by 30%"
+      },
+      "amcli": {
+        "name": "AMCLI",
+        "description": "Proprietary CLI code generator, the tech cornerstone of the company's internal and external applications - offering consistent project / project member generation, linting, and testing.",
+        "technologies": ["TypeScript", "Node.js", "Yeoman", "Microsoft", "Gulp", "Linux"],
+        "image": "/images/projects/amcli.jpeg",
+        "caseStudy": "/casestudies/amcli",
+        "impact": "Automated project scaffolding, reduced setup time from hours to minutes"
+      },
+      "rabcab": {
+        "name": "RabCab AutoCAD Suite",
+        "description": "Transforms carpentry workflows with customized entities, routines, and 3D modeling tools built using ObjectARX, and automates the 3D CAD modeling to 2D CNC process, including annotation and plan printing, for optimal productivity and precision.",
+        "technologies": [
+          "C#",
+          "C++",
+          "ASP.NET Core",
+          "MongoDB",
+          "AutoCAD",
+          "3DS Max",
+          "Inventor",
+          "Acrobat",
+          "Photoshop"
+        ],
+        "image": "/images/projects/rabcab.png",
+        "caseStudy": "/casestudies/rabcab",
+        "impact": "75% reduction in CAD task time, zero-error automated assembly management",
+        "highlights": [
+          "100+ custom AutoCAD commands across 7 specialized suites",
+          "Multi-version support for AutoCAD 2013-2020 (32/64-bit)",
+          "Intelligent processing agents for automated workflows",
+          "External integration with Excel, PDF, and 3D applications",
+          "Custom ribbon interface and tool palettes"
+        ]
+      },
+      "meridianVega": {
+        "name": "Meridian Vega",
+        "description": "My consulting S-Corp offering enterprise technology solutions, specializing in AI/ML integration, legacy modernization, and scalable architecture design.",
+        "caseStudy": "/casestudies/meridian-vega",
+        "technologies": ["React", "Node.js", "AI/ML", "Cloud Architecture", "Enterprise Solutions"],
+        "impact": "Delivering high-impact consulting solutions for Fortune 500 companies",
+        "image": "/images/projects/meridianvega.png",
+        "current": true
+      },
+      "chewableStudios": {
+        "name": "Chewable Studios",
+        "description": "My full-service game studio and publisher developing for PC, console, and mobile platforms.",
+        "caseStudy": "/casestudies/chewable-studios",
+        "technologies": ["Unity", "C#", "React", "TypeScript", "Game Development"],
+        "impact": "End-to-end game development from concept to publishing",
+        "image": "/images/projects/chewable.png",
+        "current": true
+      },
+      "howland": {
+        "name": "Howland",
+        "description": "Custom-built and trained LLM (Large Language Model) specialized for legacy system modernization. Transforms COBOL, RPG, FORTRAN, VB6 to modern languages with full model training from scratch.",
+        "caseStudy": "/casestudies/howland",
+        "technologies": [
+          "PyTorch",
+          "Transformer Architecture",
+          "Custom LLM",
+          "Machine Learning",
+          "Code Analysis",
+          "AST Parsing"
+        ],
+        "impact": "Autonomous AI assistant for legacy-to-modern code transformation",
+        "image": "/images/projects/howland.png",
+        "current": true
+      }
+    },
+    "leadership": {
+      "leadership": {
+        "name": "Leadership",
+        "description": "Proven leadership in the tech world, honed through years of experience leading and empowering teams of dozens of developers to achieve their full potential.",
+        "technologies": [
+          "Scrum",
+          "Agile",
+          "Project Management",
+          "Team Leadership",
+          "Architecture Review Board",
+          "Jira",
+          "Confluence",
+          "Microsoft Office Suite"
+        ],
+        "image": "/images/projects/leadership.png",
+        "caseStudy": "/casestudies/leadership",
+        "impact": "Trained 60+ developers, improved team velocity by 3x, reduced delivery time from months to weeks"
+      },
+      "technicalDocumentation": {
+        "name": "Technical Documentation",
+        "description": "Technical documentation is a critical component of any software project. I have extensive experience writing technical documentation for both internal and external audiences, including user guides, developer guides, and API documentation.",
+        "technologies": [
+          "Markdown",
+          "Adobe Premiere",
+          "Confluence",
+          "Microsoft Office/Stream/Sway",
+          "LucidChart",
+          "DrawIO",
+          "FigJam"
+        ],
+        "image": "/images/projects/technicalDocumentation.png",
+        "caseStudy": "/casestudies/technical-documentation",
+        "impact": "Created 100+ technical documents, training videos, and architectural diagrams"
+      },
+      "training": {
+        "name": "Training",
+        "description": "Extensive experience training developers on new technologies and processes, including both in-person and remote training. I have also trained non-technical audiences on technical topics, including product managers, business analysts, and executives.",
+        "technologies": ["Adobe Creative Suite", "Confluence", "Microsoft Office/Stream/Sway"],
+        "image": "/images/projects/training.png",
+        "caseStudy": "/casestudies/training",
+        "impact": "Delivered training to 60+ developers and non-technical stakeholders"
+      },
+      "azureCloudMigration": {
+        "name": "Azure Cloud Migration",
+        "description": "Migration of on-premises monolithic servers to 500+ Azure Cloud Microservices and sharded databases, implementing best cloud practices for enhanced efficiency and performance.",
+        "technologies": ["Azure Cloud", "RedHat OpenShift", "Kubernetes", "Redis"],
+        "image": "/images/projects/azureCloudMigration.png",
+        "caseStudy": "/casestudies/azure-cloud-migration",
+        "impact": "Achieved 99.9% uptime, reduced infrastructure costs by 56%"
+      },
+      "gqlMigration": {
+        "name": "GraphQL Cloud Migration",
+        "description": "Migration of on-premises monolithic SQL Server Database with 3000+ tables & 2000+ routines to a distributed GQL Federation model, with full e2e testing, regression models, and documentation.",
+        "technologies": ["GraphQL", "Apollo", "Node.js", "TypeScript", "SQL Server"],
+        "image": "/images/projects/gqlMigration.png",
+        "caseStudy": "/casestudies/graphql-cloud-migration",
+        "impact": "70% reduction in client-side API calls, 3x faster feature development"
+      },
+      "jiraCloudMigration": {
+        "name": "Jira Cloud Migration",
+        "description": "Migration of Company Redmine repository to Jira Cloud, including customizations, integrations, and documentation.",
+        "technologies": ["Jira", "Confluence", "Markdown"],
+        "image": "/images/projects/jiraCloudMigration.png",
+        "caseStudy": "/casestudies/jira-cloud-migration",
+        "impact": "Improved team collaboration, 30% increase in milestone completion"
+      },
+      "oauthMigration": {
+        "name": "oAuth Cloud Migration",
+        "description": "Migration and implementation of oAuth and Auth0 for all internal and external applications, including documentation and training.",
+        "technologies": ["oAuth", "Auth0", "Firebase", "Node.js", "TypeScript", "SQL Server"],
+        "image": "/images/projects/oauthMigration.png",
+        "caseStudy": "/casestudies/oauth-cloud-migration",
+        "impact": "Implemented company-wide SSO, improved security posture"
+      },
+      "observabilityMigration": {
+        "name": "Observability Cloud Migration",
+        "description": "Migration and implementation of Observability and Monitoring for a large majority of internal and external applications, including documentation, dashboards, and training.",
+        "technologies": ["Sentry", "DataDog", "Azure Cloud", "Docker", "Kubernetes"],
+        "image": "/images/projects/observabilityMigration.png",
+        "caseStudy": "/casestudies/observability-cloud-migration",
+        "impact": "Reduced MTTR by 70%, proactive issue detection preventing critical outages"
+      }
+    }
+  },
+  "education": {
+    "university": {
+      "institution": "Arkansas Tech University",
+      "degree": "Bachelor of Engineering (B.E.) - Computer Science",
+      "period": "Aug 2010 - Jan 2013",
+      "achievements": [
+        "Dean's List",
+        "Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering"
+      ]
+    },
+    "bootcamp": {
+      "institution": "Hack Reactor",
+      "program": "Advanced Software Engineering Immersive",
+      "period": "Mar 2020 - Aug 2020",
+      "description": "1000+ hour intensive program focused on modern web technologies with React and Node.js"
+    }
+  },
+  "certifications": {
+    "cloud": [
+      "AWS Certified Cloud Practitioner (Oct 2023 - Oct 2026)",
+      "AWS Certified AI Practitioner (In Progress)",
+      "AWS Certified Solutions Architect - Associate (In Progress)",
+      "AWS Certified Solutions Architect - Professional (In Progress)",
+      "AWS Certified Developer - Associate (In Progress)"
+    ],
+    "database": [
+      "Redis RU101: Data Structures (Jul 2021)",
+      "Redis RU202: Streams (Jul 2021)",
+      "Redis RU203: Advanced Querying (Aug 2021)",
+      "Redis RU303: Security (Aug 2020)"
+    ],
+    "projectManagement": [
+      "ClickUp Expert Certificate (Jan 2023)",
+      "ClickUp Intermediate Certificate (Jan 2023)",
+      "ClickUp Novice Certificate (Jan 2023)",
+      "Atlassian Certified Professional (In Progress)"
+    ],
+    "engineering": [
+      "Hack Reactor Certified Full Stack Engineer (Aug 2020)",
+      "CSWP - Certified SolidWorks Professional - Mechanical Design (Jun 2017)"
+    ],
+    "design": [
+      "AutoCAD Professional Certification",
+      "Autodesk Revit Professional Certification",
+      "Autodesk Fusion 360 Professional Certification",
+      "Autodesk Inventor Professional Certification"
+    ],
+    "inProgress": [
+      "AWS Certified Developer - Associate",
+      "AWS Certified Solutions Architect - Associate",
+      "AWS Certified Solutions Architect - Professional",
+      "AWS Certified AI Practitioner",
+      "AWS Certified Machine Learning - Specialty",
+      "Atlassian Certified Professional"
+    ]
+  },
+  "certificationDetails": {
+    "AWS Certified Cloud Practitioner (Oct 2023 - Oct 2026)": {
+      "credentialId": "b8885cc1-c523-46a9-b194-aa33281144f4",
+      "verifyUrl": "https://www.credly.com/badges/b8885cc1-c523-46a9-b194-aa33281144f4/linked_in_profile",
+      "inProgress": false
+    },
+    "AWS Certified AI Practitioner (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "AWS Certified Solutions Architect - Associate (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "AWS Certified Solutions Architect - Professional (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "AWS Certified Developer - Associate (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "Redis RU101: Data Structures (Jul 2021)": {
+      "credentialId": "23ba802dc3464464b0f5d1690bde2d90",
+      "verifyUrl": null,
+      "inProgress": false
+    },
+    "Redis RU202: Streams (Jul 2021)": {
+      "credentialId": "8011d9160c5244759e9c730341dac321",
+      "verifyUrl": null,
+      "inProgress": false
+    },
+    "Redis RU203: Advanced Querying (Aug 2021)": {
+      "credentialId": "1bc51831125741d6b3ec226e6494478f",
+      "verifyUrl": null,
+      "inProgress": false
+    },
+    "Redis RU303: Security (Aug 2020)": {
+      "credentialId": "6e58139d3a504c47831ef64f7e8664df",
+      "verifyUrl": null,
+      "inProgress": false
+    },
+    "ClickUp Expert Certificate (Jan 2023)": {
+      "credentialId": "yez497b6hxsz",
+      "verifyUrl": "https://verify.skilljar.com/c/yez497b6hxsz",
+      "inProgress": false
+    },
+    "ClickUp Intermediate Certificate (Jan 2023)": {
+      "credentialId": "f5cc9a24cxxv",
+      "verifyUrl": "https://verify.skilljar.com/c/f5cc9a24cxxv",
+      "inProgress": false
+    },
+    "ClickUp Novice Certificate (Jan 2023)": {
+      "credentialId": "d87wrsbwp8ue",
+      "verifyUrl": "https://verify.skilljar.com/c/d87wrsbwp8ue",
+      "inProgress": false
+    },
+    "Atlassian Certified Professional (In Progress)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": true
+    },
+    "Hack Reactor Certified Full Stack Engineer (Aug 2020)": {
+      "credentialId": null,
+      "verifyUrl": null,
+      "inProgress": false
+    },
+    "Triplebyte Certified Generalist Software Engineer (Aug 2020)": {
+      "credentialId": "XG04ccc",
+      "verifyUrl": "https://triplebyte.com/tb/zach-ayers-0sqlwg9/certificate/track/generalist",
+      "inProgress": false
+    },
+    "CSWP - Certified SolidWorks Professional - Mechanical Design (Jun 2017)": {
+      "credentialId": "C-TVP4DMZZA3",
+      "verifyUrl": "https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-TVP4DMZZA3",
+      "inProgress": false
+    }
+  },
+  "architecturalPhilosophy": {
+    "principles": [
+      "Start with the business problem, not the technology",
+      "Optimize for change, not perfection",
+      "Make the right thing easy",
+      "Measure everything that matters"
+    ],
+    "approach": [
+      "Understand constraints first: Budget, timeline, team skills, existing systems",
+      "Design for the next 18 months: Not 10 years – requirements will change",
+      "Document trade-offs explicitly: Every decision has pros and cons",
+      "Build in observability from day one: You can't optimize what you can't measure",
+      "Plan for failure: Systems fail; good architectures handle it gracefully"
+    ]
+  },
+  "architecturalDecisions": {
+    "graphqlFederation": {
+      "title": "GraphQL Federation for Microservices (AmeriSave)",
+      "context": "500+ microservices needed unified API layer",
+      "decision": "Apollo Federation over REST aggregation or service mesh",
+      "results": "70% reduction in client-side API calls, 3x faster feature development",
+      "technologies": ["GraphQL", "Apollo", "Node.js", "Kubernetes"]
+    },
+    "mlPipeline": {
+      "title": "ML Pipeline Architecture (Northrop Grumman)",
+      "context": "Predictive maintenance for critical manufacturing equipment",
+      "decision": "Edge inference with centralized training over cloud-only approach",
+      "results": "85% prediction accuracy, 200ms inference latency, works in air-gapped environments",
+      "technologies": ["TensorFlow", "Python", "Edge TPUs", "Kubernetes"]
+    },
+    "eventDriven": {
+      "title": "Event-Driven Architecture for Real-Time Processing",
+      "context": "Shop floor events needed immediate processing for quality control",
+      "decision": "Kafka + Flink over traditional batch processing",
+      "results": "50K events/second throughput, sub-second alerting for anomalies",
+      "technologies": ["Apache Kafka", "Apache Flink", "Java", "Prometheus"]
+    }
+  },
+  "performanceOptimization": {
+    "mortgageProcessing": {
+      "title": "Mortgage Processing System Optimization",
+      "before": {
+        "queryTime": "30s timeout",
+        "pageLoad": "8s page loads",
+        "cost": "$80K/month AWS costs"
+      },
+      "interventions": ["Query optimization", "Caching layer", "CDN implementation"],
+      "after": {
+        "queryTime": "1.5s p95 queries",
+        "pageLoad": "sub-1s page loads",
+        "cost": "$35K/month AWS costs"
+      },
+      "metrics": "95% reduction in timeouts, 87% faster page loads, 56% cost reduction"
+    }
+  },
+  "careerObjectives": {
+    "fullTime": {
+      "targetRoles": [
+        "Senior/Staff/Principal Software Engineer",
+        "AI/ML Engineer",
+        "Solutions Architect",
+        "Engineering Manager",
+        "Technical Lead"
+      ],
+      "idealCompany": [
+        "Technical excellence and innovation in AI/ML space",
+        "Modern technology stacks (React, Node.js, Python, Cloud-native, LLMs)",
+        "Remote-first culture (willing to relocate)",
+        "Opportunities for technical leadership in AI/ML initiatives",
+        "Complex technical challenges involving AI integration"
+      ]
+    },
+    "consulting": {
+      "services": [
+        "Enterprise modernization and legacy system migrations",
+        "AI/ML integration and implementation",
+        "Technical architecture and strategy consulting",
+        "Team mentorship and upskilling",
+        "Proof of concept and MVP development"
+      ],
+      "benefits": [
+        "Reduced employment overhead and administrative costs",
+        "Flexible engagement terms (project-based, retainer, or hourly)",
+        "Ability to scale resources up/down as needed",
+        "Access to specialized expertise without long-term commitment"
+      ]
+    }
+  },
+  "faqs": {
+    "leaving_role": "The Northrop contract is going well, but I want to work on more modern tech stacks and specifically transition into AI/ML engineering. Plus, I'd love to relocate to Fort Collins or one of my other target cities. Dallas is fine, but I miss the mountains.",
+    "ai_experience": "I've been implementing ML solutions in production for the past 2 years – predictive maintenance, computer vision, RAG systems, and LLM applications. I'm not an ML researcher, but I excel at taking ML models and making them work reliably at scale. My 14 years of systems experience means I know how to handle the infrastructure, monitoring, and edge cases that make ML actually useful in production.",
+    "not_bored": "Not at all. I genuinely enjoy solving problems and shipping code. Some of my best work has been 'boring' – like optimizing database queries or refactoring legacy code. I find satisfaction in making things work better, regardless of how cutting-edge the technology is.",
+    "location_preferences": "Quality of life. Fort Collins has great outdoor access and a tech scene. Santa Fe is beautiful with a smaller but growing tech community. Austin has energy and opportunities. Seattle... well, it's a tech hub. I've done my time in Dallas traffic and I'm ready for a change.",
+    "leave_defense": "Yes. While the work is important and stable, I want to work on products that I can talk about at meetups, contribute to open source, and iterate quickly without multi-month approval processes. I miss the energy of commercial software development."
+  },
+  "additionalInfo": {
+    "languages": ["English (Native)", "Spanish (Limited Working Proficiency)"],
+    "community": [
+      "Chewable Studios (chewable.studio): Founded educational game development studio",
+      "After School Programs: Teaching programming to underprivileged youth",
+      "Rocky Mountain Horse Rescue: Technical advisor and volunteer",
+      "Foothills Animal Shelter: Fear Free Foster Program participant"
+    ],
+    "publications": [
+      "Meridian Vega Tech Blog (curiousabout.it)",
+      "DEV Community member for 3+ years (dev.to/zjayers)",
+      "Multiple NPM packages published",
+      "AMC MicroFrontend Architecture Technical Handbook"
+    ],
+    "openSource": [
+      "GitHub Portfolio: github.com/ZachariahAyers",
+      "Organization profiles: github.com/MeridianVega, github.com/Chewable-Studio",
+      "AssembleJS Framework: github.com/ayers-software-repair/assemblejs",
+      "Vocation Chrome Plugin"
+    ],
+    "currentProjects": [
+      "Production RAG Systems: Architecting enterprise-scale retrieval-augmented generation",
+      "Edge ML Optimization: Deploying models in resource-constrained environments",
+      "LLM Fine-tuning: Domain-specific model adaptation for aerospace applications",
+      "AI Infrastructure: Building scalable ML pipelines and model serving architectures"
+    ]
+  },
+  "whyISucceed": [
+    "I ship code that works. I've built systems handling millions of transactions, rescued failing projects, and helped teams deliver faster.",
+    "I bring AI/ML plus deep engineering experience. I've been implementing ML solutions in production for 2+ years, but more importantly, I have 14 years of making systems reliable at scale.",
+    "I make teams better. At AmeriSave, I helped 60+ developers adopt new patterns not through mandates but by showing value.",
+    "I care about the business. I've seen too many engineers build technically perfect solutions that solve the wrong problem."
+  ],
+  "tools": {
+    "development": [
+      "VS Code",
+      "JetBrains Suite (IntelliJ, WebStorm, Rider)",
+      "Visual Studio",
+      "Git",
+      "GitHub/GitLab/Bitbucket/Azure DevOps",
+      "Postman/Insomnia/Thunder Client",
+      "DBeaver/pgAdmin/MongoDB Compass/Redis Insight"
+    ],
+    "collaboration": [
+      "Slack",
+      "Teams",
+      "Discord",
+      "Zoom",
+      "Jira",
+      "Linear",
+      "Asana",
+      "Monday.com",
+      "ClickUp",
+      "Confluence",
+      "Notion",
+      "Obsidian",
+      "GitBook",
+      "Figma",
+      "Adobe XD"
+    ],
+    "aiMl": [
+      "Jupyter",
+      "Google Colab",
+      "Databricks",
+      "MLflow",
+      "Weights & Biases",
+      "Neptune",
+      "TorchServe",
+      "TensorFlow Serving",
+      "ONNX",
+      "LangChain",
+      "LlamaIndex",
+      "Semantic Kernel",
+      "AutoGen"
+    ]
+  },
+  "interviewReadiness": {
+    "technical": [
+      "Coding Challenges: Proficient in LeetCode (300+ problems solved), HackerRank, CodeSignal",
+      "System Design: Experienced in designing distributed systems, can whiteboard complex architectures",
+      "Take-Home Projects: Consistently deliver production-quality code with tests and documentation",
+      "Live Coding: Comfortable with pair programming and thinking aloud while coding",
+      "Technical Presentations: Can present complex technical concepts to both technical and non-technical audiences"
+    ],
+    "availability": "Available with 24-48 hours notice, prefer video interviews, can do technical assessments",
+    "scheduling": "calendly.com/zachayers (15/30/60 minute options available)"
+  },
+  "faangQualifications": {
+    "systemDesignAtScale": {
+      "distributedSystems": "Designed systems handling 50K+ events/second with exactly-once processing",
+      "scalabilityPatterns": "Implemented horizontal scaling, sharding, and read replicas for 10x growth",
+      "failureHandling": "Built circuit breakers, retry mechanisms, and graceful degradation",
+      "tradeoffAnalysis": "Documented decisions balancing consistency, availability, and partition tolerance"
+    },
+    "algorithmicThinking": {
+      "performanceOptimization": "Reduced O(n²) operations to O(n log n) in critical paths",
+      "dataStructureSelection": "Chose optimal structures for specific use cases (B-trees for range queries, bloom filters for membership tests)",
+      "complexProblemSolving": "Decomposed monolithic systems into bounded contexts using DDD"
+    },
+    "leadershipWithoutAuthority": {
+      "technicalInfluence": "Architectural decisions adopted across 15+ teams without mandate",
+      "mentorshipImpact": "Improved team velocity by 3x through knowledge sharing",
+      "crossFunctional": "Worked with Product, Design, and Business to align technical solutions"
+    },
+    "productionExcellence": {
+      "monitoring": "Implemented distributed tracing reducing MTTR by 70%",
+      "onCall": "Handled critical incidents, performed RCAs, implemented preventive measures",
+      "security": "Designed systems with defense in depth, achieving SOC2 compliance"
+    }
+  },
+  "behavioralCompetencies": {
+    "ownership": "As lead on the RabCab Automation product, I owned the entire lifecycle from concept to G-code translator development and ELK stack implementation, cutting support calls by 30%",
+    "disagreeAndCommit": "Successfully advocated for automated testing at Stak Design against initial skepticism. After presenting data on ROI, the team committed, leading to dramatic bug reduction",
+    "biasForAction": "Proactively built CI/CD pipelines at Stak Design because manual deployments were bottlenecking the team, reducing deployment time by 80% without waiting for approval",
+    "customerObsession": "At AmeriSave, I spent time with loan officers to understand their pain points, leading to the Octo/Tellaro framework that reduced their workflow time by 85%",
+    "learnAndBeCurious": "Self-taught AI/ML over 2 years while maintaining full-time role, now implementing production ML systems at Northrop Grumman"
+  },
+  "workStyle": {
+    "communication": "Proactive communicator, daily standups, clear documentation",
+    "collaboration": "Thrive in cross-functional teams, mentor junior developers",
+    "problemSolving": "Start with understanding business needs, then apply appropriate technology",
+    "learning": "Dedicate 10+ hours weekly to learning new technologies",
+    "codeReviews": "Constructive feedback giver and receiver, focus on knowledge sharing",
+    "onCall": "Experienced with production support, incident response, and RCA processes"
+  },
+  "equipment": {
+    "hardware": "High-performance development machine, multiple monitors, reliable internet",
+    "software": "Licensed IDE (JetBrains suite), all necessary development tools",
+    "homeOffice": "Dedicated workspace, professional video/audio setup",
+    "availability": "Flexible hours, can overlap with any US timezone"
+  },
+  "interviewQuestions": {
+    "technical": [
+      "What makes you stand out from other senior engineers?",
+      "What's your experience with AI/ML in production?",
+      "What's your preferred tech stack and why?",
+      "Describe a challenging technical problem you solved",
+      "What's your experience with microservices architecture?",
+      "How do you stay current with new technologies?",
+      "What is your experience with React and Node.js?",
+      "What cloud platforms do you work with?",
+      "Tell me about your system design experience",
+      "How do you approach performance optimization?",
+      "What's your testing philosophy?",
+      "How do you handle technical debt?"
+    ],
+    "behavioral": [
+      "Why are you looking for a new opportunity?",
+      "Tell me about your leadership and mentoring experience",
+      "How do you handle disagreements with team members?",
+      "Describe a time you failed and what you learned",
+      "What's your approach to work-life balance?",
+      "How do you prioritize competing demands?",
+      "Tell me about a time you influenced without authority",
+      "How do you approach learning new technologies?",
+      "What motivates you in your work?",
+      "How do you give and receive feedback?"
+    ],
+    "situational": [
+      "How would you modernize a legacy system?",
+      "What would you do if a critical system went down?",
+      "How would you introduce AI/ML to a skeptical team?",
+      "How would you handle an underperforming team member?",
+      "What if requirements change mid-project?",
+      "How would you balance innovation with stability?",
+      "How would you approach a tight deadline?",
+      "What if stakeholders have conflicting priorities?",
+      "How would you handle a security breach?",
+      "How would you scale a system 10x?"
+    ],
+    "projectSpecific": [
+      "Show me your most impactful enterprise transformations",
+      "What projects are you most proud of?",
+      "Tell me about the AmeriSave microservices migration",
+      "Explain your Northrop Grumman ML implementations",
+      "What was RabCab Automation?",
+      "Tell me about AssembleJS framework",
+      "What's your experience with legacy migrations?",
+      "How did you reduce loan processing time by 50%?",
+      "What's your approach to predictive maintenance?",
+      "How do you build RAG systems?"
+    ],
+    "compensationAndLogistics": [
+      "Are you open to relocation?",
+      "What's your ideal work environment?",
+      "Are you looking for remote or hybrid?",
+      "When can you start?",
+      "Do you prefer contract or full-time?",
+      "What benefits are important to you?",
+      "How do you feel about on-call rotations?",
+      "Would you consider consulting engagements?",
+      "What's your notice period?"
+    ]
+  }
+}

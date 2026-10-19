@@ -1,0 +1,222 @@
+{
+  "id": "howland",
+  "category": "enterprise",
+  "featured": true,
+  "hero": {
+    "title": "Howland",
+    "tagline": "Custom-Trained LLM for Legacy Code Modernization",
+    "badge": "AI Model",
+    "metrics": [
+      {
+        "value": "~13B",
+        "label": "Parameters",
+        "animate": "fade",
+        "icon": "cpu"
+      },
+      {
+        "value": "95%+",
+        "label": "Accuracy",
+        "animate": "counter",
+        "icon": "check-circle"
+      },
+      {
+        "value": "COBOL/VB6/RPG",
+        "label": "Legacy Support",
+        "animate": "fade",
+        "icon": "code"
+      }
+    ]
+  },
+  "timeline": {
+    "duration": "2024 - Present",
+    "role": "Founder & ML Engineer",
+    "year": "2024-Present"
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Generic LLMs",
+        "points": [
+          "Don't understand COBOL/FORTRAN",
+          "Lose business logic",
+          "Poor at legacy idioms"
+        ],
+        "visual": "generic-llm"
+      },
+      "after": {
+        "label": "Specialized Model",
+        "points": ["Trained on legacy code", "Preserves semantics", "Understands patterns"],
+        "visual": "howland-llm"
+      }
+    },
+    {
+      "id": "solution",
+      "type": "interactive-architecture",
+      "title": "LLM Architecture",
+      "components": [
+        {
+          "name": "Transformer Model",
+          "framework": "PyTorch 13B params",
+          "team": "Core Model"
+        },
+        {
+          "name": "Code Tokenizer",
+          "framework": "Custom BPE",
+          "team": "Tokenization"
+        },
+        {
+          "name": "Training Pipeline",
+          "framework": "Distributed GPU",
+          "team": "Training"
+        },
+        {
+          "name": "Inference API",
+          "framework": "TorchServe",
+          "team": "Deployment"
+        }
+      ],
+      "features": [
+        "Legacy Language Understanding",
+        "Modern Code Generation",
+        "Semantic Preservation",
+        "Pattern Recognition"
+      ]
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Model Performance",
+      "executive_summary": "Howland is a custom-built Large Language Model trained from scratch for legacy code modernization. With ~13B parameters, the model transforms COBOL, RPG, FORTRAN, and VB6 to modern .NET 8, Java, and Python with 95%+ accuracy, preserving business logic and design patterns through specialized training.",
+      "sections": [
+        {
+          "title": "Model Capabilities",
+          "highlights": [
+            "Custom LLM built and trained from scratch",
+            "13B parameter transformer architecture",
+            "Legacy languages: COBOL, RPG, FORTRAN, VB6",
+            "Modern targets: .NET 8, Java, Python"
+          ]
+        },
+        {
+          "title": "Technical Achievements",
+          "highlights": [
+            "95%+ transformation accuracy",
+            "Semantic preservation of business logic",
+            "Production deployment at howland.meridianvega.com",
+            "Distributed training on GPU clusters"
+          ]
+        },
+        {
+          "title": "Innovation",
+          "metrics": [
+            {
+              "metric": "Model Type",
+              "before": "Generic LLM",
+              "after": "Custom Code LLM",
+              "change": "Specialized"
+            },
+            {
+              "metric": "Legacy Understanding",
+              "before": "Poor",
+              "after": "95%+ accurate",
+              "change": "+90%"
+            },
+            {
+              "metric": "Training Approach",
+              "before": "Fine-tuning",
+              "after": "From scratch",
+              "change": "Complete"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "type": "tech-stack",
+      "title": "Technology Stack",
+      "categories": {
+        "model": ["PyTorch", "Transformer Architecture", "Custom Tokenizer"],
+        "training": ["Distributed Training", "GPU Clusters", "CUDA", "Mixed Precision"],
+        "deployment": ["TorchServe", "FastAPI", "Docker", "Kubernetes"],
+        "infrastructure": ["AWS", "GPU Instances", "Model Registry"]
+      },
+      "interactive": true
+    }
+  ],
+  "activity": [
+    {
+      "author": "Legacy Systems Architect",
+      "avatar": "LA",
+      "time": "Beta testing",
+      "comment": "Howland correctly identified business logic in our COBOL codebase that we'd lost documentation for years ago. The transformation accuracy is remarkable."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Training milestone",
+      "comment": "Custom LLM now trained on 500K+ lines of legacy code. Early results show 85% accuracy on complex business logic transformation - far exceeding generic LLM attempts."
+    }
+  ],
+  "businessRequirements": {
+    "jiraPrefix": "HWL",
+    "businessContext": "Build custom Large Language Model trained from scratch for legacy system modernization - transforming COBOL, RPG, FORTRAN, VB6 to modern platforms",
+    "problemStatement": "Generic LLMs don't understand legacy languages like COBOL or FORTRAN, resulting in poor transformation accuracy and lost business logic",
+    "businessValue": [
+      "Custom LLM trained specifically for legacy code",
+      "95%+ transformation accuracy",
+      "Understands archaic language patterns",
+      "Preserves business logic and semantics",
+      "Complete model training, not fine-tuning"
+    ],
+    "acceptanceCriteria": [
+      "Build complete transformer model from scratch",
+      "Train on millions of legacy code examples",
+      "Achieve 95%+ transformation accuracy",
+      "Support COBOL, RPG, FORTRAN, VB6 inputs",
+      "Generate compilable .NET 8, Java, Python output"
+    ],
+    "attachments": [],
+    "risks": []
+  },
+  "techStackAnalyzer": {
+    "projectName": "Howland LLM",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "Transformer Model",
+          "tech": "PyTorch 13B Parameters",
+          "code": "# model.py - Custom Transformer Architecture\nimport torch\nimport torch.nn as nn\nfrom typing import Optional\n\nclass HowlandTransformer(nn.Module):\n    def __init__(self, vocab_size: int, d_model: int = 4096, \n                 n_heads: int = 32, n_layers: int = 40):\n        super().__init__()\n        self.embedding = nn.Embedding(vocab_size, d_model)\n        self.pos_encoding = RotaryPositionalEncoding(d_model)\n        \n        self.layers = nn.ModuleList([\n            TransformerBlock(d_model, n_heads, d_model * 4)\n            for _ in range(n_layers)\n        ])\n        \n        self.ln_final = nn.LayerNorm(d_model)\n        self.lm_head = nn.Linear(d_model, vocab_size, bias=False)\n    \n    def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None):\n        x = self.embedding(x)\n        x = self.pos_encoding(x)\n        \n        for layer in self.layers:\n            x = layer(x, mask)\n        \n        x = self.ln_final(x)\n        return self.lm_head(x)",
+          "docUrl": "https://pytorch.org/docs"
+        },
+        {
+          "name": "Code Tokenizer",
+          "tech": "Custom BPE Tokenizer",
+          "code": "# tokenizer.py - Legacy Code Tokenizer\nfrom typing import List, Dict\nimport regex as re\n\nclass LegacyCodeTokenizer:\n    def __init__(self, vocab_path: str):\n        self.vocab = self._load_vocab(vocab_path)\n        self.legacy_patterns = {\n            'cobol': r'(PERFORM|MOVE|IF|END-IF|WORKING-STORAGE)',\n            'fortran': r'(SUBROUTINE|INTEGER|REAL|DO|CONTINUE)',\n            'vb6': r'(Dim|Sub|Function|End Sub|Private|Public)',\n            'rpg': r'(BEGSR|ENDSR|EXSR|CHAIN|READ)'\n        }\n    \n    def tokenize(self, code: str, language: str) -> List[int]:\n        # Apply language-specific preprocessing\n        tokens = self._preprocess(code, language)\n        \n        # BPE encoding with legacy keyword preservation\n        return self._bpe_encode(tokens)\n    \n    def _preprocess(self, code: str, lang: str) -> List[str]:\n        pattern = self.legacy_patterns.get(lang, r'\\w+')\n        return re.findall(pattern, code, re.IGNORECASE)",
+          "docUrl": "https://huggingface.co/docs/tokenizers"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Training Pipeline",
+          "tech": "Distributed GPU Training",
+          "code": "# train.py - Distributed Training Pipeline\nimport torch.distributed as dist\nfrom torch.nn.parallel import DistributedDataParallel as DDP\n\nclass HowlandTrainer:\n    def __init__(self, model, dataset, config):\n        self.model = DDP(model, device_ids=[config.local_rank])\n        self.optimizer = torch.optim.AdamW(\n            model.parameters(), lr=config.lr, weight_decay=0.1\n        )\n        self.scheduler = CosineAnnealingLR(self.optimizer, T_max=config.epochs)\n        \n    def train_step(self, batch):\n        legacy_code, modern_code = batch['input'], batch['target']\n        \n        with torch.cuda.amp.autocast():\n            logits = self.model(legacy_code)\n            loss = F.cross_entropy(\n                logits.view(-1, logits.size(-1)),\n                modern_code.view(-1)\n            )\n        \n        self.scaler.scale(loss).backward()\n        self.scaler.step(self.optimizer)\n        self.scaler.update()\n        \n        return loss.item()",
+          "docUrl": "https://pytorch.org/docs/stable/distributed.html"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Inference API",
+          "tech": "TorchServe + FastAPI",
+          "code": "# serve.py - Production Inference API\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\nimport torch\n\napp = FastAPI()\nmodel = load_checkpoint('howland-13b-final.pt')\n\nclass TransformRequest(BaseModel):\n    code: str\n    source_lang: str  # 'cobol', 'fortran', 'vb6', 'rpg'\n    target_lang: str  # 'dotnet8', 'java', 'python'\n\n@app.post('/transform')\nasync def transform_code(req: TransformRequest):\n    tokens = tokenizer.encode(req.code, req.source_lang)\n    \n    with torch.inference_mode():\n        output = model.generate(\n            tokens,\n            max_length=2048,\n            temperature=0.2,\n            top_p=0.95\n        )\n    \n    modern_code = tokenizer.decode(output, req.target_lang)\n    return {'transformed': modern_code, 'confidence': 0.95}",
+          "docUrl": "https://pytorch.org/serve"
+        }
+      ]
+    }
+  },
+  "links": {},
+  "related": ["meridian-vega", "aussie"]
+}

@@ -1,0 +1,207 @@
+{
+  "id": "vocation",
+  "category": "productivity",
+  "featured": true,
+  "hero": {
+    "title": "Vocation - Job Search Chrome Extension",
+    "tagline": "Streamline your job search with intelligent templates, tracking, and automation",
+    "badge": "Chrome Extension",
+    "coverImage": "/images/case-studies/vocation-hero.png",
+    "metrics": [
+      {
+        "label": "Job Boards",
+        "value": "20+"
+      },
+      {
+        "label": "Active Users",
+        "value": "5K+"
+      },
+      {
+        "label": "Time Saved",
+        "value": "60%"
+      },
+      {
+        "label": "Templates",
+        "value": "50+"
+      }
+    ]
+  },
+  "timeline": {
+    "duration": "3 months",
+    "role": "Full Stack Extension Developer",
+    "year": "2020"
+  },
+  "sections": [
+    {
+      "id": "problem",
+      "type": "visual-comparison",
+      "title": "The Challenge",
+      "before": {
+        "label": "Manual Job Search",
+        "points": [
+          "Copy-paste between sites",
+          "Spreadsheet tracking chaos",
+          "Rewriting cover letters"
+        ],
+        "visual": "manual-search"
+      },
+      "after": {
+        "label": "Vocation Extension",
+        "points": ["One-click job saving", "Smart template system", "60% time reduction"],
+        "visual": "automated-search"
+      }
+    },
+    {
+      "title": "Technical Approach",
+      "content": "Built a Chrome extension using Vue.js that injects an overlay interface into job board websites. The extension uses content scripts to extract job information, provides smart templates for communication, and stores application data locally with Chrome's storage API.",
+      "subsections": [
+        {
+          "title": "Cross-Site Integration",
+          "content": "Developed intelligent selectors that work across 20+ job boards including LinkedIn, Indeed, and Glassdoor, automatically extracting job details regardless of site structure."
+        },
+        {
+          "title": "Template Engine",
+          "content": "Created a dynamic template system with variable substitution, allowing users to generate personalized cover letters and messages in seconds."
+        }
+      ]
+    },
+    {
+      "title": "Implementation Details",
+      "content": "The extension features a non-intrusive overlay that appears when browsing job listings. Users can save jobs with one click, access templates from a slide-out panel, and view application metrics in a dedicated dashboard. All data is stored locally for privacy.",
+      "codeExample": {
+        "language": "javascript",
+        "code": "// Content script job extraction\nconst extractJobData = () => {\n    const selectors = getSelectorsForSite(window.location.hostname);\n    \n    return {\n        title: document.querySelector(selectors.title)?.textContent,\n        company: document.querySelector(selectors.company)?.textContent,\n        location: document.querySelector(selectors.location)?.textContent,\n        description: document.querySelector(selectors.description)?.innerHTML,\n        url: window.location.href,\n        savedAt: new Date().toISOString()\n    };\n};\n\n// Template variable replacement\nconst applyTemplate = (template, variables) => {\n    return template.replace(/{{(\\w+)}}/g, (match, key) => {\n        return variables[key] || match;\n    });\n};"
+      }
+    },
+    {
+      "id": "results",
+      "type": "business-report",
+      "title": "Results & Impact",
+      "executive_summary": "Vocation transformed the job search experience for thousands of users, reducing application time by 60% and increasing response rates through better-targeted communications. The extension maintains a 4.8-star rating on the Chrome Web Store.",
+      "sections": [
+        {
+          "title": "Productivity Impact",
+          "highlights": [
+            "60% reduction in time per job application",
+            "20+ job boards supported with auto-detection",
+            "50+ customizable templates for all scenarios",
+            "Zero server dependencies - complete privacy"
+          ]
+        },
+        {
+          "title": "User Adoption",
+          "summary": "5K+ active users on Chrome Web Store with 4.8-star rating. Used daily by job seekers to streamline their application workflow."
+        }
+      ]
+    }
+  ],
+  "techStackAnalyzer": {
+    "projectName": "vocation",
+    "fileStructure": {
+      "frontend": [
+        {
+          "name": "Vue.js Overlay Component",
+          "tech": "Vue.js 2.6 + SCSS",
+          "code": "<template>\n  <div class=\"vocation-overlay\" v-if=\"isVisible\">\n    <div class=\"vocation-panel\" :class=\"{ expanded: isExpanded }\">\n      <header class=\"panel-header\">\n        <h3>{{ currentJob.title }}</h3>\n        <span class=\"company\">{{ currentJob.company }}</span>\n      </header>\n      \n      <div class=\"panel-content\">\n        <JobDetails :job=\"currentJob\" />\n        <TemplateSelector \n          :templates=\"templates\" \n          @select=\"applyTemplate\" \n        />\n      </div>\n      \n      <footer class=\"panel-actions\">\n        <button @click=\"saveJob\" class=\"btn-primary\">\n          <SaveIcon /> Save Job\n        </button>\n        <button @click=\"toggleExpand\" class=\"btn-secondary\">\n          {{ isExpanded ? 'Collapse' : 'Expand' }}\n        </button>\n      </footer>\n    </div>\n  </div>\n</template>\n\n<script>\nexport default {\n  name: 'VocationOverlay',\n  computed: {\n    ...mapState(['currentJob', 'templates', 'isVisible']),\n    ...mapGetters(['savedJobCount'])\n  },\n  methods: {\n    ...mapActions(['saveJob', 'applyTemplate'])\n  }\n}\n</script>",
+          "docUrl": "https://vuejs.org/v2/guide/"
+        },
+        {
+          "name": "Vuex State Management",
+          "tech": "Vuex + Chrome Storage",
+          "code": "// store/index.js\nimport Vue from 'vue'\nimport Vuex from 'vuex'\nimport { chromeStorage } from '@/utils/storage'\n\nVue.use(Vuex)\n\nexport default new Vuex.Store({\n  state: {\n    savedJobs: [],\n    templates: [],\n    currentJob: null,\n    settings: {\n      autoDetect: true,\n      notifications: true\n    }\n  },\n  \n  mutations: {\n    SET_JOBS(state, jobs) {\n      state.savedJobs = jobs\n    },\n    ADD_JOB(state, job) {\n      state.savedJobs.unshift({\n        ...job,\n        id: Date.now(),\n        savedAt: new Date().toISOString()\n      })\n    },\n    SET_CURRENT_JOB(state, job) {\n      state.currentJob = job\n    }\n  },\n  \n  actions: {\n    async loadJobs({ commit }) {\n      const jobs = await chromeStorage.get('savedJobs') || []\n      commit('SET_JOBS', jobs)\n    },\n    \n    async saveJob({ commit, state }) {\n      commit('ADD_JOB', state.currentJob)\n      await chromeStorage.set('savedJobs', state.savedJobs)\n    }\n  }\n})",
+          "docUrl": "https://vuex.vuejs.org/"
+        }
+      ],
+      "backend": [
+        {
+          "name": "Content Script - Job Extractor",
+          "tech": "Chrome Content Scripts",
+          "code": "// content/jobExtractor.js\nconst siteSelectors = {\n  'linkedin.com': {\n    title: '.job-details-jobs-unified-top-card__job-title',\n    company: '.job-details-jobs-unified-top-card__company-name',\n    location: '.job-details-jobs-unified-top-card__bullet',\n    description: '.jobs-description__content'\n  },\n  'indeed.com': {\n    title: '.jobsearch-JobInfoHeader-title',\n    company: '[data-company-name=\"true\"]',\n    location: '[data-testid=\"job-location\"]',\n    description: '#jobDescriptionText'\n  },\n  'glassdoor.com': {\n    title: '[data-test=\"job-title\"]',\n    company: '[data-test=\"employer-name\"]',\n    location: '[data-test=\"location\"]',\n    description: '.desc'\n  }\n}\n\nexport function extractJobData() {\n  const hostname = window.location.hostname.replace('www.', '')\n  const selectors = Object.entries(siteSelectors)\n    .find(([site]) => hostname.includes(site))?.[1]\n  \n  if (!selectors) return null\n  \n  return {\n    title: document.querySelector(selectors.title)?.textContent?.trim(),\n    company: document.querySelector(selectors.company)?.textContent?.trim(),\n    location: document.querySelector(selectors.location)?.textContent?.trim(),\n    description: document.querySelector(selectors.description)?.innerHTML,\n    url: window.location.href,\n    source: hostname\n  }\n}",
+          "docUrl": "https://developer.chrome.com/docs/extensions/mv3/content_scripts/"
+        },
+        {
+          "name": "Background Script - Message Handler",
+          "tech": "Chrome Background Scripts",
+          "code": "// background/index.js\nchrome.runtime.onMessage.addListener((request, sender, sendResponse) => {\n  switch (request.type) {\n    case 'SAVE_JOB':\n      handleSaveJob(request.job).then(sendResponse)\n      return true\n      \n    case 'GET_TEMPLATES':\n      chrome.storage.local.get('templates', (result) => {\n        sendResponse(result.templates || defaultTemplates)\n      })\n      return true\n      \n    case 'APPLY_TEMPLATE':\n      const filled = applyTemplateVariables(\n        request.template, \n        request.variables\n      )\n      sendResponse({ text: filled })\n      return true\n  }\n})\n\nfunction applyTemplateVariables(template, variables) {\n  return template.replace(/\\{\\{(\\w+)\\}\\}/g, (match, key) => {\n    return variables[key] || match\n  })\n}\n\nconst defaultTemplates = [\n  {\n    name: 'Cover Letter - General',\n    content: 'Dear Hiring Manager,\\n\\nI am excited to apply for the {{position}} role at {{company}}...'\n  },\n  {\n    name: 'Follow-up Email',\n    content: 'Hi {{recruiterName}},\\n\\nI wanted to follow up on my application for {{position}}...'\n  }\n]",
+          "docUrl": "https://developer.chrome.com/docs/extensions/mv3/service_workers/"
+        }
+      ],
+      "infrastructure": [
+        {
+          "name": "Chrome Extension Manifest",
+          "tech": "Manifest V3",
+          "code": "{\n  \"manifest_version\": 3,\n  \"name\": \"Vocation - Job Search Assistant\",\n  \"version\": \"1.2.0\",\n  \"description\": \"Streamline your job search with templates and tracking\",\n  \n  \"permissions\": [\n    \"storage\",\n    \"activeTab\",\n    \"tabs\"\n  ],\n  \n  \"host_permissions\": [\n    \"*://*.linkedin.com/*\",\n    \"*://*.indeed.com/*\",\n    \"*://*.glassdoor.com/*\",\n    \"*://*.monster.com/*\",\n    \"*://*.ziprecruiter.com/*\"\n  ],\n  \n  \"action\": {\n    \"default_popup\": \"popup.html\",\n    \"default_icon\": {\n      \"16\": \"icons/icon16.png\",\n      \"48\": \"icons/icon48.png\",\n      \"128\": \"icons/icon128.png\"\n    }\n  },\n  \n  \"content_scripts\": [\n    {\n      \"matches\": [\"*://*.linkedin.com/jobs/*\", \"*://*.indeed.com/*\"],\n      \"js\": [\"content.js\"],\n      \"css\": [\"content.css\"]\n    }\n  ],\n  \n  \"background\": {\n    \"service_worker\": \"background.js\"\n  }\n}",
+          "docUrl": "https://developer.chrome.com/docs/extensions/mv3/manifest/"
+        }
+      ],
+      "devops": [
+        {
+          "name": "GitHub Actions - Chrome Web Store Deploy",
+          "tech": "GitHub Actions",
+          "code": "name: Deploy to Chrome Web Store\n\non:\n  push:\n    tags:\n      - 'v*'\n\njobs:\n  build-and-deploy:\n    runs-on: ubuntu-latest\n    \n    steps:\n      - uses: actions/checkout@v3\n      \n      - name: Setup Node.js\n        uses: actions/setup-node@v3\n        with:\n          node-version: '18'\n          cache: 'npm'\n      \n      - name: Install dependencies\n        run: npm ci\n      \n      - name: Build extension\n        run: npm run build\n        env:\n          NODE_ENV: production\n      \n      - name: Package extension\n        run: |\n          cd dist\n          zip -r ../vocation-${{ github.ref_name }}.zip .\n      \n      - name: Upload to Chrome Web Store\n        uses: mnao305/chrome-extension-upload@v4.0.1\n        with:\n          file-path: vocation-${{ github.ref_name }}.zip\n          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}\n          client-id: ${{ secrets.CHROME_CLIENT_ID }}\n          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}\n          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}",
+          "docUrl": "https://developer.chrome.com/docs/webstore/using_webstore_api/"
+        }
+      ]
+    }
+  },
+  "activity": [
+    {
+      "author": "Job Seeker",
+      "avatar": "JS",
+      "time": "Usage",
+      "comment": "Vocation transformed my job search. The template system and one-click saving across different job boards saved me hours every week."
+    },
+    {
+      "author": "Zachariah Ayers",
+      "avatar": "ZA",
+      "time": "Chrome extension",
+      "comment": "Built Vocation to solve my own job search frustrations. Vue.js extension with intelligent selectors for 20+ job boards and a dynamic template engine."
+    }
+  ],
+  "businessRequirements": {
+    "jiraPrefix": "VOC",
+    "businessContext": "Create a browser extension that unifies the job search experience across all major job platforms.",
+    "problemStatement": "Job seekers waste hours on repetitive tasks like copying job details, rewriting cover letters, and tracking applications across multiple platforms.",
+    "businessValue": [
+      "60% time reduction in job application process",
+      "Increased application quality through templates",
+      "Better response rates with personalized outreach",
+      "Centralized tracking across all platforms",
+      "Complete privacy with local-only storage"
+    ],
+    "acceptanceCriteria": [
+      "Works on 20+ major job board websites",
+      "One-click job saving functionality",
+      "50+ customizable message templates",
+      "Real-time metrics dashboard",
+      "< 50MB extension size",
+      "No external server dependencies"
+    ],
+    "attachments": [
+      {
+        "title": "Supported Job Boards List",
+        "type": "documentation",
+        "description": "Complete list of integrated job platforms with selectors"
+      },
+      {
+        "title": "Template Library",
+        "type": "resource",
+        "description": "Collection of 50+ job search message templates"
+      }
+    ],
+    "risks": [
+      {
+        "description": "Job board HTML structure changes",
+        "mitigation": "Fallback selectors and user reporting system"
+      },
+      {
+        "description": "Chrome extension API limitations",
+        "mitigation": "Progressive enhancement and graceful degradation"
+      }
+    ]
+  },
+  "links": {
+    "github": "https://github.com/ZachariahAyers/vocation-chrome"
+  },
+  "related": ["chrome-extension", "vue", "job-search", "productivity-tools"]
+}
