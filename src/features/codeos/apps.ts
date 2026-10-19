@@ -10,7 +10,6 @@ import {
   Regex,
   Satellite,
   Sparkles,
-  Terminal,
 } from 'lucide-react';
 
 export type AppKind = 'explorer' | 'notepad' | 'embed' | 'crash';
@@ -33,13 +32,6 @@ export const APPS: readonly DesktopApp[] = [
     icon: CircuitBoard,
     kind: 'embed',
     url: 'https://www.falstad.com/circuit/circuitjs.html',
-  },
-  {
-    id: 'event-loop',
-    name: 'Event Loop Viewer',
-    icon: Terminal,
-    kind: 'embed',
-    url: 'https://vagostep.github.io/Node-EventLoop-Visualizer/',
   },
   {
     id: 'space',
