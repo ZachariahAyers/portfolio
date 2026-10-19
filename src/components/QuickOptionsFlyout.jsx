@@ -27,7 +27,7 @@ const QuickOptionsFlyout = ({ isOpen, onClose, onQuestionClick, onViewChange }) 
     behavioral: 'Behavioral Questions',
     situational: 'Situational Questions',
     projectSpecific: 'Project-Specific Questions',
-    compensationAndLogistics: 'Compensation & Logistics'
+    compensationAndLogistics: 'Logistics'
   };
 
   // Special questions to highlight

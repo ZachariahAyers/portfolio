@@ -31,7 +31,7 @@
     "github": "https://github.com/ZachariahAyers",
     "portfolio": "https://ayers.repair",
     "assemblejs": "https://github.com/ayers-software-repair/assemblejs",
-    "location": "Dallas, TX 75204",
+    "location": "Dallas, TX",
     "targetLocations": ["Fort Collins, CO", "Santa Fe, NM", "Austin, TX", "Seattle, WA"]
   },
   "experience": {
@@ -743,23 +743,6 @@
       ]
     }
   },
-  "compensation": {
-    "fullTime": {
-      "baseRange": "$180,000 - $250,000",
-      "byLocation": {
-        "seattle": "$200K-$250K (high cost of living)",
-        "austin": "$180K-$220K (good balance)",
-        "fortCollins": "$170K-$200K (lower cost of living)",
-        "santaFe": "$160K-$190K (limited opportunities, may need remote)"
-      },
-      "note": "I know I'm transitioning into AI/ML, so I'm realistic about starting at the lower end for AI-specific roles while I build expertise"
-    },
-    "consulting": {
-      "hourly": "$150 - $250/hour (depending on project complexity and duration)",
-      "project": "Available for fixed-price engagements",
-      "retainer": "For ongoing advisory or part-time roles"
-    }
-  },
   "faqs": {
     "leaving_role": "The Northrop contract is going well, but I want to work on more modern tech stacks and specifically transition into AI/ML engineering. Plus, I'd love to relocate to Fort Collins or one of my other target cities. Dallas is fine, but I miss the mountains.",
     "ai_experience": "I've been implementing ML solutions in production for the past 2 years – predictive maintenance, computer vision, RAG systems, and LLM applications. I'm not an ML researcher, but I excel at taking ML models and making them work reliably at scale. My 14 years of systems experience means I know how to handle the infrastructure, monitoring, and edge cases that make ML actually useful in production.",
@@ -846,10 +829,6 @@
     "customerObsession": "At AmeriSave, I spent time with loan officers to understand their pain points, leading to the Octo/Tellaro framework that reduced their workflow time by 85%",
     "learnAndBeCurious": "Self-taught AI/ML over 2 years while maintaining full-time role, now implementing production ML systems at Northrop Grumman"
   },
-  "targetCompanies": {
-    "tier1": ["Google (Cloud Platform, YouTube, Core Infrastructure)", "Meta (Infrastructure, Developer Productivity, AI Infrastructure)", "Amazon (AWS, Prime, Alexa AI)", "Microsoft (Azure, Developer Division, AI Platform)", "Apple (Services Infrastructure, ML Platform)"],
-    "tier2": ["Stripe/Square (Payment infrastructure at scale)", "Netflix/Uber (Real-time systems and ML applications)", "LinkedIn (Scalable professional platforms)", "Datadog/Snowflake (Developer tools and data infrastructure)"]
-  },
   "workStyle": {
     "communication": "Proactive communicator, daily standups, clear documentation",
     "collaboration": "Thrive in cross-functional teams, mentor junior developers",
@@ -863,13 +842,6 @@
     "software": "Licensed IDE (JetBrains suite), all necessary development tools",
     "homeOffice": "Dedicated workspace, professional video/audio setup",
     "availability": "Flexible hours, can overlap with any US timezone"
-  },
-  "references": {
-    "available": "References available upon request from AmeriSave, Stak Design, and current role",
-    "portfolio": "Live projects and code samples at www.zachayers.io",
-    "github": "Active contributions showing code quality and collaboration",
-    "backgroundCheck": "Clean record, can pass any level of background verification",
-    "drugScreening": "Will pass any required screenings"
   },
   "interviewQuestions": {
     "technical": [
@@ -923,7 +895,6 @@
       "How do you build RAG systems?"
     ],
     "compensationAndLogistics": [
-      "What are your salary expectations?",
       "Are you open to relocation?",
       "What's your ideal work environment?",
       "Are you looking for remote or hybrid?",
