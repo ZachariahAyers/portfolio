@@ -76,8 +76,8 @@ export function focusedWindow<Id extends string>(state: DesktopState<Id>): Id | 
 
 /** Where a newly opened window goes: cascaded down and right from the last one. */
 export const cascadePosition = (openCount: number): Position => ({
-  x: 150 + openCount * 30,
-  y: 50 + openCount * 30,
+  x: 184 + openCount * 30,
+  y: 24 + openCount * 30,
 });
 
 /** The taskbar's height in pixels; maximized windows stop above it. */

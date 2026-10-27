@@ -62,7 +62,7 @@ describe('desktop windows', () => {
   });
 
   it('cascades new windows', () => {
-    expect(cascadePosition(2)).toEqual({ x: 210, y: 110 });
+    expect(cascadePosition(2)).toEqual({ x: 244, y: 84 });
   });
 
   it('keeps 48px of a dragged window inside the desktop', () => {

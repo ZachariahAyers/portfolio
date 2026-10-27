@@ -45,6 +45,21 @@ describe('CodeOS embedded in a frame', () => {
   });
 });
 
+describe('CodeOS on a phone', () => {
+  it('opens Portfolio full screen when embedded', () => {
+    spyOnParent();
+    const original = window.matchMedia;
+    window.matchMedia = (query: string) => ({ ...original(query), matches: true });
+    try {
+      renderEmbedded();
+      expect(screen.getByRole('heading', { level: 2, name: 'Portfolio' })).toBeInTheDocument();
+      expect(screen.queryByRole('region', { name: 'Portfolio' })).not.toBeInTheDocument();
+    } finally {
+      window.matchMedia = original;
+    }
+  });
+});
+
 describe('CodeOS taskbar', () => {
   it('minimises the front window and restores it, keeping it mounted', async () => {
     spyOnParent();

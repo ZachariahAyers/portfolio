@@ -22,7 +22,8 @@ import { cascadePosition, desktopReducer, EMPTY_DESKTOP, focusedWindow } from '.
 
 type Phase = 'booting' | 'running' | 'crashed';
 
-const EXPLORER_POSITION = { x: 100, y: 50 };
+/** Clear of the two columns of desktop icons. */
+const EXPLORER_POSITION = { x: 184, y: 24 };
 
 /** Tells the page that embeds this desktop in a frame; both pages share an origin. */
 const tellParent = (type: 'ayers-codeos-ready' | 'ayers-codeos-close') =>
@@ -66,11 +67,9 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
 
   const booted = useCallback(() => {
     setPhase('running');
-    dispatch({
-      type: 'open',
-      id: standalone ? 'projects' : 'explorer',
-      position: EXPLORER_POSITION,
-    });
+    const id = standalone ? 'projects' : 'explorer';
+    dispatch({ type: 'open', id, position: EXPLORER_POSITION });
+    setMobileApp(appById(id) ?? null);
   }, [standalone]);
 
   useEffect(() => {
