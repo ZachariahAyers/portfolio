@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   cascadePosition,
+  clampPosition,
   type DesktopState,
   desktopReducer,
   EMPTY_DESKTOP,
@@ -41,6 +42,19 @@ describe('desktop windows', () => {
     expect(focusedWindow(state)).toBe('b');
   });
 
+  it('restoring a minimised window shows it and brings it to the front', () => {
+    let state = open(open(EMPTY_DESKTOP, 'a'), 'b');
+    state = desktopReducer(state, { type: 'minimize', id: 'a' });
+    state = desktopReducer(state, { type: 'restore', id: 'a' });
+    expect(state.windows.find((w) => w.id === 'a')?.minimized).toBe(false);
+    expect(focusedWindow(state)).toBe('a');
+  });
+
+  it('restoring a window behind another raises it', () => {
+    const state = desktopReducer(open(open(EMPTY_DESKTOP, 'a'), 'b'), { type: 'restore', id: 'a' });
+    expect(focusedWindow(state)).toBe('a');
+  });
+
   it('closes and resets', () => {
     const state = desktopReducer(open(EMPTY_DESKTOP, 'a'), { type: 'close', id: 'a' });
     expect(state.windows).toEqual([]);
@@ -49,5 +63,13 @@ describe('desktop windows', () => {
 
   it('cascades new windows', () => {
     expect(cascadePosition(2)).toEqual({ x: 210, y: 110 });
+  });
+
+  it('keeps 48px of a dragged window inside the desktop', () => {
+    const size = { width: 400, height: 300 };
+    const bounds = { width: 1000, height: 700 };
+    expect(clampPosition({ x: 100, y: 100 }, size, bounds)).toEqual({ x: 100, y: 100 });
+    expect(clampPosition({ x: -900, y: -50 }, size, bounds)).toEqual({ x: -352, y: 0 });
+    expect(clampPosition({ x: 5000, y: 5000 }, size, bounds)).toEqual({ x: 952, y: 652 });
   });
 });

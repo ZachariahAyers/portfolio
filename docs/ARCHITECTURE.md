@@ -49,4 +49,17 @@ file against its schema, every Code tab path against the repository, and the con
 a content edit that breaks the site fails the suite. `src/features/chat/match.test.ts` pins how
 typed questions reach their answers.
 
-The `/#/desktop` route opens CodeOS without case-study chrome. Its Portfolio window uses the existing project views; Arcade embeds the company games catalogue at `/games.html?embed=codeos`. Shut Down returns to ayers.repair.
+The `/#/desktop` route opens CodeOS without case-study chrome. Arcade embeds the company games catalogue at `/games.html?embed=codeos`. Shut Down returns to ayers.repair.
+
+**Portfolio app.** The Portfolio window (`src/features/codeos/portfolio/`) is an Explorer-style app. `portfolioTree.ts` builds the tree from `content/profile.json`: Products, Open Source, Clients (Northrop Grumman first), Employers. `PortfolioApp.tsx` shows the tree on the left and the selected project on the right, with Up, Down, Home and End moving the selection. A project with a case study loads it lazily and shows it in place as Overview, Problem and Results tabs, reusing `ProblemTab` and `ResultsTab`; it never links to the case study page. The window is the container (`@container`), so below 36rem (`@xl:`) the tree and the detail take turns and a Back button returns to the tree. The Projects page and the profile dialog keep `ProjectsView`.
+
+**Portal mode.** A page on the same origin can show the desktop in a frame by loading `/opensource/portfolio/?portal=1#/desktop`, with `?portal=1` before the hash. `DesktopPage` then passes `embedded` to `CodeOS`. An embedded desktop skips the boot screen and opens Portfolio at once. It posts two messages to the parent window, with the page's own origin as the target:
+
+| Message              | When                                                       |
+| -------------------- | ---------------------------------------------------------- |
+| `ayers-codeos-ready` | Once the desktop has mounted and Portfolio is opening.     |
+| `ayers-codeos-close` | Shut Down is confirmed, or Escape is pressed in the frame. |
+
+Escape closes only when nothing else used it: a menu or dialog that handles Escape cancels the event first.
+
+**Windows.** Minimising hides a window without unmounting it, so its content keeps its state. A taskbar button minimises the front window and restores any other. A maximised window stops above the taskbar, and a dragged window keeps 48px of its title bar inside the desktop (`clampPosition` in `windowManager.ts`).

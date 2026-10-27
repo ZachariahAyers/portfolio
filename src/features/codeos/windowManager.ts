@@ -3,6 +3,11 @@ export interface Position {
   y: number;
 }
 
+export interface Size {
+  width: number;
+  height: number;
+}
+
 export interface WindowState<Id extends string = string> {
   id: Id;
   z: number;
@@ -19,6 +24,7 @@ export type DesktopAction<Id extends string = string> =
   | { type: 'open'; id: Id; position: Position }
   | { type: 'focus'; id: Id }
   | { type: 'minimize'; id: Id }
+  | { type: 'restore'; id: Id }
   | { type: 'close'; id: Id }
   | { type: 'reset' };
 
@@ -51,6 +57,8 @@ export function desktopReducer<Id extends string>(
         ...state,
         windows: state.windows.map((w) => (w.id === action.id ? { ...w, minimized: true } : w)),
       };
+    case 'restore':
+      return raise(state, action.id);
     case 'close':
       return { ...state, windows: state.windows.filter((w) => w.id !== action.id) };
     case 'reset':
@@ -71,3 +79,19 @@ export const cascadePosition = (openCount: number): Position => ({
   x: 150 + openCount * 30,
   y: 50 + openCount * 30,
 });
+
+/** The taskbar's height in pixels; maximized windows stop above it. */
+export const TASKBAR_HEIGHT = 40;
+
+/** How much of a dragged window must stay inside the desktop, so its title bar can be grabbed. */
+const MIN_VISIBLE = 48;
+
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+
+/** Keeps at least 48px of the window's title bar inside `bounds`. */
+export function clampPosition(position: Position, size: Size, bounds: Size): Position {
+  return {
+    x: clamp(position.x, MIN_VISIBLE - size.width, bounds.width - MIN_VISIBLE),
+    y: clamp(position.y, 0, bounds.height - MIN_VISIBLE),
+  };
+}

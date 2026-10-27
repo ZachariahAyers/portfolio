@@ -1,6 +1,5 @@
 import { profile } from '../../content/profile.ts';
-import { ProjectsView } from '../profile/ProjectsView.tsx';
-import { FileText, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { AnimatePresence } from 'motion/react';
 import { useCallback, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -14,6 +13,7 @@ import { Clock } from './Clock.tsx';
 import { DesktopIcon } from './DesktopIcon.tsx';
 import { EmbeddedApp } from './EmbeddedApp.tsx';
 import { Notepad } from './Notepad.tsx';
+import { PortfolioApp } from './portfolio/PortfolioApp.tsx';
 import { ShutdownDialog } from './ShutdownDialog.tsx';
 import { StackExplorer } from './StackExplorer.tsx';
 import { StartMenu } from './StartMenu.tsx';
@@ -23,6 +23,10 @@ import { cascadePosition, desktopReducer, EMPTY_DESKTOP, focusedWindow } from '.
 type Phase = 'booting' | 'running' | 'crashed';
 
 const EXPLORER_POSITION = { x: 100, y: 50 };
+
+/** Tells the page that embeds this desktop in a frame; both pages share an origin. */
+const tellParent = (type: 'ayers-codeos-ready' | 'ayers-codeos-close') =>
+  window.parent.postMessage({ type }, window.location.origin);
 
 interface CodeOSProps {
   title: string;
@@ -62,9 +66,21 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
     });
   }, [standalone]);
 
+  // An embedded desktop has no boot screen, so it opens Portfolio itself.
   useEffect(() => {
     if (!embedded) return;
-    window.parent.postMessage({ type: 'ayers-codeos-ready' }, window.location.origin);
+    dispatch({ type: 'open', id: 'projects', position: EXPLORER_POSITION });
+    tellParent('ayers-codeos-ready');
+  }, [embedded]);
+
+  // Radix menus and dialogs cancel Escape when they use it; only a bare Escape leaves the frame.
+  useEffect(() => {
+    if (!embedded) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && !event.defaultPrevented) tellParent('ayers-codeos-close');
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
   }, [embedded]);
 
   const restart = useCallback(() => {
@@ -83,12 +99,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
     app.kind === 'explorer' ? `${title} - ${app.name}` : app.name;
 
   const contentOf = (app: DesktopApp) => {
-    if (app.kind === 'projects')
-      return (
-        <div className="h-full overflow-auto bg-white p-4 text-gray-900 dark:bg-gray-900 dark:text-white">
-          <ProjectsView profile={profile} />
-        </div>
-      );
+    if (app.kind === 'projects') return <PortfolioApp profile={profile} />;
     if (app.kind === 'explorer') return <StackExplorer files={files} />;
     if (app.kind === 'notepad') return <Notepad />;
     if (app.url) return <EmbeddedApp url={app.url} title={app.name} />;
@@ -118,7 +129,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
 
           {desktop.windows.map((w) => {
             const app = appById(w.id);
-            if (!app || w.minimized) return null;
+            if (!app) return null;
             return (
               <Window98
                 key={w.id}
@@ -126,6 +137,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
                 icon={app.icon}
                 initialPosition={w.position}
                 z={w.z}
+                hidden={w.minimized}
                 onFocus={() => dispatch({ type: 'focus', id: w.id })}
                 onMinimize={() => dispatch({ type: 'minimize', id: w.id })}
                 onClose={() => dispatch({ type: 'close', id: w.id })}
@@ -135,7 +147,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
             );
           })}
 
-          <footer className="win98-face win98-taskbar absolute right-0 bottom-0 left-0 flex h-10 items-center gap-1 px-2">
+          <footer className="win98-face win98-taskbar absolute right-0 bottom-0 left-0 z-[1000] flex h-10 items-center gap-1 px-2">
             {startMenu('start')}
             <div className="ml-2 flex flex-1 gap-1 overflow-hidden">
               {desktop.windows.map((w) => {
@@ -146,7 +158,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
                   <button
                     key={w.id}
                     type="button"
-                    onClick={() => dispatch({ type: 'focus', id: w.id })}
+                    onClick={() => dispatch({ type: active ? 'minimize' : 'restore', id: w.id })}
                     aria-pressed={active}
                     className={cx(
                       'win98-face flex items-center gap-2 truncate px-3 py-1 text-sm',
@@ -172,7 +184,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
             <>
               <header className="win98-titlebar flex h-12 items-center justify-between px-3">
                 <h2 className="flex items-center gap-2 text-sm font-bold text-white">
-                  <FileText className="h-5 w-5" aria-hidden />
+                  <mobileApp.icon className="h-5 w-5" aria-hidden />
                   {mobileApp.name}
                 </h2>
                 <button
@@ -213,7 +225,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
         onOpenChange={setShutdownOpen}
         onConfirm={() =>
           embedded
-            ? window.parent.postMessage({ type: 'ayers-codeos-close' }, window.location.origin)
+            ? tellParent('ayers-codeos-close')
             : standalone
               ? window.location.assign('https://ayers.repair/')
               : void navigate('/')

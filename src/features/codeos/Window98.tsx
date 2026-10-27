@@ -1,11 +1,6 @@
 import { type LucideIcon, Minus, Square, X } from 'lucide-react';
 import { type CSSProperties, type PointerEvent, type ReactNode, useRef, useState } from 'react';
-import type { Position } from './windowManager.ts';
-
-interface Size {
-  width: number;
-  height: number;
-}
+import { clampPosition, type Position, type Size, TASKBAR_HEIGHT } from './windowManager.ts';
 
 const MIN_SIZE: Size = { width: 400, height: 300 };
 const DEFAULT_SIZE: Size = { width: 800, height: 600 };
@@ -15,6 +10,8 @@ interface Window98Props {
   icon: LucideIcon;
   initialPosition: Position;
   z: number;
+  /** Minimised windows stay mounted, so their content keeps its state. */
+  hidden: boolean;
   onFocus: () => void;
   onMinimize: () => void;
   onClose: () => void;
@@ -29,6 +26,7 @@ export function Window98({
   icon: Icon,
   initialPosition,
   z,
+  hidden,
   onFocus,
   onMinimize,
   onClose,
@@ -38,6 +36,7 @@ export function Window98({
   const [size, setSize] = useState(DEFAULT_SIZE);
   const [maximized, setMaximized] = useState(false);
   const gesture = useRef<Gesture | null>(null);
+  const root = useRef<HTMLElement>(null);
 
   const start = (kind: Gesture['kind']) => (event: PointerEvent<HTMLElement>) => {
     if (maximized || (event.target instanceof Element && event.target.closest('button'))) return;
@@ -66,7 +65,12 @@ export function Window98({
   };
 
   const end = () => {
+    const g = gesture.current;
     gesture.current = null;
+    const desktop = root.current?.parentElement;
+    if (g?.kind !== 'move' || !desktop) return;
+    const bounds = { width: desktop.clientWidth, height: desktop.clientHeight - TASKBAR_HEIGHT };
+    setPosition((p) => clampPosition(p, size, bounds));
   };
 
   /** Window geometry changes with every drag, so it is passed as CSS variables read by .win98-window. */
@@ -80,6 +84,8 @@ export function Window98({
 
   return (
     <section
+      ref={root}
+      hidden={hidden}
       className={maximized ? 'win98-window win98-window-maximized' : 'win98-window'}
       style={geometry}
       onPointerDown={onFocus}

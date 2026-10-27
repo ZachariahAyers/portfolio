@@ -21,3 +21,6 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: () => false,
   }),
 });
+
+// jsdom does not implement scrollIntoView; lists call it to keep the selected row in view.
+Element.prototype.scrollIntoView = () => undefined;

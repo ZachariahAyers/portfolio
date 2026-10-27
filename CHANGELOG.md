@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Changed: the Portfolio app in CodeOS is an Explorer-style window with a project tree and a detail pane, and shows each case study in place.
+- Fixed: the embedded desktop now opens Portfolio and tells its parent page it is ready, and Escape in the frame asks the parent to close it.
+- Fixed: a minimised window keeps its state, the taskbar button minimises and restores, a maximised window stays above the taskbar, and a dragged window can no longer leave the desktop.
 - Fixed: the touch icon's declared size now matches the 1024 by 1024 image.
 - Removed: the Event Loop Viewer app, whose host page no longer exists, and the `robots.txt` that a subpath never serves.
 

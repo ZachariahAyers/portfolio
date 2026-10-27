@@ -120,8 +120,9 @@
   height: var(--win-h);
   z-index: var(--win-z);
 }
+/* Stops above the taskbar, which is h-10. */
 .win98-window-maximized {
-  inset: 0;
+  inset: 0 0 2.5rem 0;
   width: auto;
   height: auto;
 }

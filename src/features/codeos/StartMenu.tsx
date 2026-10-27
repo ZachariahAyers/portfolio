@@ -35,7 +35,7 @@ export function StartMenu({ onLaunch, onShutDown, align = 'start' }: StartMenuPr
           side="top"
           align={align}
           sideOffset={2}
-          className="win98-face win98-raised z-[60] w-[250px] font-win98"
+          className="win98-face win98-raised z-[1100] w-[250px] font-win98"
         >
           <div className="win98-banner flex h-[60px] items-center pl-1 text-lg font-bold text-white">
             CodeOS<span className="font-normal">&nbsp;98</span>
