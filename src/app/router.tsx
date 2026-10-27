@@ -4,6 +4,7 @@ import { profile } from '../content/profile.ts';
 import { StandalonePage } from '../components/StandalonePage.tsx';
 import ChatPage from '../features/chat/ChatPage.tsx';
 
+const DesktopPage = lazy(() => import('../features/codeos/DesktopPage.tsx'));
 const CaseStudyRoute = lazy(() => import('../features/case-studies/CaseStudyPage.tsx'));
 const ProjectsView = lazy(() =>
   import('../features/profile/ProjectsView.tsx').then((m) => ({ default: m.ProjectsView })),
@@ -22,6 +23,7 @@ export function AppRouter() {
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<ChatPage />} />
+          <Route path="/desktop" element={<DesktopPage />} />
           <Route
             path="/projects"
             element={

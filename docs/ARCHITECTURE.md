@@ -48,3 +48,5 @@ Vitest runs two projects: `node` for `*.test.ts` (logic and content) and `dom` f
 file against its schema, every Code tab path against the repository, and the contact address, so
 a content edit that breaks the site fails the suite. `src/features/chat/match.test.ts` pins how
 typed questions reach their answers.
+
+The `/#/desktop` route opens CodeOS without case-study chrome. Its Portfolio window uses the existing project views; Arcade embeds the company games catalogue at `/games.html?embed=codeos`. Shut Down returns to ayers.repair.

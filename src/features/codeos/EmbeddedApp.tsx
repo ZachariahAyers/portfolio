@@ -3,7 +3,7 @@ import { cx } from '../../lib/cx.ts';
 
 const SEGMENTS = 20;
 
-/** A third-party web tool in an iframe, behind a period progress bar while it loads. */
+/** A web app in an iframe, behind a period progress bar while it loads. */
 export function EmbeddedApp({ url, title }: { url: string; title: string }) {
   const [loaded, setLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -58,6 +58,7 @@ export function EmbeddedApp({ url, title }: { url: string; title: string }) {
         src={url}
         title={title}
         loading="lazy"
+        allowFullScreen
         referrerPolicy="no-referrer"
         className={cx('h-full w-full', !loaded && 'invisible')}
         onLoad={() => setLoaded(true)}

@@ -1,3 +1,5 @@
+import { profile } from '../../content/profile.ts';
+import { ProjectsView } from '../profile/ProjectsView.tsx';
 import { FileText, X } from 'lucide-react';
 import { AnimatePresence } from 'motion/react';
 import { useCallback, useEffect, useReducer, useState } from 'react';
@@ -24,12 +26,13 @@ const EXPLORER_POSITION = { x: 100, y: 50 };
 
 interface CodeOSProps {
   title: string;
+  standalone?: boolean;
   /** Files from this repository, as paths from its root. */
   source: readonly string[];
 }
 
 /** The Code tab: a Windows 98 style desktop whose main app browses real source files. */
-export function CodeOS({ title, source }: CodeOSProps) {
+export function CodeOS({ title, source, standalone = false }: CodeOSProps) {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const [phase, setPhase] = useState<Phase>('booting');
@@ -51,8 +54,12 @@ export function CodeOS({ title, source }: CodeOSProps) {
 
   const booted = useCallback(() => {
     setPhase('running');
-    dispatch({ type: 'open', id: 'explorer', position: EXPLORER_POSITION });
-  }, []);
+    dispatch({
+      type: 'open',
+      id: standalone ? 'projects' : 'explorer',
+      position: EXPLORER_POSITION,
+    });
+  }, [standalone]);
 
   const restart = useCallback(() => {
     dispatch({ type: 'reset' });
@@ -70,6 +77,12 @@ export function CodeOS({ title, source }: CodeOSProps) {
     app.kind === 'explorer' ? `${title} - ${app.name}` : app.name;
 
   const contentOf = (app: DesktopApp) => {
+    if (app.kind === 'projects')
+      return (
+        <div className="h-full overflow-auto bg-white p-4 text-gray-900 dark:bg-gray-900 dark:text-white">
+          <ProjectsView profile={profile} />
+        </div>
+      );
     if (app.kind === 'explorer') return <StackExplorer files={files} />;
     if (app.kind === 'notepad') return <Notepad />;
     if (app.url) return <EmbeddedApp url={app.url} title={app.name} />;
@@ -192,7 +205,9 @@ export function CodeOS({ title, source }: CodeOSProps) {
       <ShutdownDialog
         open={shutdownOpen}
         onOpenChange={setShutdownOpen}
-        onConfirm={() => void navigate('/')}
+        onConfirm={() =>
+          standalone ? window.location.assign('https://ayers.repair/') : void navigate('/')
+        }
       />
     </div>
   );

@@ -3,6 +3,8 @@ import {
   CircuitBoard,
   Code2,
   Grid3x3,
+  Gamepad2,
+  Briefcase,
   type LucideIcon,
   NotebookPen,
   Palette,
@@ -12,18 +14,26 @@ import {
   Sparkles,
 } from 'lucide-react';
 
-export type AppKind = 'explorer' | 'notepad' | 'embed' | 'crash';
+export type AppKind = 'projects' | 'explorer' | 'notepad' | 'embed' | 'crash';
 
 export interface DesktopApp {
   id: string;
   name: string;
   icon: LucideIcon;
   kind: AppKind;
-  /** Third-party tool shown in an iframe. */
+  /** Web app shown in an iframe. */
   url?: string;
 }
 
 export const APPS: readonly DesktopApp[] = [
+  { id: 'projects', name: 'Portfolio', icon: Briefcase, kind: 'projects' },
+  {
+    id: 'games',
+    name: 'Arcade',
+    icon: Gamepad2,
+    kind: 'embed',
+    url: '/games.html?embed=codeos',
+  },
   { id: 'explorer', name: 'Code Explorer', icon: Code2, kind: 'explorer' },
   { id: 'paint', name: 'Excalidraw', icon: Palette, kind: 'embed', url: 'https://excalidraw.com/' },
   {
