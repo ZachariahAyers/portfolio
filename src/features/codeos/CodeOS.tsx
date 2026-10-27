@@ -27,15 +27,16 @@ const EXPLORER_POSITION = { x: 100, y: 50 };
 interface CodeOSProps {
   title: string;
   standalone?: boolean;
+  embedded?: boolean;
   /** Files from this repository, as paths from its root. */
   source: readonly string[];
 }
 
 /** The Code tab: a Windows 98 style desktop whose main app browses real source files. */
-export function CodeOS({ title, source, standalone = false }: CodeOSProps) {
+export function CodeOS({ title, source, standalone = false, embedded = false }: CodeOSProps) {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  const [phase, setPhase] = useState<Phase>('booting');
+  const [phase, setPhase] = useState<Phase>(embedded ? 'running' : 'booting');
   const [desktop, dispatch] = useReducer(desktopReducer<string>, EMPTY_DESKTOP);
   const [mobileApp, setMobileApp] = useState<DesktopApp | null>(null);
   const [shutdownOpen, setShutdownOpen] = useState(false);
@@ -60,6 +61,11 @@ export function CodeOS({ title, source, standalone = false }: CodeOSProps) {
       position: EXPLORER_POSITION,
     });
   }, [standalone]);
+
+  useEffect(() => {
+    if (!embedded) return;
+    window.parent.postMessage({ type: 'ayers-codeos-ready' }, window.location.origin);
+  }, [embedded]);
 
   const restart = useCallback(() => {
     dispatch({ type: 'reset' });
@@ -206,7 +212,11 @@ export function CodeOS({ title, source, standalone = false }: CodeOSProps) {
         open={shutdownOpen}
         onOpenChange={setShutdownOpen}
         onConfirm={() =>
-          standalone ? window.location.assign('https://ayers.repair/') : void navigate('/')
+          embedded
+            ? window.parent.postMessage({ type: 'ayers-codeos-close' }, window.location.origin)
+            : standalone
+              ? window.location.assign('https://ayers.repair/')
+              : void navigate('/')
         }
       />
     </div>
