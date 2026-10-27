@@ -49,7 +49,7 @@ describe('CodeOS on a phone', () => {
   it('opens Portfolio full screen when embedded', () => {
     spyOnParent();
     const original = window.matchMedia;
-    window.matchMedia = (query: string) => ({ ...original(query), matches: true });
+    window.matchMedia = (query: string) => Object.assign(original(query), { matches: true });
     try {
       renderEmbedded();
       expect(screen.getByRole('heading', { level: 2, name: 'Portfolio' })).toBeInTheDocument();
