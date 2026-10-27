@@ -127,7 +127,7 @@ interface TreeProps {
 function ProjectTree({ tree, selectedId, onSelect, onKeyDown, className }: TreeProps) {
   return (
     <div
-      role="listbox"
+      role="tree"
       aria-label="Projects"
       tabIndex={0}
       aria-activedescendant={selectedId ? optionId(selectedId) : undefined}
@@ -138,9 +138,12 @@ function ProjectTree({ tree, selectedId, onSelect, onKeyDown, className }: TreeP
       )}
     >
       {tree.map((group) => (
-        <div key={group.type} role="group" aria-labelledby={`portfolio-group-${group.type}`}>
+        <div key={group.type}>
           <div
             id={`portfolio-group-${group.type}`}
+            role="treeitem"
+            aria-level={1}
+            aria-expanded={true}
             className="flex items-center gap-2 px-2 py-1 font-win98 font-bold"
           >
             <group.icon className="h-4 w-4 shrink-0" aria-hidden />
@@ -149,11 +152,14 @@ function ProjectTree({ tree, selectedId, onSelect, onKeyDown, className }: TreeP
               {group.items.length}
             </span>
           </div>
-          {group.items.map((item) => (
+          {group.items.map((item, index) => (
             <button
               key={item.id}
               type="button"
-              role="option"
+              role="treeitem"
+              aria-level={2}
+              aria-setsize={group.items.length}
+              aria-posinset={index + 1}
               tabIndex={-1}
               id={optionId(item.id)}
               aria-selected={item.id === selectedId}

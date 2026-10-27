@@ -41,8 +41,15 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const [phase, setPhase] = useState<Phase>(embedded ? 'running' : 'booting');
-  const [desktop, dispatch] = useReducer(desktopReducer<string>, EMPTY_DESKTOP);
-  const [mobileApp, setMobileApp] = useState<DesktopApp | null>(null);
+  const [desktop, dispatch] = useReducer(desktopReducer<string>, EMPTY_DESKTOP, (state) =>
+    // An embedded desktop has no boot screen, so it starts with Portfolio open.
+    embedded
+      ? desktopReducer(state, { type: 'open', id: 'projects', position: EXPLORER_POSITION })
+      : state,
+  );
+  const [mobileApp, setMobileApp] = useState<DesktopApp | null>(() =>
+    embedded ? (appById('projects') ?? null) : null,
+  );
   const [shutdownOpen, setShutdownOpen] = useState(false);
   const [files, setFiles] = useState<Record<string, SourceFile[]>>({});
   const focused = focusedWindow(desktop);
@@ -66,11 +73,8 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
     });
   }, [standalone]);
 
-  // An embedded desktop has no boot screen, so it opens Portfolio itself.
   useEffect(() => {
     if (!embedded) return;
-    dispatch({ type: 'open', id: 'projects', position: EXPLORER_POSITION });
-    setMobileApp(appById('projects') ?? null);
     tellParent('ayers-codeos-ready');
   }, [embedded]);
 

@@ -12,9 +12,9 @@ const northrop = profile.projects.clients.northrop!;
 describe('PortfolioApp', () => {
   it('lists every project in the tree', () => {
     renderPage(<PortfolioApp profile={profile} />);
-    const list = within(screen.getByRole('listbox', { name: 'Projects' }));
+    const list = within(screen.getByRole('tree', { name: 'Projects' }));
     for (const item of flatItems(tree)) {
-      expect(list.getByRole('option', { name: item.name })).toBeInTheDocument();
+      expect(list.getByRole('treeitem', { name: item.name })).toBeInTheDocument();
     }
   });
 
@@ -22,13 +22,13 @@ describe('PortfolioApp', () => {
     renderPage(<PortfolioApp profile={profile} />);
     expect(screen.getByRole('heading', { level: 2, name: 'Northrop Grumman' })).toBeInTheDocument();
     expect(screen.getByText(northrop.description)).toBeInTheDocument();
-    expect(screen.getByRole('option', { selected: true })).toHaveTextContent('Northrop Grumman');
+    expect(screen.getByRole('treeitem', { selected: true })).toHaveTextContent('Northrop Grumman');
   });
 
   it('shows the case study in place, without a link to its page', async () => {
     const user = userEvent.setup();
     renderPage(<PortfolioApp profile={profile} />);
-    await user.click(screen.getByRole('option', { name: 'Magpie' }));
+    await user.click(screen.getByRole('treeitem', { name: 'Magpie' }));
 
     expect(
       await screen.findByText('Your own movies and shows as live channels with a guide'),
@@ -42,11 +42,11 @@ describe('PortfolioApp', () => {
   it('moves the selection with the arrow keys', async () => {
     const user = userEvent.setup();
     renderPage(<PortfolioApp profile={profile} />);
-    screen.getByRole('listbox').focus();
+    screen.getByRole('tree').focus();
 
     await user.keyboard('{ArrowDown}');
 
     const next = findItem(tree, nextId(tree, 'clients-northrop', 1));
-    expect(screen.getByRole('option', { selected: true })).toHaveTextContent(next!.name);
+    expect(screen.getByRole('treeitem', { selected: true })).toHaveTextContent(next!.name);
   });
 });
