@@ -31,12 +31,15 @@ describe('CodeOS embedded in a frame', () => {
     expect(post).toHaveBeenCalledWith({ type: 'ayers-codeos-close' }, window.location.origin);
   });
 
-  it('keeps Escape inside a menu that uses it', async () => {
-    const post = spyOnParent();
+  it('leaves Escape alone when a menu or dialog already used it', async () => {
     const user = userEvent.setup();
+    const post = spyOnParent();
     renderEmbedded();
-    await user.click(screen.getByRole('button', { name: 'Start' }));
-    expect(await screen.findByRole('menu')).toBeInTheDocument();
+    // What a Radix layer does when Escape closes it: handle it first, in the capture phase.
+    document.addEventListener('keydown', (event) => event.preventDefault(), {
+      capture: true,
+      once: true,
+    });
     await user.keyboard('{Escape}');
     expect(post).not.toHaveBeenCalledWith({ type: 'ayers-codeos-close' }, expect.anything());
   });

@@ -70,6 +70,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
   useEffect(() => {
     if (!embedded) return;
     dispatch({ type: 'open', id: 'projects', position: EXPLORER_POSITION });
+    setMobileApp(appById('projects') ?? null);
     tellParent('ayers-codeos-ready');
   }, [embedded]);
 
