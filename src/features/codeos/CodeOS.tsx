@@ -1,4 +1,5 @@
-import { profile } from '../../content/profile.ts';
+import { companyProjects } from '../../content/company.ts';
+import { CompanyApp } from './CompanyApp.tsx';
 import { X } from 'lucide-react';
 import { AnimatePresence } from 'motion/react';
 import { useCallback, useEffect, useReducer, useState } from 'react';
@@ -20,7 +21,7 @@ import { StartMenu } from './StartMenu.tsx';
 import { Window98 } from './Window98.tsx';
 import { cascadePosition, desktopReducer, EMPTY_DESKTOP, focusedWindow } from './windowManager.ts';
 
-type Phase = 'booting' | 'running' | 'crashed';
+type Phase = 'waiting' | 'booting' | 'running' | 'crashed';
 
 /** Clear of the two columns of desktop icons. */
 const EXPLORER_POSITION = { x: 184, y: 24 };
@@ -41,16 +42,9 @@ interface CodeOSProps {
 export function CodeOS({ title, source, standalone = false, embedded = false }: CodeOSProps) {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  const [phase, setPhase] = useState<Phase>(embedded ? 'running' : 'booting');
-  const [desktop, dispatch] = useReducer(desktopReducer<string>, EMPTY_DESKTOP, (state) =>
-    // An embedded desktop has no boot screen, so it starts with Portfolio open.
-    embedded
-      ? desktopReducer(state, { type: 'open', id: 'projects', position: EXPLORER_POSITION })
-      : state,
-  );
-  const [mobileApp, setMobileApp] = useState<DesktopApp | null>(() =>
-    embedded ? (appById('projects') ?? null) : null,
-  );
+  const [phase, setPhase] = useState<Phase>(embedded ? 'waiting' : 'booting');
+  const [desktop, dispatch] = useReducer(desktopReducer<string>, EMPTY_DESKTOP);
+  const [mobileApp, setMobileApp] = useState<DesktopApp | null>(null);
   const [shutdownOpen, setShutdownOpen] = useState(false);
   const [files, setFiles] = useState<Record<string, SourceFile[]>>({});
   const focused = focusedWindow(desktop);
@@ -67,14 +61,25 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
 
   const booted = useCallback(() => {
     setPhase('running');
-    const id = standalone ? 'projects' : 'explorer';
-    dispatch({ type: 'open', id, position: EXPLORER_POSITION });
-    setMobileApp(appById(id) ?? null);
+    if (!standalone) {
+      dispatch({ type: 'open', id: 'explorer', position: EXPLORER_POSITION });
+      setMobileApp(appById('explorer') ?? null);
+    }
   }, [standalone]);
 
   useEffect(() => {
     if (!embedded) return;
+    const enter = (event: MessageEvent) => {
+      if (
+        event.origin === window.location.origin &&
+        event.source === window.parent &&
+        event.data?.type === 'ayers-codeos-open'
+      )
+        setPhase((current) => (current === 'waiting' ? 'booting' : current));
+    };
+    window.addEventListener('message', enter);
     tellParent('ayers-codeos-ready');
+    return () => window.removeEventListener('message', enter);
   }, [embedded]);
 
   // Radix menus and dialogs cancel Escape when they use it; only a bare Escape leaves the frame.
@@ -103,7 +108,8 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
     app.kind === 'explorer' ? `${title} - ${app.name}` : app.name;
 
   const contentOf = (app: DesktopApp) => {
-    if (app.kind === 'projects') return <PortfolioApp profile={profile} />;
+    if (app.kind === 'projects') return <PortfolioApp projects={companyProjects} />;
+    if (app.kind === 'company') return <CompanyApp />;
     if (app.kind === 'explorer') return <StackExplorer files={files} />;
     if (app.kind === 'notepad') return <Notepad />;
     if (app.url) return <EmbeddedApp url={app.url} title={app.name} />;
@@ -117,11 +123,13 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
   return (
     <div className="win98-desktop relative h-full overflow-hidden">
       <AnimatePresence>
-        {phase === 'booting' && <BootScreen projectName={title} onDone={booted} />}
+        {(phase === 'booting' || phase === 'waiting') && (
+          <BootScreen active={phase === 'booting'} onDone={booted} />
+        )}
       </AnimatePresence>
       {phase === 'crashed' && <BlueScreen onRestart={restart} />}
 
-      {phase !== 'booting' && !isMobile && (
+      {phase === 'running' && !isMobile && (
         <>
           <div className="absolute inset-0 p-2 font-win98">
             <div className="grid w-[160px] grid-cols-2 gap-2">
@@ -182,7 +190,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
         </>
       )}
 
-      {phase !== 'booting' && isMobile && (
+      {phase === 'running' && isMobile && (
         <div className="absolute inset-0 flex flex-col">
           {mobileApp ? (
             <>
@@ -207,7 +215,7 @@ export function CodeOS({ title, source, standalone = false, embedded = false }: 
           ) : (
             <>
               <div className="flex-1 overflow-auto p-2">
-                <div className="grid grid-cols-4 gap-1">
+                <div className="grid grid-cols-3 gap-4">
                   {APPS.map((app) => (
                     <DesktopIcon key={app.id} app={app} onOpen={() => launch(app)} large />
                   ))}

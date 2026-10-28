@@ -1,7 +1,7 @@
 {
-  "name": "Zachariah Ayers - Portfolio",
-  "short_name": "Portfolio",
-  "description": "Zachariah Ayers, Principal Software Engineer: projects, case studies and skills.",
+  "name": "Ayers Software Repair — CodeOS 98",
+  "short_name": "CodeOS",
+  "description": "Ayers Software Repair: portfolio, products, tools and games.",
   "start_url": "./",
   "display": "standalone",
   "theme_color": "#1a1a1a",

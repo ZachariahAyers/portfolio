@@ -27,7 +27,7 @@ export function ShutdownDialog({ open, onOpenChange, onConfirm }: ShutdownDialog
             <div className="mb-4 flex items-start gap-3">
               <Power className="mt-1 h-8 w-8 shrink-0 text-yellow-600" aria-hidden />
               <div>
-                <p className="text-sm">Return to main site?</p>
+                <p className="text-sm">Return to home?</p>
                 <Dialog.Description className="mt-1 text-xs opacity-75">
                   This will close the CodeOS 98 environment.
                 </Dialog.Description>

@@ -43,7 +43,7 @@ export function DesktopIcon({
         className={cx(
           'win98-icon-label w-full rounded-xs px-1 py-0.5 text-center leading-tight wrap-break-word text-white',
           large
-            ? 'text-[10px]'
+            ? 'text-xs'
             : 'text-[11px] tracking-[0.5px] group-hover:bg-[#000080] group-focus-visible:bg-[#000080] dark:group-hover:bg-blue-600',
         )}
       >

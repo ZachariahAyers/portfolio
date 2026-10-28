@@ -1,0 +1,105 @@
+{
+  "clients": {
+    "northrop": {
+      "name": "Northrop Grumman",
+      "description": "Modernized legacy VB6 applications in C# and .NET 8, including application architecture, data access, and integrations. Built automated testing and release workflows, documented the handoff, and built AI agents and MCP servers.",
+      "technologies": ["C#", ".NET", "VB6", "MCP"],
+      "url": "https://www.northropgrumman.com/"
+    },
+    "aussie": {
+      "name": "AmeriSave",
+      "description": "Earlier employment. Built much of the AUSSIE underwriting rewrite in Spring Boot and Angular. Created the AMCUI microfrontend framework and AMCLI project generator, led the TypeScript rollout and OpenShift migration, and built a federated GraphQL layer for business reporting.",
+      "technologies": ["Java", "Spring Boot", "TypeScript", "Angular", "GraphQL", "OpenShift"],
+      "url": "https://www.amerisave.com/"
+    },
+    "wrapmate": {
+      "name": "Wrapmate",
+      "description": "Built a real-time 3D configurator for Volkswagen ID. Buzz wraps so customers could preview designs on the vehicle before ordering, connected to Wrapmate’s online store.",
+      "technologies": ["React", "TypeScript", "Three.js", "WebGL", "Node.js"],
+      "url": "https://wraps.wrapmate.com/configurator"
+    },
+    "gamut": {
+      "name": "Gamut",
+      "description": "Including Timelapse+. Built a licensing system for Gamut’s color grades, including protected files, a licensing server, and plugins for Premiere Pro and DaVinci Resolve. For Timelapse+, added a workflow that exports from Lightroom Classic directly into a DaVinci Resolve project.",
+      "technologies": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "Lightroom Classic",
+        "Express",
+        "Lua",
+        "Python"
+      ],
+      "url": "https://gamut.io/"
+    },
+    "powerbuilding": {
+      "name": "Powerbuilding",
+      "description": "Took over development of a fitness platform with separate apps for clients and coaches, covering training, nutrition, and health tracking.",
+      "technologies": ["Flutter", "NestJS", "Django", "AWS", "Azure OpenAI"],
+      "url": "https://www.powerbuilding.com/"
+    },
+    "rabcab": {
+      "name": "RabCab",
+      "description": "Developed at STAK Design. Built the customer configurator and AutoCAD tooling that connected custom cabinetry and fixture orders to estimating, engineering, and manufacturing. Automated repetitive drafting and CAM work.",
+      "technologies": ["C#", "AutoCAD ObjectARX", "CAM"],
+      "url": "https://getrabcab.com/"
+    }
+  },
+  "products": {
+    "assemblejs": {
+      "name": "AssembleJS",
+      "description": "Combine frontend frameworks in one application, with server composition, browser hydration, and shared events.",
+      "technologies": ["React", "Vue", "Svelte", "Preact", "Solid", "Lit", "Web Components", "MCP"],
+      "url": "https://assemblejs.com/"
+    },
+    "magpie": {
+      "name": "Magpie",
+      "description": "Your movies, shows, music, DVDs, CDs, and podcasts as live channels or on demand. Watch across phones, computers, and TVs.",
+      "technologies": [
+        "iOS",
+        "Android",
+        "Apple TV",
+        "Google TV",
+        "Fire TV",
+        "Roku",
+        "Desktop",
+        "Web"
+      ],
+      "url": "https://magpietv.com/"
+    },
+    "howland": {
+      "name": "Howland",
+      "description": "Work, chat, and code across devices, with your own models running on your hardware. An offline intranet with Wikipedia, maps, books, medical references, and repair guides.",
+      "technologies": ["Windows", "macOS", "Linux", "iPhone", "iPad", "Android", "Web"],
+      "url": "https://howland.si/"
+    },
+    "fermi": {
+      "name": "FERMI",
+      "description": "Talk or message FERMI for help with everyday tasks, plans, and ideas. Your own models and information, with answers cited to your documents.",
+      "technologies": ["Windows", "macOS", "Linux", "iOS", "Android", "llama.cpp", "RAG"],
+      "url": "https://heyfermi.com/"
+    },
+    "rabcab-product": {
+      "name": "RabCab",
+      "description": "From drawing to parts. Add joinery, extend dimensions, and generate bills of materials from your AutoCAD drawings.",
+      "technologies": ["Windows", "AutoCAD", "Bills of materials", "Joinery", "Dimensions"],
+      "url": "https://getrabcab.com/"
+    }
+  },
+  "opensource": {
+    "marketplace": {
+      "name": "AI Marketplace",
+      "description": "Skills, plugins and MCP servers for AI agents. Browse the tools, check compatibility and install what you need.",
+      "technologies": ["Skills", "Plugins", "MCP"],
+      "url": "https://ayers.repair/marketplace.html",
+      "github": "https://github.com/ayers-software-repair/marketplace"
+    },
+    "contributions": {
+      "name": "Open Source",
+      "description": "Our applications, frameworks, utilities and contributions to other open-source projects.",
+      "technologies": [],
+      "url": "https://ayers.repair/opensource/",
+      "github": "https://github.com/ayers-software-repair"
+    }
+  },
+  "employers": {}
+}

@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 
-export type AppKind = 'projects' | 'explorer' | 'notepad' | 'embed' | 'crash';
+export type AppKind = 'company' | 'projects' | 'explorer' | 'notepad' | 'embed' | 'crash';
 
 export interface DesktopApp {
   id: string;
@@ -26,6 +26,7 @@ export interface DesktopApp {
 }
 
 export const APPS: readonly DesktopApp[] = [
+  { id: 'company', name: 'Ayers Software Repair', icon: Briefcase, kind: 'company' },
   { id: 'projects', name: 'Portfolio', icon: Briefcase, kind: 'projects' },
   {
     id: 'games',

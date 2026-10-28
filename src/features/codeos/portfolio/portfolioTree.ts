@@ -1,10 +1,5 @@
 import { Briefcase, Building, type LucideIcon, Package, Rocket } from 'lucide-react';
-import {
-  type Profile,
-  type Project,
-  PROJECT_TYPES,
-  type ProjectType,
-} from '../../../content/schema.ts';
+import { type Profile, type Project, type ProjectType } from '../../../content/schema.ts';
 
 export interface TreeItem {
   id: string;
@@ -23,36 +18,38 @@ export interface TreeGroup {
 
 export type Tree = TreeGroup[];
 
-/** Same labels and icons as the cards on the Projects page. */
+/** Company portfolio and product groups. */
 const GROUPS: Record<ProjectType, { label: string; icon: LucideIcon }> = {
   products: { label: 'Products', icon: Rocket },
   opensource: { label: 'Open Source', icon: Package },
-  clients: { label: 'Clients', icon: Briefcase },
+  clients: { label: 'Portfolio', icon: Briefcase },
   employers: { label: 'Employers', icon: Building },
 };
 
 const FIRST_CLIENT = 'northrop';
 
-/** Products, Open Source, Clients, Employers; Northrop Grumman leads the clients. */
+/** Company portfolio first, with Northrop Grumman leading it. */
 export function buildTree(projects: Profile['projects']): Tree {
-  return PROJECT_TYPES.map((type) => {
-    const entries = Object.entries(projects[type]);
-    const ordered =
-      type === 'clients'
-        ? entries.toSorted(([a], [b]) => Number(b === FIRST_CLIENT) - Number(a === FIRST_CLIENT))
-        : entries;
-    return {
-      type,
-      ...GROUPS[type],
-      items: ordered.map(([key, project]) => ({
-        id: `${type}-${key}`,
+  return (['clients', 'products', 'opensource', 'employers'] as const)
+    .filter((type) => Object.keys(projects[type]).length)
+    .map((type) => {
+      const entries = Object.entries(projects[type]);
+      const ordered =
+        type === 'clients'
+          ? entries.toSorted(([a], [b]) => Number(b === FIRST_CLIENT) - Number(a === FIRST_CLIENT))
+          : entries;
+      return {
         type,
-        key,
-        name: project.name,
-        project,
-      })),
-    };
-  });
+        ...GROUPS[type],
+        items: ordered.map(([key, project]) => ({
+          id: `${type}-${key}`,
+          type,
+          key,
+          name: project.name,
+          project,
+        })),
+      };
+    });
 }
 
 export const flatItems = (tree: Tree): TreeItem[] => tree.flatMap((group) => group.items);

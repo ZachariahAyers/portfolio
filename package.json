@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "2.0.0",
-  "description": "Zachariah Ayers' portfolio: ARLO, a guide that answers from his records, with case studies, projects and skills.",
+  "description": "CodeOS: the Ayers Software Repair portfolio, products, utilities and games in a browser desktop.",
   "author": "Zachariah Ayers",
   "homepage": "https://ayers.repair/opensource/portfolio/",
   "repository": {

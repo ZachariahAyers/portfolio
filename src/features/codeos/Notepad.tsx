@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
-const STARTER = `Notepad 98
+const STARTER = `Ayers Software Repair
+Software Services & AI Development
 
-Type anything here. Nothing is saved.`;
+ayers.repair
+info@ayers.repair
+
+Use this space for your notes. Notes are not saved when you close the desktop.`;
 
 export function Notepad() {
   const [text, setText] = useState(STARTER);

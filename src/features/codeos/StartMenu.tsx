@@ -53,7 +53,7 @@ export function StartMenu({ onLaunch, onShutDown, align = 'start' }: StartMenuPr
             <DropdownMenu.Separator className="win98-separator mx-2 h-px" />
             <DropdownMenu.Item className={item} onSelect={onShutDown}>
               <Zap className="h-4 w-4" aria-hidden />
-              Shut Down...
+              Return to home
             </DropdownMenu.Item>
           </div>
         </DropdownMenu.Content>

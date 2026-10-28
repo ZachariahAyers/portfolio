@@ -2,15 +2,18 @@
 
 [![CI](https://github.com/ZachariahAyers/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/ZachariahAyers/portfolio/actions/workflows/ci.yml)
 
-Zachariah Ayers' portfolio, live at [ayers.repair/opensource/portfolio](https://ayers.repair/opensource/portfolio/).
+Ayers Software Repair’s browser desktop, live at [ayers.repair/opensource/portfolio](https://ayers.repair/opensource/portfolio/).
 
 ## Features
 
-- ARLO, a guide that answers questions about Zach's work from answers prepared in advance from his résumé and project notes
-- Projects filtered by type and technology
-- Skills by category, with search
-- Case studies with before and after, and results
-- A Windows 98 style desktop for browsing this repository's source
+- A loading screen followed by the desktop on phones and computers
+- Company portfolio and products, with descriptions and links from the company site
+- Utilities, games and a source-code explorer
+- An embedded entrance from the company homepage’s laptop; Escape returns home
+
+Company content lives in `content/company-projects.json`. The router serves the desktop for every route. The retired personal portfolio, ARLO answers and case-study content are not included in the application bundle or its source explorer.
+
+When embedded, the desktop signals `ayers-codeos-ready` and waits for `ayers-codeos-open` from its same-origin parent before starting the loading screen. This keeps loading visible after the laptop entrance animation.
 
 ## Tech stack
 
@@ -45,4 +48,4 @@ All rights reserved. See [LICENSE](LICENSE).
 
 ---
 
-Built by [Zachariah Ayers](https://ayers.repair).
+Built by [Ayers Software Repair](https://ayers.repair).

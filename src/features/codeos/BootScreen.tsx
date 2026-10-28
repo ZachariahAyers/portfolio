@@ -1,22 +1,25 @@
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 /** The start-up screen. Calls onDone once the bar fills. */
-export function BootScreen({ projectName, onDone }: { projectName: string; onDone: () => void }) {
+export function BootScreen({ active = true, onDone }: { active?: boolean; onDone: () => void }) {
+  const reduced = useReducedMotion();
   const [progress, setProgress] = useState(0);
   const full = progress >= 100;
 
   useEffect(() => {
+    if (!active) return;
+    if (reduced) {
+      onDone();
+      return;
+    }
     if (full) {
-      const timer = window.setTimeout(onDone, 1000);
+      const timer = window.setTimeout(onDone, 300);
       return () => window.clearTimeout(timer);
     }
-    const timer = window.setInterval(
-      () => setProgress((p) => Math.min(100, p + Math.random() * 15)),
-      200,
-    );
+    const timer = window.setInterval(() => setProgress((p) => Math.min(100, p + 5)), 100);
     return () => window.clearInterval(timer);
-  }, [full, onDone]);
+  }, [active, reduced, full, onDone]);
 
   return (
     <motion.div
@@ -28,11 +31,11 @@ export function BootScreen({ projectName, onDone }: { projectName: string; onDon
         className="sr-only"
         value={Math.round(progress)}
         max={100}
-        aria-label={`Opening the code for ${projectName}`}
+        aria-label="Loading CodeOS"
       />
       <div className="text-center text-white dark:text-green-400">
         <p className="mb-2 font-['Arial'] text-4xl font-bold">CodeOS 98</p>
-        <p className="mb-8 text-sm">Professional Stack Edition™</p>
+        <p className="mb-8 text-sm">Ayers Software Repair</p>
         <div
           className="h-6 w-80 border-2 border-gray-400 bg-gray-800 dark:border-gray-700 dark:bg-gray-900"
           aria-hidden
@@ -44,7 +47,7 @@ export function BootScreen({ projectName, onDone }: { projectName: string; onDon
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
           />
         </div>
-        <p className="mt-4 text-xs">Opening the code for {projectName}...</p>
+        <p className="mt-4 text-xs">Starting your desktop…</p>
       </div>
     </motion.div>
   );

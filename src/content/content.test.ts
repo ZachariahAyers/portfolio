@@ -27,10 +27,13 @@ describe('authored content', () => {
     expect(live.filter((url) => url.includes('github.com'))).toEqual([]);
   });
 
-  it('every file a Code tab lists exists in the repository', () => {
-    for (const caseStudy of caseStudies) {
-      for (const path of caseStudy?.source ?? []) expect(sourcePaths).toContain(path);
-    }
+  it('the published code explorer excludes retired portfolio data and ARLO', async () => {
+    expect(sourcePaths).toContain('src/features/codeos/CodeOS.tsx');
+    expect(sourcePaths).toContain('content/company-projects.json');
+    expect(sourcePaths).not.toContain('content/answers.json');
+    expect(sourcePaths).not.toContain('content/profile.json');
+    const source = await loadSource(sourcePaths);
+    expect(JSON.stringify(source)).not.toMatch(/ARLO|This portfolio/);
   });
 
   it('gives one contact address, and it is the support address', () => {

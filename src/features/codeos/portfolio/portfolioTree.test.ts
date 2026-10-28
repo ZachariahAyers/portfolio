@@ -1,46 +1,41 @@
 import { describe, expect, it } from 'vitest';
-import { profile } from '../../../content/profile.ts';
+import { companyProjects } from '../../../content/company.ts';
 import { PROJECT_TYPES } from '../../../content/schema.ts';
 import { buildTree, caseStudyId, findItem, flatIds, nextId } from './portfolioTree.ts';
 
-const tree = buildTree(profile.projects);
+const tree = buildTree(companyProjects);
 const projectCount = PROJECT_TYPES.reduce(
-  (sum, type) => sum + Object.keys(profile.projects[type]).length,
+  (sum, type) => sum + Object.keys(companyProjects[type]).length,
   0,
 );
 
 describe('portfolio tree', () => {
-  it('orders the groups products, open source, clients, employers', () => {
-    expect(tree.map((group) => group.label)).toEqual([
-      'Products',
-      'Open Source',
-      'Clients',
-      'Employers',
-    ]);
+  it('puts portfolio first and omits empty groups', () => {
+    expect(tree.map((group) => group.label)).toEqual(['Portfolio', 'Products', 'Open Source']);
   });
 
   it('puts Northrop first among the clients and keeps file order elsewhere', () => {
     const clients = tree.find((group) => group.type === 'clients');
     expect(clients?.items[0]?.id).toBe('clients-northrop');
-    expect(clients?.items.map((item) => item.key)).toEqual(Object.keys(profile.projects.clients));
+    expect(clients?.items.map((item) => item.key)).toEqual(Object.keys(companyProjects.clients));
     const products = tree.find((group) => group.type === 'products');
-    expect(products?.items.map((item) => item.key)).toEqual(Object.keys(profile.projects.products));
+    expect(products?.items.map((item) => item.key)).toEqual(Object.keys(companyProjects.products));
   });
 
   it('moves Northrop to the front when the file lists it later', () => {
     const reordered = buildTree({
-      ...profile.projects,
+      ...companyProjects,
       clients: {
-        wrapmate: profile.projects.clients.wrapmate!,
-        northrop: profile.projects.clients.northrop!,
+        wrapmate: companyProjects.clients.wrapmate!,
+        northrop: companyProjects.clients.northrop!,
       },
     });
-    expect(reordered[2]?.items.map((item) => item.key)).toEqual(['northrop', 'wrapmate']);
+    expect(reordered[0]?.items.map((item) => item.key)).toEqual(['northrop', 'wrapmate']);
   });
 
   it('lists every project once', () => {
     expect(flatIds(tree)).toHaveLength(projectCount);
-    expect(projectCount).toBe(19);
+    expect(projectCount).toBe(13);
     expect(new Set(flatIds(tree)).size).toBe(projectCount);
   });
 

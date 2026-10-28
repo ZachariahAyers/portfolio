@@ -1,13 +1,9 @@
 import { ChevronLeft, Code, Globe } from 'lucide-react';
 import { type KeyboardEvent, useEffect, useMemo, useState } from 'react';
-import { loadCaseStudy } from '../../../content/caseStudies.ts';
-import type { CaseStudy, Profile } from '../../../content/schema.ts';
+import type { Profile } from '../../../content/schema.ts';
 import { cx } from '../../../lib/cx.ts';
-import { ProblemTab } from '../../case-studies/ProblemTab.tsx';
-import { ResultsTab } from '../../case-studies/ResultsTab.tsx';
 import {
   buildTree,
-  caseStudyId,
   findItem,
   flatItems,
   nextId,
@@ -19,25 +15,16 @@ const DEFAULT_ID = 'clients-northrop';
 
 const optionId = (id: string) => `portfolio-option-${id}`;
 
-type TabId = 'overview' | 'problem' | 'results';
-
-/** Overview always; Problem and Results only when the case study has them. */
-const tabsFor = (study: CaseStudy): { id: TabId; label: string }[] => [
-  { id: 'overview', label: 'Overview' },
-  ...(study.problem ? [{ id: 'problem' as const, label: 'Problem' }] : []),
-  ...(study.results ? [{ id: 'results' as const, label: 'Results' }] : []),
-];
-
 const link = 'flex items-center gap-1 text-blue-700 underline dark:text-blue-300';
 
 interface PortfolioAppProps {
-  profile: Profile;
+  projects: Profile['projects'];
   initialId?: string;
 }
 
 /** The Portfolio app: projects in a tree on the left, the selected one on the right. */
-export function PortfolioApp({ profile, initialId = DEFAULT_ID }: PortfolioAppProps) {
-  const tree = useMemo(() => buildTree(profile.projects), [profile.projects]);
+export function PortfolioApp({ projects, initialId = DEFAULT_ID }: PortfolioAppProps) {
+  const tree = useMemo(() => buildTree(projects), [projects]);
   const [selectedId, setSelectedId] = useState(initialId);
   // In a narrow window the tree and the detail take turns.
   const [detailOpen, setDetailOpen] = useState(false);
@@ -194,31 +181,11 @@ function Chips({ items }: { items: readonly string[] }) {
 
 function Detail({ item, groupLabel }: { item: TreeItem; groupLabel: string | undefined }) {
   const { project } = item;
-  const id = caseStudyId(project);
-  const [study, setStudy] = useState<CaseStudy>();
-  const [tab, setTab] = useState<TabId>('overview');
-
-  // Detail is keyed by the selected project, so leaving it cancels a load in flight.
-  useEffect(() => {
-    if (!id) return;
-    let active = true;
-    loadCaseStudy(id)
-      .then((loaded) => active && setStudy(loaded))
-      .catch(() => undefined);
-    return () => {
-      active = false;
-    };
-  }, [id]);
-
-  const meta = [groupLabel, study?.organization, study?.role, study?.period].filter(Boolean);
-  const tabs = study ? tabsFor(study) : [];
-
   return (
     <article className="space-y-3">
       <header>
         <h2 className="text-lg font-bold">{project.name}</h2>
-        <p className="text-xs text-gray-600 dark:text-gray-400">{meta.join(' · ')}</p>
-        {study && <p className="mt-1 text-sm italic">{study.tagline}</p>}
+        <p className="text-xs text-gray-600 dark:text-gray-400">{groupLabel}</p>
       </header>
       <p className="leading-relaxed">{project.description}</p>
       {project.technologies.length > 0 && <Chips items={project.technologies} />}
@@ -227,7 +194,7 @@ function Detail({ item, groupLabel }: { item: TreeItem; groupLabel: string | und
           {project.url && (
             <a href={project.url} target="_blank" rel="noopener noreferrer" className={link}>
               <Globe className="h-4 w-4" aria-hidden />
-              Live site
+              Visit website
             </a>
           )}
           {project.github && (
@@ -238,68 +205,6 @@ function Detail({ item, groupLabel }: { item: TreeItem; groupLabel: string | und
           )}
         </div>
       )}
-      {study && (
-        <section aria-label="Case study">
-          <div role="tablist" aria-label="Case study" className="flex gap-0.5 font-win98 text-sm">
-            {tabs.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                role="tab"
-                id={`portfolio-tab-${t.id}`}
-                aria-selected={tab === t.id}
-                aria-controls="portfolio-tabpanel"
-                onClick={() => setTab(t.id)}
-                className={cx(
-                  'win98-face px-3 py-1',
-                  tab === t.id ? 'win98-raised border-b-0 font-bold' : 'win98-button',
-                )}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-          <div
-            role="tabpanel"
-            id="portfolio-tabpanel"
-            aria-labelledby={`portfolio-tab-${tab}`}
-            className="win98-raised win98-face p-1"
-          >
-            {tab === 'overview' && <Overview study={study} />}
-            {tab === 'problem' && study.problem && (
-              <div className="h-[28rem]">
-                <ProblemTab problem={study.problem} />
-              </div>
-            )}
-            {tab === 'results' && study.results && (
-              <ResultsTab title={study.title} results={study.results} />
-            )}
-          </div>
-        </section>
-      )}
     </article>
-  );
-}
-
-function Overview({ study }: { study: CaseStudy }) {
-  return (
-    <div className="space-y-4 bg-white p-3 text-sm text-gray-900 dark:bg-gray-900 dark:text-white">
-      <section>
-        <h3 className="mb-1 font-bold">Context</h3>
-        <p className="leading-relaxed">{study.context}</p>
-      </section>
-      <section>
-        <h3 className="mb-1 font-bold">Delivered</h3>
-        <ul className="list-disc space-y-1 pl-5">
-          {study.delivered.map((entry) => (
-            <li key={entry}>{entry}</li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h3 className="mb-1 font-bold">Stack</h3>
-        <Chips items={study.stack} />
-      </section>
-    </div>
   );
 }

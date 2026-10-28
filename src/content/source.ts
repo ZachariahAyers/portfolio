@@ -1,6 +1,12 @@
 /** This repository's own source, loaded as text only when the Code tab opens it. */
 const files = import.meta.glob<string>(
-  ['/src/**/*.{ts,tsx,css}', '/content/**/*.json', '!/src/**/*.test.{ts,tsx}'],
+  [
+    '/src/features/codeos/**/*.{ts,tsx}',
+    '/src/app/router.tsx',
+    '/src/content/company.ts',
+    '/content/company-projects.json',
+    '!/src/**/*.test.{ts,tsx}',
+  ],
   { query: '?raw', import: 'default' },
 );
 
